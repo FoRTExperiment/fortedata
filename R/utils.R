@@ -6,6 +6,7 @@
 #'
 #' @return The read-in dataframe.
 #' @keywords internal
+#' @importFrom utils read.csv
 #' @details \code{...} is passed to \code{\link{system.file}},
 #' so can be vectors specifying
 #' subdirectory and file(s) within the package.
