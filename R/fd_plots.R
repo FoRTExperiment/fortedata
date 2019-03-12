@@ -1,4 +1,4 @@
-# Plot table
+# Plot tables
 
 
 #' Return the plots table.
@@ -17,11 +17,7 @@
 #' @examples
 #' fd_plots()
 fd_plots <- function() {
-  read.csv(
-    system.file("extdata", "fd_plots.csv",
-                package = "fortedata", mustWork = TRUE),
-    stringsAsFactors = FALSE
-  )
+  read_csv_file("fd_plots.csv")
 }
 
 
@@ -43,11 +39,7 @@ fd_plots <- function() {
 #' @examples
 #' fd_subplots()
 fd_subplots <- function() {
-  read.csv(
-    system.file("extdata", "fd_subplots.csv",
-                package = "fortedata", mustWork = TRUE),
-    stringsAsFactors = FALSE
-  )
+  read_csv_file("fd_subplots.csv")
 }
 
 
@@ -67,9 +59,5 @@ fd_subplots <- function() {
 #' @examples
 #' fd_nested_subplots()
 fd_nested_subplots <- function() {
-  read.csv(
-    system.file("extdata", "fd_nested_subplots.csv",
-                package = "fortedata", mustWork = TRUE),
-    stringsAsFactors = FALSE
-  )
+  read_csv_file("fd_nested_subplots.csv")
 }
