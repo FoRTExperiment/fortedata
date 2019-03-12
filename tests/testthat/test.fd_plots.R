@@ -54,4 +54,6 @@ test_that("Nested sublots table", {
     expect_type(Nested_subplot, "integer") # factor?
   })
 
+  # Replicate x Plot x Subplot x Nested_subplot should be unique
+  expect_equal(nrow(unique(dat[, c("Replicate", "Plot", "Subplot", "Nested_subplot")])), nrow(dat))
 })
