@@ -1,4 +1,4 @@
-﻿Replicate,Plot,Subplot,Latitude,Longitude,Subplot_area_m2
+Replicate,Plot,Subplot,Latitude_subplot,Longitude_subplot,Subplot_area_m2
 A,1,E,45.563404,-84.728465,1000
 A,1,W,45.563404,-84.728465,1000
 A,2,E,45.56418,-84.727971,1000

@@ -10,10 +10,10 @@ test_that("Plots table", {
   expect_s3_class(dat, "data.frame")
 
   with(dat, {
-    expect_true(all(Latitude > min(umbs_lat)))
-    expect_true(all(Latitude < max(umbs_lat)))
-    expect_true(all(Longitude > min(umbs_lon)))
-    expect_true(all(Longitude < max(umbs_lon)))
+    expect_true(all(Latitude_plot > min(umbs_lat)))
+    expect_true(all(Latitude_plot < max(umbs_lat)))
+    expect_true(all(Longitude_plot > min(umbs_lon)))
+    expect_true(all(Longitude_plot < max(umbs_lon)))
     expect_true(all(Plot_area_m2 > 0))
 
     expect_type(Replicate, "character") # factor?
@@ -29,10 +29,10 @@ test_that("Sublots table", {
   expect_s3_class(dat, "data.frame")
 
   with(dat, {
-    expect_true(all(Latitude > min(umbs_lat)))
-    expect_true(all(Latitude < max(umbs_lat)))
-    expect_true(all(Longitude > min(umbs_lon)))
-    expect_true(all(Longitude < max(umbs_lon)))
+    expect_true(all(Latitude_subplot > min(umbs_lat)))
+    expect_true(all(Latitude_subplot < max(umbs_lat)))
+    expect_true(all(Longitude_subplot > min(umbs_lon)))
+    expect_true(all(Longitude_subplot < max(umbs_lon)))
     expect_true(all(Subplot_area_m2 > 0))
 
     expect_type(Replicate, "character") # factor?
