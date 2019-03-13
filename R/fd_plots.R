@@ -29,7 +29,7 @@ fd_plots <- function() {
 #' - `Plot` (integer): Plot ID number. Plots are nested within replicates.
 #' - `Subplot` (character): Subplot code. Subplots are nested within plots:
 #' one in the eastern part, one in the western.
-#' - `Longitude`, `Latitude` (double): Subplot coordinates, in decimal
+#' - `Longitude_subplot`, `Latitude_subplot` (double): Subplot coordinates, in decimal
 #'   degrees.
 #' - `Plot_area_m2` (double): Area of the subplot, in square meters.
 #'
