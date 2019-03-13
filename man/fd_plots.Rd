@@ -18,7 +18,7 @@ The columns are as follows:
 \item \code{Replicate} (character): Replicate code. Each replicate contains
 multiple plots with different disturbance treatments.
 \item \code{Plot} (integer): Plot ID number. Plots are nested within replicates.
-\item \code{Longitude}, \code{Latitude} (double): Plot coordinates, in decimal
+\item \code{Longitude_plot}, \code{Latitude_plot} (double): Plot coordinates, in decimal
 degrees.
 \item \code{Plot_area_m2} (double): Area of the plot, in square meters.
 }

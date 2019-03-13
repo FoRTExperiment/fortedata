@@ -20,7 +20,7 @@ multiple plots with different disturbance treatments.
 \item \code{Plot} (integer): Plot ID number. Plots are nested within replicates.
 \item \code{Subplot} (character): Subplot code. Subplots are nested within plots:
 one in the eastern part, one in the western.
-\item \code{Longitude}, \code{Latitude} (double): Subplot coordinates, in decimal
+\item \code{Longitude_subplot}, \code{Latitude_subplot} (double): Subplot coordinates, in decimal
 degrees.
 \item \code{Plot_area_m2} (double): Area of the subplot, in square meters.
 }
