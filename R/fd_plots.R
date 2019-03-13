@@ -7,7 +7,7 @@
 #' - `Replicate` (character): Replicate code. Each replicate contains
 #'   multiple plots with different disturbance treatments.
 #' - `Plot` (integer): Plot ID number. Plots are nested within replicates.
-#' - `Longitude`, `Latitude` (double): Plot coordinates, in decimal
+#' - `Longitude_plot`, `Latitude_plot` (double): Plot coordinates, in decimal
 #'   degrees.
 #' - `Plot_area_m2` (double): Area of the plot, in square meters.
 #'
