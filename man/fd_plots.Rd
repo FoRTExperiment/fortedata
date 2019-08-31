@@ -7,7 +7,7 @@
 fd_plots()
 }
 \value{
-A \code{data.frame}. See "Details" for column descriptions.
+A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
 Return the plots table.
