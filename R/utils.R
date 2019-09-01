@@ -26,11 +26,9 @@ read_csv_file <- function(...) {
 # not a user-facing function; document via roxygen?
 weak_tibble <- function(..., .force_df = FALSE) {
   no_tibble <- !suppressWarnings(requireNamespace("tibble", quietly = TRUE))
-  if (.force_df || no_tibble) {
-    data.frame(..., stringsAsFactors = FALSE)
-  } else {
-    tibble::tibble(...)
-  }
+  out <- data.frame(..., stringsAsFactors = FALSE)
+  if (!(.force_df || no_tibble)) out <- weak_as_tibble(out)
+  out
 }
 
 # weak_as_tibble - use as_tibble() if available but fall back to
