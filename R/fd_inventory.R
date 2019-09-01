@@ -64,6 +64,10 @@ fd_inventory_summary <- function() {
 
   # Subset and compute basal area and stocking
   inv <- subset(inv, Health_status == "L")  # live trees only
+  # radius[cm] => DBH[cm] / 2
+  # radius[m] => radius[cm] / 100
+  # area[ha] => area[m2] / 10000
+  # basal_area[m2 ha-1] => (pi * radius[m]^2) * (1 / area[ha])
   inv$BA_m2_ha <- pi * (inv$DBH_cm / 100 / 2) ^ 2 * 10000 / inv$Subplot_area_m2
   inv$Stocking_ha <- 10000 / inv$Subplot_area_m2
   stocking <- aggregate(Stocking_ha ~ Replicate + Plot + Subplot, data = inv, FUN = sum)
