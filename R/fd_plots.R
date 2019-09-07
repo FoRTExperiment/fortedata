@@ -11,7 +11,7 @@
 #'   degrees.
 #' - `Plot_area_m2` (double): Area of the plot, in square meters.
 #'
-#' @return A `data.frame`. See "Details" for column descriptions.
+#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
 #'
 #' @examples
@@ -33,7 +33,7 @@ fd_plots <- function() {
 #'   degrees.
 #' - `Plot_area_m2` (double): Area of the subplot, in square meters.
 #'
-#' @return A `data.frame`. See "Details" for column descriptions.
+#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
 #'
 #' @examples
@@ -53,7 +53,7 @@ fd_subplots <- function() {
 #' one in the eastern part, one in the western.
 #' - `Nested_subplot_area_m2` (double): Area of the nested subplot, in square meters.
 #'
-#' @return A `data.frame`. See "Details" for column descriptions.
+#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
 #'
 #' @examples
