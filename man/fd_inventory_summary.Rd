@@ -13,7 +13,7 @@ A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 Return basic statistics generated from the raw inventory data.
 }
 \details{
-The computed columns are as follows:
+The returned columns are as follows:
 \itemize{
 \item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
 \item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.

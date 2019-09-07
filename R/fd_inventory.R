@@ -13,9 +13,9 @@
 #' - `Species` (character): Species code from the USDA Plants Database; see
 #' \url{https://plants.sc.egov.usda.gov/java/}.
 #' - `DBH_cm` (numeric): Diameter at breast height (1.37m), cm.
-#' - `Health_status` (character): live (L) or dead (D).
+#' - `Health_status` (character): live (L), moribund (M), or dead (D).
 #' - `Canopy_status` (character): Canopy status: overstory dominant (OD),
-#' overstory submissive (OS), XXX (SA), understory (UN).
+#' overstory submissive (OS), sapling (SA), understory (UN).
 #' - `Date` (date): Inventory entry date.
 #' - `Notes` (character): Notes.
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
@@ -43,7 +43,7 @@ fd_inventory <- function() {
 
 #' Return basic statistics generated from the raw inventory data.
 #'
-#' @details The computed columns are as follows:
+#' @details The returned columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
@@ -63,7 +63,9 @@ fd_inventory_summary <- function() {
   inv <- merge(fd_inventory(), subplots)
 
   # Subset and compute basal area and stocking
-  inv <- subset(inv, Health_status == "L")  # live trees only
+  inv <- subset(inv, Health_status != "D")  # non-dead trees only
+  message("Live and moribund trees only")
+
   hectare_area <- 10000 # m2
   # radius[cm] => DBH[cm] / 2
   # radius[m] => radius[cm] / 100
@@ -71,7 +73,7 @@ fd_inventory_summary <- function() {
   # basal_area[m2 ha-1] => (pi * radius[m]^2) * (1 / area[ha])
   inv$BA_m2_ha <- pi * (inv$DBH_cm / 100 / 2) ^ 2 * hectare_area / inv$Subplot_area_m2
   inv$Stocking_ha <- hectare_area / inv$Subplot_area_m2
-  stocking <- aggregate(Stocking_ha ~ Replicate + Plot + Subplot, data = inv, FUN = sum)
+  stocking <- aggregate(Stocking_ha ~ Replicate + Plot + Subplot , data = inv, FUN = sum)
   ba <- aggregate(BA_m2_ha ~ Replicate + Plot + Subplot, data = inv, FUN = sum)
 
   ba$Stocking <- stocking$DBH_cm

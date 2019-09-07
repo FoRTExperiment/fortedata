@@ -24,9 +24,9 @@ subplot \code{\link{fd_subplots}} codes.
 \item \code{Species} (character): Species code from the USDA Plants Database; see
 \url{https://plants.sc.egov.usda.gov/java/}.
 \item \code{DBH_cm} (numeric): Diameter at breast height (1.37m), cm.
-\item \code{Health_status} (character): live (L) or dead (D).
+\item \code{Health_status} (character): live (L), moribund (M), or dead (D).
 \item \code{Canopy_status} (character): Canopy status: overstory dominant (OD),
-overstory submissive (OS), XXX (SA), understory (UN).
+overstory submissive (OS), sapling (SA), understory (UN).
 \item \code{Date} (date): Inventory entry date.
 \item \code{Notes} (character): Notes.
 \item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
