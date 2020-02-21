@@ -5,15 +5,15 @@
 \alias{leaf_spectrometry}
 \title{Leaf-level spectral indices.}
 \format{A data frame with four variables: \code{subplotID}, \code{species},
-  \code{index}, and \code{value}
+\code{index}, and \code{value}
 
 \describe{
-  \item{subplotID}{price, in US dollars}
-  \item{species}{weight of the diamond, in carats}
-  \item{index}{spectral index}
-  \item{value}{value corresponding to the spectral index}
+\item{subplotID}{price, in US dollars}
+\item{species}{weight of the diamond, in carats}
+\item{index}{spectral index}
+\item{value}{value corresponding to the spectral index}
 }
- @source \url{http://atkinsjeff.github.io}}
+@source \url{http://atkinsjeff.github.io}}
 \usage{
 data(leaf_spectrometry)
 }
