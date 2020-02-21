@@ -54,7 +54,7 @@ fd_inventory <- function() {
 #' @note For now this is pretty basic. More detailed summaries could be made,
 #' e.g. by live/dead, species, etc.
 #' @export
-#'
+#' @importFrom stats aggregate
 #' @examples
 #' fd_inventory_summary()
 fd_inventory_summary <- function() {
@@ -63,7 +63,7 @@ fd_inventory_summary <- function() {
   inv <- merge(fd_inventory(), subplots)
 
   # Subset and compute basal area and stocking
-  inv <- subset(inv, Health_status != "D")  # non-dead trees only
+  inv <- inv[inv$Health_status != "D",]  # non-dead trees only
   message("Live and moribund trees only")
 
   hectare_area <- 10000 # m2
