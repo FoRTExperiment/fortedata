@@ -32,12 +32,13 @@
 #'
 #' @usage data(soil_efflux)
 #'
-#' @format A data frame with four variables: \code{dateTime} \code{subplotID}, \code{nestedPlot},
-#'   \code{run},\code{soilCO2Efflux}, \code{soilTemp}, \code{VWC} and \code{notes}
+#' @format A data frame with four variables: \code{dateTime} \code{subplotID}, \code{run},\code{nestedPlot},
+#'   \code{soilCO2Efflux}, \code{soilTemp}, \code{VWC} and \code{notes}
 #'
 #' \describe{
 #'   \item{dateTime}{date and time of sample in YYYY-MM-DD HH:MM:SS}
 #'   \item{subplotID}{subplot identifier}
+#'   \item{run}{differnt sampling occurence}
 #'   \item{nestedPlot}{sampling point of collar inside of subplot}
 #'   \item{soilCO2Efflux}{soil carbon dioxide efflux in umol CO2 m^2 s^-1}
 #'   \item{soilTemp}{soil temperature at 7 cm depth in celsius}

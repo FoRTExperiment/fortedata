@@ -8,8 +8,8 @@
 \code{index}, and \code{value}
 
 \describe{
-\item{subplotID}{price, in US dollars}
-\item{species}{weight of the diamond, in carats}
+\item{subplotID}{subplot identifier}
+\item{species}{species of leaf analyzed}
 \item{index}{spectral index}
 \item{value}{value corresponding to the spectral index}
 }
