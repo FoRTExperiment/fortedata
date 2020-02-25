@@ -3,7 +3,7 @@
 \docType{data}
 \name{soil_efflux}
 \alias{soil_efflux}
-\title{Soil CO2 Efflux measuremnts and Associated Micrometeorological Measurements}
+\title{Soil CO2 Efflux Measurements and Associated Micrometeorological Measurements}
 \format{A data frame with four variables: \code{dateTime} \code{subplotID}, \code{run},\code{nestedPlot},
 \code{soilCO2Efflux}, \code{soilTemp}, \code{VWC} and \code{notes}
 
