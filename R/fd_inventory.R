@@ -6,7 +6,7 @@
 #' @details The columns are as follows:
 #' - `Site` (character): Replicate code. Each replicate contains
 #'   multiple plots with different disturbance treatments.
-#' - `SubplotID` (integer): Subplot ID number. These subplot codes are a
+#' - `SubplotID` (character): Subplot ID number. These subplot codes are a
 #' concatenation of the plot (\code{\link{fd_plots}}) and
 #' subplot \code{\link{fd_subplots}} codes.
 #' - `Tag` (integer): Tree tag number.
@@ -21,6 +21,9 @@
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
+#' - `a.biomass` (numeric): a coefficent for allmetric equation for aboveground biomass in kg.
+#' - `b.biomass` (numeric): b coefficent for allmetric equation for aboveground biomass in kg.
+#' - `Biomass_kg` (numeric): SBiomass derived from allometry the form a * dbh^b in kg
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
@@ -38,6 +41,19 @@ fd_inventory <- function() {
 
   # Currently there's a bad entry in the table. Nuke it. Temporary
   inv$DBH_cm <- as.numeric(inv$DBH_cm)  # temporary, until we fix row 791
+
+  # bring in the allometry values
+  allo.df <- read_csv_file("biomass_allometry_table.csv") #this has the same equations AmeriFlux uses
+
+  # changing column names
+  names(allo.df)[1] <- paste("Species")
+
+  # Add in the allometries
+  inv <- merge(inv, allo.df)
+
+  #calculates biomass in units of kg
+  inv$Biomass_kg <- inv$a.biomass * inv$DBH_cm ^ inv$b.biomass
+
   inv
 }
 
@@ -75,7 +91,14 @@ fd_inventory_summary <- function() {
   inv$Stocking_ha <- hectare_area / inv$Subplot_area_m2
   stocking <- aggregate(Stocking_ha ~ Replicate + Plot + Subplot , data = inv, FUN = sum)
   ba <- aggregate(BA_m2_ha ~ Replicate + Plot + Subplot, data = inv, FUN = sum)
+  biomass <- aggregate(Biomass_kg ~ Replicate + Plot + Subplot, data = inv, FUN = sum)
 
-  ba$Stocking <- stocking$DBH_cm
-  weak_as_tibble(merge(ba, stocking))
+  # adding in subplot varible too, but this is personal preference.
+  #ba$SubplotID <- as.character(paste(ba$Replicate, "0", ba$Plot, ba$Subplot, sep = ""))
+
+  #ba$Stocking <- stocking$DBH_cm
+  combo <- weak_as_tibble(merge(ba, stocking))
+
+  weak_as_tibble(merge(combo, biomass))
+
 }

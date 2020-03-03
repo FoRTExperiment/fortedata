@@ -2,6 +2,7 @@
 
 export(fd_inventory)
 export(fd_inventory_summary)
+export(fd_leaf_spectrometry)
 export(fd_nested_subplots)
 export(fd_plots)
 export(fd_subplots)
