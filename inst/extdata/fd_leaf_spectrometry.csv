@@ -1,4 +1,4 @@
-subplotID,species,index,value
+SubplotID,Species,Index,Index_Value
 DO1E,ACRU,ARI1,-0.001669748
 DO1E,ACRU,ARI2,-0.1474905
 DO1E,ACRU,CRI1,0.05410118

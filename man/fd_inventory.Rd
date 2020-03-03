@@ -17,7 +17,7 @@ The columns are as follows:
 \itemize{
 \item \code{Site} (character): Replicate code. Each replicate contains
 multiple plots with different disturbance treatments.
-\item \code{SubplotID} (integer): Subplot ID number. These subplot codes are a
+\item \code{SubplotID} (character): Subplot ID number. These subplot codes are a
 concatenation of the plot (\code{\link{fd_plots}}) and
 subplot \code{\link{fd_subplots}} codes.
 \item \code{Tag} (integer): Tree tag number.
