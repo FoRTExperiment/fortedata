@@ -43,8 +43,7 @@
 \item{rumple}{outer surface variability divided by transect lenght}
 \item{clumping.index}{clumpiness}
 \item{enl}{effective number of layers}
-}
-@source \url{http://atkinsjeff.github.io}}
+}}
 \usage{
 data(canopy_structural_traits)
 }

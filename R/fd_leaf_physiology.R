@@ -64,7 +64,7 @@ fd_leaf_spectrometry <- function() {
 #' - `HHMMSS` (character) Time of day.
 #' - `FTime` (integer) Number of seconds since logging began.
 #' - `EBal.` (integer) Energy balance on?
-#' - `Photo` (numeric) Photosynthetic rate in umol CO2 m^-2 s^-1.
+#' - `Photo` (numeric) Photosynthetic rate in mu  mol CO2 m^-2 s^-1.
 #' - `Cond` (numeric) Stomatal conductance mol H2O m^-2 s^-1.
 #' - `Ci` (numeric) Intercellular CO2 concentration umol CO2  mol^-1.
 #' - `Trmmol` (numeric) Transpiration rate mmol H2O m^-2 s^-1.
@@ -77,15 +77,15 @@ fd_leaf_spectrometry <- function() {
 #' - `Tair` (numeric) Chamber air temperature (degrees C).
 #' - `Tleaf` (numeric) Leaf surface temperature (degrees C).
 #' - `TBlk` (numeric) IRGA block temperature (degrees C)
-#' - `CO2R` (integer) Reference CO2 concentration (umol/mol)
-#' - `CO2S` (integer) Sample CO2 concentration (umol/mol)
-#' - `H2OR` (numeric) Reference H20 concentration (umol/mol)
-#' - `H2OS` (numeric) Sample H20 concentration (umol/mol)
+#' - `CO2R` (integer) Reference CO2 concentration (mu  mol/mol)
+#' - `CO2S` (integer) Sample CO2 concentration (mu mol/mol)
+#' - `H2OR` (numeric) Reference H20 concentration (mu  mol/mol)
+#' - `H2OS` (numeric) Sample H20 concentration (mu  mol/mol)
 #' - `RH_R` (numeric) Reference relative humidity (%)
 #' - `RH_S` (numeric) Sample relative humiditiy (%)
-#' - `Flow`  (numeric) Flow rate (umol/mol)
-#' - `PARi` (numeric) in-chamber PAR (umol/m2/s)
-#' - `PARo` (numeric) external PAR (umol/m2/s)
+#' - `Flow`  (numeric) Flow rate (mu mol/mol)
+#' - `PARi` (numeric) in-chamber PAR (mu mol/m2/s)
+#' - `PARo` (numeric) external PAR (mu  mol/m2/s)
 #' - `Press` (numeric) Atmospheric pressure (kPa)
 #' - `CsMch` (numeric) standard deviation of CO2S during averaging time of most recent match
 #' - `HsMch` (numeric) standard deviation of H2OS during averaging time of most recent match

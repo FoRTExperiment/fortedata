@@ -13,7 +13,7 @@
 #' - `Date` (character) Date of measurement in YYYY-MM-DD
 #' - `DateTime` (POSIXlt) Format in "%Y-%m-%d %H:%M:%S"
 #' - `NestedSubplot` (integer): Nested subplot sampling point inside subplot
-#' - `soilCO2Efflux` (numeric): soil CO2 efflux measured with a LiCor 6400 in umol CO2 m^-2 s^-1
+#' - `soilCO2Efflux` (numeric): soil CO2 efflux measured with a LiCor 6400 in mu mol CO2 m^-2 s^-1
 #' - `soilTemp` (numeric): soil temperature measured to 7 cm depth in celsius
 #' - `VWC` (numeric): volumetric water content in percent
 #'
