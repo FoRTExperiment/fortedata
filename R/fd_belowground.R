@@ -10,6 +10,7 @@
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
+#' - `Date` (character) Date of measurement in YYYY-MM-DD
 #' - `DateTime` (POSIXlt) Format in "%Y-%m-%d %H:%M:%S"
 #' - `NestedSubplot` (integer): Nested subplot sampling point inside subplot
 #' - `soilCO2Efflux` (numeric): soil CO2 efflux measured with a LiCor 6400 in umol CO2 m^-2 s^-1
@@ -22,16 +23,24 @@
 #' @examples
 #' fd_inventory()
 fd_soilCO2 <- function() {
-  flux <- read_csv_file("soil_efflux.csv")
+  flux <- read_csv_file("fd_soil_efflux.csv")
+
+  # makes the subplotID column
+  flux$subplotID <- as.factor(paste(flux$Rep_ID, "0", flux$Plot_ID, flux$Subplot, sep = ""))
 
   # change column name
   names(flux)[names(flux) == "subplotID"] <- "SubplotID"
   names(flux)[names(flux) == "run"] <- "Run"
   names(flux)[names(flux) == "nestedPlot"] <- "NestedPlot"
+  names(flux)[names(flux) == "date"] <- "Date"
 
   # adjusting column data
-  flux$DateTime <- as.POSIXlt(flux$dateTime, format = "%m/%d/%Y %H:%M")
+  flux$DateTime <- as.POSIXlt(flux$dateTime, format = "%Y-%m-%d %H:%M:%S")
   flux$dateTime <- NULL #remove column
+  flux$X <- NULL
+  flux$Rep_ID <- NULL
+  flux$Plot_ID <- NULL
+  flux$strdate <- NULL
 
   # Split the SubplotID column into more useful individual columns
   flux$Replicate <- substr(flux$SubplotID, 1, 1)
@@ -39,7 +48,7 @@ fd_soilCO2 <- function() {
   flux$Subplot <- substr(flux$SubplotID, 4, 4)
 
   # reorders columns
-  flux <- flux[c("SubplotID", "Replicate", "Plot", "Subplot", "DateTime", "NestedPlot", "Run", "soilCO2Efflux", "soilTemp", "VWC")]
+  flux <- flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Date", "DateTime", "NestedPlot", "Run", "soilCO2Efflux", "soilTemp", "VWC")]
 
   flux
 }
