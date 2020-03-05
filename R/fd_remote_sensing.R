@@ -31,10 +31,13 @@
 #' @examples
 #' fd_inventory()
 fd_hemi_ndvi <- function() {
-  ndvi <- read_csv_file("fd_ndvi_hemi.csv")
-  inv$Date <- as.Date(inv$Date, format = "%m/%d/%Y")
-  # original header: date	plotlong	project	SubplotID	plot.side	nps	ndvi	gf	open	lai	ratio	ci
+  ndvi <- read_csv_file("fd_hemi_ndvi.csv")
+  ndvi$Date <- as.Date(ndvi$date, format = "%m/%d/%Y")
+  ndvi$date <- NULL #remove original date column
 
+  # original header: date	plotlong	project	SubplotID	plot.side	nps	ndvi	gf	open	lai	ratio	ci
+  ndvi$project %>%
+    filter(project == 'forte') -> ndvi
   # Split the SubplotID column into more useful individual columns
   inv$Replicate <- substr(inv$SubplotID, 1, 1)
   inv$Plot <- as.integer(substr(inv$SubplotID, 2, 3))
