@@ -73,7 +73,7 @@ fd_hemi_camera <- function() {
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
 #' - `Year` (integer): Year in which measurement was taken
-#' - `mean.height' (numeric): mean height of vai
+#' - `mean.height` (numeric): mean height of vai
 #' - `height.2` (numeric): standard deviation of mean height
 #' - `mean.height.var` (numeric): variance of mean height
 #' - `mean.height.rms` (numeric): root mean square height
