@@ -23,7 +23,7 @@ subplot \code{\link{fd_subplots}} codes.
 \item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
 \item \code{Date} (character) Date of measurement in YYYY-MM-DD
 \item \code{DateTime} (POSIXlt) Format in "\%Y-\%m-\%d \%H:\%M:\%S"
-\item \code{NestedSubplot} (integer): Nested subplot sampling point inside subplot
+\item \code{NestedPlot} (integer): Nested subplot sampling point inside subplot
 \item \code{soilCO2Efflux} (numeric): soil CO2 efflux measured with a LiCor 6400 in mu mol CO2 m^-2 s^-1
 \item \code{soilTemp} (numeric): soil temperature measured to 7 cm depth in celsius
 \item \code{VWC} (numeric): volumetric water content in percent

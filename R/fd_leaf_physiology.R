@@ -41,8 +41,9 @@ fd_leaf_spectrometry <- function() {
   leaf_spec$Date <- as.Date(as.character(leaf_spec$Date), format = "%m%d%Y")
   leaf_spec <- leaf_spec[!stringr::str_detect(leaf_spec$Index_Value, '([A-Za-z])'), ]
   leaf_spec <- leaf_spec[!stringr::str_detect(leaf_spec$Index_Value, '\\.$'), ]
-  leaf_spec$Index_Value[leaf_spec$Index_Value == " âˆž"] <- NA
-  leaf_spec$Index_Value <- as.numeric(leaf_spec$Index_Value)
+  #leaf_spec$Index_Value[leaf_spec$Index_Value == " âˆž"] <- NA
+  leaf_spec$Index_Value <- iconv(leaf_spec$Index_Value, from="latin1", to="ASCII", "")
+  leaf_spec$Index_Value <- as.numeric(as.character(leaf_spec$Index_Value))
 
   # Split the SubplotID column into more useful individual columns
   leaf_spec$Replicate <- substr(leaf_spec$SubplotID, 1, 1)
@@ -53,6 +54,8 @@ fd_leaf_spectrometry <- function() {
   leaf_spec <- leaf_spec[c("SubplotID", "Replicate", "Plot", "Subplot", "Date", "Species", "Index", "Index_Value", "FilePath")]
   leaf_spec
 }
+
+
 
 # Leaf Photosynthesis Data
 

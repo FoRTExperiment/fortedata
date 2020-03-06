@@ -42,7 +42,7 @@ fd_hemi_camera <- function() {
   cam$Subplot <- substr(cam$SubplotID, 4, 4)
 
   # filters to just FoRTE data
-  cam <- subset(cam, project == "forte")
+  cam <- subset(cam, cam$project == "forte")
 
   # replaces NSP data with numbers
   cam$NestedPlot[cam$NestedPlot == "C"] <- 0
