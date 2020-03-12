@@ -12,12 +12,12 @@
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
 #' - `NestedSubPlot` (integer):  NestedSubplotSampling points but need to check other data
-#' - `Date` (date): Date of measurment
+#' - `Date` (date): Date of measurement
 #' - `Year` (integer): Year of
-#' - `NDVI` (numeric): Replicate code, extracted from `SubplotID`.
+#' - `NDVI` (numeric): Normalized Difference Vegetation Index, estimates greenness.
 #' - `GapFraction` (numeric): Ratio of gap space in the canopy, or open area.
 #' - `Openness` (numeric): something something
-#' - `LAI` (numeric): leaf area index
+#' - `LAI_cam` (numeric): leaf area index
 #' - `ClumpingIndex` (numeric): Clumping index
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
@@ -35,7 +35,7 @@ fd_hemi_camera <- function() {
   names(cam)[names(cam) == "ndvi"] <- "NDVI"
   names(cam)[names(cam) == "gf"] <- "GapFraction"
   names(cam)[names(cam) == "open"] <- "Openness"
-  names(cam)[names(cam) == "lai"] <- "LAI"
+  names(cam)[names(cam) == "lai"] <- "LAI_cam"
   names(cam)[names(cam) == "ci"] <- "ClumpingIndex"
   names(cam)[names(cam) == "year"] <- "Year"
 
@@ -61,7 +61,7 @@ fd_hemi_camera <- function() {
   cam$NestedPlot <- as.integer(cam$NestedPlot)
   cam <- na.omit(cam) # this removes the images that were retained as placemarkers if there are any that missed being culled
   # reorders columns
-  cam <- cam[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot", "Date", "Year", "NDVI", "GapFraction", "Openness", "LAI", "ClumpingIndex")]
+  cam <- cam[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot", "Date", "Year", "NDVI", "GapFraction", "Openness", "LAI_cam", "ClumpingIndex")]
 
   cam
 }
@@ -72,11 +72,11 @@ fd_hemi_camera_summary <- function() {
   df <- merge(fd_hemi_camera(), subplots)
 
   # calc rugosity means and SD
-  lai <- aggregate(LAI ~ Replicate , data = df, FUN = mean)
-  lai.sd <- aggregate(LAI ~ Replicate , data = df, FUN = sd)
+  lai <- aggregate(LAI_cam ~ Replicate , data = df, FUN = mean)
+  lai.sd <- aggregate(LAI_cam ~ Replicate , data = df, FUN = sd)
 
   # mergin and munging
-  names(lai.sd)[names(lai.sd) == "LAI"] <- "LAI_sd"
+  names(lai.sd)[names(lai.sd) == "LAI_cam"] <- "LAI_sd"
   lai <- merge(lai, lai.sd)
   lai$lai_se <- lai$LAI_sd / sqrt(8)  # based on the SD /sqrt(n)
 
@@ -193,4 +193,65 @@ fd_canopy_structure_summary <- function() {
 
 }
 
+#' Return ceptometer data
+#'
+#' @details The columns are as follows:
+#'
+#' - `SubplotID` (character): Subplot ID number. These subplot codes are a
+#' concatenation of the plot (\code{\link{fd_plots}}) and
+#' subplot \code{\link{fd_subplots}} codes.
+#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
+#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
+#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
+#' - `DateTime` (asPOSIXlt): Date of measurment
+#' - `Year` (integer): Year of
+#' - `aPAR` (numeric): above canopy PAR (photosynthetically available radiation)
+#' - `bPAR` (numeric): below canopy PAR (photosynthetically available radiation)
+#' - `faPAR` (numeric): fraction of PAR absorbed by the canopy
+#' - `LAI_cept` (numeric): leaf area index derived from ceptometer
+#'
+#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @export
+#'  Project	DateTime	Annotation	Average Above PAR	Average Below PAR	Tau [Τ]	Leaf Area Index [LAI]	Leaf Distribuition [Χ]	Beam Fraction [Fb]	Zenith Angle	Latitude	Longitude
+
+
+#' @examples
+#' fd_par()
+fd_par <- function() {
+  par <- read_csv_file("fd_ceptometer.CSV")
+
+  # renames that weird column
+  colnames(par)[1] <- "project"
+
+  #renaming columns that need it
+  names(par)[names(par) == "Average.Above.PAR"] <- "aPAR"
+  names(par)[names(par) == "Average.Below.PAR"] <- "bPAR"
+  names(par)[names(par) == "Leaf.Area.Index..LAI."] <- "LAI_cept"
+
+  # adjusts date appropriately
+  par$DateTime <- as.POSIXlt(par$DateTime, format = "%m/%d/%Y %H:%M")
+
+  # filters to just FoRTE data
+  par <- subset(par, par$project == "forte")
+
+  # removes erroneous entires
+  par$Annotation <- gsub("2019", "", par$Annotation)
+  par$Year  <- par$DateTime$year+1900
+
+  # creates the SubPlotID column now that it's clean
+  par$SubplotID <- par$Annotation
+
+  # Split the SubplotID column into more useful individual columns
+  par$Replicate <- substr(par$SubplotID, 1, 1)
+  par$Plot <- as.integer(substr(par$SubplotID, 2, 3))
+  par$Subplot <- substr(par$SubplotID, 4, 4)
+
+  # faPAR
+  par$faPAR <- par$bPAR / par$aPAR
+
+  # reorders columns
+  par <- par[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "DateTime", "aPAR", "bPAR", "faPAR", "LAI_cept")]
+
+  cam
+}
 
