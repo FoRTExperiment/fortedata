@@ -9,9 +9,13 @@
 #' - `SubplotID` (character): Subplot ID number. These subplot codesarea
 #' concatenation of the plot (\code{\link{fd_plots}}) and
 #' subplot \code{\link{fd_subplots}} codes.
+#' #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
+#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
+#' - `Year` (integer): year of litter collection
+#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
 #' - `Species` (character): Species code from the USDA Plants Database; see
 #' \url{https://plants.sc.egov.usda.gov/java/}.
-#' - `Tare_g` (numeric): Diameter at breast height (1.37m), cm.
+#' - `BagTare_g` (numeric): Diameter at breast height (1.37m), cm.
 #' - `BagMass_g` (numeric): weight of bag + litter
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
@@ -20,30 +24,49 @@
 #' @examples
 #' fd_inventory()
 fd_lai <- function() {
-  inv <- read_csv_file("forte_inventory.csv")
-  inv$Date <- as.Date(inv$Date, format = "%m/%d/%Y")
+  leaf <- read_csv_file("fd_littertrap.csv")
+  leaf$bag_no <- NULL  #I am not sure why this was here, and it's kind of useless
+  leaf$Species <- toupper(leaf$Species)
 
-  # Split the SubplotID column into more useful individual columns
-  inv$Replicate <- substr(inv$SubplotID, 1, 1)
-  inv$Plot <- as.integer(substr(inv$SubplotID, 2, 3))
-  inv$Subplot <- substr(inv$SubplotID, 4, 4)
+  # create leaf mass column
+  leaf$LeafMass_g <- leaf$BagMass_g - leaf$BagTare_g
 
-  # Currently there's a bad entry in the table. Nuke it. Temporary
-  inv$DBH_cm <- as.numeric(inv$DBH_cm)  # temporary, until we fix row 791
+  # Need to bring in SLA (specific leaf area) data to convert from mass to leaf area
 
   # bring in the allometry values
-  allo.df <- read_csv_file("biomass_allometry_table.csv") #this has the same equations AmeriFlux uses
+  sla <- read_csv_file("fd_sla.csv") #this has the same equations AmeriFlux uses
 
   # changing column names
-  names(allo.df)[1] <- paste("Species")
+  names(sla)[1] <- paste("Species")
 
-  # Add in the allometries
-  inv <- merge(inv, allo.df)
+  # Add SLA to the leaf tibble
+  leaf <- merge(leaf, sla)
 
-  #calculates biomass in units of kg
-  inv$Biomass_kg <- inv$a.biomass * inv$DBH_cm ^ inv$b.biomass
+  # calculate leaf area totals
+  leaf$LeafArea <- leaf$LeafMass_g * leaf$SLA
 
-  inv
+  # make plot lai
+  lai <- aggregate(LeafArea ~ SubplotID + Year, data = leaf, FUN = sum)
+
+  # adds in plot area
+  lai$PlotArea <- 1000  #plot area in m^2 (is 0.1 ha)
+
+  # calculates LAI
+  lai$LAI <- lai$LeafArea / lai$PlotArea
+
+  # removes columns
+  lai$LeafArea <- NULL
+  lai$PlotArea <- NULL
+
+  # Split the SubplotID column into more useful individual columns
+  lai$Replicate <- substr(lai$SubplotID, 1, 1)
+  lai$Plot <- as.integer(substr(lai$SubplotID, 2, 3))
+  lai$Subplot <- substr(lai$SubplotID, 4, 4)
+
+  # reorders columns
+  lai <- lai[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "LAI")]
+
+  lai
 }
 
 #' Return basic statistics generated from the raw inventory data.
@@ -65,29 +88,10 @@ fd_lai <- function() {
 fd_inventory_summary <- function() {
   # Load the inventory and subplot tables and merge them
   subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot", "Subplot_area_m2")]
-  inv <- merge(fd_inventory(), subplots)
+  df <- merge(fd_lai(), subplots)
 
   # Subset and compute basal area and stocking
-  inv <- inv[inv$Health_status != "D",]  # non-dead trees only
-  message("Live and moribund trees only")
 
-  hectare_area <- 10000 # m2
-  # radius[cm] => DBH[cm] / 2
-  # radius[m] => radius[cm] / 100
-  # area[ha] => area[m2] / hectare_area
-  # basal_area[m2 ha-1] => (pi * radius[m]^2) * (1 / area[ha])
-  inv$BA_m2_ha <- pi * (inv$DBH_cm / 100 / 2) ^ 2 * hectare_area / inv$Subplot_area_m2
-  inv$Stocking_ha <- hectare_area / inv$Subplot_area_m2
-  stocking <- aggregate(Stocking_ha ~ Replicate + Plot + Subplot , data = inv, FUN = sum)
-  ba <- aggregate(BA_m2_ha ~ Replicate + Plot + Subplot, data = inv, FUN = sum)
-  biomass <- aggregate(Biomass_kg ~ Replicate + Plot + Subplot, data = inv, FUN = sum)
-
-  # adding in subplot varible too, but this is personal preference.
-  #ba$SubplotID <- as.character(paste(ba$Replicate, "0", ba$Plot, ba$Subplot, sep = ""))
-
-  #ba$Stocking <- stocking$DBH_cm
-  combo <- weak_as_tibble(merge(ba, stocking))
-
-  weak_as_tibble(merge(combo, biomass))
+  weak_as_tibble(merge(df))
 
 }

@@ -13,6 +13,7 @@
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
 #' - `NestedSubPlot` (integer):  NestedSubplotSampling points but need to check other data
 #' - `Date` (date): Date of measurment
+#' - `Year` (integer): Year of
 #' - `NDVI` (numeric): Replicate code, extracted from `SubplotID`.
 #' - `GapFraction` (numeric): Ratio of gap space in the canopy, or open area.
 #' - `Openness` (numeric): something something
@@ -21,7 +22,8 @@
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#'  date	year	project	SubplotID	nps	ndvi	gf	open	lai	ci
+
 #' @examples
 #' fd_hemi_camera()
 fd_hemi_camera <- function() {
@@ -29,12 +31,13 @@ fd_hemi_camera <- function() {
 
   # formatting columns
   cam$Date <- as.Date(cam$date, format = "%m/%d/%Y")
-  names(cam)[names(cam) == "nps"] <- "NestedPlot"
+  names(cam)[names(cam) == "nsp"] <- "NestedPlot"
   names(cam)[names(cam) == "ndvi"] <- "NDVI"
   names(cam)[names(cam) == "gf"] <- "GapFraction"
   names(cam)[names(cam) == "open"] <- "Openness"
   names(cam)[names(cam) == "lai"] <- "LAI"
   names(cam)[names(cam) == "ci"] <- "ClumpingIndex"
+  names(cam)[names(cam) == "year"] <- "Year"
 
   # Split the SubplotID column into more useful individual columns
   cam$Replicate <- substr(cam$SubplotID, 1, 1)
@@ -50,12 +53,47 @@ fd_hemi_camera <- function() {
   cam$NestedPlot[cam$NestedPlot == "E"] <- 3
   cam$NestedPlot[cam$NestedPlot == "S"] <- 5
   cam$NestedPlot[cam$NestedPlot == "W"] <- 7
+  cam$NestedPlot[cam$NestedPlot == "X"] <- NA
+  cam$NestedPlot[cam$NestedPlot == ""] <- NA
+
+
 
   cam$NestedPlot <- as.integer(cam$NestedPlot)
+  cam <- na.omit(cam) # this removes the images that were retained as placemarkers if there are any that missed being culled
   # reorders columns
-  cam <- cam[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot", "Date", "NDVI", "GapFraction", "Openness", "LAI", "ClumpingIndex")]
+  cam <- cam[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot", "Date", "Year", "NDVI", "GapFraction", "Openness", "LAI", "ClumpingIndex")]
 
   cam
+}
+
+fd_hemi_camera_summary <- function() {
+  # Load the inventory and subplot tables and merge them
+  subplots <- fd_hemi_camera()[c("SubplotID", "Replicate", "Plot", "Subplot")]
+  df <- merge(fd_hemi_camera(), subplots)
+
+  # calc rugosity means and SD
+  lai <- aggregate(LAI ~ Replicate , data = df, FUN = mean)
+  lai.sd <- aggregate(LAI ~ Replicate , data = df, FUN = sd)
+
+  # mergin and munging
+  names(lai.sd)[names(lai.sd) == "LAI"] <- "LAI_sd"
+  lai <- merge(lai, lai.sd)
+  lai$lai_se <- lai$LAI_sd / sqrt(8)  # based on the SD /sqrt(n)
+
+  # VAI  means and SD
+  ndvi <- aggregate(NDVI ~ Replicate , data = df, FUN = mean)
+  ndvi.sd <- aggregate(NDVI ~ Replicate , data = df, FUN = sd)
+
+  # mergin and munging
+  names(ndvi.sd)[names(ndvi.sd) == "NDVI"] <- "NDVI_sd"
+  ndvi <- merge(ndvi, ndvi.sd)
+  ndvi$NDVI_se <- ndvi$NDVI_sd / sqrt(8)
+  # adding in subplot varible too, but this is personal preference.
+  #ba$SubplotID <- as.character(paste(ba$Replicate, "0", ba$Plot, ba$Subplot, sep = ""))
+
+  #ba$Stocking <- stocking$DBH_cm
+  combo <- weak_as_tibble(merge(lai, ndvi))
+
 }
 
 #' Canopy Structural Traits from 2D Canopy LiDAR
@@ -123,6 +161,36 @@ fd_canopy_structure <- function() {
   # reorders columns
   cst <- cst[c(1, 31, 32, 33, 2, 3:30 )]
   cst
+}
+
+fd_canopy_structure_summary <- function() {
+  # Load the inventory and subplot tables and merge them
+  subplots <- fd_canopy_structure()[c("SubplotID", "Replicate", "Plot", "Subplot")]
+  csc <- merge(fd_canopy_structure(), subplots)
+
+  # calc rugosity means and SD
+  r_c <- aggregate(rugosity ~ Replicate , data = csc, FUN = mean)
+  r_c.sd <- aggregate(rugosity ~ Replicate , data = csc, FUN = sd)
+
+  # mergin and munging
+  names(r_c.sd)[names(r_c.sd) == "rugosity"] <- "rugosity_sd"
+  r_c <- merge(r_c, r_c.sd)
+  r_c$rugosity_se <- r_c$rugosity_sd / sqrt(8)  # based on the SD /sqrt(n)
+
+  # VAI  means and SD
+  vai<- aggregate(mean.vai ~ Replicate , data = csc, FUN = mean)
+  vai.sd <- aggregate(mean.vai ~ Replicate , data = csc, FUN = sd)
+
+  # mergin and munging
+  names(vai.sd)[names(vai.sd) == "mean.vai"] <- "mean.vai_sd"
+  vai <- merge(vai, vai.sd)
+  vai$mean.vai_se <- vai$mean.vai_sd / sqrt(8)
+  # adding in subplot varible too, but this is personal preference.
+  #ba$SubplotID <- as.character(paste(ba$Replicate, "0", ba$Plot, ba$Subplot, sep = ""))
+
+  #ba$Stocking <- stocking$DBH_cm
+  combo <- weak_as_tibble(merge(r_c, vai))
+
 }
 
 
