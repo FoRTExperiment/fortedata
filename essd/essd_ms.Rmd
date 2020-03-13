@@ -1,0 +1,245 @@
+---
+title: "Forest Resilience and Threshold Experiment (FoRTE):  A manipulative experiment to test Thresholds and mechanisms of NEP resilience following moderate disturbance"
+output: html_document
+date: "`r format(Sys.time(), '%d %B %Y')`"
+---
+
+This document is the core of the planned ESSD manuscript: summarizing the data package.
+
+## Authors
+Jeff W. Atkins, Kalyn Dorheim, Lisa Haber, Maxim Grigri, Kayla Mathes, Stephanie Pennington, Jason Tallant, Alexey Shiklomanov, Christopher M. Gough, Ben Bond-Lamberty
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(fortedata)
+library(dplyr)
+library(lubridate)
+library(readr)
+library(tidyverse)
+library(covr)
+
+# need to update with FORTE Specs of course.
+db <- csr_database() %>% mutate(CTB = ymd(CSR_TIME_BEGIN), CTE = ymd(CSR_TIME_END))
+db_records <- round(sum(db$CSR_RECORDS, na.rm = TRUE) / 1e6, 2)
+db_years <- max(year(db$CTE), na.rm = TRUE) - min(year(db$CTB), na.rm = TRUE) + 1
+db_fields <- read_csv(system.file("extdata", "CSR_COLUMN_UNITS.csv", package = "cosore"), 
+                      col_types  = "cccccl", comment = "#")
+db_vers <- packageVersion("cosore")
+```
+
+```{r authors}
+# csr_table("contributors") %>% 
+#   left_join(select(db, CSR_DATASET, CSR_RECORDS), by = "CSR_DATASET") %>% 
+#   filter(CSR_RECORDS > 0) %>%  # only authors who contribute data
+#   group_by(CSR_DATASET) %>% 
+#   mutate(`Author?` = "No", 
+#          `Institution and address` = "") %>% 
+#   select(CSR_DATASET, CSR_FAMILY_NAME, CSR_FIRST_NAME, `Author?`,
+#          CSR_EMAIL, CSR_ORCID, `Institution and address`) %>% 
+#   write_csv("authors_no.csv", na = "")
+```
+
+## Abstract
+
+## Introduction
+
+The importance of consistent, curated open data is well-recognized across many scientific disciplines. With the exception of subfields that inherently rely on ‘big data’ such as genomics or systematics, or subfields that require data from other sources, such as biogeography, ecological research has been somewhat constrained in the implementation of open science and data practices. This has been attributed to the nature of how ecological research is often traditionally conducted as individual or short-term projects, that create small-scale or boutique datasets (Wallis et al. 2013), or even the heterogeneous nature of ecological data (Colina et al. 2018).   Open data is the answer to the clarion call of ecological research moving forward to link, infer, and forecast pattern and process across species, time, and space. Observatory networks such as the National Ecological Observatory Network (NEON) and AmeriFlux, or sustained research platforms such as Long-Term Ecological Research (LTER) or Long-Term Agricultural (LTAR) sites provide substantially contribute to this need. However, the inclusion of hypothesis driven research conducted under an open science framework preserves collected data and provides much needed transparency to the application of the scientific method to allow ecological research to meet the needs of humanity. 
+
+## The FoRTE Data Package
+
+fortedata is a data package that includes field data from the Forest Resilience and Threshold Experiment (FoRTE)--
+a manipulative experiment located in northern, lower Michigan at the University of Michigan Biological Station. Field data in this package include: leaf physiology, canopy structural traits, soil respiration, micrometeorology, and forest inventory and biomass data.  
+
+Its development started in March 2019, and as of this writing (`r Sys.Date() `) the fortedata version number is `r db_vers`. 
+There are currently `r nrow(db)` data products with a total of `r db_records` million flux observations across `r db_years` years and five continents (Table X, Figure X).
+
+### Overall package structure
+
+The package is structured as a collection of independent _datasets_, with standardized plot notation.
+
+### Individual dataset structure
+
+Each constituent dataset normally has a series of separate data tables that are linked by keys.
+These tables include:
+
+* `description` (**Table 2**) describing site and dataset characteristics;
+* `contributors` (**Table 3**) listing individuals who contributed to the measurement, analysis,
+curation, and/or submission of the dataset; 
+* `ports` (**Table 4**) which gives the different _ports_ (generally equivalent to separate measurement chambers) in use, and what each is measuring: flux, species, and treatment, as well as characteristics of the measurement collar;
+* `data` (**Table 5**), the central table of the dataset, which records flux observations;
+* `ancillary` (**Table 6**) summarizing site-level ancillary measurements;
+* `columns` (**Table 7**), mapping raw data columns to standard COSORE columns; and
+* `diagnostics` (**Table 8**), which provides statisics on the data import process: errors, columns and rows dropped, etc.
+ta or codebase are immediately available through the GitHub repository, but only official releases will be issued a DOI.
+
+### Database license
+
+The database license is CC-BY-4 (https://creativecommons.org/licenses/by/4.0/); see the "LICENSE.md` file in the repository.
+This is identical to that used by e.g. Ameriflux and FLUXNET Tier 1. 
+In general, this license provides that users may copy and redistribute the database and R package code in any medium or format, adapting and building upon them for any scientific or commercial purpose, as long as appropriate credit is given.
+We request that users cite this database definition paper, and strongly encourage them to (i) cite all constituent dataset primary publications, and (ii) involve data contributors as co-authors when possible.
+
+### Citing FoRTE
+
+Papers or other research products using any FoRTE data should cite this publication. 
+In addition, users should also reference the specific version of the data they used (e.g. `r db_vers`), access date, and ideally the specific Git commit number. 
+This provides full reproducibility of any analyses.
+As noted above, we encourage data users to cite the primary publication for each dataset
+they use in analyses as well.
+
+## Accessing FoRTE data
+
+
+### Using the R package
+
+It is necessary to install and use the `fortedata` R package in order to access FoRTE data.
+This provides a robust framework, including dedicated access functions, dataset and database
+report generation, and QA/QC (see below).
+
+```{r dbsize, include=FALSE, cache=TRUE}
+db_memsize <- sum(sapply(db$CSR_DATASET, function(x) object.size(csr_dataset(x)$data))) / 1e6
+db_disksize <- system2("git", args = c("count-objects", "-vH"), stdout = TRUE)
+db_disksize <- db_disksize[grepl("size:",db_disksize)]
+db_disksize <- gsub("size: ", "", db_disksize)
+```
+
+Because currently all field data are included in the repository itself, `fortedata` is quite large (compared to most Git repositories) to download, ~`r db_disksize`. (Note that the data are stored in R's compressed `RDS` file format; when loaded into memory, the entire database is significantly larger, ~`r round(db_memsize, 0)` MiB.) It thus cannot be hosted on CRAN (the Comprehensive R Archive Network), the canonical source for R packages. Installing directly from GitHub is however straightforward using the `devtools` or `remotes` packages:
+
+```
+devtools::install_github("FoRTExperiment/fortedata")
+library(fortedata)
+```
+
+A specific release number may also be installed:
+
+```
+devtools::install_github("bpbond/cosore@v0.4")
+```
+
+Datasets are available via user-facing functions:
+
+* `fd_soilCO2()` returns a single dataset that includes soil CO2 efflux measurements as well as soil temperature and soil water content. 
+* `fd_hemi_camera()` returns a single dataset that includes hemispherical photos of the forest canopy taken 1 meter above-ground, and includes estimates of leaf area index, gap fraction, and NDVI (normalized difference vegetation index). 
+* `fd_canopy_structure()` returns a single dataset that includes estimates of canopy structural traits such as height, area/density, openness, complexity, and arrangement derived from terrestrial lidar and processed using the `forestr` (Atkins et al. 2018; 2020) package in R Version 3.6.2 (R Core Team, 2020). 
+* `fd_par()` returns a single dataset that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI_cept)--each derived from a handheld ceptometer (LP-80; Decagon Devices).
+* `fd_lai()` returns a single dataset of leaf area index (LAI) estimated from litterfall captured via littertraps, calculated using specific leaf area values for each represented species. 
+* `fd_leaf_spectrometry()` returns a single data set of vegetation indices derived from leaf-level spectrometry data collected via a CID-710 handheld spectrometer.
+* `fd_photosynthesis()` returns a single dataset of leaf physiology variables, including photosynthesis, transpiration, etc, measured using a Li-Cor 6400 (Li-Cor Biosciences; Lincoln, NE).
+* `fd_inventory()` returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), as latitude, longitude, and biomass for each measured stem. Biomass is calculated from species specific allometries included in `biomass_allometry_table.csv` within `fortedata`. 
+
+
+----this section should include the summary functions!!!!
+
+
+
+#### Documentation and vignettes
+
+This paper serves as the primary documentation for FoRTE data.
+The `fortedata` R package includes extensive documentation, including an in-depth vignette included both in the package and online (LINK TODO).
+The R package includes documentation available via R's standard help system.
+
+#### Testing and quality assurance
+
+The `fortedata` R package has a wide variety of unit tests (CITATION TODO) that test code functionality, typically via assertions about function behavior, but also by verifying behavior of those functions when importing test datasets (of different formats and with a variety of errors, for example).
+
+### Reporting issues
+
+We use the `fortedata` GitHub issue tracker (*****************) to track and categorize user improvement suggestions, problems or errors with the R package code or database data, requests for new variables or functionality, and/or asking questions.
+
+
+# Tables
+
+**Table 1.** Summary of COSORE v. `r db_vers` datasets with deposited data, by International Geosphere-Biosphere Programme land cover classification (CITATION TODO). Columns include number of datasets, total number of records (flux observations), and dates of first and last records.
+
+```{r table_igbp}
+smrise <- function(x) {
+  x %>% 
+    summarise(Datasets = n(),
+              Records = format(sum(CSR_RECORDS, na.rm = TRUE), big.mark = ","),
+              `First record` = min(CTB, na.rm = TRUE),
+              `Last record` = max(CTE, na.rm = TRUE)) 
+}
+db %>% 
+  filter(CSR_RECORDS > 0) %>% 
+  select(`IGBP class` = CSR_IGBP, CSR_RECORDS, CTB, CTE) %>% 
+  group_by(`IGBP class`) %>% 
+  smrise() %>% 
+  bind_rows(bind_cols(tibble(`IGBP class` = "(Total)"), smrise(db))) %>% 
+  knitr::kable(format = "markdown", align = c("l", "r", "r", "r", "r"))
+```
+
+**Table 2.** Individual datsets in COSORE have a number of sub-tables. The first of these is the _description_ table, the fields of which are summarized below. Columns include field name, description, class (i.e. type of data), units, and whether or not the field is required.
+
+```{r table_description}
+options(knitr.kable.NA = "")
+make_table <- function(db_fields, table) {
+  db_fields %>% 
+    rename(`Field name` = Field_name) %>% 
+    filter(Table_name == table) %>%
+    mutate(Required = if_else(Required, "*", "")) %>% 
+    select(-Table_name) %>% 
+    kableExtra::kable(format = "markdown")
+}
+make_table(db_fields, "description")
+```
+
+**Table 3.** Summary of COSORE's _contributors_ table, which provides information on the researchers who measured and contributed each dataset. Columns include field name, description, class (i.e. type of data), units, and whether or not the field is required. Note that although none of the columns in this
+table are marked as required, at least one contributor (with filled-in name and email) is
+required for each dataset.
+
+```{r table_contributors}
+make_table(db_fields, "contributors")
+```
+
+**Table 4.** Summary of COSORE's _ports_ table, which provides information on the various multiplexed chambers that are frequently connected to a single measurement analyzer. Columns include field name, description, class (i.e. type of data), units, and whether or not the field is required.
+
+```{r table_ports}
+make_table(db_fields, "ports")
+```
+
+**Table 5.** Summary of COSORE's _data_ table, which hold the actual flux observations. Columns include field name, description, class (i.e. type of data), units, and whether or not the field is required.
+
+```{r table_data}
+make_table(db_fields, "data")
+```
+
+**Table 6.** Summary of COSORE's _ancillary_ table, which holds ecosystem-level optional information, typically soil information, carbon fluxes, and climate normals. Columns include field name, description, class (i.e. type of data), units, and whether or not the field is required. Here the first two rows (Variable and Value) describe the actual columns in the table; subsequent rows give examples of "Variable" entries.
+
+```{r table_ancillary}
+db_fields %>% 
+  #  filter(Field_name %in%  c("Variable", "Value")) %>% 
+  make_table("ancillary")
+```
+
+**Table 7.** Summary of COSORE's _columns_ table, which maps raw dataset columns to standardized COSORE columns. Columns include field name, description, class (i.e. type of data), units, and whether or not the field is required. We expect that this table will be dropped at some point in the future when
+COSORE requires structurally compliant data submissions (i.e. contributors will be required to
+format their data to match COSORE structure before submission).
+
+```{r table_columns}
+make_table(db_fields, "columns")
+```
+
+**Table 8.** Summary of COSORE's _diagnostics_ table, which is populated automatically when parsing and importing non-COSORE data. Columns include field name, description, class (i.e. type of data), units, and whether or not the field is required.
+
+```{r table_diagnostics}
+make_table(db_fields, "diagnostics")
+```
+
+# Figures
+
+**Figure 1.** Map of sites...
+
+```{r worldmap}
+# db %>% ...
+```
+
+**Figure 2.** Density plot of fluxes, by IGBP, one line per dataset or per dataset + year
+
+
+# R session information
+
+```{r sessionInfo}
+sessionInfo()
+```

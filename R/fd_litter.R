@@ -85,7 +85,7 @@ fd_lai <- function() {
 #' @importFrom stats aggregate
 #' @examples
 #' fd_inventory_summary()
-fd_inventory_summary <- function() {
+fd_lai_summary <- function() {
   # Load the inventory and subplot tables and merge them
   subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot", "Subplot_area_m2")]
   df <- merge(fd_lai(), subplots)

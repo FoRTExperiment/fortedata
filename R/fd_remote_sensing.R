@@ -203,8 +203,8 @@ fd_canopy_structure_summary <- function() {
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
+#' - `Year` (integer): Year of mesmt
 #' - `DateTime` (asPOSIXlt): Date of measurment
-#' - `Year` (integer): Year of
 #' - `aPAR` (numeric): above canopy PAR (photosynthetically available radiation)
 #' - `bPAR` (numeric): below canopy PAR (photosynthetically available radiation)
 #' - `faPAR` (numeric): fraction of PAR absorbed by the canopy
@@ -252,6 +252,6 @@ fd_par <- function() {
   # reorders columns
   par <- par[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "DateTime", "aPAR", "bPAR", "faPAR", "LAI_cept")]
 
-  cam
+  par
 }
 

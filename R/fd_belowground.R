@@ -10,6 +10,7 @@
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
+#' - `Year` (integer): Year of mesmt
 #' - `Date` (character) Date of measurement in YYYY-MM-DD
 #' - `DateTime` (POSIXlt) Format in "%Y-%m-%d %H:%M:%S"
 #' - `NestedPlot` (integer): Nested subplot sampling point inside subplot
@@ -36,6 +37,10 @@ fd_soilCO2 <- function() {
 
   # adjusting column data
   flux$DateTime <- as.POSIXlt(flux$dateTime, format = "%Y-%m-%d %H:%M:%S")
+  flux$Date <- as.Date(flux$Date, format = "%m/%d/%Y")
+  flux$Year <- as.integer(format(as.Date(flux$Date, format = "%Y-%m-%d"),"%Y"))
+
+  # removing dead columns
   flux$dateTime <- NULL #remove column
   flux$X <- NULL
   flux$Rep_ID <- NULL
@@ -47,9 +52,39 @@ fd_soilCO2 <- function() {
   flux$Plot <- as.integer(substr(flux$SubplotID, 3, 3))
   flux$Subplot <- substr(flux$SubplotID, 4, 4)
 
+  # We need to remove the columns that have no data in them
+  flux <- flux[!is.na(flux$soilCO2Efflux), ]
+
   # reorders columns
-  flux <- flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Date", "DateTime", "NestedPlot", "Run", "soilCO2Efflux", "soilTemp", "VWC")]
+  flux <- flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "Date", "DateTime", "NestedPlot", "Run", "soilCO2Efflux", "soilTemp", "VWC")]
 
   flux
 }
 
+
+#' Return basic statistics generated from soil co2 effluxx.
+#'
+#' @details The returned columns are as follows:
+#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
+#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
+#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
+#' - `BA_m2_ha` (numeric): Basal area, square meters per hectare.
+#' - `Stocking_ha` (numeric): Stocking, trees per hectare.
+#'
+#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @note For now this is pretty basic. More detailed summaries could be made,
+#' e.g. by live/dead, species, etc.
+#' @export
+#' @importFrom stats aggregate
+#' @examples
+#' fd_inventory_summary()
+fd_soil_co2_summary <- function() {
+  # Load the inventory and subplot tables and merge them
+  subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot", "Subplot_area_m2")]
+  df <- merge(fd_soilCO2(), subplots)
+
+  # Subset and compute basal area and stocking
+
+  weak_as_tibble(merge(df))
+
+}
