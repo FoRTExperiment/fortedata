@@ -7,7 +7,7 @@ date: "`r format(Sys.time(), '%d %B %Y')`"
 This document is the core of the planned ESSD manuscript: summarizing the data package.
 
 ## Authors
-Jeff W. Atkins, Kalyn Dorheim, Lisa Haber, Maxim Grigri, Kayla Mathes, Stephanie Pennington, Jason Tallant, Alexey Shiklomanov, Christopher M. Gough, Ben Bond-Lamberty
+Jeff W. Atkins, Elizabeth Agee, Alexandria Barry, Kalyn Dorheim, Lisa Haber, Laura Hickey, Maxim Grigri, Kayla Mathes, Evan Paris, Stephanie Pennington, Carly Rodriguez, Autymn Shafer, Alexey Shiklomanov, Jason Tallant, Christopher M. Gough, Ben Bond-Lamberty
 
 
 ```{r setup, include=FALSE}
