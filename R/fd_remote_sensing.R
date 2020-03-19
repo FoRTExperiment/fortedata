@@ -22,8 +22,7 @@
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'  date	year	project	SubplotID	nps	ndvi	gf	open	lai	ci
-
+#'
 #' @examples
 #' fd_hemi_camera()
 fd_hemi_camera <- function() {
@@ -66,19 +65,42 @@ fd_hemi_camera <- function() {
   cam
 }
 
+#' Return summary data for hemispherical camera data
+#'
+#' @details The columns are as follows:
+#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
+#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
+#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
+#' - `Date` (date): Date of measurement
+#' - `Year` (integer): Year of
+#' - `LAI_cam` (numeric): mean of leaf area index
+#' - `LAI_cam_sd` (numeric): sd of leaf area index
+#' - `LAI_cam_n` (integer): number of observations per sample
+#' - `LAI_cam_se` (numeric): se of leaf area index
+#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @note For now this is pretty basic. More detailed summaries could be made,
+#' e.g. by live/dead, species, etc.
+#' @export
+#' @importFrom stats aggregate sd na.omit
+#' @examples
+#' fd_hemi_camera_summary()
 fd_hemi_camera_summary <- function() {
   # Load the inventory and subplot tables and merge them
-  subplots <- fd_hemi_camera()[c("SubplotID", "Replicate", "Plot", "Subplot")]
-  df <- merge(fd_hemi_camera(), subplots)
+  # vsubplots <- fd_hemi_camera()[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot")]
+  df <- fd_hemi_camera()
 
   # calc rugosity means and SD
-  lai <- aggregate(LAI_cam ~ Replicate , data = df, FUN = mean)
-  lai.sd <- aggregate(LAI_cam ~ Replicate , data = df, FUN = sd)
+  lai <- aggregate(LAI_cam ~ Replicate + Plot + Subplot + Date , data = df, FUN = mean)
+  lai.sd <- aggregate(LAI_cam ~ Replicate + Plot + Subplot + Date, data = df, FUN = sd)
+  lai.n <- aggregate(LAI_cam ~ Replicate + Plot + Subplot + Date, data = df, FUN = length)
 
   # mergin and munging
-  names(lai.sd)[names(lai.sd) == "LAI_cam"] <- "LAI_sd"
+  names(lai.sd)[names(lai.sd) == "LAI_cam"] <- "LAI_cam_sd"
+  names(lai.n)[names(lai.n) == "LAI_cam"] <- "LAI_cam_n"
+
   lai <- merge(lai, lai.sd)
-  lai$lai_se <- lai$LAI_sd / sqrt(8)  # based on the SD /sqrt(n)
+  lai <- merge(lai, lai.n)
+  lai$lai_cam_se <- lai$LAI_cam_sd / sqrt(lai$LAI_cam_n)  # based on the SD /sqrt(n)
 
   # VAI  means and SD
   ndvi <- aggregate(NDVI ~ Replicate , data = df, FUN = mean)
@@ -163,6 +185,29 @@ fd_canopy_structure <- function() {
   cst
 }
 
+#' Return summary data for hemispherical camera data
+#'
+#' @details The columns are as follows:
+#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
+#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
+#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
+#' - `Date` (date): Date of measurement
+#' - `Year` (integer): Year of
+#' - `rugosity` (numeric): mean of leaf area index
+#' - `rugosity_sd` (numeric): sd of leaf area index
+#' - `rugosity_n` (integer): number of observations per sample
+#' - `rugosity_se` (numeric): se of leaf area index
+#' - `mean.vai` (numeric): mean of leaf area index
+#' - `mean.vai_sd` (numeric): sd of leaf area index
+#' - `mean.vai_n` (integer): number of observations per sample
+#' - `mean.vai_se` (numeric): se of leaf area index
+#'
+#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @note For now this is pretty basic.
+#' @export
+#' @importFrom stats aggregate sd na.omit
+#' @examples
+#' fd_canopy_structure_summary()
 fd_canopy_structure_summary <- function() {
   # Load the inventory and subplot tables and merge them
   subplots <- fd_canopy_structure()[c("SubplotID", "Replicate", "Plot", "Subplot")]
@@ -171,25 +216,32 @@ fd_canopy_structure_summary <- function() {
   # calc rugosity means and SD
   r_c <- aggregate(rugosity ~ Replicate , data = csc, FUN = mean)
   r_c.sd <- aggregate(rugosity ~ Replicate , data = csc, FUN = sd)
+  r_c.n <- aggregate(rugosity ~ Replicate, data = csc, FUN = length)
 
   # mergin and munging
   names(r_c.sd)[names(r_c.sd) == "rugosity"] <- "rugosity_sd"
+  names(r_c.n)[names(r_c.n) == "rugosity"] <- "rugosity_n"
+
   r_c <- merge(r_c, r_c.sd)
-  r_c$rugosity_se <- r_c$rugosity_sd / sqrt(8)  # based on the SD /sqrt(n)
+  r_c <- merge(r_c, r_c.n)
+
+  r_c$rugosity_se <- r_c$rugosity_sd / sqrt(r_c$rugosity_n)  # based on the SD /sqrt(n)
 
   # VAI  means and SD
   vai<- aggregate(mean.vai ~ Replicate , data = csc, FUN = mean)
   vai.sd <- aggregate(mean.vai ~ Replicate , data = csc, FUN = sd)
+  vai.n <- aggregate(mean.vai ~ Replicate, data = csc, FUN = length)
 
   # mergin and munging
   names(vai.sd)[names(vai.sd) == "mean.vai"] <- "mean.vai_sd"
-  vai <- merge(vai, vai.sd)
-  vai$mean.vai_se <- vai$mean.vai_sd / sqrt(8)
-  # adding in subplot varible too, but this is personal preference.
-  #ba$SubplotID <- as.character(paste(ba$Replicate, "0", ba$Plot, ba$Subplot, sep = ""))
+  names(vai.n)[names(vai.n) == 'mean.vai'] <- "mean.vai_n"
 
-  #ba$Stocking <- stocking$DBH_cm
-  combo <- weak_as_tibble(merge(r_c, vai))
+  vai <- merge(vai, vai.sd)
+  vai <- merge(vai, vai.n)
+
+  vai$mean.vai_se <- vai$mean.vai_sd / sqrt(vai$mean.vai_n)
+
+  weak_as_tibble(merge(r_c, vai))
 
 }
 
@@ -212,9 +264,6 @@ fd_canopy_structure_summary <- function() {
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'  Project	DateTime	Annotation	Average Above PAR	Average Below PAR	Tau [Τ]	Leaf Area Index [LAI]	Leaf Distribuition [Χ]	Beam Fraction [Fb]	Zenith Angle	Latitude	Longitude
-
-
 #' @examples
 #' fd_par()
 fd_par <- function() {
@@ -236,7 +285,7 @@ fd_par <- function() {
 
   # removes erroneous entires
   par$Annotation <- gsub("2019", "", par$Annotation)
-  par$Year  <- par$DateTime$year+1900
+  par$Year  <- as.integer(par$DateTime$year+1900)
 
   # creates the SubPlotID column now that it's clean
   par$SubplotID <- par$Annotation
@@ -255,3 +304,63 @@ fd_par <- function() {
   par
 }
 
+
+#' Return summary data for ceptometer
+#'
+#' @details The columns are as follows:
+#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
+#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
+#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
+#' - `Date` (date): Date of measurement
+#' - `Year` (integer): Year of measurement
+#' - `faPAR` (numeric): mean of the fraction of absorbed PAR
+#' - `faPAR_sd` (numeric): sd of the fraction of absorbed PAR
+#' - `faPAR_n` (integer): number of observations per sample
+#' - `faPAR_se` (numeric): se of the fraction of absorbed PAR
+#' - `LAI_cept` (numeric): mean of leaf area index
+#' - `LAI_cept_sd` (numeric): sd of leaf area index
+#' - `LAI_cept_n` (integer): number of observations per sample
+#' - `LAI_cept_se` (numeric): se of leaf area index
+#'
+#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @note For now this is pretty basic.
+#' @export
+#' @importFrom stats aggregate sd na.omit
+#' @examples
+#' fd_par_summary()
+fd_par_summary <- function() {
+  # Load the inventory and subplot tables and merge them
+  # subplots <- fd_par()[c("SubplotID", "Replicate", "Plot", "Subplot")]
+  df <- fd_par()
+
+  # calc rugosity means and SD
+  f <- aggregate(faPAR ~ Replicate , data = df, FUN = mean)
+  f.sd <- aggregate(faPAR ~ Replicate , data = df, FUN = sd)
+  f.n <- aggregate(faPAR ~ Replicate, data = df, FUN = length)
+
+  # mergin and munging
+  names(f.sd)[names(f.sd) == "faPAR"] <- "faPAR_sd"
+  names(f.n)[names(f.n) == "faPAR"] <- "faPAR_n"
+
+  f <- merge(f, f.sd)
+  f <- merge(f, f.n)
+
+  f$faPAR_se <- f$faPAR_sd / sqrt(f$faPAR_n)  # based on the SD /sqrt(n)
+
+  # VAI  means and SD
+  lai <- aggregate(LAI_cept ~ Replicate , data = df, FUN = mean)
+  lai.sd <- aggregate(LAI_cept ~ Replicate , data = df, FUN = sd)
+  lai.n <- aggregate(LAI_cept ~ Replicate, data = df, FUN = length)
+
+  # mergin and munging
+  names(lai.sd)[names(lai.sd) == "LAI_cept"] <- "LAI_cept_sd"
+  names(lai.n)[names(lai.n) == "LAI_cept"] <- "LAI_cept_n"
+
+  lai <- merge(lai, lai.sd)
+  lai <- merge(lai, lai.n)
+
+  lai$LAI_cept_se <- lai$LAI_cept_sd / sqrt(lai$LAI_cept_n)
+
+  weak_as_tibble(merge(f, lai))
+
+}

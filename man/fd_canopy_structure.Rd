@@ -24,7 +24,7 @@ subplot \code{\link{fd_subplots}} codes.
 \item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
 \item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
 \item \code{Year} (integer): Year in which measurement was taken
-\item `mean.height' (numeric): mean height of vai
+\item \code{mean.height} (numeric): mean height of vai
 \item \code{height.2} (numeric): standard deviation of mean height
 \item \code{mean.height.var} (numeric): variance of mean height
 \item \code{mean.height.rms} (numeric): root mean square height

@@ -22,7 +22,7 @@
 #' @export
 #'
 #' @examples
-#' fd_inventory()
+#' fd_lai()
 fd_lai <- function() {
   leaf <- read_csv_file("fd_littertrap.csv")
   leaf$bag_no <- NULL  #I am not sure why this was here, and it's kind of useless
@@ -69,22 +69,19 @@ fd_lai <- function() {
   lai
 }
 
-#' Return basic statistics generated from the raw inventory data.
+#' Return basic statistics generated from the raw litter trap data
 #'
 #' @details The returned columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#' - `BA_m2_ha` (numeric): Basal area, square meters per hectare.
-#' - `Stocking_ha` (numeric): Stocking, trees per hectare.
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
-#' @note For now this is pretty basic. More detailed summaries could be made,
-#' e.g. by live/dead, species, etc.
+#' @note For now this one doesn't have everything
 #' @export
-#' @importFrom stats aggregate
+#' @importFrom stats aggregate sd na.omit
 #' @examples
-#' fd_inventory_summary()
+#' fd_lai_summary()
 fd_lai_summary <- function() {
   # Load the inventory and subplot tables and merge them
   subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot", "Subplot_area_m2")]
@@ -92,6 +89,6 @@ fd_lai_summary <- function() {
 
   # Subset and compute basal area and stocking
 
-  weak_as_tibble(merge(df))
+  weak_as_tibble(df)
 
 }
