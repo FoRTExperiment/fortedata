@@ -26,7 +26,7 @@
 #' @examples
 #' fd_hemi_camera()
 fd_hemi_camera <- function() {
-  cam <- read_csv_file("fd_hemi_camera.CSV")
+  cam <- read_csv_file("fd_hemi_camera.csv")
 
   # formatting columns
   cam$Date <- as.Date(cam$date, format = "%m/%d/%Y")
@@ -260,7 +260,7 @@ fd_canopy_structure_summary <- function() {
 #' @examples
 #' fd_par()
 fd_par <- function() {
-  par <- read_csv_file("fd_ceptometer.CSV")
+  par <- read_csv_file("fd_ceptometer.csv")
 
   # Rename that weird column
   colnames(par)[1] <- "project"
