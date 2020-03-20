@@ -6,7 +6,7 @@
 #' @details The columns are as follows:
 #' - `Site` (character): Replicate code. Each replicate contains
 #'   multiple plots with different disturbance treatments.
-#' - `SubplotID` (integer): Subplot ID number. These subplot codes are a
+#' - `SubplotID` (character): Subplot ID number. These subplot codes are a
 #' concatenation of the plot (\code{\link{fd_plots}}) and
 #' subplot \code{\link{fd_subplots}} codes.
 #' - `Tag` (integer): Tree tag number.
@@ -21,10 +21,8 @@
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
 #' @examples
 #' fd_inventory()
 fd_inventory <- function() {
@@ -38,6 +36,7 @@ fd_inventory <- function() {
 
   # Currently there's a bad entry in the table. Nuke it. Temporary
   inv$DBH_cm <- as.numeric(inv$DBH_cm)  # temporary, until we fix row 791
+
   inv
 }
 
@@ -76,6 +75,6 @@ fd_inventory_summary <- function() {
   stocking <- aggregate(Stocking_ha ~ Replicate + Plot + Subplot , data = inv, FUN = sum)
   ba <- aggregate(BA_m2_ha ~ Replicate + Plot + Subplot, data = inv, FUN = sum)
 
-  ba$Stocking <- stocking$DBH_cm
+  #ba$Stocking <- stocking$DBH_cm
   weak_as_tibble(merge(ba, stocking))
 }

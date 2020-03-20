@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^data-raw$
 essd
+
+.travis.yml
+coverage.R

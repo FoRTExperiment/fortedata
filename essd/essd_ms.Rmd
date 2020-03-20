@@ -14,18 +14,93 @@ library(fortedata)
 library(dplyr)
 library(lubridate)
 library(readr)
+library(covr)
 library(tidyr)
 
+```
+
+## Abstract
+
+## Introduction
+
+The importance of consistent, curated open data is well-recognized across many scientific disciplines. With the exception of subfields that inherently rely on ‘big data’ such as genomics or systematics, or subfields that require data from other sources, such as biogeography, ecological research has been somewhat constrained in the implementation of open science and data practices. This has been attributed to the nature of how ecological research is often traditionally conducted as individual or short-term projects, that create small-scale or boutique datasets (Wallis et al. 2013), or even the heterogeneous nature of ecological data (Colina et al. 2018).   Open data is the answer to the clarion call of ecological research moving forward to link, infer, and forecast pattern and process across species, time, and space. Observatory networks such as the National Ecological Observatory Network (NEON) and AmeriFlux, or sustained research platforms such as Long-Term Ecological Research (LTER) or Long-Term Agricultural (LTAR) sites provide substantially contribute to this need. However, the inclusion of hypothesis driven research conducted under an open science framework preserves collected data and provides much needed transparency to the application of the scientific method to allow ecological research to meet the needs of humanity. 
+
+## The FoRTE Data Package
+
+fortedata is a data package that includes field data from the Forest Resilience and Threshold Experiment (FoRTE)--
+a manipulative experiment located in northern, lower Michigan at the University of Michigan Biological Station. Field data in this package include: leaf physiology, canopy structural traits, soil respiration, micrometeorology, and forest inventory and biomass data.  
+
+As of this writing (`r Sys.Date()`) the current version of `fortedata` is `r packageVersion("fortedata")`.
+
+
+### Database license
+
+The database license is CC-BY-4 (https://creativecommons.org/licenses/by/4.0/); see the "LICENSE.md` file in the repository.
+This is identical to that used by e.g. Ameriflux and FLUXNET Tier 1. 
+In general, this license provides that users may copy and redistribute the database and R package code in any medium or format, adapting and building upon them for any scientific or commercial purpose, as long as appropriate credit is given.
+We request that users cite this database definition paper, and strongly encourage them to (i) cite all constituent dataset primary publications, and (ii) involve data contributors as co-authors when possible.
+
+### Citing FoRTE
+
+Papers or other research products using any FoRTE data should cite this publication. 
+In addition, users should also reference the specific version of the data they used, access date, and ideally the specific Git commit number. 
+This provides full reproducibility of any analyses.
+As noted above, we encourage data users to cite the primary publication for each dataset
+they use in analyses as well.
+
+## Accessing FoRTE data
+
+
+### Using the R package
+
+It is necessary to install and use the `fortedata` R package in order to access FoRTE data.
+This provides a robust framework, including dedicated access functions, dataset and database
+report generation, and QA/QC (see below).
+
+```{r dbsize, include=FALSE, cache=TRUE}
+db_disksize <- system2("git", args = c("count-objects", "-vH"), stdout = TRUE)
+db_disksize <- db_disksize[grepl("size:",db_disksize)]
+db_disksize <- gsub("size: ", "", db_disksize)
+```
+
+Because currently all field data are included in the repository itself, `fortedata` is quite large (compared to most Git repositories) to download, ~`r db_disksize`. It thus cannot be hosted on CRAN (the Comprehensive R Archive Network), the canonical source for R packages. Installing directly from GitHub is however straightforward using the `devtools` or `remotes` packages:
+
+```
+devtools::install_github("FoRTExperiment/fortedata")
+library(fortedata)
+```
+
+A specific release number may also be installed:
+
+```
+devtools::install_github("bpbond/cosore@v0.4")
+```
+
+Datasets are available via user-facing functions:
+
+* `fd_soilCO2()` returns a single dataset that includes soil CO2 efflux measurements as well as soil temperature and soil water content. 
+* `fd_hemi_camera()` returns a single dataset that includes hemispherical photos of the forest canopy taken 1 meter above-ground, and includes estimates of leaf area index, gap fraction, and NDVI (normalized difference vegetation index). 
+* `fd_canopy_structure()` returns a single dataset that includes estimates of canopy structural traits such as height, area/density, openness, complexity, and arrangement derived from terrestrial lidar and processed using the `forestr` (Atkins et al. 2018; 2020) package in R Version 3.6.2 (R Core Team, 2020). 
+* `fd_par()` returns a single dataset that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI_cept)--each derived from a handheld ceptometer (LP-80; Decagon Devices).
+* `fd_lai()` returns a single dataset of leaf area index (LAI) estimated from litterfall captured via littertraps, calculated using specific leaf area values for each represented species. 
+* `fd_leaf_spectrometry()` returns a single data set of vegetation indices derived from leaf-level spectrometry data collected via a CID-710 handheld spectrometer.
+* `fd_photosynthesis()` returns a single dataset of leaf physiology variables, including photosynthesis, transpiration, etc, measured using a Li-Cor 6400 (Li-Cor Biosciences; Lincoln, NE).
+* `fd_inventory()` returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), as latitude, longitude, and biomass for each measured stem. Biomass is calculated from species specific allometries included in `biomass_allometry_table.csv` within `fortedata`. 
+
+
+----this section should include the summary functions!!!!
+
+
+
+### Structure
+
+```{r metadata}
 # Metadata file
 mdf <- system.file("extdata", "forte_table_metadata.csv", 
                    package = "fortedata", 
                    mustWork = TRUE)
 md <- read.csv(mdf, stringsAsFactors = FALSE)
 ```
-
-As of this writing (`r Sys.Date()`) the current version of `fortedata` is `r packageVersion("fortedata")`.
-
-### Structure
 
 
 ### Plots table
