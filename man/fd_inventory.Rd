@@ -32,9 +32,6 @@ overstory submissive (OS), sapling (SA), understory (UN).
 \item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
 \item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
 \item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
-\item \code{a.biomass} (numeric): a coefficent for allmetric equation for aboveground biomass in kg.
-\item \code{b.biomass} (numeric): b coefficent for allmetric equation for aboveground biomass in kg.
-\item \code{Biomass_kg} (numeric): SBiomass derived from allometry the form a * dbh^b in kg
 }
 }
 \examples{

@@ -21,13 +21,8 @@
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#' - `a.biomass` (numeric): a coefficent for allmetric equation for aboveground biomass in kg.
-#' - `b.biomass` (numeric): b coefficent for allmetric equation for aboveground biomass in kg.
-#' - `Biomass_kg` (numeric): SBiomass derived from allometry the form a * dbh^b in kg
-#'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
 #' @examples
 #' fd_inventory()
 fd_inventory <- function() {
@@ -41,18 +36,6 @@ fd_inventory <- function() {
 
   # Currently there's a bad entry in the table. Nuke it. Temporary
   inv$DBH_cm <- as.numeric(inv$DBH_cm)  # temporary, until we fix row 791
-
-  # bring in the allometry values
-  allo.df <- read_csv_file("biomass_allometry_table.csv") #this has the same equations AmeriFlux uses
-
-  # changing column names
-  names(allo.df)[1] <- paste("Species")
-
-  # Add in the allometries
-  inv <- merge(inv, allo.df)
-
-  #calculates biomass in units of kg
-  inv$Biomass_kg <- inv$a.biomass * inv$DBH_cm ^ inv$b.biomass
 
   inv
 }
