@@ -74,14 +74,7 @@ fd_inventory_summary <- function() {
   inv$Stocking_ha <- hectare_area / inv$Subplot_area_m2
   stocking <- aggregate(Stocking_ha ~ Replicate + Plot + Subplot , data = inv, FUN = sum)
   ba <- aggregate(BA_m2_ha ~ Replicate + Plot + Subplot, data = inv, FUN = sum)
-  biomass <- aggregate(Biomass_kg ~ Replicate + Plot + Subplot, data = inv, FUN = sum)
-
-  # adding in subplot varible too, but this is personal preference.
-  #ba$SubplotID <- as.character(paste(ba$Replicate, "0", ba$Plot, ba$Subplot, sep = ""))
 
   #ba$Stocking <- stocking$DBH_cm
-  combo <- weak_as_tibble(merge(ba, stocking))
-
-  weak_as_tibble(merge(combo, biomass))
-
+  weak_as_tibble(merge(ba, stocking))
 }
