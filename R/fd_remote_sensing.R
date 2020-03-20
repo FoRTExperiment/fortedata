@@ -102,20 +102,16 @@ fd_hemi_camera_summary <- function() {
   lai <- merge(lai, lai.n)
   lai$lai_cam_se <- lai$LAI_cam_sd / sqrt(lai$LAI_cam_n)  # based on the SD /sqrt(n)
 
-  # VAI  means and SD
+  # VAI means and SD
   ndvi <- aggregate(NDVI ~ Replicate , data = df, FUN = mean)
   ndvi.sd <- aggregate(NDVI ~ Replicate , data = df, FUN = sd)
 
-  # mergin and munging
+  # merging and munging
   names(ndvi.sd)[names(ndvi.sd) == "NDVI"] <- "NDVI_sd"
   ndvi <- merge(ndvi, ndvi.sd)
   ndvi$NDVI_se <- ndvi$NDVI_sd / sqrt(8)
-  # adding in subplot varible too, but this is personal preference.
-  #ba$SubplotID <- as.character(paste(ba$Replicate, "0", ba$Plot, ba$Subplot, sep = ""))
 
-  #ba$Stocking <- stocking$DBH_cm
-  combo <- weak_as_tibble(merge(lai, ndvi))
-
+  weak_as_tibble(merge(lai, ndvi))
 }
 
 #' Canopy Structural Traits from 2D Canopy LiDAR
@@ -168,9 +164,9 @@ fd_hemi_camera_summary <- function() {
 #' @examples
 #' fd_canopy_structure()
 fd_canopy_structure <- function() {
-  cst <- read_csv_file("canopy_structural_traits.CSV")
+  cst <- read_csv_file("canopy_structural_traits.csv")
 
-  #renaming columns that need it
+  # Renaming columns that need it
   names(cst)[names(cst) == "subplotID"] <- "SubplotID"
   names(cst)[names(cst) == "year"] <- "Year"
 
@@ -179,10 +175,8 @@ fd_canopy_structure <- function() {
   cst$Plot <- as.integer(substr(cst$SubplotID, 2, 3))
   cst$Subplot <- substr(cst$SubplotID, 4, 4)
 
-
-  # reorders columns
-  cst <- cst[c(1, 31, 32, 33, 2, 3:30 )]
-  cst
+  # Reorder columns
+  cst[c(1, 31, 32, 33, 2, 3:30 )]
 }
 
 #' Return summary data for hemispherical camera data
@@ -242,7 +236,6 @@ fd_canopy_structure_summary <- function() {
   vai$mean.vai_se <- vai$mean.vai_sd / sqrt(vai$mean.vai_n)
 
   weak_as_tibble(merge(r_c, vai))
-
 }
 
 #' Return ceptometer data
@@ -269,25 +262,25 @@ fd_canopy_structure_summary <- function() {
 fd_par <- function() {
   par <- read_csv_file("fd_ceptometer.CSV")
 
-  # renames that weird column
+  # Rename that weird column
   colnames(par)[1] <- "project"
 
-  #renaming columns that need it
+  # Rename columns
   names(par)[names(par) == "Average.Above.PAR"] <- "aPAR"
   names(par)[names(par) == "Average.Below.PAR"] <- "bPAR"
   names(par)[names(par) == "Leaf.Area.Index..LAI."] <- "LAI_cept"
 
-  # adjusts date appropriately
+  # Make DateTime column as datetime object
   par$DateTime <- as.POSIXlt(par$DateTime, format = "%m/%d/%Y %H:%M")
 
-  # filters to just FoRTE data
+  # Filter to just FoRTE data
   par <- subset(par, par$project == "forte")
 
-  # removes erroneous entires
+  # Remove erroneous entires
   par$Annotation <- gsub("2019", "", par$Annotation)
   par$Year  <- as.integer(par$DateTime$year+1900)
 
-  # creates the SubPlotID column now that it's clean
+  # Create the SubPlotID column now that it's clean
   par$SubplotID <- par$Annotation
 
   # Split the SubplotID column into more useful individual columns
@@ -298,10 +291,8 @@ fd_par <- function() {
   # faPAR
   par$faPAR <- par$bPAR / par$aPAR
 
-  # reorders columns
-  par <- par[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "DateTime", "aPAR", "bPAR", "faPAR", "LAI_cept")]
-
-  par
+  # Reorder columns
+  par[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "DateTime", "aPAR", "bPAR", "faPAR", "LAI_cept")]
 }
 
 
