@@ -43,6 +43,19 @@ weak_as_tibble <- function(..., .force_df = FALSE) {
 }
 
 
+#' Data tables' metadata.
+#'
+#' @param table Name of table to return, character, optional
+#' @return A `data.frame` or `tibble` holding field metadata.
+#' @export
+fd_metadata <- function(table = NULL) {
+  md <- read_csv_file("forte_table_metadata.csv")
+
+  if(!is.null(table) && table %in% md$Table) {
+    md <- md[md$Table == table,]
+  }
+  weak_as_tibble(md)
+}
 
 #' FoRTE color palette
 
