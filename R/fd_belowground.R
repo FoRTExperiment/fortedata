@@ -1,7 +1,7 @@
 #  Belowground data
 
 
-#' Raw soil respiration (soil to atmosphere CO2 efflux) table.
+#' Soil respiration (soil to atmosphere CO2 efflux) table.
 #'
 #' @details The columns are as follows:
 #' - `SubplotID` (character): Subplot ID number. These subplot codes are a
@@ -27,9 +27,9 @@ fd_soil_respiration <- function() {
   flux <- read_csv_file("fd_soil_efflux.csv")
 
   # Make subplotID column
-  flux$subplotID <- as.factor(paste(flux$Rep_ID, "0", flux$Plot_ID, flux$Subplot, sep = ""))
+  flux$subplotID <- as.factor(paste0(flux$Rep_ID, "0", flux$Plot_ID, flux$Subplot))
 
-  # Change column name
+  # Change column names
   names(flux)[names(flux) == "subplotID"] <- "SubplotID"
   names(flux)[names(flux) == "run"] <- "Run"
   names(flux)[names(flux) == "nestedPlot"] <- "NestedPlot"
@@ -39,20 +39,14 @@ fd_soil_respiration <- function() {
   flux$Timestamp <- as.POSIXlt(flux$dateTime, format = "%m/%d/%Y %H:%M")
 
   # Remove dead columns
-  flux$dateTime <- NULL #remove column
-  flux$X <- NULL
-  flux$Rep_ID <- NULL
-  flux$Plot_ID <- NULL
-  flux$strdate <- NULL
+  flux$dateTime <- flux$X <- flux$Rep_ID <- flux$Plot_ID <- flux$strdate <- NULL
 
   # Split the SubplotID column into more useful individual columns
   flux$Replicate <- substr(flux$SubplotID, 1, 1)
   flux$Plot <- as.integer(substr(flux$SubplotID, 3, 3))
   flux$Subplot <- substr(flux$SubplotID, 4, 4)
 
-  # Remove the rows that have no data in them
-  flux <- flux[!is.na(flux$soilCO2Efflux), ]
-
   # Reorder columns
-  flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "NestedPlot", "Run", "soilCO2Efflux", "soilTemp", "VWC")]
+  flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "NestedPlot",
+         "Run", "soilCO2Efflux", "soilTemp", "VWC")]
 }

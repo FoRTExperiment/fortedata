@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_belowground.R
 \name{fd_soil_respiration}
 \alias{fd_soil_respiration}
-\title{Raw soil respiration (soil to atmosphere CO2 efflux) table.}
+\title{Soil respiration (soil to atmosphere CO2 efflux) table.}
 \usage{
 fd_soil_respiration()
 }
@@ -10,7 +10,7 @@ fd_soil_respiration()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Raw soil respiration (soil to atmosphere CO2 efflux) table.
+Soil respiration (soil to atmosphere CO2 efflux) table.
 }
 \details{
 The columns are as follows:
