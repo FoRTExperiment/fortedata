@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_inventory.R
 \name{fd_inventory}
 \alias{fd_inventory}
-\title{Return the raw inventory table.}
+\title{Raw inventory table.}
 \usage{
 fd_inventory()
 }
@@ -10,7 +10,7 @@ fd_inventory()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return the raw inventory table.
+Raw inventory table.
 }
 \details{
 The columns are as follows:
@@ -36,4 +36,7 @@ overstory submissive (OS), sapling (SA), understory (UN).
 }
 \examples{
 fd_inventory()
+}
+\author{
+Measurements by Gough Lab at the University of Michigan Biological Station.
 }

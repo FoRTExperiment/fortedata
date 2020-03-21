@@ -1,10 +1,8 @@
-context("Loading internal package data")
+context("remote sensing")
 
-test_that("Canopy Structure", {
+test_that("Canopy structure", {
   dat <- fd_canopy_structure()
 
-  expect_is(dat$Year, "integer")
-
   # All the replicate/plot/subplot codes should exist
   subplots <- fd_subplots()
   expect_true(all(dat$Replicate %in% subplots$Replicate))
@@ -12,15 +10,9 @@ test_that("Canopy Structure", {
   expect_true(all(dat$Subplot %in% subplots$Subplot))
 })
 
-test_that("Hemispherical Imagery", {
+test_that("Hemispherical imagery", {
   dat <- fd_hemi_camera()
 
-  expect_is(dat$Year, "integer")
-  expect_is(dat$NDVI, "numeric")
-  expect_is(dat$GapFraction, "numeric")
-  expect_is(dat$Openness, "numeric")
-  expect_is(dat$ClumpingIndex, "numeric")
-
   # All the replicate/plot/subplot codes should exist
   subplots <- fd_subplots()
   expect_true(all(dat$Replicate %in% subplots$Replicate))
@@ -28,16 +20,8 @@ test_that("Hemispherical Imagery", {
   expect_true(all(dat$Subplot %in% subplots$Subplot))
 })
 
-
-test_that("ceptometer", {
-  dat <- fd_par()
-
-  expect_is(dat$Year, "integer")
-  expect_is(dat$DateTime, "POSIXlt")
-  expect_is(dat$aPAR, "numeric")
-  expect_is(dat$bPAR, "numeric")
-  expect_is(dat$faPAR, "numeric")
-  expect_is(dat$LAI_cept, "numeric")
+test_that("Ceptometer", {
+  dat <- fd_ceptometer()
 
   # All the replicate/plot/subplot codes should exist
   subplots <- fd_subplots()

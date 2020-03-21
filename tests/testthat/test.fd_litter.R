@@ -1,9 +1,7 @@
-context("Loading internal package data")
+context("litter")
 
-test_that("Litter Trap Data", {
-  dat <- fd_lai()
-
-  expect_is(dat$Year, "integer")
+test_that("litter", {
+  dat <- fd_litter()
 
   # All the replicate/plot/subplot codes should exist
   subplots <- fd_subplots()
@@ -11,4 +9,3 @@ test_that("Litter Trap Data", {
   expect_true(all(dat$Plot %in% subplots$Plot))
   expect_true(all(dat$Subplot %in% subplots$Subplot))
 })
-

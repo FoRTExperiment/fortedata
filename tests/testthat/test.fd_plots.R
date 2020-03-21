@@ -1,4 +1,4 @@
-context("Loading internal package data")
+context("plots")
 
 # UMBS is around 45, -85. This sets a very comfortable bounding
 # box around that, which we should shrink later.
@@ -15,9 +15,6 @@ test_that("Plots table", {
     expect_true(all(Longitude_plot > min(umbs_lon)))
     expect_true(all(Longitude_plot < max(umbs_lon)))
     expect_true(all(Plot_area_m2 > 0))
-
-    expect_type(Replicate, "character") # factor?
-    expect_type(Plot, "integer")
   })
 
   # Replicate x Plot should be unique
@@ -34,10 +31,6 @@ test_that("Sublots table", {
     expect_true(all(Longitude_subplot > min(umbs_lon)))
     expect_true(all(Longitude_subplot < max(umbs_lon)))
     expect_true(all(Subplot_area_m2 > 0))
-
-    expect_type(Replicate, "character") # factor?
-    expect_type(Plot, "integer")
-    expect_type(Subplot, "character") # factor?
   })
 
   # Replicate x Plot x Subplot should be unique
@@ -50,8 +43,6 @@ test_that("Nested sublots table", {
 
   with(dat, {
     expect_true(all(Nested_subplot_area_m2 > 0))
-
-    expect_type(Nested_subplot, "integer") # factor?
   })
 
   # Replicate x Plot x Subplot x Nested_subplot should be unique
