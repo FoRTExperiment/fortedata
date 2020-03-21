@@ -54,16 +54,9 @@ fd_lai <- function() {
   # Calculate LAI
   lai$LAI <- lai$LeafArea / lai$PlotArea
 
-  # Remove columns
-  lai$LeafArea <- NULL
-  lai$PlotArea <- NULL
+  lai <- split_subplot_id(lai)
 
-  # Split the SubplotID column into more useful individual columns
-  lai$Replicate <- substr(lai$SubplotID, 1, 1)
-  lai$Plot <- as.integer(substr(lai$SubplotID, 2, 3))
-  lai$Subplot <- substr(lai$SubplotID, 4, 4)
-
-  # Reorder columns
+  # Reorder columns, dropping ones don't need
   lai[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "LAI")]
 }
 

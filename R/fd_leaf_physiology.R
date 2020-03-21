@@ -37,11 +37,9 @@ fd_leaf_spectrometry <- function() {
   leaf_spec$Index_Value <- iconv(leaf_spec$Index_Value, from = "latin1", to = "ASCII", "")
   leaf_spec$Index_Value <- as.numeric(as.character(leaf_spec$Index_Value))
 
-  # Split the SubplotID column into more useful individual columns
-  subplot_id <- substr(leaf_spec$FilePath, 1, 4)
-  leaf_spec$Replicate <- substr(subplot_id, 1, 1)
-  leaf_spec$Plot <- as.integer(substr(subplot_id, 3, 3))
-  leaf_spec$Subplot <- substr(subplot_id, 4, 4)
+  # Extract the SubplotID
+  leaf_spec$SubplotID <- substr(leaf_spec$FilePath, 1, 4)
+  leaf_spec <- split_subplot_id(leaf_spec)
 
   # Reorder columns, dropping unneeded FilePath
   leaf_spec[c("Replicate", "Plot", "Subplot", "Date", "Species", "Index", "Index_Value")]
@@ -113,11 +111,9 @@ fd_photosynthesis <- function() {
   leaf_photo$Species <- toupper(leaf_photo$Species)
   leaf_photo$Timestamp <- as.POSIXlt(leaf_photo$Timestamp, format = "%Y-%m-%d %H:%M:%S")
 
-  # Split the SubplotID column into more useful individual columns
-  subplot_id <- substr(leaf_photo$Filename, 0, 4)
-  leaf_photo$Replicate <- substr(subplot_id, 1, 1)
-  leaf_photo$Plot <- as.integer(substr(subplot_id, 3, 3))
-  leaf_photo$Subplot <- substr(subplot_id, 4, 4)
+  # Extract the SubplotID column
+  leaf_photo$SubplotID <- substr(leaf_photo$Filename, 0, 4)
+  leaf_photo <- split_subplot_id(leaf_photo)
 
   # Drop a few unneeded fields
   leaf_photo$Filename <- leaf_photo$Filename_date <- NULL

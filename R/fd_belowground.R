@@ -22,10 +22,7 @@ fd_soil_respiration <- function() {
   # Timestamp
   flux$Timestamp <- as.POSIXct(flux$dateTime, format = "%m/%d/%Y %H:%M", tz = "America/Detroit")
 
-  # Split the SubplotID column into more useful individual columns
-  flux$Replicate <- substr(flux$SubplotID, 1, 1)
-  flux$Plot <- as.integer(substr(flux$SubplotID, 3, 3))
-  flux$Subplot <- substr(flux$SubplotID, 4, 4)
+  flux <- split_subplot_id(flux)
 
   # Reorder columns, dropping ones we don't need
   flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "NestedPlot",

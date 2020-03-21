@@ -30,10 +30,7 @@ fd_inventory <- function() {
   inv <- read_csv_file("forte_inventory.csv")
   inv$Date <- as.Date(inv$Date, format = "%m/%d/%Y")
 
-  # Split the SubplotID column into more useful individual columns
-  inv$Replicate <- substr(inv$SubplotID, 1, 1)
-  inv$Plot <- as.integer(substr(inv$SubplotID, 2, 3))
-  inv$Subplot <- substr(inv$SubplotID, 4, 4)
+  inv <- split_subplot_id(inv)
 
   # Currently there's a bad entry in the table. Nuke it. Temporary
   inv$DBH_cm <- as.numeric(inv$DBH_cm)  # temporary, until we fix row 791

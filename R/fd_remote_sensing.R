@@ -37,13 +37,7 @@ fd_hemi_camera <- function() {
   names(cam)[names(cam) == "ci"] <- "ClumpingIndex"
   names(cam)[names(cam) == "year"] <- "Year"
 
-  # Drop year column
-  cam$year <- NULL
-
-  # Split the SubplotID column into more useful individual columns
-  cam$Replicate <- substr(cam$SubplotID, 1, 1)
-  cam$Plot <- as.integer(substr(cam$SubplotID, 2, 3))
-  cam$Subplot <- substr(cam$SubplotID, 4, 4)
+  cam <- split_subplot_id(cam)
 
   # Filter to just FoRTE data
   cam <- subset(cam, cam$project == "forte")
@@ -58,9 +52,11 @@ fd_hemi_camera <- function() {
   cam$NestedPlot[cam$NestedPlot == ""] <- NA
 
   cam$NestedPlot <- as.integer(cam$NestedPlot)
-  cam <- na.omit(cam) # this removes the images that were retained as placemarkers if there are any that missed being culled
+  # Remove the images that were retained as placemarkers
+  # (if there are any that missed being culled)
+  cam <- na.omit(cam)
 
-  # Reorder columns
+  # Reorder columns, dropping ones we don't need
   cam[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot", "Date", "Year",
         "NDVI", "GapFraction", "Openness", "LAI_cam", "ClumpingIndex")]
 }
@@ -169,10 +165,7 @@ fd_canopy_structure <- function() {
   names(cst)[names(cst) == "subplotID"] <- "SubplotID"
   names(cst)[names(cst) == "year"] <- "Year"
 
-  # Split the SubplotID column into more useful individual columns
-  cst$Replicate <- substr(cst$SubplotID, 1, 1)
-  cst$Plot <- as.integer(substr(cst$SubplotID, 2, 3))
-  cst$Subplot <- substr(cst$SubplotID, 4, 4)
+  cst <- split_subplot_id(cst)
 
   # Reorder columns
   cst[c(1, 31, 32, 33, 2, 3:30 )]
@@ -271,7 +264,6 @@ fd_par <- function() {
 
   # Make DateTime column as datetime object
   par$Timestamp <- as.POSIXlt(par$DateTime, format = "%m/%d/%Y %H:%M")
-  par$DateTime <- NULL
 
   # Filter to just FoRTE data
   par <- subset(par, par$project == "forte")
@@ -281,16 +273,12 @@ fd_par <- function() {
 
   # Create the SubPlotID column now that it's clean
   par$SubplotID <- par$Annotation
-
-  # Split the SubplotID column into more useful individual columns
-  par$Replicate <- substr(par$SubplotID, 1, 1)
-  par$Plot <- as.integer(substr(par$SubplotID, 2, 3))
-  par$Subplot <- substr(par$SubplotID, 4, 4)
+  par <- split_subplot_id(par)
 
   # faPAR
   par$faPAR <- par$bPAR / par$aPAR
 
-  # Reorder columns
+  # Reorder columns, dropping ones we don't need
   par[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "aPAR", "bPAR", "faPAR", "LAI_cept")]
 }
 
