@@ -107,7 +107,7 @@ fd_leaf_spectrometry <- function() {
 fd_photosynthesis <- function() {
   leaf_photo <- read_csv_file("fd_photosynthesis.csv")
 
-  # Clean up Species column and make Timestamp a datetime
+  # Clean up Species column
   leaf_photo$Species <- toupper(leaf_photo$Species)
 
   # Create a new Timestamp column that uses the information in Filename and HHMMSS
@@ -118,7 +118,7 @@ fd_photosynthesis <- function() {
                                      tz = "America/Detroit")
 
   # Extract the SubplotID column
-  leaf_photo$SubplotID <- substr(leaf_photo$Filename, 0, 4)
+  leaf_photo$SubplotID <- substr(leaf_photo$Filename, 1, 4)
   leaf_photo <- split_subplot_id(leaf_photo)
 
   # Drop a few unneeded fields
