@@ -1,4 +1,4 @@
-# Remote Sensing data
+# Remote sensing data
 
 
 #' Hemispherical camera data.
@@ -50,46 +50,8 @@ fd_hemi_camera <- function() {
 #'
 #' @note The Canopy structural traits were derived using the
 #' \code{forestr} 1.0.1 package from 2D portable canopy lidar
-#' @return The hemispherical camera data.
-#' @details The columns are as follows:
-#'
-#' - `SubplotID` (character): Subplot ID number. These subplot codes are a
-#' concatenation of the plot (\code{\link{fd_plots}}) and
-#' subplot \code{\link{fd_subplots}} codes.
-#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
-#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
-#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#' - `Year` (integer): Year in which measurement was taken
-#' - `mean.height` (numeric): mean height of vai
-#' - `height.2` (numeric): standard deviation of mean height
-#' - `mean.height.var` (numeric): variance of mean height
-#' - `mean.height.rms` (numeric): root mean square height
-#' - `transect.length` (numeric): length of transect
-#' - `mode.el` (numeric): i forgot what this is
-#' - `max.el` (numeric): greatest density of VAI x, z position
-#' - `mode.2` (numeric): variance of maximum VAI
-#' - `max.can.ht` (numeric): maximum measured canopy height
-#' - `mean.max.ht` (numeric): mean outer canopy height or MOCH
-#' - `mean.vai` (numeric): average VAI across transect
-#' - `mean.peak.vai` (numeric): average height of maximum VAI
-#' - `deep.gaps` (numeric): number of 1 m wide bins with no lidar returns
-#' - `deep.gap.fraction` (numeric): deep gaps dividied by transect length
-#' - `porosity` (numeric): ratio of empty to filled bins in the canopy
-#' - `std.std` (numeric): precursor to rugosity
-#' - `mean.std` (numeric): precursor to rugosity
-#' - `rugosity` (numeric): accumulated canopy complexity metric
-#' - `top.rugosity` (numeric): standard deviation of final lidar returns
-#' - `mean.return.ht` (numeric): average lidar return distance
-#' - `sd.return.ht` (numeric): standard deviation of lidar return distances
-#' - `sky.fraction` (numeric): ratio of sky hits to lidar returns
-#' - `cover.fraction` (numeric): 1/sky fraction
-#' - `max.ht` (numeric): same as max can ht, removed in later forestr updates
-#' - `scan.density` (numeric): no. of lidar returns divided by transect length
-#' - `rumple` (numeric): outer surface variability divided by transect length
-#' - `clumping.index` (numeric): clumpiness
-#' - `enl` (numeric): effective number of layers
-#'
-#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @return A `data.frame` or `tibble` of hemispherical camera data.
+#' Call \code{\link{fd_metadata}} for field metadata.
 #' @export
 #' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @examples
