@@ -4,6 +4,7 @@
 #' Hemispherical camera data.
 #'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
+#' @importFrom stats na.omit
 #' @export
 #' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @examples
@@ -127,34 +128,32 @@ fd_canopy_structure <- function() {
 #' @export
 #' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @examples
-#' fd_par()
-fd_par <- function() {
-  par <- read_csv_file("fd_ceptometer.csv")
+#' fd_ceptometer()
+fd_ceptometer <- function() {
+  cept <- read_csv_file("fd_ceptometer.csv")
 
-  # Rename that weird column
-  colnames(par)[1] <- "project"
+  # Rename that weird column and filter to just FoRTE data
+  colnames(cept)[1] <- "project"
+  cept <- subset(cept, cept$project == "forte")
 
   # Rename columns
-  names(par)[names(par) == "Average.Above.PAR"] <- "aPAR"
-  names(par)[names(par) == "Average.Below.PAR"] <- "bPAR"
-  names(par)[names(par) == "Leaf.Area.Index..LAI."] <- "LAI_cept"
+  names(cept)[names(cept) == "Average.Above.PAR"] <- "aPAR"
+  names(cept)[names(cept) == "Average.Below.PAR"] <- "bPAR"
+  names(cept)[names(cept) == "Leaf.Area.Index..LAI."] <- "LAI_cept"
 
   # Make DateTime column as datetime object
-  par$Timestamp <- as.POSIXlt(par$DateTime, format = "%m/%d/%Y %H:%M")
-
-  # Filter to just FoRTE data
-  par <- subset(par, par$project == "forte")
+  cept$Timestamp <- as.POSIXct(cept$DateTime, format = "%m/%d/%Y %H:%M")
 
   # Remove erroneous entires
-  par$Annotation <- gsub("2019", "", par$Annotation)
+  cept$Annotation <- gsub("2019", "", cept$Annotation)
 
   # Create the SubPlotID column now that it's clean
-  par$SubplotID <- par$Annotation
-  par <- split_subplot_id(par)
+  cept$SubplotID <- cept$Annotation
+  cept <- split_subplot_id(cept)
 
   # faPAR
-  par$faPAR <- par$bPAR / par$aPAR
+  cept$faPAR <- cept$bPAR / cept$aPAR
 
   # Reorder columns, dropping ones we don't need
-  par[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "aPAR", "bPAR", "faPAR", "LAI_cept")]
+  cept[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "aPAR", "bPAR", "faPAR", "LAI_cept")]
 }

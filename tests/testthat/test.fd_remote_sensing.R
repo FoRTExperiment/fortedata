@@ -1,6 +1,6 @@
 context("remote sensing")
 
-test_that("Canopy Structure", {
+test_that("Canopy structure", {
   dat <- fd_canopy_structure()
 
   # All the replicate/plot/subplot codes should exist
@@ -10,7 +10,7 @@ test_that("Canopy Structure", {
   expect_true(all(dat$Subplot %in% subplots$Subplot))
 })
 
-test_that("Hemispherical Imagery", {
+test_that("Hemispherical imagery", {
   dat <- fd_hemi_camera()
 
   # All the replicate/plot/subplot codes should exist
@@ -20,15 +20,8 @@ test_that("Hemispherical Imagery", {
   expect_true(all(dat$Subplot %in% subplots$Subplot))
 })
 
-
-test_that("ceptometer", {
-  dat <- fd_par()
-
-  expect_is(dat$Timestamp, "POSIXlt")
-  expect_is(dat$aPAR, "numeric")
-  expect_is(dat$bPAR, "numeric")
-  expect_is(dat$faPAR, "numeric")
-  expect_is(dat$LAI_cept, "numeric")
+test_that("Ceptometer", {
+  dat <- fd_ceptometer()
 
   # All the replicate/plot/subplot codes should exist
   subplots <- fd_subplots()
