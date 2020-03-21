@@ -93,3 +93,11 @@ fd_photosynthesis,Sample,Sample number–varies by species by plot,integer,,
 fd_photosynthesis,Comments,"ID of closest vegetation survey plot (NE, SE, SW, NW) to the stem measured, plus any additional comments
 
 ",character,,
+fd_litter,SubplotID,"Subplot ID number, a concatenation of replicate, plot, and subplot codes",character,,
+fd_litter,Replicate,Replicate group (A-D),character,,
+fd_litter,Plot,Plot number,integer,,
+fd_litter,Subplot,"Subplot (E, W)",character,,
+fd_litter,Year,Year of litter collection,integer,,
+fd_litter,Species,Species code from the USDA Plants Database; see https://plants.sc.egov.usda.gov/java/,character,,
+fd_litter,BagTare_g,Mass of bag,numeric,g,
+fd_litter,BagMass_g,Mass of bag + litter,numeric,g,
