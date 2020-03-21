@@ -7,28 +7,10 @@
 fd_hemi_camera()
 }
 \value{
-A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
+A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
 Hemispherical camera data.
-}
-\details{
-The columns are as follows:
-\itemize{
-\item \code{SubplotID} (character): Subplot ID number. These subplot codes are a
-concatenation of the plot (\code{\link{fd_plots}}) and
-subplot \code{\link{fd_subplots}} codes.
-\item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
-\item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
-\item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
-\item \code{NestedSubPlot} (integer):  NestedSubplotSampling points but need to check other data
-\item \code{Date} (date): Date of measurement
-\item \code{NDVI} (numeric): Normalized Difference Vegetation Index, estimates greenness.
-\item \code{GapFraction} (numeric): Ratio of gap space in the canopy, or open area.
-\item \code{Openness} (numeric): something something
-\item \code{LAI_cam} (numeric): leaf area index
-\item \code{ClumpingIndex} (numeric): Clumping index
-}
 }
 \examples{
 fd_hemi_camera()
