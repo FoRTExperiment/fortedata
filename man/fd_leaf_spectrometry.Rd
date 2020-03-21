@@ -8,8 +8,6 @@ fd_leaf_spectrometry()
 }
 \value{
 A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
-
-A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
 Leaf spectrometry data

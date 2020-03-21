@@ -4,7 +4,6 @@
 #' Leaf spectrometry data
 #'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
-#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
 #' @author Measurements by Lisa Haber at the University of Michigan Biological Station.
 #' @examples
