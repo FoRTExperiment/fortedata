@@ -31,3 +31,6 @@ subplot \code{\link{fd_subplots}} codes.
 \examples{
 fd_par()
 }
+\author{
+Measurements by Jeff Atkins at the University of Michigan Biological Station.
+}

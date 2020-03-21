@@ -33,3 +33,6 @@ subplot \code{\link{fd_subplots}} codes.
 \examples{
 fd_hemi_camera()
 }
+\author{
+Measurements by Jeff Atkins at the University of Michigan Biological Station.
+}

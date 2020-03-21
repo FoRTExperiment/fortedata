@@ -13,7 +13,7 @@
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_plots()
 fd_plots <- function() {
@@ -35,7 +35,7 @@ fd_plots <- function() {
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_subplots()
 fd_subplots <- function() {
@@ -55,7 +55,7 @@ fd_subplots <- function() {
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_nested_subplots()
 fd_nested_subplots <- function() {

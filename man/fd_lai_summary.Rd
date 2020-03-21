@@ -26,3 +26,6 @@ For now this one doesn't have everything
 \examples{
 fd_lai_summary()
 }
+\author{
+Measurements by Gough Lab at the University of Michigan Biological Station.
+}

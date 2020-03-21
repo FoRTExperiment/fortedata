@@ -20,7 +20,7 @@
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_lai()
 fd_lai <- function() {
@@ -78,6 +78,7 @@ fd_lai <- function() {
 #' @note For now this one doesn't have everything
 #' @export
 #' @importFrom stats aggregate sd na.omit
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_lai_summary()
 fd_lai_summary <- function() {

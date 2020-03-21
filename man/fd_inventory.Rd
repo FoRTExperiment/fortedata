@@ -37,3 +37,6 @@ overstory submissive (OS), sapling (SA), understory (UN).
 \examples{
 fd_inventory()
 }
+\author{
+Measurements by Gough Lab at the University of Michigan Biological Station.
+}

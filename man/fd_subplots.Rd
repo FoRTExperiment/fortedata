@@ -28,3 +28,6 @@ degrees.
 \examples{
 fd_subplots()
 }
+\author{
+Measurements by Gough Lab at the University of Michigan Biological Station.
+}

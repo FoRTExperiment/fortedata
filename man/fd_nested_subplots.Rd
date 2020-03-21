@@ -26,3 +26,6 @@ one in the eastern part, one in the western.
 \examples{
 fd_nested_subplots()
 }
+\author{
+Measurements by Gough Lab at the University of Michigan Biological Station.
+}

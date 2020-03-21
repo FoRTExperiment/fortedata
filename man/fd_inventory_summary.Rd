@@ -29,3 +29,6 @@ e.g. by live/dead, species, etc.
 \examples{
 fd_inventory_summary()
 }
+\author{
+Measurements by Gough Lab at the University of Michigan Biological Station.
+}

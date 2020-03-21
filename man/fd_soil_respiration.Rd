@@ -17,11 +17,11 @@ The columns are as follows:
 \itemize{
 \item \code{SubplotID} (character): Subplot ID number. These subplot codes are a
 concatenation of the plot (\code{\link{fd_plots}}) and
-subplot \code{\link{fd_subplots}} codes.
-\item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
-\item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
-\item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
-\item \code{Timestamp} (POSIXlt) Format in "\%Y-\%m-\%d \%H:\%M:\%S"
+subplot \code{\link{fd_subplots}} codes
+\item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}
+\item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}
+\item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}
+\item \code{Timestamp} (POSIXlt) Timestamp of measurement
 \item \code{NestedPlot} (integer): Nested subplot sampling point inside subplot
 \item \code{Run} (integer): indicates first or second sample take with IRGA
 \item \code{soilCO2Efflux} (numeric): soil CO2 efflux measured with a LiCor 6400
@@ -32,4 +32,7 @@ in µmol CO2 m^-2 s^-1
 }
 \examples{
 fd_soil_respiration()
+}
+\author{
+Measurements by Kayla Mathes at the University of Michigan Biological Station.
 }

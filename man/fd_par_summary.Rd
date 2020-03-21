@@ -35,3 +35,6 @@ For now this is pretty basic.
 \examples{
 fd_par_summary()
 }
+\author{
+Measurements by Jeff Atkins at the University of Michigan Biological Station.
+}

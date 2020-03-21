@@ -6,11 +6,11 @@
 #' @details The columns are as follows:
 #' - `SubplotID` (character): Subplot ID number. These subplot codes are a
 #' concatenation of the plot (\code{\link{fd_plots}}) and
-#' subplot \code{\link{fd_subplots}} codes.
-#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
-#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
-#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#' - `Timestamp` (POSIXlt) Format in "%Y-%m-%d %H:%M:%S"
+#' subplot \code{\link{fd_subplots}} codes
+#' - `Replicate` (character): Replicate code, extracted from `SubplotID`
+#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`
+#' - `Subplot` (character): Subplot code, extracted from `SubplotID`
+#' - `Timestamp` (POSIXlt) Timestamp of measurement
 #' - `NestedPlot` (integer): Nested subplot sampling point inside subplot
 #' - `Run` (integer): indicates first or second sample take with IRGA
 #' - `soilCO2Efflux` (numeric): soil CO2 efflux measured with a LiCor 6400
@@ -20,7 +20,7 @@
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#' @author Measurements by Kayla Mathes at the University of Michigan Biological Station.
 #' @examples
 #' fd_soil_respiration()
 fd_soil_respiration <- function() {

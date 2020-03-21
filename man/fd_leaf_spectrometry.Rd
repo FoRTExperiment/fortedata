@@ -33,3 +33,6 @@ to point to.
 \examples{
 fd_leaf_spectrometry()
 }
+\author{
+Measurements by Lisa Haber at the University of Michigan Biological Station.
+}

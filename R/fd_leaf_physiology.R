@@ -20,7 +20,7 @@
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#' @author Measurements by Lisa Haber at the University of Michigan Biological Station.
 #' @examples
 #' fd_leaf_spectrometry()
 
@@ -114,7 +114,7 @@ fd_leaf_spectrometry <- function() {
 #`
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#' @author Measurements by Lisa Haber at the University of Michigan Biological Station.
 #' @examples
 #' fd_photosynthesis()
 fd_photosynthesis <- function() {
@@ -147,6 +147,7 @@ fd_photosynthesis <- function() {
 #' @note For now this one doesn't have everything
 #' @export
 #' @importFrom stats aggregate sd na.omit
+#' @author Measurements by Lisa Haber at the University of Michigan Biological Station.
 #' @examples
 #' fd_photosynthesis_summary()
 fd_photosynthesis_summary <- function() {

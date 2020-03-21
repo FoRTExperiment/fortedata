@@ -33,3 +33,6 @@ subplot \code{\link{fd_subplots}} codes.
 \examples{
 fd_lai()
 }
+\author{
+Measurements by Gough Lab at the University of Michigan Biological Station.
+}

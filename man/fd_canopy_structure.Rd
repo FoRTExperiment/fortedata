@@ -61,3 +61,6 @@ The Canopy structural traits were derived using the
 \examples{
 fd_canopy_structure()
 }
+\author{
+Measurements by Jeff Atkins at the University of Michigan Biological Station.
+}

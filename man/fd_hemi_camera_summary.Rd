@@ -32,3 +32,6 @@ e.g. by live/dead, species, etc.
 \examples{
 fd_hemi_camera_summary()
 }
+\author{
+Measurements by Jeff Atkins at the University of Michigan Biological Station.
+}

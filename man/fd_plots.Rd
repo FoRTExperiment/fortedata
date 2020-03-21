@@ -26,3 +26,6 @@ degrees.
 \examples{
 fd_plots()
 }
+\author{
+Measurements by Gough Lab at the University of Michigan Biological Station.
+}

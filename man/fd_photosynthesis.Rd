@@ -75,3 +75,6 @@ subplot \code{\link{fd_subplots}} codes.
 \examples{
 fd_photosynthesis()
 }
+\author{
+Measurements by Lisa Haber at the University of Michigan Biological Station.
+}

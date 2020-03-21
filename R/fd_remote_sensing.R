@@ -21,7 +21,7 @@
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @examples
 #' fd_hemi_camera()
 fd_hemi_camera <- function() {
@@ -81,6 +81,7 @@ fd_hemi_camera <- function() {
 #' e.g. by live/dead, species, etc.
 #' @export
 #' @importFrom stats aggregate sd na.omit
+#' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @examples
 #' fd_hemi_camera_summary()
 fd_hemi_camera_summary <- function() {
@@ -158,7 +159,7 @@ fd_hemi_camera_summary <- function() {
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @examples
 #' fd_canopy_structure()
 fd_canopy_structure <- function() {
@@ -195,6 +196,7 @@ fd_canopy_structure <- function() {
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @note For now this is pretty basic.
+#' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @export
 #' @importFrom stats aggregate sd na.omit
 #' @examples
@@ -253,6 +255,7 @@ fd_canopy_structure_summary <- function() {
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
+#' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @examples
 #' fd_par()
 fd_par <- function() {
@@ -312,6 +315,7 @@ fd_par <- function() {
 #' @note For now this is pretty basic.
 #' @export
 #' @importFrom stats aggregate sd na.omit
+#' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @examples
 #' fd_par_summary()
 fd_par_summary <- function() {

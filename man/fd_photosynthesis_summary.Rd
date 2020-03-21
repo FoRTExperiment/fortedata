@@ -26,3 +26,6 @@ For now this one doesn't have everything
 \examples{
 fd_photosynthesis_summary()
 }
+\author{
+Measurements by Lisa Haber at the University of Michigan Biological Station.
+}

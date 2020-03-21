@@ -23,6 +23,7 @@
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_inventory()
 fd_inventory <- function() {
@@ -54,6 +55,7 @@ fd_inventory <- function() {
 #' e.g. by live/dead, species, etc.
 #' @export
 #' @importFrom stats aggregate
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_inventory_summary()
 fd_inventory_summary <- function() {
