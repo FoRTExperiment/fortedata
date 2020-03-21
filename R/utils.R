@@ -66,7 +66,7 @@ fd_metadata <- function(table = NULL) {
 #' and \code{Subplot}.
 #' @keywords internal
 #' @examples
-#' split_subplot_id(data.frame(SubplotID = "A01E"))
+#' fortedata:::split_subplot_id(data.frame(SubplotID = "A01E"))
 split_subplot_id <- function(df) {
   stopifnot("SubplotID" %in% names(df))
   df$Replicate <- substr(df$SubplotID, 1, 1)
