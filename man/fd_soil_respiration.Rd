@@ -7,28 +7,10 @@
 fd_soil_respiration()
 }
 \value{
-A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
+A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
 Soil respiration (soil to atmosphere CO2 efflux) table.
-}
-\details{
-The columns are as follows:
-\itemize{
-\item \code{SubplotID} (character): Subplot ID number. These subplot codes are a
-concatenation of the plot (\code{\link{fd_plots}}) and
-subplot \code{\link{fd_subplots}} codes
-\item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}
-\item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}
-\item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}
-\item \code{Timestamp} (POSIXlt) Timestamp of measurement
-\item \code{NestedPlot} (integer): Nested subplot sampling point inside subplot
-\item \code{Run} (integer): indicates first or second sample take with IRGA
-\item \code{soilCO2Efflux} (numeric): soil CO2 efflux measured with a LiCor 6400
-in µmol CO2 m^-2 s^-1
-\item \code{soilTemp} (numeric): soil temperature measured to 7 cm depth, degC
-\item \code{VWC} (numeric): volumetric water content in percent
-}
 }
 \examples{
 fd_soil_respiration()

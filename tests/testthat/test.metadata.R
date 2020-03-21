@@ -1,4 +1,4 @@
-context("Table columns match their metadata")
+context("metadata")
 
 test_that("Metadata", {
 
@@ -14,13 +14,16 @@ test_that("Metadata", {
 
     dat <- do.call(tab, list())
     datclass <- tolower(sapply(dat, class))
+    names(datclass) <- names(dat)
 
     expect_identical(sort(mdtab$Field), sort(names(dat)), label = tab)
     # loop for better error message?
     for(i in seq_len(nrow(mdtab))) {
-      expect_equal(unname(datclass[mdtab$Field[i]]),
-                   mdtab$Class[i],
-                   label = paste(tab, mdtab$Field[i]))
+      dc <- unname(datclass[mdtab$Field[i]])  # data class
+      # we use grepl here because timestamp fields have multiple classes
+      # and we want to keep the metadata table clean
+      expect_true(grepl(mdtab$Class[i], dc),
+                   label = paste(tab, mdtab$Field[i], "class", mdtab$Class[i], dc))
     }
   }
 })
