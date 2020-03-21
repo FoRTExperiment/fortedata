@@ -128,29 +128,3 @@ fd_photosynthesis <- function() {
 
   leaf_photo
 }
-
-#' Basic statistics generated from the raw photosynthesis data
-#'
-#' @details The returned columns are as follows:
-#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
-#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
-#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#'
-#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
-#' @note For now this one doesn't have everything
-#' @export
-#' @importFrom stats aggregate sd na.omit
-#' @author Measurements by Lisa Haber at the University of Michigan Biological Station.
-#' @examples
-#' fd_photosynthesis_summary()
-fd_photosynthesis_summary <- function() {
-  # Load the inventory and subplot tables and merge them
-  subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot")]
-  df <- merge(fd_photosynthesis(), subplots)
-  df$Date <- as.Date(format(df$DateTime, "%Y-%m-%d"))
-
-  # Calculate soil temperature means by plot, by date
-  p.max <- aggregate(Photo ~ Replicate + Plot + Subplot + Date, data = df, FUN = max)
-
-  weak_as_tibble(p.max)
-}
