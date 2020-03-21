@@ -109,14 +109,23 @@ fd_photosynthesis <- function() {
 
   # Clean up Species column and make Timestamp a datetime
   leaf_photo$Species <- toupper(leaf_photo$Species)
-  leaf_photo$Timestamp <- as.POSIXlt(leaf_photo$Timestamp, format = "%Y-%m-%d %H:%M:%S")
+
+  # Create a new Timestamp column that uses the information in Filename and HHMMSS
+  # See Lisa's explanation in issue #23
+  leaf_photo$Timestamp <- as.POSIXct(paste(substr(leaf_photo$Filename, 14, 22),
+                                           leaf_photo$HHMMSS),
+                                     format = "%m%d%Y %H:%M:%S",
+                                     tz = "America/Detroit")
 
   # Extract the SubplotID column
   leaf_photo$SubplotID <- substr(leaf_photo$Filename, 0, 4)
   leaf_photo <- split_subplot_id(leaf_photo)
 
   # Drop a few unneeded fields
-  leaf_photo$Filename <- leaf_photo$Filename_date <- NULL
+  leaf_photo$Filename <- leaf_photo$Filename_date <- leaf_photo$HHMMSS <- NULL
 
-  leaf_photo
+  # Reorder and return
+  first_cols <- c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp")
+  other_cols <- setdiff(names(leaf_photo), first_cols)
+  leaf_photo[c(first_cols, other_cols)]
 }
