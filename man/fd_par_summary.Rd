@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_remote_sensing.R
 \name{fd_par_summary}
 \alias{fd_par_summary}
-\title{Summary data for ceptometer}
+\title{Summary data for ceptometer.}
 \usage{
 fd_par_summary()
 }
@@ -10,7 +10,7 @@ fd_par_summary()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Summary data for ceptometer
+Summary data for ceptometer.
 }
 \details{
 The columns are as follows:
@@ -19,7 +19,6 @@ The columns are as follows:
 \item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
 \item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
 \item \code{Date} (date): Date of measurement
-\item \code{Year} (integer): Year of measurement
 \item \code{faPAR} (numeric): mean of the fraction of absorbed PAR
 \item \code{faPAR_sd} (numeric): sd of the fraction of absorbed PAR
 \item \code{faPAR_n} (integer): number of observations per sample

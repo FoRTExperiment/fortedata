@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_remote_sensing.R
 \name{fd_hemi_camera_summary}
 \alias{fd_hemi_camera_summary}
-\title{Summary data for hemispherical camera data}
+\title{Summary data for hemispherical camera data.}
 \usage{
 fd_hemi_camera_summary()
 }
@@ -10,7 +10,7 @@ fd_hemi_camera_summary()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Summary data for hemispherical camera data
+Summary data for hemispherical camera data.
 }
 \details{
 The columns are as follows:
@@ -19,7 +19,6 @@ The columns are as follows:
 \item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
 \item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
 \item \code{Date} (date): Date of measurement
-\item \code{Year} (integer): Year of
 \item \code{LAI_cam} (numeric): mean of leaf area index
 \item \code{LAI_cam_sd} (numeric): sd of leaf area index
 \item \code{LAI_cam_n} (integer): number of observations per sample

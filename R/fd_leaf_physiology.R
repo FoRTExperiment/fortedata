@@ -41,7 +41,7 @@ fd_leaf_spectrometry <- function() {
   leaf_spec <- leaf_spec[!stringr::str_detect(leaf_spec$Index_Value, '([A-Za-z])'), ]
   leaf_spec <- leaf_spec[!stringr::str_detect(leaf_spec$Index_Value, '\\.$'), ]
   #leaf_spec$Index_Value[leaf_spec$Index_Value == " âˆž"] <- NA
-  leaf_spec$Index_Value <- iconv(leaf_spec$Index_Value, from="latin1", to="ASCII", "")
+  leaf_spec$Index_Value <- iconv(leaf_spec$Index_Value, from = "latin1", to = "ASCII", "")
   leaf_spec$Index_Value <- as.numeric(as.character(leaf_spec$Index_Value))
 
   # Split the SubplotID column into more useful individual columns
@@ -121,10 +121,10 @@ fd_leaf_spectrometry <- function() {
 fd_photosynthesis <- function() {
   leaf_photo <- read_csv_file("fd_photosynthesis.csv")
 
-  # clean original data
+  # Clean original data
   leaf_photo$Plot <- NULL
 
-  # adjusting column data
+  # Adjust column data
   leaf_photo$Species <- toupper(leaf_photo$Species)
   leaf_photo$DateTime <- as.POSIXlt(leaf_photo$Timestamp, format = "%Y-%m-%d %H:%M:%S")
 
@@ -154,10 +154,9 @@ fd_photosynthesis_summary <- function() {
   # Load the inventory and subplot tables and merge them
   subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot")]
   df <- merge(fd_photosynthesis(), subplots)
-
-  # Add in msmt data variable
   df$Date <- as.Date(format(df$DateTime, "%Y-%m-%d"))
-  # Calculate soil temperature means by plot, by date
+
+    # Calculate soil temperature means by plot, by date
   p.max <- aggregate(Photo ~ Replicate + Plot + Subplot + Date, data = df, FUN = max)
 
   weak_as_tibble(p.max)

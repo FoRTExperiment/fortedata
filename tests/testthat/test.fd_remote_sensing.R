@@ -32,8 +32,7 @@ test_that("Hemispherical Imagery", {
 test_that("ceptometer", {
   dat <- fd_par()
 
-  expect_is(dat$Year, "integer")
-  expect_is(dat$DateTime, "POSIXlt")
+  expect_is(dat$Timestamp, "POSIXlt")
   expect_is(dat$aPAR, "numeric")
   expect_is(dat$bPAR, "numeric")
   expect_is(dat$faPAR, "numeric")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_remote_sensing.R
 \name{fd_par}
 \alias{fd_par}
-\title{Ceptometer data}
+\title{Ceptometer data.}
 \usage{
 fd_par()
 }
@@ -10,7 +10,7 @@ fd_par()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Ceptometer data
+Ceptometer data.
 }
 \details{
 The columns are as follows:
@@ -21,8 +21,7 @@ subplot \code{\link{fd_subplots}} codes.
 \item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
 \item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
 \item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
-\item \code{Year} (integer): Year of mesmt
-\item \code{DateTime} (asPOSIXlt): Date of measurment
+\item \code{Timestamp} (POSIXlt): Date of measurment
 \item \code{aPAR} (numeric): above canopy PAR (photosynthetically available radiation)
 \item \code{bPAR} (numeric): below canopy PAR (photosynthetically available radiation)
 \item \code{faPAR} (numeric): fraction of PAR absorbed by the canopy

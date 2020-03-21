@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_remote_sensing.R
 \name{fd_hemi_camera}
 \alias{fd_hemi_camera}
-\title{Hemispherical camera data}
+\title{Hemispherical camera data.}
 \usage{
 fd_hemi_camera()
 }
@@ -10,7 +10,7 @@ fd_hemi_camera()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Hemispherical camera data
+Hemispherical camera data.
 }
 \details{
 The columns are as follows:
@@ -23,7 +23,6 @@ subplot \code{\link{fd_subplots}} codes.
 \item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
 \item \code{NestedSubPlot} (integer):  NestedSubplotSampling points but need to check other data
 \item \code{Date} (date): Date of measurement
-\item \code{Year} (integer): Year of
 \item \code{NDVI} (numeric): Normalized Difference Vegetation Index, estimates greenness.
 \item \code{GapFraction} (numeric): Ratio of gap space in the canopy, or open area.
 \item \code{Openness} (numeric): something something

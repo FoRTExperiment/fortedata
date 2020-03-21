@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_remote_sensing.R
 \name{fd_canopy_structure}
 \alias{fd_canopy_structure}
-\title{Canopy Structural Traits from 2D Canopy LiDAR}
+\title{Canopy structural traits from 2D canopy LiDAR.}
 \usage{
 fd_canopy_structure()
 }
@@ -12,12 +12,9 @@ The hemispherical camera data.
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Canopy Structural Traits from 2D Canopy LiDAR
+Canopy structural traits from 2D canopy LiDAR.
 }
 \details{
-The Canopy structural traits were derived using the
-forestr 1.0.1 package from 2D portable canopy lidar
-
 The columns are as follows:
 \itemize{
 \item \code{SubplotID} (character): Subplot ID number. These subplot codes are a
@@ -56,6 +53,10 @@ subplot \code{\link{fd_subplots}} codes.
 \item \code{clumping.index} (numeric): clumpiness
 \item \code{enl} (numeric): effective number of layers
 }
+}
+\note{
+The Canopy structural traits were derived using the
+\code{forestr} 1.0.1 package from 2D portable canopy lidar
 }
 \examples{
 fd_canopy_structure()

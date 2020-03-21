@@ -1,7 +1,7 @@
 # Remote Sensing data
 
 
-#' Hemispherical camera data
+#' Hemispherical camera data.
 #'
 #' @details The columns are as follows:
 #'
@@ -13,7 +13,6 @@
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
 #' - `NestedSubPlot` (integer):  NestedSubplotSampling points but need to check other data
 #' - `Date` (date): Date of measurement
-#' - `Year` (integer): Year of
 #' - `NDVI` (numeric): Normalized Difference Vegetation Index, estimates greenness.
 #' - `GapFraction` (numeric): Ratio of gap space in the canopy, or open area.
 #' - `Openness` (numeric): something something
@@ -28,7 +27,7 @@
 fd_hemi_camera <- function() {
   cam <- read_csv_file("fd_hemi_camera.csv")
 
-  # formatting columns
+  # Format columns
   cam$Date <- as.Date(cam$date, format = "%m/%d/%Y")
   names(cam)[names(cam) == "nsp"] <- "NestedPlot"
   names(cam)[names(cam) == "ndvi"] <- "NDVI"
@@ -38,15 +37,18 @@ fd_hemi_camera <- function() {
   names(cam)[names(cam) == "ci"] <- "ClumpingIndex"
   names(cam)[names(cam) == "year"] <- "Year"
 
+  # Drop year column
+  cam$year <- NULL
+
   # Split the SubplotID column into more useful individual columns
   cam$Replicate <- substr(cam$SubplotID, 1, 1)
   cam$Plot <- as.integer(substr(cam$SubplotID, 2, 3))
   cam$Subplot <- substr(cam$SubplotID, 4, 4)
 
-  # filters to just FoRTE data
+  # Filter to just FoRTE data
   cam <- subset(cam, cam$project == "forte")
 
-  # replaces NSP data with numbers
+  # Replace NSP data with numbers
   cam$NestedPlot[cam$NestedPlot == "C"] <- 0
   cam$NestedPlot[cam$NestedPlot == "N"] <- 1
   cam$NestedPlot[cam$NestedPlot == "E"] <- 3
@@ -58,18 +60,18 @@ fd_hemi_camera <- function() {
   cam$NestedPlot <- as.integer(cam$NestedPlot)
   cam <- na.omit(cam) # this removes the images that were retained as placemarkers if there are any that missed being culled
 
-    # Reorder columns
- cam[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot", "Date", "Year", "NDVI", "GapFraction", "Openness", "LAI_cam", "ClumpingIndex")]
+  # Reorder columns
+  cam[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot", "Date", "Year",
+        "NDVI", "GapFraction", "Openness", "LAI_cam", "ClumpingIndex")]
 }
 
-#' Summary data for hemispherical camera data
+#' Summary data for hemispherical camera data.
 #'
 #' @details The columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
 #' - `Date` (date): Date of measurement
-#' - `Year` (integer): Year of
 #' - `LAI_cam` (numeric): mean of leaf area index
 #' - `LAI_cam_sd` (numeric): sd of leaf area index
 #' - `LAI_cam_n` (integer): number of observations per sample
@@ -111,10 +113,10 @@ fd_hemi_camera_summary <- function() {
   weak_as_tibble(merge(lai, ndvi))
 }
 
-#' Canopy Structural Traits from 2D Canopy LiDAR
+#' Canopy structural traits from 2D canopy LiDAR.
 #'
-#' @details The Canopy structural traits were derived using the
-#' forestr 1.0.1 package from 2D portable canopy lidar
+#' @note The Canopy structural traits were derived using the
+#' \code{forestr} 1.0.1 package from 2D portable canopy lidar
 #' @return The hemispherical camera data.
 #' @details The columns are as follows:
 #'
@@ -181,8 +183,7 @@ fd_canopy_structure <- function() {
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#' - `Date` (date): Date of measurement
-#' - `Year` (integer): Year of
+#' - `Year` (integer): Year in which measurement was taken
 #' - `rugosity` (numeric): mean of leaf area index
 #' - `rugosity_sd` (numeric): sd of leaf area index
 #' - `rugosity_n` (integer): number of observations per sample
@@ -234,7 +235,7 @@ fd_canopy_structure_summary <- function() {
   weak_as_tibble(merge(r_c, vai))
 }
 
-#' Ceptometer data
+#' Ceptometer data.
 #'
 #' @details The columns are as follows:
 #'
@@ -244,8 +245,7 @@ fd_canopy_structure_summary <- function() {
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#' - `Year` (integer): Year of mesmt
-#' - `DateTime` (asPOSIXlt): Date of measurment
+#' - `Timestamp` (POSIXlt): Date of measurment
 #' - `aPAR` (numeric): above canopy PAR (photosynthetically available radiation)
 #' - `bPAR` (numeric): below canopy PAR (photosynthetically available radiation)
 #' - `faPAR` (numeric): fraction of PAR absorbed by the canopy
@@ -267,14 +267,14 @@ fd_par <- function() {
   names(par)[names(par) == "Leaf.Area.Index..LAI."] <- "LAI_cept"
 
   # Make DateTime column as datetime object
-  par$DateTime <- as.POSIXlt(par$DateTime, format = "%m/%d/%Y %H:%M")
+  par$Timestamp <- as.POSIXlt(par$DateTime, format = "%m/%d/%Y %H:%M")
+  par$DateTime <- NULL
 
   # Filter to just FoRTE data
   par <- subset(par, par$project == "forte")
 
   # Remove erroneous entires
   par$Annotation <- gsub("2019", "", par$Annotation)
-  par$Year  <- as.integer(par$DateTime$year+1900)
 
   # Create the SubPlotID column now that it's clean
   par$SubplotID <- par$Annotation
@@ -288,18 +288,17 @@ fd_par <- function() {
   par$faPAR <- par$bPAR / par$aPAR
 
   # Reorder columns
-  par[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "DateTime", "aPAR", "bPAR", "faPAR", "LAI_cept")]
+  par[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "aPAR", "bPAR", "faPAR", "LAI_cept")]
 }
 
 
-#' Summary data for ceptometer
+#' Summary data for ceptometer.
 #'
 #' @details The columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
 #' - `Date` (date): Date of measurement
-#' - `Year` (integer): Year of measurement
 #' - `faPAR` (numeric): mean of the fraction of absorbed PAR
 #' - `faPAR_sd` (numeric): sd of the fraction of absorbed PAR
 #' - `faPAR_n` (integer): number of observations per sample
@@ -349,5 +348,4 @@ fd_par_summary <- function() {
   lai$LAI_cept_se <- lai$LAI_cept_sd / sqrt(lai$LAI_cept_n)
 
   weak_as_tibble(merge(f, lai))
-
 }

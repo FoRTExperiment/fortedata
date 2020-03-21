@@ -18,8 +18,7 @@ The columns are as follows:
 \item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
 \item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
 \item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
-\item \code{Date} (date): Date of measurement
-\item \code{Year} (integer): Year of
+\item \code{Year} (integer): Year in which measurement was taken
 \item \code{rugosity} (numeric): mean of leaf area index
 \item \code{rugosity_sd} (numeric): sd of leaf area index
 \item \code{rugosity_n} (integer): number of observations per sample
