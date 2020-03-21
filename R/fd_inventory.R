@@ -1,7 +1,7 @@
 # Inventory data
 
 
-#' Return the raw inventory table.
+#' Raw inventory table.
 #'
 #' @details The columns are as follows:
 #' - `Site` (character): Replicate code. Each replicate contains
@@ -40,7 +40,7 @@ fd_inventory <- function() {
   inv
 }
 
-#' Return basic statistics generated from the raw inventory data.
+#' Basic statistics generated from the raw inventory data.
 #'
 #' @details The returned columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.

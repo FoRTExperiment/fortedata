@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_remote_sensing.R
 \name{fd_par_summary}
 \alias{fd_par_summary}
-\title{Return summary data for ceptometer}
+\title{Summary data for ceptometer}
 \usage{
 fd_par_summary()
 }
@@ -10,7 +10,7 @@ fd_par_summary()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return summary data for ceptometer
+Summary data for ceptometer
 }
 \details{
 The columns are as follows:

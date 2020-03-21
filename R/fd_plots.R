@@ -1,7 +1,7 @@
 # Plot tables
 
 
-#' Return the plots table.
+#' Plots table.
 #'
 #' @details The columns are as follows:
 #' - `Replicate` (character): Replicate code. Each replicate contains
@@ -21,7 +21,7 @@ fd_plots <- function() {
 }
 
 
-#' Return the subplots table.
+#' Subplots table.
 #'
 #' @details The columns are as follows:
 #' - `Replicate` (character): Replicate code. Each replicate contains
@@ -43,7 +43,7 @@ fd_subplots <- function() {
 }
 
 
-#' Return the nested subplots table.
+#' Nested subplots table.
 #'
 #' @details The columns are as follows:
 #' - `Subplot` (character): Subplot code. Subplots are nested within plots:

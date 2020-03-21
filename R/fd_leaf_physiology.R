@@ -113,13 +113,11 @@ fd_leaf_spectrometry <- function() {
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
 #`
-#`
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
 #'
 #' @examples
 #' fd_photosynthesis()
-
 fd_photosynthesis <- function() {
   leaf_photo <- read_csv_file("fd_photosynthesis.csv")
 

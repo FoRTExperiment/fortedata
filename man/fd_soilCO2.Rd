@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_belowground.R
 \name{fd_soilCO2}
 \alias{fd_soilCO2}
-\title{Return the raw soil CO2 efflux table.}
+\title{Raw soil CO2 efflux table}
 \usage{
 fd_soilCO2()
 }
@@ -10,7 +10,7 @@ fd_soilCO2()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return the raw soil CO2 efflux table.
+Raw soil CO2 efflux table
 }
 \details{
 The columns are as follows:

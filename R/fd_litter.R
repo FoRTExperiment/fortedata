@@ -67,7 +67,7 @@ fd_lai <- function() {
   lai[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "LAI")]
 }
 
-#' Return basic statistics generated from the raw litter trap data
+#' Basic statistics generated from the raw litter trap data
 #'
 #' @details The returned columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.

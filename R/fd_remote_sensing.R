@@ -113,10 +113,9 @@ fd_hemi_camera_summary <- function() {
 
 #' Canopy Structural Traits from 2D Canopy LiDAR
 #'
-#' Canopy strucutral Traits derived using the forestr 1.0.1 package from
-#' 2D portable canopy lidar
-#' Return hemispherical camera data
-#'
+#' @details The Canopy structural traits were derived using the
+#' forestr 1.0.1 package from 2D portable canopy lidar
+#' @return The hemispherical camera data.
 #' @details The columns are as follows:
 #'
 #' - `SubplotID` (character): Subplot ID number. These subplot codes are a
@@ -293,7 +292,7 @@ fd_par <- function() {
 }
 
 
-#' Return summary data for ceptometer
+#' Summary data for ceptometer
 #'
 #' @details The columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.

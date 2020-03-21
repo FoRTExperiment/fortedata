@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_plots.R
 \name{fd_plots}
 \alias{fd_plots}
-\title{Return the plots table.}
+\title{Plots table.}
 \usage{
 fd_plots()
 }
@@ -10,7 +10,7 @@ fd_plots()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return the plots table.
+Plots table.
 }
 \details{
 The columns are as follows:

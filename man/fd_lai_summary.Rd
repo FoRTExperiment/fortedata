@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_litter.R
 \name{fd_lai_summary}
 \alias{fd_lai_summary}
-\title{Return basic statistics generated from the raw litter trap data}
+\title{Basic statistics generated from the raw litter trap data}
 \usage{
 fd_lai_summary()
 }
@@ -10,7 +10,7 @@ fd_lai_summary()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return basic statistics generated from the raw litter trap data
+Basic statistics generated from the raw litter trap data
 }
 \details{
 The returned columns are as follows:

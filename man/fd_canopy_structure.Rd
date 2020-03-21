@@ -7,14 +7,17 @@
 fd_canopy_structure()
 }
 \value{
+The hemispherical camera data.
+
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Canopy strucutral Traits derived using the forestr 1.0.1 package from
-2D portable canopy lidar
-Return hemispherical camera data
+Canopy Structural Traits from 2D Canopy LiDAR
 }
 \details{
+The Canopy structural traits were derived using the
+forestr 1.0.1 package from 2D portable canopy lidar
+
 The columns are as follows:
 \itemize{
 \item \code{SubplotID} (character): Subplot ID number. These subplot codes are a

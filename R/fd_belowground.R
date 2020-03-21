@@ -1,7 +1,7 @@
 #  Belowground data
 
 
-#' Return the raw soil CO2 efflux table.
+#' Raw soil CO2 efflux table
 #'
 #' @details The columns are as follows:
 #' - `SubplotID` (character): Subplot ID number. These subplot codes are a
