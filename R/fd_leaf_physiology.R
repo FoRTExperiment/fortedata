@@ -40,7 +40,6 @@ fd_leaf_spectrometry <- function() {
   leaf_spec$Date <- as.Date(as.character(leaf_spec$Date), format = "%m%d%Y")
   leaf_spec <- leaf_spec[!stringr::str_detect(leaf_spec$Index_Value, '([A-Za-z])'), ]
   leaf_spec <- leaf_spec[!stringr::str_detect(leaf_spec$Index_Value, '\\.$'), ]
-  #leaf_spec$Index_Value[leaf_spec$Index_Value == " âˆž"] <- NA
   leaf_spec$Index_Value <- iconv(leaf_spec$Index_Value, from = "latin1", to = "ASCII", "")
   leaf_spec$Index_Value <- as.numeric(as.character(leaf_spec$Index_Value))
 
@@ -156,7 +155,7 @@ fd_photosynthesis_summary <- function() {
   df <- merge(fd_photosynthesis(), subplots)
   df$Date <- as.Date(format(df$DateTime, "%Y-%m-%d"))
 
-    # Calculate soil temperature means by plot, by date
+  # Calculate soil temperature means by plot, by date
   p.max <- aggregate(Photo ~ Replicate + Plot + Subplot + Date, data = df, FUN = max)
 
   weak_as_tibble(p.max)
