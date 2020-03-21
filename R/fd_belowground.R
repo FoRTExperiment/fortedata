@@ -1,7 +1,7 @@
 #  Belowground data
 
 
-#' Raw soil CO2 efflux table
+#' Raw soil respiration (soil to atmosphere CO2 efflux) table.
 #'
 #' @details The columns are as follows:
 #' - `SubplotID` (character): Subplot ID number. These subplot codes are a
@@ -10,9 +10,7 @@
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#' - `Year` (integer): Year of mesmt
-#' - `Date` (character) Date of measurement in YYYY-MM-DD
-#' - `DateTime` (POSIXlt) Format in "%Y-%m-%d %H:%M:%S"
+#' - `Timestamp` (POSIXlt) Format in "%Y-%m-%d %H:%M:%S"
 #' - `NestedPlot` (integer): Nested subplot sampling point inside subplot
 #' - `Run` (integer): indicates first or second sample take with IRGA
 #' - `soilCO2Efflux` (numeric): soil CO2 efflux measured with a LiCor 6400
@@ -24,8 +22,8 @@
 #' @export
 #'
 #' @examples
-#' fd_soilCO2()
-fd_soilCO2 <- function() {
+#' fd_soil_respiration()
+fd_soil_respiration <- function() {
   flux <- read_csv_file("fd_soil_efflux.csv")
 
   # Make subplotID column
@@ -37,10 +35,8 @@ fd_soilCO2 <- function() {
   names(flux)[names(flux) == "nestedPlot"] <- "NestedPlot"
   names(flux)[names(flux) == "date"] <- "Date"
 
-  # Adjust column data
-  flux$DateTime <- as.POSIXlt(flux$dateTime, format = "%Y-%m-%d %H:%M:%S")
-  flux$Date <- as.Date(flux$Date, format = "%m/%d/%Y")
-  flux$Year <- as.integer(format(as.Date(flux$Date, format = "%Y-%m-%d"),"%Y"))
+  # Timestamp
+  flux$Timestamp <- as.POSIXlt(flux$dateTime, format = "%m/%d/%Y %H:%M")
 
   # Remove dead columns
   flux$dateTime <- NULL #remove column
@@ -58,46 +54,5 @@ fd_soilCO2 <- function() {
   flux <- flux[!is.na(flux$soilCO2Efflux), ]
 
   # Reorder columns
-  flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "Date", "DateTime", "NestedPlot", "Run", "soilCO2Efflux", "soilTemp", "VWC")]
-}
-
-
-#' Basic statistics generated from soil co2 effluxx.
-#'
-#' @details The returned columns are as follows:
-#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
-#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
-#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#' - `Date` (date): Date of measurements.
-#' - `soilCO2Efflux` (numeric): Mean of Soil Co2 Efflux.
-#' - `soilCO2Efflux_sd` (numeric): Standard Deviation of Soil CO2 Efflux.
-#' - `soilCO2Efflux_n` (integer): number of soil CO2 Efflux msmts per
-#' - `soilCO2Efflux_se` (numeric): Standard error of Soil Co2 Efflux.
-#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
-#' @note For now this is pretty basic. More detailed summaries could be made,
-#' e.g. by live/dead, species, etc.
-#' @export
-#' @importFrom stats aggregate sd na.omit
-#' @examples
-#' fd_soilCO2_summary()
-fd_soilCO2_summary <- function() {
-  # Load the inventory and subplot tables and merge them
-  subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot", "Subplot_area_m2")]
-  df <- merge(fd_soilCO2(), subplots)
-
-  # Calculate soil CO2 means by plot and date
-  co2 <- aggregate(soilCO2Efflux ~ Replicate + Plot + Subplot + Date, data = df, FUN = mean)
-  co2.sd <- aggregate(soilCO2Efflux ~ Replicate + Plot + Subplot+ Date, data = df, FUN = sd)
-  co2.n <- aggregate(soilCO2Efflux ~ Replicate + Plot + Subplot+ Date, data = df, FUN = length)
-
-  # Change name, merge, then make SE
-  names(co2.sd)[names(co2.sd) == "soilCO2Efflux"] <- "soilCO2Efflux_sd"
-  names(co2.n)[names(co2.n) == "soilCO2Efflux"] <- "soilCO2Efflux_n"
-
-  co2 <- merge(co2, co2.sd)
-  co2 <- merge(co2, co2.n)
-
-  co2$soilCO2Efflux_se <- co2$soilCO2Efflux_sd / sqrt(co2$soilCO2Efflux_n)  # based on the SD /sqrt(n)
-
-  weak_as_tibble(co2)
+  flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "NestedPlot", "Run", "soilCO2Efflux", "soilTemp", "VWC")]
 }

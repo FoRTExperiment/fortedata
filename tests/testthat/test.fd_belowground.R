@@ -1,9 +1,9 @@
 context("belowground")
 
-test_that("Soil CO2 Efflux", {
-  dat <- fd_soilCO2()
+test_that("soil respiration", {
+  dat <- fd_soil_respiration()
 
-  expect_is(dat$DateTime, "POSIXlt")
+  expect_is(dat$Timestamp, "POSIXlt")
   expect_is(dat$soilCO2Efflux, "numeric")
   expect_is(dat$soilTemp, "numeric")
   expect_is(dat$VWC, "numeric")

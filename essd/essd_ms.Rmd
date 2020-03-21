@@ -78,7 +78,7 @@ devtools::install_github("bpbond/cosore@v0.4")
 
 Datasets are available via user-facing functions:
 
-* `fd_soilCO2()` returns a single dataset that includes soil CO2 efflux measurements as well as soil temperature and soil water content. 
+* `fd_soil_respiration()` returns a single dataset that includes soil CO2 efflux measurements as well as soil temperature and soil water content. 
 * `fd_hemi_camera()` returns a single dataset that includes hemispherical photos of the forest canopy taken 1 meter above-ground, and includes estimates of leaf area index, gap fraction, and NDVI (normalized difference vegetation index). 
 * `fd_canopy_structure()` returns a single dataset that includes estimates of canopy structural traits such as height, area/density, openness, complexity, and arrangement derived from terrestrial lidar and processed using the `forestr` (Atkins et al. 2018; 2020) package in R Version 3.6.2 (R Core Team, 2020). 
 * `fd_par()` returns a single dataset that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI_cept)--each derived from a handheld ceptometer (LP-80; Decagon Devices).
