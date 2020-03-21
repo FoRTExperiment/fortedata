@@ -7,24 +7,12 @@
 fd_leaf_spectrometry()
 }
 \value{
+A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
+
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
 Leaf spectrometry data
-}
-\details{
-The columns are as follows:
-\itemize{
-\item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
-\item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
-\item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
-\item \code{Date} (date): Inventory entry date.
-\item \code{Species} (character): Species code from the USDA Plants Database; see
-\url{https://plants.sc.egov.usda.gov/java/}.
-\item \code{Index} (character): Spectral index measured from the CID 710, but we do need an internal table
-to point to.
-\item \code{Index_Value} (numeric): Measured index value corresponding to the index
-}
 }
 \examples{
 fd_leaf_spectrometry()

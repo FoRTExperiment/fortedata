@@ -3,17 +3,7 @@
 
 #' Leaf spectrometry data
 #'
-#' @details The columns are as follows:
-#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
-#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
-#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#' - `Date` (date): Inventory entry date.
-#' - `Species` (character): Species code from the USDA Plants Database; see
-#' \url{https://plants.sc.egov.usda.gov/java/}.
-#' - `Index` (character): Spectral index measured from the CID 710, but we do need an internal table
-#' to point to.
-#' - `Index_Value` (numeric): Measured index value corresponding to the index
-#'
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
 #' @author Measurements by Lisa Haber at the University of Michigan Biological Station.
