@@ -1,4 +1,4 @@
-context("Loading internal package data")
+context("plots")
 
 # UMBS is around 45, -85. This sets a very comfortable bounding
 # box around that, which we should shrink later.

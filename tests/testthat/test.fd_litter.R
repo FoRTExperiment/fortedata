@@ -1,4 +1,4 @@
-context("Loading internal package data")
+context("litter")
 
 test_that("Litter Trap Data", {
   dat <- fd_lai()

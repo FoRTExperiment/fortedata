@@ -1,4 +1,4 @@
-context("Loading internal package data")
+context("belowground")
 
 test_that("Soil CO2 Efflux", {
   dat <- fd_soilCO2()

@@ -1,4 +1,4 @@
-context("Loading internal package data")
+context("leaf physiology")
 
 test_that("Leaf Physiology", {
   dat <- fd_leaf_spectrometry()

@@ -1,4 +1,4 @@
-context("Loading internal package data")
+context("inventory")
 
 test_that("Inventory table", {
   dat <- fd_inventory()

@@ -1,4 +1,4 @@
-context("Loading internal package data")
+context("remote sensing")
 
 test_that("Canopy Structure", {
   dat <- fd_canopy_structure()
