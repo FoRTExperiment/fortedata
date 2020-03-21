@@ -15,8 +15,9 @@
 #' - `DateTime` (POSIXlt) Format in "%Y-%m-%d %H:%M:%S"
 #' - `NestedPlot` (integer): Nested subplot sampling point inside subplot
 #' - `Run` (integer): indicates first or second sample take with IRGA
-#' - `soilCO2Efflux` (numeric): soil CO2 efflux measured with a LiCor 6400 in mu mol CO2 m^-2 s^-1
-#' - `soilTemp` (numeric): soil temperature measured to 7 cm depth in celsius
+#' - `soilCO2Efflux` (numeric): soil CO2 efflux measured with a LiCor 6400
+#' in µmol CO2 m^-2 s^-1
+#' - `soilTemp` (numeric): soil temperature measured to 7 cm depth, degC
 #' - `VWC` (numeric): volumetric water content in percent
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
@@ -110,9 +111,7 @@ fd_soilCO2_summary <- function() {
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#' - `Year` (integer): Year of mesmt
-#' - `Date` (character) Date of measurement in YYYY-MM-DD
-#' - `DateTime` (POSIXlt) Format in "%Y-%m-%d %H:%M:%S"
+#' - `Timestamp` (POSIXlt) Format in "%Y-%m-%d %H:%M:%S"
 #' - `NestedPlot` (integer): Nested subplot sampling point inside subplot
 #' - `soilTemp` (numeric): soil temperature measured to 7 cm depth in celsius
 #' - `VWC` (numeric): volumetric water content in percent
@@ -135,12 +134,10 @@ fd_micromet <- function() {
   names(met)[names(met) == "date"] <- "Date"
 
   # Adjust column data
-  met$DateTime <- as.POSIXlt(met$dateTime, format = "%Y-%m-%d %H:%M:%S")
-  met$Date <- as.Date(met$Date, format = "%m/%d/%Y")
-  met$Year <- as.integer(format(as.Date(met$Date, format = "%Y-%m-%d"),"%Y"))
+  met$Timestamp <- as.POSIXlt(met$dateTime, format = "%Y-%m-%d %H:%M:%S")
 
   # Remove dead columns
-  met$dateTime <- NULL #remove column
+  met$dateTime <- NULL
   met$X <- NULL
   met$Rep_ID <- NULL
   met$Plot_ID <- NULL

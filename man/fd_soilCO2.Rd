@@ -26,8 +26,9 @@ subplot \code{\link{fd_subplots}} codes.
 \item \code{DateTime} (POSIXlt) Format in "\%Y-\%m-\%d \%H:\%M:\%S"
 \item \code{NestedPlot} (integer): Nested subplot sampling point inside subplot
 \item \code{Run} (integer): indicates first or second sample take with IRGA
-\item \code{soilCO2Efflux} (numeric): soil CO2 efflux measured with a LiCor 6400 in mu mol CO2 m^-2 s^-1
-\item \code{soilTemp} (numeric): soil temperature measured to 7 cm depth in celsius
+\item \code{soilCO2Efflux} (numeric): soil CO2 efflux measured with a LiCor 6400
+in µmol CO2 m^-2 s^-1
+\item \code{soilTemp} (numeric): soil temperature measured to 7 cm depth, degC
 \item \code{VWC} (numeric): volumetric water content in percent
 }
 }

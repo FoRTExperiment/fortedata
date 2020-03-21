@@ -21,9 +21,7 @@ subplot \code{\link{fd_subplots}} codes.
 \item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
 \item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
 \item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
-\item \code{Year} (integer): Year of mesmt
-\item \code{Date} (character) Date of measurement in YYYY-MM-DD
-\item \code{DateTime} (POSIXlt) Format in "\%Y-\%m-\%d \%H:\%M:\%S"
+\item \code{Timestamp} (POSIXlt) Format in "\%Y-\%m-\%d \%H:\%M:\%S"
 \item \code{NestedPlot} (integer): Nested subplot sampling point inside subplot
 \item \code{soilTemp} (numeric): soil temperature measured to 7 cm depth in celsius
 \item \code{VWC} (numeric): volumetric water content in percent

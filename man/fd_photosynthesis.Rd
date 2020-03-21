@@ -19,9 +19,9 @@ The columns are as follows:
 \item \code{HHMMSS} (character) Time of day.
 \item \code{FTime} (integer) Number of seconds since logging began.
 \item \code{EBal.} (integer) Energy balance on?
-\item \code{Photo} (numeric) Photosynthetic rate in mu  mol CO2 m^-2 s^-1.
+\item \code{Photo} (numeric) Photosynthetic rate in µmol CO2 m^-2 s^-1.
 \item \code{Cond} (numeric) Stomatal conductance mol H2O m^-2 s^-1.
-\item \code{Ci} (numeric) Intercellular CO2 concentration umol CO2  mol^-1.
+\item \code{Ci} (numeric) Intercellular CO2 concentration µmol CO2  mol^-1.
 \item \code{Trmmol} (numeric) Transpiration rate mmol H2O m^-2 s^-1.
 \item \code{VpdL} (numeric) Leaf-level vapor pressure deficit kPa.
 \item \code{CTleaf} (numeric) Leaf temperature from energy balance calculation (degrees C).
@@ -33,14 +33,14 @@ The columns are as follows:
 \item \code{Tleaf} (numeric) Leaf surface temperature (degrees C).
 \item \code{TBlk} (numeric) IRGA block temperature (degrees C)
 \item \code{CO2R} (integer) Reference CO2 concentration (mu  mol/mol)
-\item \code{CO2S} (integer) Sample CO2 concentration (mu mol/mol)
-\item \code{H2OR} (numeric) Reference H20 concentration (mu  mol/mol)
-\item \code{H2OS} (numeric) Sample H20 concentration (mu  mol/mol)
+\item \code{CO2S} (integer) Sample CO2 concentration (µmol/mol)
+\item \code{H2OR} (numeric) Reference H20 concentration (µmol/mol)
+\item \code{H2OS} (numeric) Sample H20 concentration (µmol/mol)
 \item \code{RH_R} (numeric) Reference relative humidity (\%)
 \item \code{RH_S} (numeric) Sample relative humiditiy (\%)
-\item \code{Flow}  (numeric) Flow rate (mu mol/mol)
-\item \code{PARi} (numeric) in-chamber PAR (mu mol/m2/s)
-\item \code{PARo} (numeric) external PAR (mu  mol/m2/s)
+\item \code{Flow}  (numeric) Flow rate (µmol/mol)
+\item \code{PARi} (numeric) in-chamber PAR (µmol/m2/s)
+\item \code{PARo} (numeric) external PAR (µmol/m2/s)
 \item \code{Press} (numeric) Atmospheric pressure (kPa)
 \item \code{CsMch} (numeric) standard deviation of CO2S during averaging time of most recent match
 \item \code{HsMch} (numeric) standard deviation of H2OS during averaging time of most recent match
@@ -53,7 +53,7 @@ The columns are as follows:
 \item \code{BLCoffst} (numeric) Intercept term using in calculating boundary layer conductance
 \item \code{f_parin} (integer) fraction of ParIn_um to use for energy balance
 \item \code{f_parout} (integer) fraction of ParOut_um to use for energy balance
-\item \code{alphaK} (numeric) used in conversion of umol/mol to W/m2
+\item \code{alphaK} (numeric) used in conversion of µmol/mol to W/m2
 \item \code{Status} (character) Status variable
 \item \code{Filename} (character) Name of original file.
 \item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
