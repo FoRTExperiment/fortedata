@@ -1,7 +1,7 @@
-# Leaf Spectrometry data
+# Leaf physiology data
 
 
-#' Leaf Spectrometry Index table
+#' Leaf spectrometry data
 #'
 #' @details The columns are as follows:
 #' - `SubplotID` (character): Subplot ID number. These subplot codes are a
@@ -52,7 +52,7 @@ fd_leaf_spectrometry <- function() {
 }
 
 
-#' Leaf Spectrometry Index table
+#' Leaf photosynthesis measurements.
 #'
 #' @details The columns are as follows:
 #' - `Obs` (numeric) Observation number within file.
