@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_litter.R
 \name{fd_lai}
 \alias{fd_lai}
-\title{Return the raw inventory table.}
+\title{Raw inventory table.}
 \usage{
 fd_lai()
 }
@@ -10,7 +10,7 @@ fd_lai()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return the raw inventory table.
+Raw inventory table.
 }
 \details{
 The columns are as follows:

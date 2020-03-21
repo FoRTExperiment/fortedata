@@ -1,7 +1,7 @@
 # Litterfall data from litter trap collections
 
 
-#' Return the raw inventory table.
+#' Raw inventory table.
 #'
 #' @details The columns are as follows:
 #'
@@ -28,33 +28,33 @@ fd_lai <- function() {
   leaf$bag_no <- NULL  #I am not sure why this was here, and it's kind of useless
   leaf$Species <- toupper(leaf$Species)
 
-  # create leaf mass column
+  # Create leaf mass column
   leaf$LeafMass_g <- leaf$BagMass_g - leaf$BagTare_g
 
   # Need to bring in SLA (specific leaf area) data to convert from mass to leaf area
 
-  # bring in the allometry values
+  # Bring in the allometry values
   sla <- read_csv_file("fd_sla.csv") #this has the same equations AmeriFlux uses
 
-  # changing column names
+  # Change column names
   names(sla)[1] <- paste("Species")
 
   # Add SLA to the leaf tibble
   leaf <- merge(leaf, sla)
 
-  # calculate leaf area totals
+  # Calculate leaf area totals
   leaf$LeafArea <- leaf$LeafMass_g * leaf$SLA
 
-  # make plot lai
+  # Make plot lai
   lai <- aggregate(LeafArea ~ SubplotID + Year, data = leaf, FUN = sum)
 
-  # adds in plot area
+  # Add in plot area
   lai$PlotArea <- 1000  #plot area in m^2 (is 0.1 ha)
 
-  # calculates LAI
+  # Calculate LAI
   lai$LAI <- lai$LeafArea / lai$PlotArea
 
-  # removes columns
+  # Remove columns
   lai$LeafArea <- NULL
   lai$PlotArea <- NULL
 
@@ -63,10 +63,8 @@ fd_lai <- function() {
   lai$Plot <- as.integer(substr(lai$SubplotID, 2, 3))
   lai$Subplot <- substr(lai$SubplotID, 4, 4)
 
-  # reorders columns
-  lai <- lai[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "LAI")]
-
-  lai
+  # Reorder columns
+  lai[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "LAI")]
 }
 
 #' Return basic statistics generated from the raw litter trap data
@@ -87,8 +85,5 @@ fd_lai_summary <- function() {
   subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot", "Subplot_area_m2")]
   df <- merge(fd_lai(), subplots)
 
-  # Subset and compute basal area and stocking
-
   weak_as_tibble(df)
-
 }

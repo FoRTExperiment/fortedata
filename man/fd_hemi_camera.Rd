@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_remote_sensing.R
 \name{fd_hemi_camera}
 \alias{fd_hemi_camera}
-\title{Return hemispherical camera data}
+\title{Hemispherical camera data}
 \usage{
 fd_hemi_camera()
 }
@@ -10,7 +10,7 @@ fd_hemi_camera()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return hemispherical camera data
+Hemispherical camera data
 }
 \details{
 The columns are as follows:

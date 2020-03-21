@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_belowground.R
 \name{fd_soilCO2_summary}
 \alias{fd_soilCO2_summary}
-\title{Return basic statistics generated from soil co2 effluxx.}
+\title{Basic statistics generated from soil co2 effluxx.}
 \usage{
 fd_soilCO2_summary()
 }
@@ -10,7 +10,7 @@ fd_soilCO2_summary()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return basic statistics generated from soil co2 effluxx.
+Basic statistics generated from soil co2 effluxx.
 }
 \details{
 The returned columns are as follows:

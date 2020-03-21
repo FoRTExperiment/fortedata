@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_belowground.R
 \name{fd_micromet}
 \alias{fd_micromet}
-\title{Return belowground micrometeorology data}
+\title{Belowground micrometeorology data}
 \usage{
 fd_micromet()
 }
@@ -10,7 +10,7 @@ fd_micromet()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return belowground micrometeorology data
+Belowground micrometeorology data
 }
 \details{
 The columns are as follows:

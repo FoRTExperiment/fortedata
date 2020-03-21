@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_leaf_physiology.R
 \name{fd_photosynthesis}
 \alias{fd_photosynthesis}
-\title{Return the Leaf Spectrometry Index table}
+\title{Leaf Spectrometry Index table}
 \usage{
 fd_photosynthesis()
 }
@@ -10,7 +10,7 @@ fd_photosynthesis()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return the Leaf Spectrometry Index table
+Leaf Spectrometry Index table
 }
 \details{
 The columns are as follows:

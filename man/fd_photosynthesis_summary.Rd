@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_leaf_physiology.R
 \name{fd_photosynthesis_summary}
 \alias{fd_photosynthesis_summary}
-\title{Return basic statistics generated from the raw licor data}
+\title{Basic statistics generated from the raw photosynthesis data}
 \usage{
 fd_photosynthesis_summary()
 }
@@ -10,7 +10,7 @@ fd_photosynthesis_summary()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return basic statistics generated from the raw licor data
+Basic statistics generated from the raw photosynthesis data
 }
 \details{
 The returned columns are as follows:

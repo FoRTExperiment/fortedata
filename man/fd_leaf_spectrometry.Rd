@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_leaf_physiology.R
 \name{fd_leaf_spectrometry}
 \alias{fd_leaf_spectrometry}
-\title{Return the Leaf Spectrometry Index table}
+\title{Leaf Spectrometry Index table}
 \usage{
 fd_leaf_spectrometry()
 }
@@ -10,7 +10,7 @@ fd_leaf_spectrometry()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return the Leaf Spectrometry Index table
+Leaf Spectrometry Index table
 }
 \details{
 The columns are as follows:

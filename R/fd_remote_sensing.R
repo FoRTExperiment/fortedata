@@ -1,7 +1,7 @@
 # Remote Sensing data
 
 
-#' Return hemispherical camera data
+#' Hemispherical camera data
 #'
 #' @details The columns are as follows:
 #'
@@ -55,17 +55,14 @@ fd_hemi_camera <- function() {
   cam$NestedPlot[cam$NestedPlot == "X"] <- NA
   cam$NestedPlot[cam$NestedPlot == ""] <- NA
 
-
-
   cam$NestedPlot <- as.integer(cam$NestedPlot)
   cam <- na.omit(cam) # this removes the images that were retained as placemarkers if there are any that missed being culled
-  # reorders columns
-  cam <- cam[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot", "Date", "Year", "NDVI", "GapFraction", "Openness", "LAI_cam", "ClumpingIndex")]
 
-  cam
+    # Reorder columns
+ cam[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot", "Date", "Year", "NDVI", "GapFraction", "Openness", "LAI_cam", "ClumpingIndex")]
 }
 
-#' Return summary data for hemispherical camera data
+#' Summary data for hemispherical camera data
 #'
 #' @details The columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
@@ -89,12 +86,12 @@ fd_hemi_camera_summary <- function() {
   # vsubplots <- fd_hemi_camera()[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot")]
   df <- fd_hemi_camera()
 
-  # calc rugosity means and SD
+  # Calculate rugosity means and SD
   lai <- aggregate(LAI_cam ~ Replicate + Plot + Subplot + Date , data = df, FUN = mean)
   lai.sd <- aggregate(LAI_cam ~ Replicate + Plot + Subplot + Date, data = df, FUN = sd)
   lai.n <- aggregate(LAI_cam ~ Replicate + Plot + Subplot + Date, data = df, FUN = length)
 
-  # mergin and munging
+  # Merge and munge
   names(lai.sd)[names(lai.sd) == "LAI_cam"] <- "LAI_cam_sd"
   names(lai.n)[names(lai.n) == "LAI_cam"] <- "LAI_cam_n"
 
@@ -106,7 +103,7 @@ fd_hemi_camera_summary <- function() {
   ndvi <- aggregate(NDVI ~ Replicate , data = df, FUN = mean)
   ndvi.sd <- aggregate(NDVI ~ Replicate , data = df, FUN = sd)
 
-  # merging and munging
+  # Merge and munge
   names(ndvi.sd)[names(ndvi.sd) == "NDVI"] <- "NDVI_sd"
   ndvi <- merge(ndvi, ndvi.sd)
   ndvi$NDVI_se <- ndvi$NDVI_sd / sqrt(8)
@@ -166,7 +163,7 @@ fd_hemi_camera_summary <- function() {
 fd_canopy_structure <- function() {
   cst <- read_csv_file("canopy_structural_traits.csv")
 
-  # Renaming columns that need it
+  # Rename columns that need it
   names(cst)[names(cst) == "subplotID"] <- "SubplotID"
   names(cst)[names(cst) == "year"] <- "Year"
 
@@ -179,7 +176,7 @@ fd_canopy_structure <- function() {
   cst[c(1, 31, 32, 33, 2, 3:30 )]
 }
 
-#' Return summary data for hemispherical camera data
+#' Summary data for hemispherical camera data
 #'
 #' @details The columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
@@ -207,12 +204,12 @@ fd_canopy_structure_summary <- function() {
   subplots <- fd_canopy_structure()[c("SubplotID", "Replicate", "Plot", "Subplot")]
   csc <- merge(fd_canopy_structure(), subplots)
 
-  # calc rugosity means and SD
+  # Calculate rugosity means and SD
   r_c <- aggregate(rugosity ~ Replicate , data = csc, FUN = mean)
   r_c.sd <- aggregate(rugosity ~ Replicate , data = csc, FUN = sd)
   r_c.n <- aggregate(rugosity ~ Replicate, data = csc, FUN = length)
 
-  # mergin and munging
+  # Merge and munge
   names(r_c.sd)[names(r_c.sd) == "rugosity"] <- "rugosity_sd"
   names(r_c.n)[names(r_c.n) == "rugosity"] <- "rugosity_n"
 
@@ -221,12 +218,12 @@ fd_canopy_structure_summary <- function() {
 
   r_c$rugosity_se <- r_c$rugosity_sd / sqrt(r_c$rugosity_n)  # based on the SD /sqrt(n)
 
-  # VAI  means and SD
+  # VAI means and SD
   vai<- aggregate(mean.vai ~ Replicate , data = csc, FUN = mean)
   vai.sd <- aggregate(mean.vai ~ Replicate , data = csc, FUN = sd)
   vai.n <- aggregate(mean.vai ~ Replicate, data = csc, FUN = length)
 
-  # mergin and munging
+  # Merge and munge
   names(vai.sd)[names(vai.sd) == "mean.vai"] <- "mean.vai_sd"
   names(vai.n)[names(vai.n) == 'mean.vai'] <- "mean.vai_n"
 
@@ -238,7 +235,7 @@ fd_canopy_structure_summary <- function() {
   weak_as_tibble(merge(r_c, vai))
 }
 
-#' Return ceptometer data
+#' Ceptometer data
 #'
 #' @details The columns are as follows:
 #'
@@ -324,12 +321,12 @@ fd_par_summary <- function() {
   # subplots <- fd_par()[c("SubplotID", "Replicate", "Plot", "Subplot")]
   df <- fd_par()
 
-  # calc rugosity means and SD
+  # calculate rugosity means and SD
   f <- aggregate(faPAR ~ Replicate , data = df, FUN = mean)
   f.sd <- aggregate(faPAR ~ Replicate , data = df, FUN = sd)
   f.n <- aggregate(faPAR ~ Replicate, data = df, FUN = length)
 
-  # mergin and munging
+  # Merge and munge
   names(f.sd)[names(f.sd) == "faPAR"] <- "faPAR_sd"
   names(f.n)[names(f.n) == "faPAR"] <- "faPAR_n"
 
@@ -343,7 +340,7 @@ fd_par_summary <- function() {
   lai.sd <- aggregate(LAI_cept ~ Replicate , data = df, FUN = sd)
   lai.n <- aggregate(LAI_cept ~ Replicate, data = df, FUN = length)
 
-  # mergin and munging
+  # Merge and munge
   names(lai.sd)[names(lai.sd) == "LAI_cept"] <- "LAI_cept_sd"
   names(lai.n)[names(lai.n) == "LAI_cept"] <- "LAI_cept_n"
 

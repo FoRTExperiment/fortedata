@@ -1,7 +1,7 @@
 # Leaf Spectrometry data
 
 
-#' Return the Leaf Spectrometry Index table
+#' Leaf Spectrometry Index table
 #'
 #' @details The columns are as follows:
 #' - `SubplotID` (character): Subplot ID number. These subplot codes are a
@@ -27,12 +27,12 @@
 fd_leaf_spectrometry <- function() {
   leaf_spec <- read_csv_file("fd_leaf_spectral_indices.csv")
 
-  # change column name
+  # Change column name
   names(leaf_spec)[names(leaf_spec) == "V1"] <- "FilePath"
   names(leaf_spec)[names(leaf_spec) == "Calculation"] <- "Index"
   names(leaf_spec)[names(leaf_spec) == "Value"] <- "Index_Value"
 
-  # adjusting column data
+  # Adjust column data
   leaf_spec$SubplotID <- substr(leaf_spec$FilePath, 0, 4)
   leaf_spec$Index <- as.character(stringr::str_replace_all(leaf_spec$Index, "[^[:alnum:]]", ""))
   leaf_spec$Species <- as.character(substr(leaf_spec$FilePath, 6, 9))
@@ -49,17 +49,12 @@ fd_leaf_spectrometry <- function() {
   leaf_spec$Plot <- as.integer(substr(leaf_spec$SubplotID, 3, 3))
   leaf_spec$Subplot <- substr(leaf_spec$SubplotID, 4, 4)
 
-  # reorders columns
-  leaf_spec <- leaf_spec[c("SubplotID", "Replicate", "Plot", "Subplot", "Date", "Species", "Index", "Index_Value", "FilePath")]
-  leaf_spec
+  # Reorder columns
+  leaf_spec[c("SubplotID", "Replicate", "Plot", "Subplot", "Date", "Species", "Index", "Index_Value", "FilePath")]
 }
 
 
-
-# Leaf Photosynthesis Data
-
-
-#' Return the Leaf Spectrometry Index table
+#' Leaf Spectrometry Index table
 #'
 #' @details The columns are as follows:
 #' - `Obs` (numeric) Observation number within file.
@@ -141,12 +136,10 @@ fd_photosynthesis <- function() {
   leaf_photo$Plot <- as.integer(substr(leaf_photo$SubplotID, 3, 3))
   leaf_photo$Subplot <- substr(leaf_photo$SubplotID, 4, 4)
 
-  # reorders columns
-  #leaf_photo <- leaf_photo[c("SubplotID", "Replicate", "Plot", "Subplot", "Date", "photoies", "Index", "Index_Value", "FilePath")]
   leaf_photo
 }
 
-#' Return basic statistics generated from the raw licor data
+#' Basic statistics generated from the raw photosynthesis data
 #'
 #' @details The returned columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
@@ -164,14 +157,10 @@ fd_photosynthesis_summary <- function() {
   subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot")]
   df <- merge(fd_photosynthesis(), subplots)
 
-  # add in msmt data variable
+  # Add in msmt data variable
   df$Date <- as.Date(format(df$DateTime, "%Y-%m-%d"))
-  # Calculated soil temperature means by plot, by date
+  # Calculate soil temperature means by plot, by date
   p.max <- aggregate(Photo ~ Replicate + Plot + Subplot + Date, data = df, FUN = max)
 
-  # Changes name, merges, then makes SE
-
-  # return data
   weak_as_tibble(p.max)
-
 }

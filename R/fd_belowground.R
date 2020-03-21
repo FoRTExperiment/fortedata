@@ -27,21 +27,21 @@
 fd_soilCO2 <- function() {
   flux <- read_csv_file("fd_soil_efflux.csv")
 
-  # makes the subplotID column
+  # Make subplotID column
   flux$subplotID <- as.factor(paste(flux$Rep_ID, "0", flux$Plot_ID, flux$Subplot, sep = ""))
 
-  # change column name
+  # Change column name
   names(flux)[names(flux) == "subplotID"] <- "SubplotID"
   names(flux)[names(flux) == "run"] <- "Run"
   names(flux)[names(flux) == "nestedPlot"] <- "NestedPlot"
   names(flux)[names(flux) == "date"] <- "Date"
 
-  # adjusting column data
+  # Adjust column data
   flux$DateTime <- as.POSIXlt(flux$dateTime, format = "%Y-%m-%d %H:%M:%S")
   flux$Date <- as.Date(flux$Date, format = "%m/%d/%Y")
   flux$Year <- as.integer(format(as.Date(flux$Date, format = "%Y-%m-%d"),"%Y"))
 
-  # removing dead columns
+  # Remove dead columns
   flux$dateTime <- NULL #remove column
   flux$X <- NULL
   flux$Rep_ID <- NULL
@@ -53,17 +53,15 @@ fd_soilCO2 <- function() {
   flux$Plot <- as.integer(substr(flux$SubplotID, 3, 3))
   flux$Subplot <- substr(flux$SubplotID, 4, 4)
 
-  # We need to remove the columns that have no data in them
+  # Remove the rows that have no data in them
   flux <- flux[!is.na(flux$soilCO2Efflux), ]
 
-  # reorders columns
-  flux <- flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "Date", "DateTime", "NestedPlot", "Run", "soilCO2Efflux", "soilTemp", "VWC")]
-
-  flux
+  # Reorder columns
+  flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "Date", "DateTime", "NestedPlot", "Run", "soilCO2Efflux", "soilTemp", "VWC")]
 }
 
 
-#' Return basic statistics generated from soil co2 effluxx.
+#' Basic statistics generated from soil co2 effluxx.
 #'
 #' @details The returned columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
@@ -86,14 +84,12 @@ fd_soilCO2_summary <- function() {
   subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot", "Subplot_area_m2")]
   df <- merge(fd_soilCO2(), subplots)
 
-  # Calculated Soil CO2 means by plot, by date
-  # calc rugosity means and SD
+  # Calculate soil CO2 means by plot and date
   co2 <- aggregate(soilCO2Efflux ~ Replicate + Plot + Subplot + Date, data = df, FUN = mean)
   co2.sd <- aggregate(soilCO2Efflux ~ Replicate + Plot + Subplot+ Date, data = df, FUN = sd)
   co2.n <- aggregate(soilCO2Efflux ~ Replicate + Plot + Subplot+ Date, data = df, FUN = length)
 
-
-  # Changes name, merges, then makes SE
+  # Change name, merge, then make SE
   names(co2.sd)[names(co2.sd) == "soilCO2Efflux"] <- "soilCO2Efflux_sd"
   names(co2.n)[names(co2.n) == "soilCO2Efflux"] <- "soilCO2Efflux_n"
 
@@ -103,10 +99,9 @@ fd_soilCO2_summary <- function() {
   co2$soilCO2Efflux_se <- co2$soilCO2Efflux_sd / sqrt(co2$soilCO2Efflux_n)  # based on the SD /sqrt(n)
 
   weak_as_tibble(co2)
-
 }
 
-#' Return belowground micrometeorology data
+#' Belowground micrometeorology data
 #'
 #' @details The columns are as follows:
 #' - `SubplotID` (character): Subplot ID number. These subplot codes are a
@@ -130,7 +125,7 @@ fd_soilCO2_summary <- function() {
 fd_micromet <- function() {
   met <- read_csv_file("fd_soil_efflux.csv")
 
-  # makes the subplotID column
+  # Make the subplotID column
   met$subplotID <- as.factor(paste(met$Rep_ID, "0", met$Plot_ID, met$Subplot, sep = ""))
 
   # change column name
@@ -139,12 +134,12 @@ fd_micromet <- function() {
   names(met)[names(met) == "nestedPlot"] <- "NestedPlot"
   names(met)[names(met) == "date"] <- "Date"
 
-  # adjusting column data
+  # Adjust column data
   met$DateTime <- as.POSIXlt(met$dateTime, format = "%Y-%m-%d %H:%M:%S")
   met$Date <- as.Date(met$Date, format = "%m/%d/%Y")
   met$Year <- as.integer(format(as.Date(met$Date, format = "%Y-%m-%d"),"%Y"))
 
-  # removing dead columns
+  # Remove dead columns
   met$dateTime <- NULL #remove column
   met$X <- NULL
   met$Rep_ID <- NULL
@@ -158,13 +153,11 @@ fd_micromet <- function() {
   met$Plot <- as.integer(substr(met$SubplotID, 3, 3))
   met$Subplot <- substr(met$SubplotID, 4, 4)
 
-  # reorders columns
-  met <- met[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "Date", "DateTime", "NestedPlot", "soilTemp", "VWC")]
-
-  met
+  # Reorder columns
+  met[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "Date", "DateTime", "NestedPlot", "soilTemp", "VWC")]
 }
 
-#' Return basic statistics generated from soil micrometeorology
+#' Basic statistics generated from soil micrometeorology
 #'
 #' @details The returned columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
@@ -188,41 +181,36 @@ fd_micromet <- function() {
 #' fd_micromet_summary()
 fd_micromet_summary <- function() {
   # Load the inventory and subplot tables and merge them
-  #subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot", "Subplot_area_m2")]
   df <- fd_micromet()
 
-  # Calculated soil temperature means by plot, by date
+  # Calculate soil temperature means by plot, by date
   t <- aggregate(soilTemp ~ Replicate + Plot + Subplot + Date, data = df, FUN = mean)
   t.sd <- aggregate(soilTemp ~ Replicate + Plot + Subplot+ Date, data = df, FUN = sd)
   t.n <- aggregate(soilTemp ~ Replicate + Plot + Subplot+ Date, data = df, FUN = length)
 
-  # Changes name, merges, then makes SE
+  # Change name, merge, then make SE
   names(t.sd)[names(t.sd) == "soilTemp"] <- "soilTemp_sd"
   names(t.n)[names(t.n) == "soilTemp"] <- "soilTemp_n"
 
-  # combine data
+  # Combine data
   t <- merge(t, t.sd)
   t <- merge(t, t.n)
   t$soilTemp_se <- t$soilTemp_sd / sqrt(t$soilTemp_n)  # based on the SD /sqrt(n)
 
-  ####
-  # Calculated soil temperature means by plot, by date
+  # Calculate soil temperature means by plot, by date
   vwc <- aggregate(VWC ~ Replicate + Plot + Subplot + Date, data = df, FUN = mean)
   vwc.sd <- aggregate(VWC ~ Replicate + Plot + Subplot+ Date, data = df, FUN = sd)
   vwc.n <- aggregate(VWC ~ Replicate + Plot + Subplot+ Date, data = df, FUN = length)
 
-  # Changes name, merges, then makes SE
+  # Change name, merge, then make SE
   names(vwc.sd)[names(vwc.sd) == "VWC"] <- "VWC_sd"
   names(vwc.n)[names(vwc.n) == "VWC"] <- "VWC_n"
 
-  # combine data
+  # Combine data
   vwc <- merge(vwc, vwc.sd)
   vwc <- merge(vwc, vwc.n)
   vwc$VWC_se <- vwc$VWC_sd / sqrt(vwc$VWC_n)  # based on the SD /sqrt(n)
 
-  # bring them all together
-
-  big.boi <- merge(t, vwc)
-  weak_as_tibble(big.boi)
-
+  # Bring them all together
+  weak_as_tibble(merge(t, vwc))
 }

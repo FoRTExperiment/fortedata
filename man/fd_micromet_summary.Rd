@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_belowground.R
 \name{fd_micromet_summary}
 \alias{fd_micromet_summary}
-\title{Return basic statistics generated from soil micrometeorology}
+\title{Basic statistics generated from soil micrometeorology}
 \usage{
 fd_micromet_summary()
 }
@@ -10,7 +10,7 @@ fd_micromet_summary()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return basic statistics generated from soil micrometeorology
+Basic statistics generated from soil micrometeorology
 }
 \details{
 The returned columns are as follows:

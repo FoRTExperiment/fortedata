@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_remote_sensing.R
 \name{fd_par}
 \alias{fd_par}
-\title{Return ceptometer data}
+\title{Ceptometer data}
 \usage{
 fd_par()
 }
@@ -10,7 +10,7 @@ fd_par()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return ceptometer data
+Ceptometer data
 }
 \details{
 The columns are as follows:
