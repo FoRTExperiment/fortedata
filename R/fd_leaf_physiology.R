@@ -4,9 +4,6 @@
 #' Leaf spectrometry data
 #'
 #' @details The columns are as follows:
-#' - `SubplotID` (character): Subplot ID number. These subplot codes are a
-#' concatenation of the plot (\code{\link{fd_plots}}) and
-#' subplot \code{\link{fd_subplots}} codes.
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
@@ -16,7 +13,6 @@
 #' - `Index` (character): Spectral index measured from the CID 710, but we do need an internal table
 #' to point to.
 #' - `Index_Value` (numeric): Measured index value corresponding to the index
-#' - `FilePath` (character): Notes.
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
@@ -32,7 +28,6 @@ fd_leaf_spectrometry <- function() {
   names(leaf_spec)[names(leaf_spec) == "Value"] <- "Index_Value"
 
   # Adjust column data
-  leaf_spec$SubplotID <- substr(leaf_spec$FilePath, 0, 4)
   leaf_spec$Index <- as.character(stringr::str_replace_all(leaf_spec$Index, "[^[:alnum:]]", ""))
   leaf_spec$Species <- as.character(substr(leaf_spec$FilePath, 6, 9))
   leaf_spec$Date <- as.character(substr(leaf_spec$FilePath, 17, 24))
@@ -43,12 +38,13 @@ fd_leaf_spectrometry <- function() {
   leaf_spec$Index_Value <- as.numeric(as.character(leaf_spec$Index_Value))
 
   # Split the SubplotID column into more useful individual columns
-  leaf_spec$Replicate <- substr(leaf_spec$SubplotID, 1, 1)
-  leaf_spec$Plot <- as.integer(substr(leaf_spec$SubplotID, 3, 3))
-  leaf_spec$Subplot <- substr(leaf_spec$SubplotID, 4, 4)
+  subplot_id <- substr(leaf_spec$FilePath, 1, 4)
+  leaf_spec$Replicate <- substr(subplot_id, 1, 1)
+  leaf_spec$Plot <- as.integer(substr(subplot_id, 3, 3))
+  leaf_spec$Subplot <- substr(subplot_id, 4, 4)
 
-  # Reorder columns
-  leaf_spec[c("SubplotID", "Replicate", "Plot", "Subplot", "Date", "Species", "Index", "Index_Value", "FilePath")]
+  # Reorder columns, dropping unneeded FilePath
+  leaf_spec[c("Replicate", "Plot", "Subplot", "Date", "Species", "Index", "Index_Value")]
 }
 
 
@@ -113,18 +109,18 @@ fd_leaf_spectrometry <- function() {
 fd_photosynthesis <- function() {
   leaf_photo <- read_csv_file("fd_photosynthesis.csv")
 
-  # Adjust column data
+  # Clean up Species column and make Timestamp a datetime
   leaf_photo$Species <- toupper(leaf_photo$Species)
   leaf_photo$Timestamp <- as.POSIXlt(leaf_photo$Timestamp, format = "%Y-%m-%d %H:%M:%S")
 
   # Split the SubplotID column into more useful individual columns
-  leaf_photo$SubplotID <- substr(leaf_photo$Filename, 0, 4)
-  leaf_photo$Replicate <- substr(leaf_photo$SubplotID, 1, 1)
-  leaf_photo$Plot <- as.integer(substr(leaf_photo$SubplotID, 3, 3))
-  leaf_photo$Subplot <- substr(leaf_photo$SubplotID, 4, 4)
+  subplot_id <- substr(leaf_photo$Filename, 0, 4)
+  leaf_photo$Replicate <- substr(subplot_id, 1, 1)
+  leaf_photo$Plot <- as.integer(substr(subplot_id, 3, 3))
+  leaf_photo$Subplot <- substr(subplot_id, 4, 4)
 
   # Drop a few unneeded fields
-  leaf_photo$Filename <- leaf_photo$Filename_date <- leaf_photo$SubplotID <- NULL
+  leaf_photo$Filename <- leaf_photo$Filename_date <- NULL
 
   leaf_photo
 }

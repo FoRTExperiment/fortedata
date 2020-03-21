@@ -15,9 +15,6 @@ Leaf spectrometry data
 \details{
 The columns are as follows:
 \itemize{
-\item \code{SubplotID} (character): Subplot ID number. These subplot codes are a
-concatenation of the plot (\code{\link{fd_plots}}) and
-subplot \code{\link{fd_subplots}} codes.
 \item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
 \item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
 \item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
@@ -27,7 +24,6 @@ subplot \code{\link{fd_subplots}} codes.
 \item \code{Index} (character): Spectral index measured from the CID 710, but we do need an internal table
 to point to.
 \item \code{Index_Value} (numeric): Measured index value corresponding to the index
-\item \code{FilePath} (character): Notes.
 }
 }
 \examples{
