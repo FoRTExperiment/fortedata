@@ -3,8 +3,6 @@ context("remote sensing")
 test_that("Canopy Structure", {
   dat <- fd_canopy_structure()
 
-  expect_is(dat$Year, "integer")
-
   # All the replicate/plot/subplot codes should exist
   subplots <- fd_subplots()
   expect_true(all(dat$Replicate %in% subplots$Replicate))
@@ -14,12 +12,6 @@ test_that("Canopy Structure", {
 
 test_that("Hemispherical Imagery", {
   dat <- fd_hemi_camera()
-
-  expect_is(dat$Year, "integer")
-  expect_is(dat$NDVI, "numeric")
-  expect_is(dat$GapFraction, "numeric")
-  expect_is(dat$Openness, "numeric")
-  expect_is(dat$ClumpingIndex, "numeric")
 
   # All the replicate/plot/subplot codes should exist
   subplots <- fd_subplots()

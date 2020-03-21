@@ -3,8 +3,6 @@ context("litter")
 test_that("Litter Trap Data", {
   dat <- fd_lai()
 
-  expect_is(dat$Year, "integer")
-
   # All the replicate/plot/subplot codes should exist
   subplots <- fd_subplots()
   expect_true(all(dat$Replicate %in% subplots$Replicate))

@@ -3,7 +3,6 @@ context("inventory")
 test_that("Inventory table", {
   dat <- fd_inventory()
 
-  expect_is(dat$DBH_cm, "numeric")
   expect_true(all(dat$DBH_cm > 0 | is.na(dat$DBH_cm)))
 
   # Health_status should be either L or D, or M
