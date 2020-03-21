@@ -1,8 +1,10 @@
 ---
 title: "ESSD fortedata manuscript"
-output: html_document
-author: Jeff Atkins
+author: "Jeff Atkins"
 date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  word_document: default
+  html_document: default
 ---
 
 This document is intended to be the core of the planned ESSD manuscript: summarizing the database, giving stats, describing datasets, etc.
@@ -131,6 +133,48 @@ make_table(md, "fd_nested_subplots")
 
 ### Inventory dataset
 
-```{r table_contributors}
+```{r table_inventory}
 make_table(md, "fd_inventory")
+```
+
+### Soil respiration
+
+```{r table_soil_respiration}
+make_table(md, "fd_soil_respiration")
+```
+
+### Leaf spectrometry
+
+```{r table_leaf_spec}
+make_table(md, "fd_leaf_spectrometry")
+```
+
+### Photosynthesis
+
+```{r table_photosynthesis}
+make_table(md, "fd_photosynthesis")
+```
+
+### Litter
+
+```{r table_litter}
+make_table(md, "fd_litter")
+```
+
+### Hemispherical camera
+
+```{r table_hemi_camera}
+make_table(md, "fd_hemi_camera")
+```
+
+### Canopy structure
+
+```{r table_canopy_structure}
+make_table(md, "fd_canopy_structure")
+```
+
+### Ceptometer
+
+```{r table_ceptometer}
+make_table(md, "fd_ceptometer")
 ```
