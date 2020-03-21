@@ -55,21 +55,15 @@ The columns are as follows:
 \item \code{f_parout} (integer) fraction of ParOut_um to use for energy balance
 \item \code{alphaK} (numeric) used in conversion of µmol/mol to W/m2
 \item \code{Status} (character) Status variable
-\item \code{Filename} (character) Name of original file.
 \item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
 \item \code{Species} (character) Species code from the USDA Plants Database; see
 \item \code{Sample} (character) Sample number--varies by species by plot
-\item \code{Filename_date} (character) Calendar date in format MDDYYYY
-\item \code{Timestamp} (character) Calendar date and time in format M/DD/YYYY HH:MM:SS
 \item \code{Comments} (character) ID of closest vegetation survey plot (NE, SE, SW, NW) to
 the stem measured, plus any additional comments
-\item \code{DateTime} (POSIXlt) Format in "\%Y-\%m-\%d \%H:\%M:\%S"
-\item \code{SubplotID} (character): Subplot ID number. These subplot codes are a
-concatenation of the plot (\code{\link{fd_plots}}) and
-subplot \code{\link{fd_subplots}} codes.
-\item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
-\item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
-\item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
+\item \code{Timestamp} (POSIXlt) Timestamp of measurement
+\item \code{Replicate} (character): Replicate code
+\item \code{Plot} (integer): Plot ID number
+\item \code{Subplot} (character): Subplot code
 }
 }
 \examples{

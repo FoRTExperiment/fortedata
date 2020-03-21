@@ -23,7 +23,6 @@
 #' @author Measurements by Lisa Haber at the University of Michigan Biological Station.
 #' @examples
 #' fd_leaf_spectrometry()
-
 fd_leaf_spectrometry <- function() {
   leaf_spec <- read_csv_file("fd_leaf_spectral_indices.csv")
 
@@ -96,21 +95,15 @@ fd_leaf_spectrometry <- function() {
 #' - `f_parout` (integer) fraction of ParOut_um to use for energy balance
 #' - `alphaK` (numeric) used in conversion of µmol/mol to W/m2
 #' - `Status` (character) Status variable
-#' - `Filename` (character) Name of original file.
 #' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
 #' - `Species` (character) Species code from the USDA Plants Database; see
 #' - `Sample` (character) Sample number--varies by species by plot
-#' - `Filename_date` (character) Calendar date in format MDDYYYY
-#' - `Timestamp` (character) Calendar date and time in format M/DD/YYYY HH:MM:SS
 #' - `Comments` (character) ID of closest vegetation survey plot (NE, SE, SW, NW) to
 #'  the stem measured, plus any additional comments
-#' - `DateTime` (POSIXlt) Format in "%Y-%m-%d %H:%M:%S"
-#' - `SubplotID` (character): Subplot ID number. These subplot codes are a
-#' concatenation of the plot (\code{\link{fd_plots}}) and
-#' subplot \code{\link{fd_subplots}} codes.
-#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
-#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
-#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
+#' - `Timestamp` (POSIXlt) Timestamp of measurement
+#' - `Replicate` (character): Replicate code
+#' - `Plot` (integer): Plot ID number
+#' - `Subplot` (character): Subplot code
 #`
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
@@ -120,18 +113,18 @@ fd_leaf_spectrometry <- function() {
 fd_photosynthesis <- function() {
   leaf_photo <- read_csv_file("fd_photosynthesis.csv")
 
-  # Clean original data
-  leaf_photo$Plot <- NULL
-
   # Adjust column data
   leaf_photo$Species <- toupper(leaf_photo$Species)
-  leaf_photo$DateTime <- as.POSIXlt(leaf_photo$Timestamp, format = "%Y-%m-%d %H:%M:%S")
+  leaf_photo$Timestamp <- as.POSIXlt(leaf_photo$Timestamp, format = "%Y-%m-%d %H:%M:%S")
 
   # Split the SubplotID column into more useful individual columns
   leaf_photo$SubplotID <- substr(leaf_photo$Filename, 0, 4)
   leaf_photo$Replicate <- substr(leaf_photo$SubplotID, 1, 1)
   leaf_photo$Plot <- as.integer(substr(leaf_photo$SubplotID, 3, 3))
   leaf_photo$Subplot <- substr(leaf_photo$SubplotID, 4, 4)
+
+  # Drop a few unneeded fields
+  leaf_photo$Filename <- leaf_photo$Filename_date <- leaf_photo$SubplotID <- NULL
 
   leaf_photo
 }
