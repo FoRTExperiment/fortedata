@@ -62,7 +62,7 @@ fd_hemi_camera <- function() {
   # reorders columns
   cam <- cam[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot", "Date", "Year", "NDVI", "GapFraction", "Openness", "LAI_cam", "ClumpingIndex")]
 
-  cam
+  weak_as_tibble(cam)
 }
 
 #' Return summary data for hemispherical camera data
@@ -177,6 +177,8 @@ fd_canopy_structure <- function() {
 
   # Reorder columns
   cst[c(1, 31, 32, 33, 2, 3:30 )]
+
+  weak_as_tibble(cst)
 }
 
 #' Return summary data for hemispherical camera data
@@ -293,6 +295,8 @@ fd_par <- function() {
 
   # Reorder columns
   par[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "DateTime", "aPAR", "bPAR", "faPAR", "LAI_cept")]
+
+  weak_as_tibble(par)
 }
 
 

@@ -51,7 +51,7 @@ fd_leaf_spectrometry <- function() {
 
   # reorders columns
   leaf_spec <- leaf_spec[c("SubplotID", "Replicate", "Plot", "Subplot", "Date", "Species", "Index", "Index_Value", "FilePath")]
-  leaf_spec
+  weak_as_tibble(leaf_spec)
 }
 
 
@@ -143,7 +143,7 @@ fd_photosynthesis <- function() {
 
   # reorders columns
   #leaf_photo <- leaf_photo[c("SubplotID", "Replicate", "Plot", "Subplot", "Date", "photoies", "Index", "Index_Value", "FilePath")]
-  leaf_photo
+  weak_as_tibble(leaf_photo)
 }
 
 #' Return basic statistics generated from the raw licor data

@@ -59,7 +59,7 @@ fd_soilCO2 <- function() {
   # reorders columns
   flux <- flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "Date", "DateTime", "NestedPlot", "Run", "soilCO2Efflux", "soilTemp", "VWC")]
 
-  flux
+  weak_as_tibble(flux)
 }
 
 

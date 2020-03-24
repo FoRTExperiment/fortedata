@@ -66,7 +66,7 @@ fd_lai <- function() {
   # reorders columns
   lai <- lai[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "LAI")]
 
-  lai
+  weak_as_tibble(lai)
 }
 
 #' Return basic statistics generated from the raw litter trap data
