@@ -84,7 +84,7 @@ fd_lai <- function() {
 #' fd_lai_summary()
 fd_lai_summary <- function() {
   # Load the inventory and subplot tables and merge them
-  subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot", "Subplot_area_m2")]
+  subplots <- fd_subplots()[c("Replicate", "Plot", "Subplot")]
   df <- merge(fd_lai(), subplots)
 
   # Subset and compute basal area and stocking

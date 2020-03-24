@@ -20,18 +20,35 @@ library(tidyr)
 ```
 
 ## Abstract
+The `fortedata` package is an open data notebook that includes data from the Forest Resilience and Threshold Experiment (FoRTE)--a coupled model and field manipulative experiment that directly tests the impact of varying levels of disturbance severity on C cycling dynamics in forested ecosystems. This package is not only aimed at the broader ecosystem science and C cycling communities, but is meant to serve as a central resource for the FoRTE project team. This represents a new way of approaching science that increases transparency and reproducibility, with the additional benefit of streamlining the integration of heterogeneous data streams to both minimize errors and increase research efficiency through internal sharing  for the project team. 
 
 ## Introduction
 
-The importance of consistent, curated open data is well-recognized across many scientific disciplines. With the exception of subfields that inherently rely on ‘big data’ such as genomics or systematics, or subfields that require data from other sources, such as biogeography, ecological research has been somewhat constrained in the implementation of open science and data practices. This has been attributed to the nature of how ecological research is often traditionally conducted as individual or short-term projects, that create small-scale or boutique datasets (Wallis et al. 2013), or even the heterogeneous nature of ecological data (Colina et al. 2018).   Open data is the answer to the clarion call of ecological research moving forward to link, infer, and forecast pattern and process across species, time, and space. Observatory networks such as the National Ecological Observatory Network (NEON) and AmeriFlux, or sustained research platforms such as Long-Term Ecological Research (LTER) or Long-Term Agricultural (LTAR) sites provide substantially contribute to this need. However, the inclusion of hypothesis driven research conducted under an open science framework preserves collected data and provides much needed transparency to the application of the scientific method to allow ecological research to meet the needs of humanity. 
+Disturbance alters multiple carbon (C) cycling processes and, as a result, may erode forest C uptake and storage. The magnitude, timing and duration of changes in the C cycle following disturbance vary among forests. While the underlying causes are largely unknown, C cycling responses may differ as a function of disturbance severity, source, and frequency along with the physical and biological properties of the affected ecosystem [Amiro et al. 2010; Williams et al. 2012]. Understanding which forest ecosystems are most vulnerable to disturbance and, conversely, what characteristics convey C cycling stability, remains an important frontier crucial to forecasting changes in the terrestrial C sink in the face of rising global disturbance [Frelich and Reich 1999; White and Jentsch 2001; Woodall et al. 2013. 
+
+Honing the prediction of forests’ response to changing disturbance regimes requires the quantification of multiple C stocks and fluxes, and parallel examination of the mechanisms leading to their stability or decline. The calculation and interpretation of forest ecosystem C balance requires repeated measurements of aboveground C stocks and fluxes through tree and litterfall inventories and belowground processes including root production and soil respiration--the total CO2 efflux from roots and microbes. Complementary process and structural measurements such as leaf physiology, morphology and chemistry along with remotely sensed measures of canopy structure and physiology provide important ancillary data useful to the interpretation of changes in C fluxes following disturbance. Large-scale manipulative experiments may be particularly useful to identify the C fluxes and drivers that determine ecosystem C balance following disturbance [Gough et al. 2013; Shiels and Gonzalez 2014; Fahey et al. 2020 ]. Few comprehensive datasets from such experiments exist in the public domain, however, limiting researchers’ ability to test hypotheses related to forest resilience and functional change.
+
+An “open data” movement in science continues to grow, emphasizing transparency, reproducibility, and the moral imperative of making publicly-funded research data broadly available (refs). A specific example of this is open science notebooks for projects, with the goal of generating, integrating, and reporting heterogeneous data streams. This concept has several advantages. Open-notebook science creates transparency with detailed provenance from conceptualization to publication which in turn increases the potential for reproducibility [Schapira et al. 2019; Powers and Hampton, 2019]. Open-notebook science not only increases the utility of data to the external community, but also to the internal community: collaborators, students,and lab members who are directly involved in the project. The ability for a team to pull from one well-documented and consistent source can greatly increase research productivity and efficiency. While we envision the `fortedata` package being of broad interest to the C cycling and ecosystem science communities, its greatest contribution may be to the project team itself--streamlining the process of data curation and manipulation such that the time each individual may have spent repeating mundane tasks can be reappropriated, and errors that might have been introduced from multiple copies of datasets across multiple workstations avoided entirely. New approaches such as open-science notebooks are thus a natural extension of open science.
+
+The goal of this manuscript is to (i) describe the scientific context and goals of the Forest Resilience and Threshold Experiment (FoRTE), (ii) describe its experimental design and high-level measurement protocols, and (iii) document the open-source `fortedata` package that serves as the project data repository. 
+
+## The FoRTE Project Description
+
+FoRTE is a coupled model and field manipulative experiment located in northern, lower Michigan at the University of Michigan Biological Station (45.58 N,  84.71 W). FoRTE spans a total of 8 ha that includes regionally representative landforms and forest types. 
+
+FoRTE follows a hierarchical structure. There are four replicates (A, B, C, D) of four plots (0.5 ha each) for a total of 16 plots. Within each replicate, each plot is randomly assigned a disturbance severity level of 0, 45, 65, or 85% gross defoliation, respectively, with each replicate having one plot per each assigned severity level. For example, A01 - 85%, A02 - 45%, A03 - 65%, and A04 - 0%. Each plot is bisected such that each half subjected to a different disturbance treatment, either a top-down treatment (T) where targeted trees include the largest trees (based diameter-at-breast-height (DBH)), or bottom-up (B), where targeted trees include the smallest trees by DBH--with an 8 cm DBH cut-off, meaning trees larger than 8 cm. A subplot (0.1 ha) is located in each half of each plot for a total of 32 subplots. The standard nomenclature for these subplot units is a concatenation of the replicate (A, B, C, D,) plot number (01, 02, 03, 04) and subplot (E for east side of the plot, or W for the west side of the plot). Unless specifically indicated, these subplots serve as the unit of analysis and are referred to in the data by the variable name of `SublotID` (Fig. 1). Within each subplot there are measurement locations termed nested plots. Nested plots 0, 1, 3, 5, 7 represented measurement points located at plot center (0), as well as 10 m off plot center at cardinal directions (1 = north, 3 = east, 5 = south, and 7 = west). These locations include areas where soil water content, soil temperature, soil CO2 efflux, and hemispherical imagery are taken--this list is meant to be illustrative, not entirely inclusive. Nested plots 2, 4, 6, and 8 are 4 m2 vegetation survey plots that are located 8 m from plot center at intercardinal directions (2 = northeast, 4 = southeast, 6 = southwest, and 8 = northwest). Stem counts and understory physiology measurements are taken at these nested plots. 
+
+Further description of the FoRTE project, including detailed methodologies for each dataset, will be available in subsequent manuscripts (See sections below on Versioning and Archiving as well as the internal function `fd_publications()` which returns a list of FoRTE related publications.)
 
 ## The FoRTE Data Package
 
-fortedata is a data package that includes field data from the Forest Resilience and Threshold Experiment (FoRTE)--
-a manipulative experiment located in northern, lower Michigan at the University of Michigan Biological Station. Field data in this package include: leaf physiology, canopy structural traits, soil respiration, micrometeorology, and forest inventory and biomass data.  
+`fortedata` is a data package that includes field data from FoRTE. Data currently in this package include: leaf physiology, canopy structural traits, soil respiration, litterfall, micrometeorology, and forest inventory and biomass data for the years 2018 and 2019. During the life cycle of this project these datasets will be augmented and additional datasets and data products added. 
 
 As of this writing (`r Sys.Date()`) the current version of `fortedata` is `r packageVersion("fortedata")`.
 
+### Overall package structure
+
+The package is structured as a collection of independent _datasets_, with standardized plot notation.
 
 ### Database license
 
@@ -73,7 +90,7 @@ library(fortedata)
 A specific release number may also be installed:
 
 ```
-devtools::install_github("bpbond/cosore@v0.4")
+devtools::install_github("bpbond/cosore@v0.4") ##### flag here
 ```
 
 Datasets are available via user-facing functions:
@@ -88,9 +105,28 @@ Datasets are available via user-facing functions:
 * `fd_inventory()` returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), as latitude, longitude, and biomass for each measured stem. Biomass is calculated from species specific allometries included in `biomass_allometry_table.csv` within `fortedata`. 
 
 
-----this section should include the summary functions!!!!
+Brief summaries of certain datasets are available via summary functions: 
+* `fd_inventory_summary()` returns a summary of the `fd_inventory()` dataset that includes stocking density (in stems per ha) and mean basal area (m2 per ha) averaged at the subplot level (n = 32) grouped by `Replicate`, `Plot`, and `Subplot` variables.
+* `fd_lai_summary()` returns a summary of the `fd_lai()` dataset that includes keaf area as leaf area index (m2 m-2) averaged at the subplot level (n = 32) grouped by `Replicate`, `Plot`, and `Subplot` variables.
+
+#### Documentation and vignettes
+
+This paper serves as the primary documentation for FoRTE data.
+The `fortedata` R package includes extensive documentation, including an in-depth vignette included both in the package and online (LINK TODO).
+The R package includes documentation available via R's standard help system.
+
+#### Testing and quality assurance
+
+The `fortedata` R package has a wide variety of unit tests (CITATION TODO) that test code functionality, typically via assertions about function behavior, but also by verifying behavior of those functions when importing test datasets (of different formats and with a variety of errors, for example).
+
+### Reporting issues
+
+We use the `fortedata` GitHub issue tracker (*****************) to track and categorize user improvement suggestions, problems or errors with the R package code or database data, requests for new variables or functionality, and/or asking questions.
 
 
+### Conclusion
+
+It is our hope that the `fortedata` package serves as a possible model for future experiments and projects, large and small--with data being centralized and made available in as near real-time as possible to the advantage not only of the broader community and public, but to the benefit of the project team as well.
 
 ### Structure
 

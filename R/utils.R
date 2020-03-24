@@ -59,8 +59,10 @@ weak_as_tibble <- function(..., .force_df = FALSE) {
 #' pal <- forte_colors()
 forte_colors <- function() {
   pal <- c("#000000", "#009E73", "#0072B2", "#D55E00")
-  #structure(pal, class = "palette", name = forte)
+  pal <- structure(pal, class = "palette", name = 'forte')
 }
+
+
 
 #' @export
 #' @importFrom graphics rect par image text
