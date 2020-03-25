@@ -1,7 +1,7 @@
 # Plot tables
 
 
-#' Return the plots table.
+#' Plots table.
 #'
 #' @details The columns are as follows:
 #' - `Replicate` (character): Replicate code. Each replicate contains
@@ -13,7 +13,7 @@
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_plots()
 fd_plots <- function() {
@@ -21,7 +21,7 @@ fd_plots <- function() {
 }
 
 
-#' Return the subplots table.
+#' Subplots table.
 #'
 #' @details The columns are as follows:
 #' - `Replicate` (character): Replicate code. Each replicate contains
@@ -35,7 +35,7 @@ fd_plots <- function() {
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_subplots()
 fd_subplots <- function() {
@@ -43,7 +43,7 @@ fd_subplots <- function() {
 }
 
 
-#' Return the nested subplots table.
+#' Nested subplots table.
 #'
 #' @details The columns are as follows:
 #' - `Subplot` (character): Subplot code. Subplots are nested within plots:
@@ -55,7 +55,7 @@ fd_subplots <- function() {
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
-#'
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_nested_subplots()
 fd_nested_subplots <- function() {

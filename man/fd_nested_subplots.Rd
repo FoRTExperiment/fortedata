@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_plots.R
 \name{fd_nested_subplots}
 \alias{fd_nested_subplots}
-\title{Return the nested subplots table.}
+\title{Nested subplots table.}
 \usage{
 fd_nested_subplots()
 }
@@ -10,7 +10,7 @@ fd_nested_subplots()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return the nested subplots table.
+Nested subplots table.
 }
 \details{
 The columns are as follows:
@@ -25,4 +25,7 @@ one in the eastern part, one in the western.
 }
 \examples{
 fd_nested_subplots()
+}
+\author{
+Measurements by Gough Lab at the University of Michigan Biological Station.
 }

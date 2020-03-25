@@ -1,7 +1,7 @@
 # Inventory data
 
 
-#' Return the raw inventory table.
+#' Raw inventory table.
 #'
 #' @details The columns are as follows:
 #' - `Site` (character): Replicate code. Each replicate contains
@@ -23,16 +23,14 @@
 #' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @export
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_inventory()
 fd_inventory <- function() {
   inv <- read_csv_file("forte_inventory.csv")
   inv$Date <- as.Date(inv$Date, format = "%m/%d/%Y")
 
-  # Split the SubplotID column into more useful individual columns
-  inv$Replicate <- substr(inv$SubplotID, 1, 1)
-  inv$Plot <- as.integer(substr(inv$SubplotID, 2, 3))
-  inv$Subplot <- substr(inv$SubplotID, 4, 4)
+  inv <- split_subplot_id(inv)
 
   # Currently there's a bad entry in the table. Nuke it. Temporary
   inv$DBH_cm <- as.numeric(inv$DBH_cm)  # temporary, until we fix row 791
@@ -40,7 +38,7 @@ fd_inventory <- function() {
   inv
 }
 
-#' Return basic statistics generated from the raw inventory data.
+#' Basic statistics generated from the raw inventory data.
 #'
 #' @details The returned columns are as follows:
 #' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
@@ -54,6 +52,7 @@ fd_inventory <- function() {
 #' e.g. by live/dead, species, etc.
 #' @export
 #' @importFrom stats aggregate
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_inventory_summary()
 fd_inventory_summary <- function() {

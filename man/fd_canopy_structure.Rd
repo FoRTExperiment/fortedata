@@ -2,58 +2,24 @@
 % Please edit documentation in R/fd_remote_sensing.R
 \name{fd_canopy_structure}
 \alias{fd_canopy_structure}
-\title{Canopy Structural Traits from 2D Canopy LiDAR}
+\title{Canopy structural traits from 2D canopy LiDAR.}
 \usage{
 fd_canopy_structure()
 }
 \value{
-A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
+A \code{data.frame} or \code{tibble} of hemispherical camera data.
+Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
-Canopy strucutral Traits derived using the forestr 1.0.1 package from
-2D portable canopy lidar
-Return hemispherical camera data
+Canopy structural traits from 2D canopy LiDAR.
 }
-\details{
-The columns are as follows:
-\itemize{
-\item \code{SubplotID} (character): Subplot ID number. These subplot codes are a
-concatenation of the plot (\code{\link{fd_plots}}) and
-subplot \code{\link{fd_subplots}} codes.
-\item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
-\item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
-\item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
-\item \code{Year} (integer): Year in which measurement was taken
-\item \code{mean.height} (numeric): mean height of vai
-\item \code{height.2} (numeric): standard deviation of mean height
-\item \code{mean.height.var} (numeric): variance of mean height
-\item \code{mean.height.rms} (numeric): root mean square height
-\item \code{transect.length} (numeric): length of transect
-\item \code{mode.el} (numeric): i forgot what this is
-\item \code{max.el} (numeric): greatest density of VAI x, z position
-\item \code{mode.2} (numeric): variance of maximum VAI
-\item \code{max.can.ht} (numeric): maximum measured canopy height
-\item \code{mean.max.ht} (numeric): mean outer canopy height or MOCH
-\item \code{mean.vai} (numeric): average VAI across transect
-\item \code{mean.peak.vai} (numeric): average height of maximum VAI
-\item \code{deep.gaps} (numeric): number of 1 m wide bins with no lidar returns
-\item \code{deep.gap.fraction} (numeric): deep gaps dividied by transect length
-\item \code{porosity} (numeric): ratio of empty to filled bins in the canopy
-\item \code{std.std} (numeric): precursor to rugosity
-\item \code{mean.std} (numeric): precursor to rugosity
-\item \code{rugosity} (numeric): accumulated canopy complexity metric
-\item \code{top.rugosity} (numeric): standard deviation of final lidar returns
-\item \code{mean.return.ht} (numeric): average lidar return distance
-\item \code{sd.return.ht} (numeric): standard deviation of lidar return distances
-\item \code{sky.fraction} (numeric): ratio of sky hits to lidar returns
-\item \code{cover.fraction} (numeric): 1/sky fraction
-\item \code{max.ht} (numeric): same as max can ht, removed in later forestr updates
-\item \code{scan.density} (numeric): no. of lidar returns divided by transect length
-\item \code{rumple} (numeric): outer surface variability divided by transect length
-\item \code{clumping.index} (numeric): clumpiness
-\item \code{enl} (numeric): effective number of layers
-}
+\note{
+The Canopy structural traits were derived using the
+\code{forestr} 1.0.1 package from 2D portable canopy lidar
 }
 \examples{
 fd_canopy_structure()
+}
+\author{
+Measurements by Jeff Atkins at the University of Michigan Biological Station.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_plots.R
 \name{fd_subplots}
 \alias{fd_subplots}
-\title{Return the subplots table.}
+\title{Subplots table.}
 \usage{
 fd_subplots()
 }
@@ -10,7 +10,7 @@ fd_subplots()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return the subplots table.
+Subplots table.
 }
 \details{
 The columns are as follows:
@@ -27,4 +27,7 @@ degrees.
 }
 \examples{
 fd_subplots()
+}
+\author{
+Measurements by Gough Lab at the University of Michigan Biological Station.
 }

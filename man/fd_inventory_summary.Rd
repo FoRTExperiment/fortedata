@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_inventory.R
 \name{fd_inventory_summary}
 \alias{fd_inventory_summary}
-\title{Return basic statistics generated from the raw inventory data.}
+\title{Basic statistics generated from the raw inventory data.}
 \usage{
 fd_inventory_summary()
 }
@@ -10,7 +10,7 @@ fd_inventory_summary()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return basic statistics generated from the raw inventory data.
+Basic statistics generated from the raw inventory data.
 }
 \details{
 The returned columns are as follows:
@@ -28,4 +28,7 @@ e.g. by live/dead, species, etc.
 }
 \examples{
 fd_inventory_summary()
+}
+\author{
+Measurements by Gough Lab at the University of Michigan Biological Station.
 }

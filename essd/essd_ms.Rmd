@@ -1,8 +1,10 @@
 ---
 title: "ESSD fortedata manuscript"
-output: html_document
-author: Jeff Atkins
+author: "Jeff Atkins"
 date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  word_document: default
+  html_document: default
 ---
 
 This document is intended to be the core of the planned ESSD manuscript: summarizing the database, giving stats, describing datasets, etc.
@@ -95,7 +97,7 @@ devtools::install_github("bpbond/cosore@v0.4") ##### flag here
 
 Datasets are available via user-facing functions:
 
-* `fd_soilCO2()` returns a single dataset that includes soil CO2 efflux measurements as well as soil temperature and soil water content. 
+* `fd_soil_respiration()` returns a single dataset that includes soil CO2 efflux measurements as well as soil temperature and soil water content. 
 * `fd_hemi_camera()` returns a single dataset that includes hemispherical photos of the forest canopy taken 1 meter above-ground, and includes estimates of leaf area index, gap fraction, and NDVI (normalized difference vegetation index). 
 * `fd_canopy_structure()` returns a single dataset that includes estimates of canopy structural traits such as height, area/density, openness, complexity, and arrangement derived from terrestrial lidar and processed using the `forestr` (Atkins et al. 2018; 2020) package in R Version 3.6.2 (R Core Team, 2020). 
 * `fd_par()` returns a single dataset that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI_cept)--each derived from a handheld ceptometer (LP-80; Decagon Devices).
@@ -167,6 +169,48 @@ make_table(md, "fd_nested_subplots")
 
 ### Inventory dataset
 
-```{r table_contributors}
+```{r table_inventory}
 make_table(md, "fd_inventory")
+```
+
+### Soil respiration
+
+```{r table_soil_respiration}
+make_table(md, "fd_soil_respiration")
+```
+
+### Leaf spectrometry
+
+```{r table_leaf_spec}
+make_table(md, "fd_leaf_spectrometry")
+```
+
+### Photosynthesis
+
+```{r table_photosynthesis}
+make_table(md, "fd_photosynthesis")
+```
+
+### Litter
+
+```{r table_litter}
+make_table(md, "fd_litter")
+```
+
+### Hemispherical camera
+
+```{r table_hemi_camera}
+make_table(md, "fd_hemi_camera")
+```
+
+### Canopy structure
+
+```{r table_canopy_structure}
+make_table(md, "fd_canopy_structure")
+```
+
+### Ceptometer
+
+```{r table_ceptometer}
+make_table(md, "fd_ceptometer")
 ```
