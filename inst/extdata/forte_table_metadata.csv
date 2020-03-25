@@ -154,3 +154,8 @@ fd_canopy_structure,scan.density,No. of lidar returns divided by transect length
 fd_canopy_structure,rumple,Outer surface variability divided by transect length,numeric,,
 fd_canopy_structure,clumping.index,Clumpiness,numeric,,
 fd_canopy_structure,enl,Effective number of layers,numeric,,
+fd_publications,Entry,Abbreviated in-text entry in the form of author last name and year,character,,
+fd_publications,PubYear,Year of publication,integer,,
+fd_publications,Title,Title of publication,character,,
+fd_publications,Journal,Journal article was published in,character,,
+fd_publications,DOI,Digital Object Identifier,character,,
