@@ -75,22 +75,17 @@ split_subplot_id <- function(df) {
   df
 }
 
-#' FoRTE color palette
-
 #' The FoRTE color palettte
 #'
 #' These are a handful of color palettes pulled from photographs of US National Parks.
-#'
 #'
 #' @return A vector of colours.
 #' @export
 #' @keywords colors
 #' @examples
-#'
 #' pal <- forte_colors()
 forte_colors <- function() {
-  pal <- c("#000000", "#009E73", "#0072B2", "#D55E00")
-  #structure(pal, class = "palette", name = forte)
+  invisible(c("0" = "#000000", "45" = "#009E73", "65" = "#0072B2", "85" = "#D55E00"))
 }
 
 #' @export

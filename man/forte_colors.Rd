@@ -2,8 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{forte_colors}
 \alias{forte_colors}
-\title{FoRTE color palette
-The FoRTE color palettte}
+\title{The FoRTE color palettte}
 \usage{
 forte_colors()
 }
@@ -14,7 +13,6 @@ A vector of colours.
 These are a handful of color palettes pulled from photographs of US National Parks.
 }
 \examples{
-
 pal <- forte_colors()
 }
 \keyword{colors}

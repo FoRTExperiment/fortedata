@@ -18,7 +18,8 @@ library(lubridate)
 library(readr)
 library(covr)
 library(tidyr)
-
+library(ggplot2)
+theme_set(theme_bw())
 ```
 
 ## Abstract
@@ -177,4 +178,15 @@ make_table(md, "fd_canopy_structure")
 
 ```{r table_ceptometer}
 make_table(md, "fd_ceptometer")
+```
+
+### Litter figure
+
+
+```{r fig_litter}
+ld <- fd_litter()
+ggplot(ld, aes(x = Species, y = BagMass_g - BagTare_g, color = Replicate)) + 
+  geom_boxplot() +
+  ylab("2018 litter mass (g)")
+ggsave("figures/litter.png", width = 8, height = 6)
 ```
