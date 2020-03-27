@@ -80,8 +80,6 @@ split_subplot_id <- function(df) {
 #' The FoRTE color palettte
 #'
 #' These are a handful of color palettes pulled from photographs of US National Parks.
-#'
-#'
 #' @return A vector of colours.
 #' @export
 #' @keywords colors
