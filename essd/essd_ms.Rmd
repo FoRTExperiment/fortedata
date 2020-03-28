@@ -141,6 +141,17 @@ make_table(md, "fd_inventory")
 
 ```{r table_soil_respiration}
 make_table(md, "fd_soil_respiration")
+
+rs <- fd_soil_respiration()
+
+# Violin plot of rs data by rep
+rs %>% 
+  ggplot(aes(x = Replicate, y = soilCO2Efflux)) + 
+  geom_violin(aes(color = Replicate), size = 1) + 
+  geom_jitter(aes(color = Replicate), alpha = 0.3) + 
+  scale_color_manual(values = pal) + theme_bw() + 
+  labs(y = expression(Soil~Respiration~(μmol~CO[2]~m^-2~s^-1)))
+
 ```
 
 ### Leaf spectrometry
