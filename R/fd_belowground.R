@@ -17,14 +17,17 @@ fd_soil_respiration <- function() {
   # Change column names
   names(flux)[names(flux) == "run"] <- "Run"
   names(flux)[names(flux) == "nestedPlot"] <- "NestedPlot"
-  names(flux)[names(flux) == "date"] <- "Date"
+  #names(flux)[names(flux) == "date"] <- "Date"
 
   # Timestamp
-  flux$Timestamp <- as.POSIXct(flux$dateTime, format = "%m/%d/%Y %H:%M", tz = "America/Detroit")
+  flux$TimeStamp <- as.POSIXct(flux$dateTime, format = "%m/%d/%Y %H:%M", tz = "America/Detroit")
+
+  # Retaining date
+  flux$Date <- as.Date(flux$date, "%m/%d/%Y")
 
   flux <- split_subplot_id(flux)
 
   # Reorder columns, dropping ones we don't need
-  flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "NestedPlot",
+  flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Date", "TimeStamp", "NestedPlot",
          "Run", "soilCO2Efflux", "soilTemp", "VWC")]
 }

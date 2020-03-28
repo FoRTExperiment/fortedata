@@ -42,10 +42,10 @@ fd_hemi_camera <- function() {
   cam <- na.omit(cam)
 
   # Reorder columns, dropping ones we don't need
-  cam[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot", "Date",
+  cam <- cam[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot", "Date",
         "NDVI", "GapFraction", "Openness", "LAI_cam", "ClumpingIndex")]
 
-  weak_as_tibble(cam)
+  #weak_as_tibble(cam)
 }
 
 #' Canopy structural traits from 2D canopy LiDAR.
@@ -68,7 +68,7 @@ fd_canopy_structure <- function() {
   cst <- split_subplot_id(cst)
 
   # Reorder columns
-  cst[c(1, 31, 32, 33, 2, 3:30 )]
+  cst <- cst[c(1, 31, 32, 33, 2, 3:30 )]
 
   weak_as_tibble(cst)
 }
@@ -121,6 +121,6 @@ fd_ceptometer <- function() {
   cept$faPAR <- cept$bPAR / cept$aPAR
 
   # Reorder columns, dropping ones we don't need
-  cept[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "aPAR", "bPAR", "faPAR", "LAI_cept")]
+  cept<- cept[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "aPAR", "bPAR", "faPAR", "LAI_cept")]
   weak_as_tibble(cept)
 }
