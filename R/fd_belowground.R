@@ -8,6 +8,8 @@
 #' @author Measurements by Kayla Mathes at the University of Michigan Biological Station.
 #' @examples
 #' fd_soil_respiration()
+library(lubridate)
+
 fd_soil_respiration <- function() {
   flux <- read_csv_file("fd_soil_efflux.csv")
 
@@ -21,10 +23,11 @@ fd_soil_respiration <- function() {
 
   # Timestamp
   flux$Timestamp <- as.POSIXct(flux$dateTime, format = "%m/%d/%Y %H:%M", tz = "America/Detroit")
+  flux$Date <- mdy(flux$Date)
 
   flux <- split_subplot_id(flux)
 
   # Reorder columns, dropping ones we don't need
-  flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "NestedPlot",
+  flux[c("SubplotID", "Replicate", "Plot", "Subplot", "Timestamp", "Date","NestedPlot",
          "Run", "soilCO2Efflux", "soilTemp", "VWC")]
 }
