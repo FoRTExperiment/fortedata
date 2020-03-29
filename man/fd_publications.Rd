@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_publications.R
 \name{fd_publications}
 \alias{fd_publications}
-\title{Return a list of all FoRTE related publications}
+\title{Return a list of all FoRTE related publications.}
 \usage{
 fd_publications()
 }
@@ -10,16 +10,16 @@ fd_publications()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Return a list of all FoRTE related publications
+Return a list of all FoRTE related publications.
 }
 \details{
 The columns are as follows:
 \itemize{
 \item \code{Entry} (character): Abbreviated in-text entry in the form of author last name and year
-\item \code{PubYear} (integer): Year of publication.
-\item \code{Title} (integer): Title of publication.
-\item \code{Journal} (character): Journal article was published in.
-\item \code{DOI} (character): Digital object identifier
+\item \code{PubYear} (integer): Year of publication
+\item \code{Title} (character): Title of publication
+\item \code{Journal} (character): Journal article was published in
+\item \code{DOI} (character): Digital Object Identifier
 }
 }
 \examples{

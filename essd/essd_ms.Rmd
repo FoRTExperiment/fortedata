@@ -18,6 +18,7 @@ library(lubridate)
 library(readr)
 library(covr)
 library(tidyr)
+library(ggplot2)
 
 ```
 
@@ -213,4 +214,25 @@ make_table(md, "fd_canopy_structure")
 
 ```{r table_ceptometer}
 make_table(md, "fd_ceptometer")
+```
+
+### Number of Observations
+```{r no_of_obs}
+no_of_records <- fd_observations()
+# Heatmap
+#x11(width = 10, height = 8)
+ggplot(no_of_records, aes(x = as.factor(Month), y = as.integer(Year), fill= NoRecs)) +
+  geom_tile(aes(fill = NoRecs), color = "black") +
+  geom_text(aes(label = NoRecs), color = "white") +
+  coord_equal()+
+  scale_fill_gradient(low = "#0D69E0", high = "#052755", na.value = 'white')+
+  scale_y_reverse()+
+  theme_minimal()+
+  theme(legend.position = "none")+
+  ylab("Year")+
+  xlab("Month")+
+  ggtitle(paste("No. of observations currently availble in each function as of:", Sys.Date()))+
+  facet_grid(Table ~ .,  space = "free")+
+  theme(strip.text.y = element_text(size = 8), strip.background = element_rect(
+    color="black", fill="white", size= 0.5, linetype="solid"))
 ```
