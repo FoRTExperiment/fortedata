@@ -22,7 +22,7 @@ fd_soil_respiration <- function() {
 
   # Timestamp
   flux$Timestamp <- as.POSIXct(flux$dateTime, format = "%m/%d/%Y %H:%M", tz = "America/Detroit")
-  flux$Date <- strptime(flux$Date, format = "%m/%d/%dY")
+  flux$Date <- as.Date(flux$Date, format = "%m/%d/%Y")
 
   flux <- split_subplot_id(flux)
 
