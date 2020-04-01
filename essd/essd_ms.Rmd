@@ -20,6 +20,7 @@ library(covr)
 library(tidyr)
 library(ggplot2)
 
+
 ```
 
 ## Abstract
@@ -225,14 +226,16 @@ ggplot(no_of_records, aes(x = as.factor(Month), y = as.integer(Year), fill= NoRe
   geom_tile(aes(fill = NoRecs), color = "black") +
   geom_text(aes(label = NoRecs), color = "white") +
   coord_equal()+
-  scale_fill_gradient(low = "#0D69E0", high = "#052755", na.value = 'white')+
+  scale_fill_gradient(low = "#450d54", high = "#450d54", na.value = 'white')+
+  #scale_fill_viridis(na.value = 'white')+
   scale_y_reverse()+
   theme_minimal()+
   theme(legend.position = "none")+
   ylab("Year")+
   xlab("Month")+
-  ggtitle(paste("No. of observations currently availble in each function as of:", Sys.Date()))+
+  ggtitle(paste("No. of observations currently availble \nin each function as of:", Sys.Date()))+
   facet_grid(Table ~ .,  space = "free")+
-  theme(strip.text.y = element_text(size = 8), strip.background = element_rect(
+  theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
     color="black", fill="white", size= 0.5, linetype="solid"))
+
 ```

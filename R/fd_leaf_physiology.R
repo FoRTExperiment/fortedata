@@ -31,7 +31,9 @@ fd_leaf_spectrometry <- function() {
   leaf_spec <- split_subplot_id(leaf_spec)
 
   # Reorder columns, dropping unneeded FilePath
-  leaf_spec[c("Replicate", "Plot", "Subplot", "Date", "Species", "Index", "Index_Value")]
+  leaf_spec <- leaf_spec[c("SubplotID", "Replicate", "Plot", "Subplot", "Date", "Species", "Index", "Index_Value")]
+
+  leaf_spec
 }
 
 
