@@ -38,6 +38,7 @@ fd_soil_respiration,Run,Indicates first or second sample taken with IRGA,integer
 fd_soil_respiration,soilCO2Efflux,Soil surface CO2 efflux measured with a LI-6400,numeric,µmol CO2/m2/s,
 fd_soil_respiration,soilTemp,Soil temperature measured at 7 cm depth,numeric,degrees C,
 fd_soil_respiration,VWC,Volumetric water content,numeric,percent,
+fd_leaf_spectrometry,SubplotID,"Subplot ID number, a concatenation of replicate, plot, and subplot codes",character,,
 fd_leaf_spectrometry,Replicate,Replicate group (A-D),character,,
 fd_leaf_spectrometry,Plot,Plot number,integer,,
 fd_leaf_spectrometry,Subplot,"Subplot (E, W)",character,,
