@@ -62,16 +62,16 @@ fd_metadata <- function(table = NULL) {
 #'
 #' @param df A data.frame with a four-character \code{SubplotID} column
 #'
-#' @return The data frame with new columns \code{Replicate}, \code{Plot},
-#' and \code{Subplot}.
+#' @return The data frame with new columns \code{replicate}, \code{plot},
+#' and \code{subplot}.
 #' @keywords internal
 #' @examples
 #' fortedata:::split_subplot_id(data.frame(SubplotID = "A01E"))
 split_subplot_id <- function(df) {
-  stopifnot("SubplotID" %in% names(df))
-  df$Replicate <- substr(df$SubplotID, 1, 1)
-  df$Plot <- as.integer(substr(df$SubplotID, 3, 3))
-  df$Subplot <- substr(df$SubplotID, 4, 4)
+  stopifnot("subplot_id" %in% names(df))
+  df$replicate <- substr(df$subplot_id, 1, 1)
+  df$plot <- as.integer(substr(df$subplot_id, 3, 3))
+  df$subplot <- substr(df$subplot_id, 4, 4)
   df
 }
 

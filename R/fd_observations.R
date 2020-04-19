@@ -11,105 +11,106 @@
 fd_observations <- function() {
 
 #
-BeginDate <- as.Date("2018-01-01")
-CurrentDate <- Sys.Date()
+begin_date <- as.Date("2018-01-01")
+current_date <- Sys.Date()
 
 # create length of dates
-TimeFrame <- seq.Date(from = BeginDate, to = CurrentDate, by = "month", format = "%Y-%m")
+time_frame <- seq.Date(from = begin_date, to = current_date, by = "month", format = "%Y-%m")
 
 # Empty data frame
-timeframe <- data.frame(TimeFrame)
+time_frame <- data.frame(time_frame)
 
-timeframe$Month <- format(timeframe$TimeFrame, "%m")
-timeframe$Year <- format(timeframe$TimeFrame, "%Y")
+time_frame$month <- format(time_frame$time_frame, "%m")
+time_frame$year <- format(time_frame$time_frame, "%Y")
 
 #####################
 # CEPTOMETER!
 a <- fd_ceptometer()
 
 # this makes the year and month column
-a$Month <- format(as.Date(a$Timestamp), "%m")
-a$Year <- format(as.Date(a$Timestamp), "%Y")
+a$month <- format(as.Date(a$timestamp), "%m")
+a$year <- format(as.Date(a$timestamp), "%Y")
 
 # count it up
-a.tally <- aggregate(LAI_cept ~ Month + Year, data = a, FUN = length)
+a.tally <- aggregate(lai_cept ~ month + year, data = a, FUN = length)
 #a.tally$Table <- "fd_ceptometer"
-names(a.tally)[names(a.tally) == "LAI_cept"] <- "NoRecs"
+names(a.tally)[names(a.tally) == "lai_cept"] <- "no_of_obs"
 
 # make time composite
-no_par <- data.frame(timeframe, Table = "fd_ceptometer")
-no_par <- merge(no_par, a.tally, by = c("Month", "Year"), all = TRUE)
+no_par <- data.frame(time_frame, Table = "fd_ceptometer")
+no_par <- merge(no_par, a.tally, by = c("month", "year"), all = TRUE)
 
 #####################
 # SOIL RESPIRATION!
 b <- fd_soil_respiration()
 
 # this makes the year and month column
-b$Month <- format(as.Date(b$Date), "%m")
-b$Year <- format(as.Date(b$Date), "%Y")
+b$month <- format(as.Date(b$date), "%m")
+b$year <- format(as.Date(b$date), "%Y")
 
 # count it up
-b.tally <- aggregate(soilCO2Efflux ~ Month + Year, data = b, FUN = length)
+b.tally <- aggregate(soil_co2_efflux ~ month + year, data = b, FUN = length)
 #a.tally$Table <- "fd_ceptometer"
-names(b.tally)[3] <- "NoRecs"
+names(b.tally)[3] <- "no_of_obs"
 
 # make time composite
-x <- data.frame(timeframe, Table = "fd_soil_respiration")
-no_soilR <- merge(x, b.tally, by = c("Month", "Year"), all = TRUE)
+x <- data.frame(time_frame, Table = "fd_soil_respiration")
+no_soil_r <- merge(x, b.tally, by = c("month", "year"), all = TRUE)
 
 #####################
 # LEAF SPECTROMETRY!
 b <- fd_leaf_spectrometry()
 
 # this makes the year and month column
-b$Month <- format(as.Date(b$Date), "%m")
-b$Year <- format(as.Date(b$Date), "%Y")
+b$month <- format(as.Date(b$date), "%m")
+b$year <- format(as.Date(b$date), "%Y")
 
 # count it up
-b.tally <- aggregate(Index ~ Month + Year, data = b, FUN = length)
-names(b.tally)[3] <- "NoRecs"
+b.tally <- aggregate(index ~ month + year, data = b, FUN = length)
+names(b.tally)[3] <- "no_of_obs"
 
 # make time composite
-x <- data.frame(timeframe, Table = "fd_leaf_spectrometry")
-no_leafSpec <- merge(x, b.tally, by = c("Month", "Year"), all = TRUE)
+x <- data.frame(time_frame, Table = "fd_leaf_spectrometry")
+no_leaf_spec <- merge(x, b.tally, by = c("month", "year"), all = TRUE)
 
 #####################
 # PHOTOSYNTHESIS
 a <- fd_photosynthesis()
 
 # this makes the year and month column
-a$Month <- format(as.Date(a$Timestamp), "%m")
-a$Year <- format(as.Date(a$Timestamp), "%Y")
+a$month <- format(as.Date(a$timestamp), "%m")
+a$year <- format(as.Date(a$timestamp), "%Y")
 
 # count it up
-a.tally <- aggregate(Photo ~ Month + Year, data = a, FUN = length)
-names(a.tally)[3] <- "NoRecs"
+a.tally <- aggregate(photo ~ month + year, data = a, FUN = length)
+names(a.tally)[3] <- "no_of_obs"
 
 # make time composite
-x <- data.frame(timeframe, Table = "fd_photosynthesis")
-no_photo <- merge(x, a.tally, by = c("Month", "Year"), all = TRUE)
+x <- data.frame(time_frame, Table = "fd_photosynthesis")
+no_photo <- merge(x, a.tally, by = c("month", "year"), all = TRUE)
 
 #####################
 # hemi camera
 a <- fd_hemi_camera()
 
 # this makes the year and month column
-a$Month <- format(as.Date(a$Date), "%m")
-a$Year <- format(as.Date(a$Date), "%Y")
+a$month <- format(as.Date(a$date), "%m")
+a$year <- format(as.Date(a$date), "%Y")
 
 # count it up
-a.tally <- aggregate(LAI_cam ~ Month + Year, data = a, FUN = length)
-names(a.tally)[3] <- "NoRecs"
+a.tally <- aggregate(lai_cam ~ month + year, data = a, FUN = length)
+names(a.tally)[3] <- "no_of_obs"
 
 # make time composite
-x <- data.frame(timeframe, Table = "fd_hemi_camera")
-no_cam <- merge(x, a.tally, by = c("Month", "Year"), all = TRUE)
+x <- data.frame(time_frame, Table = "fd_hemi_camera")
+no_cam <- merge(x, a.tally, by = c("month", "year"), all = TRUE)
 
 ##############################
-no_of_records <- rbind(no_soilR, no_leafSpec, no_photo, no_cam, no_par)
+no_of_records <- rbind(no_soil_r, no_leaf_spec, no_photo, no_cam, no_par)
 
 # change the table column to be character in line w/ package convention
 no_of_records$Table <- as.character(no_of_records$Table)
+names(no_of_records)[names(no_of_records) == "Table"] <- "table"
 
 weak_as_tibble(no_of_records)
 }

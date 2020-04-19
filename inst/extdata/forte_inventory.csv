@@ -1,4 +1,4 @@
-Site,SubplotID,Tag,Species,DBH_cm,Health_status,Canopy_status,Date,Notes
+site,subplot_id,tag,species,dbh_cm,health_status,canopy_status,date,notes
 UMBS,A01E,2772,POGR,36.2,L,OD,7/12/2018,
 UMBS,A01E,2773,POGR,41.6,L,OD,7/12/2018,
 UMBS,A01E,2774,FAGR,10.8,L,UN,7/12/2018,
