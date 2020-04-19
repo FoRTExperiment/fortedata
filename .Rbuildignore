@@ -5,3 +5,4 @@ essd
 
 .travis.yml
 coverage.R
+^\.github$
