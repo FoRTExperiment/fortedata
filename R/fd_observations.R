@@ -15,13 +15,13 @@ begin_date <- as.Date("2018-01-01")
 current_date <- Sys.Date()
 
 # create length of dates
-time_frame <- seq.Date(from = begin_date, to = current_date, by = "month", format = "%Y-%m")
+timeframe <- seq.Date(from = begin_date, to = current_date, by = "month", format = "%Y-%m")
 
 # Empty data frame
-time_frame <- data.frame(time_frame)
+timeframe <- data.frame(timeframe)
 
-time_frame$month <- format(time_frame$time_frame, "%m")
-time_frame$year <- format(time_frame$time_frame, "%Y")
+timeframe$month <- format(timeframe$timeframe, "%m")
+timeframe$year <- format(timeframe$timeframe, "%Y")
 
 #####################
 # CEPTOMETER!
@@ -37,7 +37,7 @@ a.tally <- aggregate(lai_cept ~ month + year, data = a, FUN = length)
 names(a.tally)[names(a.tally) == "lai_cept"] <- "no_of_obs"
 
 # make time composite
-no_par <- data.frame(time_frame, Table = "fd_ceptometer")
+no_par <- data.frame(timeframe, Table = "fd_ceptometer")
 no_par <- merge(no_par, a.tally, by = c("month", "year"), all = TRUE)
 
 #####################
@@ -54,7 +54,7 @@ b.tally <- aggregate(soil_co2_efflux ~ month + year, data = b, FUN = length)
 names(b.tally)[3] <- "no_of_obs"
 
 # make time composite
-x <- data.frame(time_frame, Table = "fd_soil_respiration")
+x <- data.frame(timeframe, Table = "fd_soil_respiration")
 no_soil_r <- merge(x, b.tally, by = c("month", "year"), all = TRUE)
 
 #####################
@@ -70,7 +70,7 @@ b.tally <- aggregate(index ~ month + year, data = b, FUN = length)
 names(b.tally)[3] <- "no_of_obs"
 
 # make time composite
-x <- data.frame(time_frame, Table = "fd_leaf_spectrometry")
+x <- data.frame(timeframe, Table = "fd_leaf_spectrometry")
 no_leaf_spec <- merge(x, b.tally, by = c("month", "year"), all = TRUE)
 
 #####################
@@ -86,7 +86,7 @@ a.tally <- aggregate(photo ~ month + year, data = a, FUN = length)
 names(a.tally)[3] <- "no_of_obs"
 
 # make time composite
-x <- data.frame(time_frame, Table = "fd_photosynthesis")
+x <- data.frame(timeframe, Table = "fd_photosynthesis")
 no_photo <- merge(x, a.tally, by = c("month", "year"), all = TRUE)
 
 #####################
@@ -102,7 +102,7 @@ a.tally <- aggregate(lai_cam ~ month + year, data = a, FUN = length)
 names(a.tally)[3] <- "no_of_obs"
 
 # make time composite
-x <- data.frame(time_frame, Table = "fd_hemi_camera")
+x <- data.frame(timeframe, Table = "fd_hemi_camera")
 no_cam <- merge(x, a.tally, by = c("month", "year"), all = TRUE)
 
 ##############################

@@ -13,11 +13,11 @@ fd_litter <- function() {
   # make lower case
   names(litter) <- tolower(names(litter))
 
+    # reformat subplot_id
+  names(litter)[names(litter) == "subplotid"] <- "subplot_id"
+
   # format species names
   litter$species <- toupper(litter$species)
-
-  # reformat subplot_id
-  names(litter)[names(litter) == "SubPlotID"] <- "subplot_id"
 
   # add subplot_id information . . . plot, replicate, subplot
   litter <- split_subplot_id(litter)

@@ -67,7 +67,7 @@ fd_photosynthesis <- function() {
   leaf_photo <- split_subplot_id(leaf_photo)
 
   # Adjust types
-  leaf_photo$Area <- as.numeric(leaf_photo$area)
+  leaf_photo$area <- as.numeric(leaf_photo$area)
   leaf_photo$stmrat <- as.numeric(leaf_photo$stmrat)
   leaf_photo$f_parin <- as.numeric(leaf_photo$f_parin)
   leaf_photo$f_parout <- as.numeric(leaf_photo$f_parout)
