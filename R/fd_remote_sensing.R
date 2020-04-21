@@ -15,7 +15,7 @@ fd_hemi_camera <- function() {
   # Format columns
   cam$date <- as.Date(cam$date, format = "%m/%d/%Y")
   names(cam)[names(cam) == "SubplotID"] <- "subplot_id"
-  names(cam)[names(cam) == "nsp"] <- "nested_subplot"
+  #names(cam)[names(cam) == "nsp"] <- "nested_subplot"
   names(cam)[names(cam) == "ndvi"] <- "ndvi"
   names(cam)[names(cam) == "gf"] <- "gap_fraction"
   names(cam)[names(cam) == "open"] <- "openness"
@@ -28,14 +28,24 @@ fd_hemi_camera <- function() {
   # Filter to just FoRTE data
   cam <- subset(cam, cam$project == "forte")
 
+  cam$nested_subplot <- cam$nsp
   # Replace NSP data with numbers
-  cam$nested_subplot[cam$nested_subplot == "C"] <- 0
-  cam$nested_subplot[cam$nested_subplot == "N"] <- 1
-  cam$nested_subplot[cam$nested_subplot == "E"] <- 3
-  cam$nested_subplot[cam$nested_subplot == "S"] <- 5
-  cam$nested_subplot[cam$nested_subplot == "W"] <- 7
-  cam$nested_subplot[cam$nested_subplot == "X"] <- NA
-  cam$nested_subplot[cam$nested_subplot == ""] <- NA
+  cam$nested_subplot[cam$nsp == "C"] <- 0
+  cam$nested_subplot[cam$nsp == "N"] <- 1
+  cam$nested_subplot[cam$nsp == "E"] <- 3
+  cam$nested_subplot[cam$nsp == "S"] <- 5
+  cam$nested_subplot[cam$nsp == "W"] <- 7
+  cam$nested_subplot[cam$nsp == "X"] <- NA
+  cam$nested_subplot[cam$nsp == ""] <- NA
+
+  #
+  # cam$nested_subplot[cam$nested_subplot == "C"] <- 0
+  # cam$nested_subplot[cam$nested_subplot == "N"] <- 1
+  # cam$nested_subplot[cam$nested_subplot == "E"] <- 3
+  # cam$nested_subplot[cam$nested_subplot == "S"] <- 5
+  # cam$nested_subplot[cam$nested_subplot == "W"] <- 7
+  # cam$nested_subplot[cam$nested_subplot == "X"] <- NA
+  # cam$nested_subplot[cam$nested_subplot == ""] <- NA
 
   cam$nested_subplot <- as.integer(cam$nested_subplot)
   # Remove the images that were retained as placemarkers
@@ -46,7 +56,7 @@ fd_hemi_camera <- function() {
   cam <- cam[c("subplot_id", "replicate", "plot", "subplot", "nested_subplot", "date",
         "ndvi", "gap_fraction", "openness", "lai_cam", "clumping_index")]
 
-  #weak_as_tibble(cam)
+  weak_as_tibble(cam)
 }
 
 #' Canopy structural traits from 2D canopy LiDAR.

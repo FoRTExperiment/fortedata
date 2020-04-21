@@ -3,14 +3,17 @@ title: "ESSD fortedata manuscript"
 author: "Jeff Atkins"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
-  word_document: default
   html_document: default
+  word_document: default
 ---
 
 This document is intended to be the core of the planned ESSD manuscript: summarizing the database, giving stats, describing datasets, etc.
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
 
 library(fortedata)
 library(dplyr)
@@ -19,7 +22,8 @@ library(readr)
 library(covr)
 library(tidyr)
 library(ggplot2)
-
+library(kableExtra)
+library(viridis)
 
 ```
 
@@ -78,13 +82,8 @@ It is necessary to install and use the `fortedata` R package in order to access 
 This provides a robust framework, including dedicated access functions, dataset and database
 report generation, and QA/QC (see below).
 
-```{r dbsize, include=FALSE, cache=TRUE}
-db_disksize <- system2("git", args = c("count-objects", "-vH"), stdout = TRUE)
-db_disksize <- db_disksize[grepl("size:",db_disksize)]
-db_disksize <- gsub("size: ", "", db_disksize)
-```
 
-Because currently all field data are included in the repository itself, `fortedata` is quite large (compared to most Git repositories) to download, ~`r db_disksize`. It thus cannot be hosted on CRAN (the Comprehensive R Archive Network), the canonical source for R packages. Installing directly from GitHub is however straightforward using the `devtools` or `remotes` packages:
+
 
 ```
 devtools::install_github("FoRTExperiment/fortedata")
@@ -99,13 +98,15 @@ devtools::install_github("bpbond/cosore@v0.4") ##### flag here
 
 Datasets are available via user-facing functions:
 
-* `fd_soil_respiration()` returns a single dataset that includes soil CO2 efflux measurements as well as soil temperature and soil water content. 
-* `fd_hemi_camera()` returns a single dataset that includes hemispherical photos of the forest canopy taken 1 meter above-ground, and includes estimates of leaf area index, gap fraction, and NDVI (normalized difference vegetation index). 
-* `fd_canopy_structure()` returns a single dataset that includes estimates of canopy structural traits such as height, area/density, openness, complexity, and arrangement derived from terrestrial lidar and processed using the `forestr` (Atkins et al. 2018; 2020) package in R Version 3.6.2 (R Core Team, 2020). 
-* `fd_par()` returns a single dataset that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI_cept)--each derived from a handheld ceptometer (LP-80; Decagon Devices).
-* `fd_lai()` returns a single dataset of leaf area index (LAI) estimated from litterfall captured via littertraps, calculated using specific leaf area values for each represented species. 
-* `fd_leaf_spectrometry()` returns a single data set of vegetation indices derived from leaf-level spectrometry data collected via a CID-710 handheld spectrometer.
-* `fd_photosynthesis()` returns a single dataset of leaf physiology variables, including photosynthesis, transpiration, etc, measured using a Li-Cor 6400 (Li-Cor Biosciences; Lincoln, NE).
+* `fd_inventory()` returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), latitude, longitude, and biomass for each measured stem, as well as information on vitality and canopy position (Table S4). There are 3165 observations in the dataset, all measured in 2018 (Fig. 2). 
+* `fd_soil_respiration()` returns a single dataset of 2780 observations each of soil CO2 efflux (μmol CO2 m-2 s-1), soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) for the year 2019 (Figs. 3, 4; Table S5).
+* `fd_leaf_spectrometry()` returns a single dataset of vegetation indices derived from leaf-level spectrometry data collected via a CI-710 handheld spectrometer (Table S6). The package includes 7155 observations of spectral indices for three species each in eight subplots within the D replicate (Figs. 1 and 4).  
+* `fd_photosynthesis()` returns a single dataset of leaf physiology variables, including photosynthesis, transpiration, etc, measured using a LI-6400 XT (LI-COR Biosciences; Lincoln, NE)(Table S7). The package includes 2215 observations from 2018 (Fig. 4). 
+* `fd_litter()` returns a single dataset of litter mass collected via litter traps (four in each subplot, at nested sampling points 1, 3, 5, 7). The data include the tare + oven-dried mass of leaves as well as the tare weight (the empty bag), by species, by subplot (Table S7). The data also include notations for “CWD”, the collection of coarse woody debris (e.g. sticks, branches), and “MIX”, fragments of leaves too small to identify to the species levels as well as other missed organic fragments in the basket. Litter mass can be calculated by subtracting the tare weight from the mass + tare. There are a total of 340 observations included in the package from 2018. 
+* `fd_hemi_camera()` returns a single dataset that includes derived estimates of leaf area index, gap fraction, clumping index, and NDVI (normalized difference vegetation index) from terrestrial, upward-facing hemispherical photos looking into the forest canopy taken 1 meter above-ground (Table S9). The data package includes 1028 observations of each variable from 2018 and 2019 (Fig. 4).
+* `fd_canopy_structure()` returns a single dataset that includes estimates of canopy structural traits such as height, area/density, openness, complexity, and arrangement derived from terrestrial lidar and processed using  forestr version 1.0.1 (Atkins et al. 2018) in R Version 3.6.2 (R Core Team, 2020). The package includes 62 observations for each metric (28 canopy structural metrics are included in forestr v1.0.1 that estimate canopy structural traits such as area/density, openness, arrangement, heterogeneity, and layering (Atkins et al. 2018; Fahey et al. 2019)) from 2018 (Table S10).  
+* `fd_par()` returns a single dataset that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI_cept)--each derived from a handheld ceptometer (LP-80; Decagon Devices)(Table S11). The package includes 32 observations of each variable from 2019 and 16 from 2018 (Fig. 4). 
+
 * `fd_inventory()` returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), as latitude, longitude, and biomass for each measured stem. Biomass is calculated from species specific allometries included in `biomass_allometry_table.csv` within `fortedata`. 
 
 
@@ -149,8 +150,8 @@ md <- read.csv(mdf, stringsAsFactors = FALSE)
 options(knitr.kable.NA = "")
 make_table <- function(metadata, table_name) {
   metadata %>% 
-    filter(Table == table_name) %>%
-    select(-Table, -Notes) %>% 
+    filter(table == table_name) %>%
+    select(-table, -notes) %>% 
 #    arrange(Field) %>% 
     kableExtra::kable(format = "markdown")
 }
@@ -179,6 +180,15 @@ make_table(md, "fd_inventory")
 
 ```{r table_soil_respiration}
 make_table(md, "fd_soil_respiration")
+pal <- viridis(4, begin = 0, end = 0.9)
+rs <- fd_soil_respiration()
+# Violin plot of rs data by rep
+rs %>% 
+  ggplot(aes(x = replicate, y = soil_co2_efflux)) + 
+  geom_jitter(aes(color = replicate), alpha = 0.2) +
+  geom_violin(aes(color = replicate), fill = NA, size = 1) + 
+  scale_color_manual(values = pal) + theme_bw() + 
+  labs(y = expression(Soil~Respiration~(μmol~CO[2]~m^-2~s^-1)))
 ```
 
 ### Leaf spectrometry
@@ -218,13 +228,13 @@ make_table(md, "fd_ceptometer")
 ```
 
 ### Number of Observations
-```{r no_of_obs}
+```{r no_of_obs, fig.width = 8, fig.height = 8}
 no_of_records <- fd_observations()
 # Heatmap
 #x11(width = 10, height = 8)
-ggplot(no_of_records, aes(x = as.factor(Month), y = as.integer(Year), fill= NoRecs)) +
-  geom_tile(aes(fill = NoRecs), color = "black") +
-  geom_text(aes(label = NoRecs), color = "white") +
+ggplot(no_of_records, aes(x = as.factor(month), y = as.integer(year), fill= no_of_obs)) +
+  geom_tile(aes(fill = no_of_obs), color = "black") +
+  geom_text(aes(label = no_of_obs), color = "white") +
   coord_equal()+
   scale_fill_gradient(low = "#450d54", high = "#450d54", na.value = 'white')+
   #scale_fill_viridis(na.value = 'white')+
@@ -234,7 +244,7 @@ ggplot(no_of_records, aes(x = as.factor(Month), y = as.integer(Year), fill= NoRe
   ylab("Year")+
   xlab("Month")+
   ggtitle(paste("No. of observations currently availble \nin each function as of:", Sys.Date()))+
-  facet_grid(Table ~ .,  space = "free")+
+  facet_grid(table ~ .,  space = "free")+
   theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
     color="black", fill="white", size= 0.5, linetype="solid"))
 

@@ -45,8 +45,8 @@ no_par <- merge(no_par, a.tally, by = c("month", "year"), all = TRUE)
 b <- fd_soil_respiration()
 
 # this makes the year and month column
-b$month <- format(as.Date(b$date), "%m")
-b$year <- format(as.Date(b$date), "%Y")
+b$month <- format(as.Date(b$timestamp), "%m")
+b$year <- format(as.Date(b$timestamp), "%Y")
 
 # count it up
 b.tally <- aggregate(soil_co2_efflux ~ month + year, data = b, FUN = length)
