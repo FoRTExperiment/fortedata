@@ -12,7 +12,10 @@ This document is intended to be the core of the planned ESSD manuscript: summari
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE, 
+  echo = FALSE
 )
 
 library(fortedata)
@@ -144,6 +147,8 @@ md <- read.csv(mdf, stringsAsFactors = FALSE)
 ```
 
 
+![**Figure 1:** **(A)** Map showing the distribution of plots in relation to landform types—colors indicate assigned severity levels. **(B)** Subplot diagram showing position of nested subplots for sampling and arrangement of subplots within the plot (orange).](essd_fig_1.png){ width=60% } 
+
 ### Plots table
 
 ```{r table_plots}
@@ -174,7 +179,52 @@ make_table(md, "fd_nested_subplots")
 
 ```{r table_inventory}
 make_table(md, "fd_inventory")
+
+inv <- data.frame(fd_inventory())
+
+
+inv <- subset(inv, species != "????")
+inv$species <- as.factor(inv$species)
+
+# function to make limits
+stat_box_data <- function(y, upper_limit = max(df$dbh_cm, na.rm = TRUE) * 1.15) {
+  return(
+    data.frame(
+      y = 0.95 * upper_limit,
+      label = paste('n =', length(y), sep = " ")
+    )
+  )
+}
+
+# good looking box plot with jitter plot on top
+ggplot(inv, aes(x = species, y = dbh_cm, fill = species)) +
+  geom_boxplot(outlier.size = 0) +
+  scale_fill_viridis(discrete = TRUE, alpha=0.6) +
+  #geom_jitter(color = "black", size = 0.5, alpha=0.2) +
+  stat_summary(
+    fun.data = stat_box_data,
+    geom = "text",
+    hjust = 0.5,
+    vjust = 0.9,
+    size = 3
+  )+
+  theme_bw()+
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size=11)
+  )+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  xlab("")+
+  ylab("Diameter at Breast Height (cm)")+
+  facet_grid(replicate ~ species, scales = "free", space = "free")+
+  theme(
+    strip.background.x = element_blank(),
+    strip.text.x = element_blank(),
+    panel.spacing.x = unit(0, "lines")
+  )
 ```
+
+**Figure 2: Diameter-at-breast height (DBH) distributions for each species, grouped by replicate. The bounds of each box in the boxplot represents the 25th percentile at the lower bound, and the 75th percentile at the upper, and the horizontal line is the median. Lines extending from the lower and upper bounds represent values that are 1.5 times the interquartile range for the minimum and maximum values, respectively, while black circles indicate outliers. Above each box plot, n is the number of observations.**
 
 ### Soil respiration
 
@@ -190,6 +240,8 @@ rs %>%
   scale_color_manual(values = pal) + theme_bw() + 
   labs(y = expression(Soil~Respiration~(μmol~CO[2]~m^-2~s^-1)))
 ```
+
+**Figure 3: Distribution of soil CO2 Efflux values from May-November, 2019 by replicate.**
 
 ### Leaf spectrometry
 
@@ -249,3 +301,5 @@ ggplot(no_of_records, aes(x = as.factor(month), y = as.integer(year), fill= no_o
     color="black", fill="white", size= 0.5, linetype="solid"))
 
 ```
+
+**Figure 4:** Number of available records as of March 30, 2020 for time-series datasets including light availability from fd_ceptometer(),  camera derived LAI from fd_hemi_camera, leaf-level vegetation spectra indices from fd_spectrometry, photosynthesis and stomatal conductance from fd_photosynthesis, and soil CO2 efflux from fd_soil_respiration. 
