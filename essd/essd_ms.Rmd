@@ -18,6 +18,8 @@ library(lubridate)
 library(readr)
 library(covr)
 library(tidyr)
+library(viridis)
+library(ggplot2)
 
 ```
 
