@@ -175,6 +175,32 @@ make_table(md, "fd_subplots")
 make_table(md, "fd_nested_subplots")
 ```
 
+**Figure 2:** Number of available records as of `Sys.Date()` for time-series datasets including light availability from fd_ceptometer(),  camera derived LAI from fd_hemi_camera, leaf-level vegetation spectra indices from fd_spectrometry, photosynthesis and stomatal conductance from fd_photosynthesis, and soil CO2 efflux from fd_soil_respiration. 
+
+### Number of Observations
+```{r no_of_obs, fig.width = 8, fig.height = 8}
+no_of_records <- fd_observations()
+# Heatmap
+#x11(width = 10, height = 8)
+ggplot(no_of_records, aes(x = as.factor(month), y = as.integer(year), fill= no_of_obs)) +
+  geom_tile(aes(fill = no_of_obs), color = "black") +
+  geom_text(aes(label = no_of_obs), color = "white") +
+  coord_equal()+
+  scale_fill_gradient(low = "#450d54", high = "#450d54", na.value = 'white')+
+  #scale_fill_viridis(na.value = 'white')+
+  scale_y_reverse()+
+  theme_minimal()+
+  theme(legend.position = "none")+
+  ylab("Year")+
+  xlab("Month")+
+  ggtitle(paste("No. of observations currently availble \nin each function as of:", Sys.Date()))+
+  facet_grid(table ~ .,  space = "free")+
+  theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
+    color="black", fill="white", size= 0.5, linetype="solid"))
+
+```
+
+
 ### Inventory dataset
 
 ```{r table_inventory}
@@ -224,7 +250,7 @@ ggplot(inv, aes(x = species, y = dbh_cm, fill = species)) +
   )
 ```
 
-**Figure 2: Diameter-at-breast height (DBH) distributions for each species, grouped by replicate. The bounds of each box in the boxplot represents the 25th percentile at the lower bound, and the 75th percentile at the upper, and the horizontal line is the median. Lines extending from the lower and upper bounds represent values that are 1.5 times the interquartile range for the minimum and maximum values, respectively, while black circles indicate outliers. Above each box plot, n is the number of observations.**
+**Figure 3:** Diameter-at-breast height (DBH) distributions for each species, grouped by replicate. The bounds of each box in the boxplot represents the 25th percentile at the lower bound, and the 75th percentile at the upper, and the horizontal line is the median. Lines extending from the lower and upper bounds represent values that are 1.5 times the interquartile range for the minimum and maximum values, respectively, while black circles indicate outliers. Above each box plot, n is the number of observations.
 
 ### Soil respiration
 
@@ -241,7 +267,7 @@ rs %>%
   labs(y = expression(Soil~Respiration~(μmol~CO[2]~m^-2~s^-1)))
 ```
 
-**Figure 3: Distribution of soil CO2 Efflux values from May-November, 2019 by replicate.**
+**Figure 4: Distribution of soil CO2 Efflux values from May-November, 2019 by replicate.**
 
 ### Leaf spectrometry
 
@@ -279,27 +305,3 @@ make_table(md, "fd_canopy_structure")
 make_table(md, "fd_ceptometer")
 ```
 
-### Number of Observations
-```{r no_of_obs, fig.width = 8, fig.height = 8}
-no_of_records <- fd_observations()
-# Heatmap
-#x11(width = 10, height = 8)
-ggplot(no_of_records, aes(x = as.factor(month), y = as.integer(year), fill= no_of_obs)) +
-  geom_tile(aes(fill = no_of_obs), color = "black") +
-  geom_text(aes(label = no_of_obs), color = "white") +
-  coord_equal()+
-  scale_fill_gradient(low = "#450d54", high = "#450d54", na.value = 'white')+
-  #scale_fill_viridis(na.value = 'white')+
-  scale_y_reverse()+
-  theme_minimal()+
-  theme(legend.position = "none")+
-  ylab("Year")+
-  xlab("Month")+
-  ggtitle(paste("No. of observations currently availble \nin each function as of:", Sys.Date()))+
-  facet_grid(table ~ .,  space = "free")+
-  theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
-    color="black", fill="white", size= 0.5, linetype="solid"))
-
-```
-
-**Figure 4:** Number of available records as of March 30, 2020 for time-series datasets including light availability from fd_ceptometer(),  camera derived LAI from fd_hemi_camera, leaf-level vegetation spectra indices from fd_spectrometry, photosynthesis and stomatal conductance from fd_photosynthesis, and soil CO2 efflux from fd_soil_respiration. 

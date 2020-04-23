@@ -1,0 +1,31 @@
+---
+title: "fortedata: Litter Data"
+author: "Jeff Atkins"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FoRTE Litter}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  require(fortedata)
+)
+```
+
+## Litter Data
+The `fd_remote_sensing()` script within `fortedata` currently includes the following functions:
+
+* `fd_litter()` returns a single dataset of litter mass collected via litter traps (four in each subplot, at nested sampling points 1, 3, 5, 7). The data include the tare + oven-dried mass of leaves as well as the tare weight (the empty bag), by species, by subplot (Table S7). The data also include notations for “CWD”, the collection of coarse woody debris (e.g. sticks, branches), and “MIX”, fragments of leaves too small to identify to the species levels as well as other missed organic fragments in the basket. Litter mass can be calculated by subtracting the tare weight from the mass + tare. There are a total of 340 observations included in the package from 2018.  
+
+
+## Litter Trap Data
+  
+  Placeholder
+
+```{r fd_litter}
+fd_litter()
+```
