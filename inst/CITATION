@@ -1,0 +1,48 @@
+citHeader("To cite fortedata in publications use:")
+
+citEntry(
+  entry = "Article",
+  title = paste("The fortedata R package:",
+                "open-science datasets from a manipulative experiment",
+                "testing forest resilience"),
+  author = personList(
+    as.person("Jeff W. Atkins"),
+    as.person("Elizabeth Agee"),
+    as.person("Alexandra Barry"),
+    as.person("Kyla M. Dahlin"),
+    as.person("Kalyn Dorheim"),
+    as.person("Lisa T. Haber"),
+    as.person("Laura J. Hickey"),
+    as.person("Maxim S. Grigri"),
+    as.person("Aaron G. Kamoske"),
+    as.person("Kayla Mathes"),
+    as.person("Catherine McQuigan"),
+    as.person("Evan Paris"),
+    as.person("Stephanie C. Pennington"),
+    as.person("Carly Rodriguez"),
+    as.person("Autymn Shafer"),
+    as.person("Alexey N. Shiklomanov"),
+    as.person("Jason Tallant"),
+    as.person("Christopher M. Gough"),
+    as.person("Ben Bond-Lamberty")
+  ),
+  journal = "Earth System Science Data",
+  # TODO: Update and fill in when published
+  year = "in review",
+  # volume = "XX",
+  # number = "X",
+  # pages = "X--XX",
+  # url = "XXXX",
+  # doi = "XXXX"
+  textVersion = paste(
+    "Atkins, J.A., Agee, E., Barry, A., Dahlin, K.,",
+    "Dorheim, K., Haber, L.T., Hicket, L.J., Grigri, M.S.",
+    "Kamoske, A.G., Mathes, K., McQuigan, C.,",
+    "Paris, E., Pennington, S., Rodriguz, C.,",
+    "Shafer, A., Shiklomanov, A.N., Tallant, J.,",
+    "Gough, C.M., Bond-Lamberty, B.",
+    "(in review).",
+    "The fortedata R package: open-science datasets from a manipulative experiment testing forest resilience.", #nolint
+    "Earth System Science Data"
+  )
+)
