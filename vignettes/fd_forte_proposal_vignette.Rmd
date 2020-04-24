@@ -11,8 +11,7 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+  collapse = TRUE
 )
 ```
 
@@ -33,7 +32,7 @@ knitr::opts_chunk$set(
   These results highlight significant knowledge and data gaps: **What mechanisms determine the threshold between NPP resilience and decline? What are the implications for models? Do temperate deciduous and coniferous forests, with different disturbance regimes, follow unique age-production
 (NPP and NEP) trajectories? And what data are most needed to resolve these questions?** We propose a tripartite approach. Coupled field and modeling experiments will manipulate disturbance severity to identify the mechanisms responsible for this apparent resilience, and their limits, while using an NSF-funded (Award #1458021) data assimilation framework to test how well different models reproduce observed behavior, and why. This goes well beyond previous observational studies or, as in FASET, experiments that applied only a single level of moderate disturbance, often without replication or controls (Amiro et al 2010). Finally, we will perform an ‘open data’, fully reproducible synthesis of North American temperate forests to lay the foundation for future work, by our team and others, examining how and why successional trajectories of NPP and NEP–posited by ecological theory (e.g., Odum 1969) and observations (e.g., Williams et al. 2014, Gough et al. 2016) to be closely coupled with disturbance frequency and severity–differ among forest types. This synthesis will focus on middle- to late-successional forests since this region of the age-production curve is the least studied and understood.
 
-![**Figure 2.** Rugosity, a metric of canopy structural complexity, is positively correlated with ANPP (a) and improved light-use efficiency (LUE, b). A similar relationship (not shown) was found between rugosity and nitrogen-use efficiency. More structurally complex and resource-use efficient forests that emerge from moderate disturbance may thus resist declines in production up to some critical threshold of disturbance. Hardiman et al. 2013, For. Ecol. Man.](proposal_fig_2.png){ width=50% }
+![**Figure 2.** Rugosity, a metric of canopy structural complexity, is positively correlated with ANPP (a) and improved light-use efficiency (LUE, b). A similar relationship (not shown) was found between rugosity and nitrogen-use efficiency. More structurally complex and resource-use efficient forests that emerge from moderate disturbance may thus resist declines in production up to some critical threshold of disturbance. Hardiman et al. 2013, For. Ecol. Man.](proposal_fig_2.PNG)
 
 
 ### II. Objectives and Hypotheses

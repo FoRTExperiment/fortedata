@@ -7,7 +7,7 @@
 split_subplot_id(df)
 }
 \arguments{
-\item{df}{A data.frame with a four-character \code{SubplotID} column}
+\item{df}{A data.frame with a four-character \code{subplot_id} column}
 }
 \value{
 The data frame with new columns \code{replicate}, \code{plot},
@@ -17,6 +17,6 @@ and \code{subplot}.
 Split the SubplotID column into more useful individual columns
 }
 \examples{
-fortedata:::split_subplot_id(data.frame(subplot_id = "A01E"))
+fortedata::split_subplot_id(data.frame(subplot_id = "A01E"))
 }
 \keyword{internal}

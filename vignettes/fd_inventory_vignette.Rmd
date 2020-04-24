@@ -26,5 +26,15 @@ fd_inventory()
 ```
 ## Inventory Data
   
-  Placeholder text on the Haglof Postex System 
+  Biomass can be calculated from `fd_inventory()` directly, without assignment, by using the function `calc_biomass()` as such using site/regionally specific allometries (details need to be added.)
 
+```{r biomass, fig.height = 3.5, fig.width = 7.5, fig.align = "center"}
+# import the biomass data
+df <- fortedata::calc_biomass()
+
+# return density plot of replicate biomass
+ggplot2::ggplot(df, ggplot2::aes(x = biomass, fill = as.factor(replicate)))+
+  ggplot2::geom_density(alpha = 0.4)+
+  ggplot2::theme(legend.position = "none")+
+  ggplot2::facet_grid(.~replicate)
+```
