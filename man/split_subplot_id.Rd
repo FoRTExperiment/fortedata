@@ -17,6 +17,6 @@ and \code{subplot}.
 Split the SubplotID column into more useful individual columns
 }
 \examples{
-fortedata::split_subplot_id(data.frame(subplot_id = "A01E"))
+fortedata:::split_subplot_id(data.frame(subplot_id = "A01E"))
 }
 \keyword{internal}

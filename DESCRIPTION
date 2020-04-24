@@ -17,7 +17,9 @@ Suggests:
     tibble,
     stringr,
     knitr,
-    rmarkdown
+    ggplot2,
+    rmarkdown,
+    viridis
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0

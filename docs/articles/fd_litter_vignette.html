@@ -90,7 +90,7 @@
       <h1 data-toc-skip>fortedata: Litter Data</h1>
                         <h4 class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-04-23</h4>
+            <h4 class="date">2020-04-24</h4>
       
       
       <div class="hidden name"><code>fd_litter_vignette.Rmd</code></div>
@@ -112,21 +112,38 @@
 <h2 class="hasAnchor">
 <a href="#litter-trap-data" class="anchor"></a>Litter Trap Data</h2>
 <p>Placeholder</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="../reference/fd_litter.html">fd_litter</a></span>()
-<span class="co">## # A tibble: 340 x 8</span>
-<span class="co">##    subplot_id replicate  plot subplot  year species bagtare_g bagmass_g</span>
-<span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 A04E       A             4 E        2018 QURU          7.2      13.9</span>
-<span class="co">##  2 A04E       A             4 E        2018 BEPA          7.1       7.1</span>
-<span class="co">##  3 A04E       A             4 E        2018 MISC          7.2      20.6</span>
-<span class="co">##  4 A04E       A             4 E        2018 CWD           7.2      20  </span>
-<span class="co">##  5 A02W       A             2 W        2018 FAGR         22.5      42.8</span>
-<span class="co">##  6 A02W       A             2 W        2018 POGR          6.9       9.1</span>
-<span class="co">##  7 A02W       A             2 W        2018 ACSA         22.5     106. </span>
-<span class="co">##  8 A02W       A             2 W        2018 POGR         22.5     112. </span>
-<span class="co">##  9 A02W       A             2 W        2018 QURU          6.9       8.5</span>
-<span class="co">## 10 A02W       A             2 W        2018 BEPA          6.9       7.1</span>
-<span class="co">## # ... with 330 more rows</span></pre></body></html></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># import litter mass dataset</span>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/fd_litter.html">fd_litter</a></span>()
+
+<span class="co"># we want to calculate the leaf mass by subtracting the tare weight `bagtare_g` from `bagmass_g`</span>
+<span class="no">df</span>$<span class="no">leafmass_g</span> <span class="kw">&lt;-</span> <span class="no">df</span>$<span class="no">bagmass_g</span> - <span class="no">df</span>$<span class="no">bagtare_g</span>
+
+<span class="co"># let's plot it</span>
+<span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">df</span>, <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">replicate</span>), <span class="kw">y</span> <span class="kw">=</span> <span class="no">leafmass_g</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">replicate</span>) ))+
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span>()+
+  <span class="kw pkg">viridis</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_color_viridis</a></span>(<span class="kw">discrete</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">option</span> <span class="kw">=</span> <span class="st">"D"</span>)+
+  <span class="kw pkg">viridis</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_fill_viridis</a></span>(<span class="kw">discrete</span> <span class="kw">=</span> <span class="fl">TRUE</span>)+
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Leaf Mass [g]"</span>)+
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Replicate"</span>)+
+  <span class="fu">theme</span>(<span class="kw">legend.position</span> <span class="kw">=</span> <span class="st">"NONE"</span>)</pre></body></html></div>
+<p><img src="fd_litter_vignette_files/figure-html/fd_litter-1.png" width="576" style="display: block; margin: auto;"></p>
+</div>
+<div id="leaf-area-index-lai" class="section level2">
+<h2 class="hasAnchor">
+<a href="#leaf-area-index-lai" class="anchor"></a>Leaf Area Index (LAI)</h2>
+<p>Leaf Area Index can be calculated from <code><a href="../reference/fd_litter.html">fd_litter()</a></code> via the <code><a href="../reference/calc_lai.html">calc_lai()</a></code> function</p>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># import lai values at the plot scale</span>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/calc_lai.html">calc_lai</a></span>()
+
+<span class="co"># let's plot it</span>
+<span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">df</span>, <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">replicate</span>), <span class="kw">y</span> <span class="kw">=</span> <span class="no">lai</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">replicate</span>) ))+
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span>()+
+  <span class="kw pkg">viridis</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_color_viridis</a></span>(<span class="kw">discrete</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">option</span> <span class="kw">=</span> <span class="st">"D"</span>)+
+  <span class="kw pkg">viridis</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_fill_viridis</a></span>(<span class="kw">discrete</span> <span class="kw">=</span> <span class="fl">TRUE</span>)+
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Leaf Area Index (LAI)"</span>)+
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Replicate"</span>)+
+  <span class="fu">theme</span>(<span class="kw">legend.position</span> <span class="kw">=</span> <span class="st">"NONE"</span>)</pre></body></html></div>
+<p><img src="fd_litter_vignette_files/figure-html/lai-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
   </div>
 

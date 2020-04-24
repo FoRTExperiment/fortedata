@@ -66,7 +66,7 @@ fd_metadata <- function(table = NULL) {
 #' and \code{subplot}.
 #' @keywords internal
 #' @examples
-#' fortedata::split_subplot_id(data.frame(subplot_id = "A01E"))
+#' fortedata:::split_subplot_id(data.frame(subplot_id = "A01E"))
 split_subplot_id <- function(df) {
   stopifnot("subplot_id" %in% names(df))
   df$replicate <- substr(df$subplot_id, 1, 1)
@@ -181,8 +181,7 @@ calc_lai <- function() {
   # make plot lai by species
   lai <- stats::aggregate(leaf_area ~ subplot_id + year, data = leaf, FUN = sum)
 
-  # Add in the allometries
-  inv <- merge(inv, allo.df)
+
   # adds in plot area
   plot_area <- 1000  #plot area in m^2 (is 0.1 ha)
 

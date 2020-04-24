@@ -8,9 +8,6 @@ sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flu
 \usage{
 calc_biomass()
 }
-\arguments{
-\item{df}{Output from fd_inventory}
-}
 \value{
 A data frame of biomass at the individual level build from fd_inventory
 }
