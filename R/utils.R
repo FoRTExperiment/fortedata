@@ -1,5 +1,3 @@
-# Utilities
-
 #' Read an internal package CSV file.
 #'
 #' @param ... Filename, character
@@ -109,7 +107,7 @@ print.palette <- function(x, ...) {
 }
 
 #' Calculate biomass from DBH data in fd_inventory() using equations from
-#' # Table  . Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
+#' Table  . Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
 #' sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint.
 #'
 #' Studies used to augment Cooper’s raw data for a species are denoted by superscripts.

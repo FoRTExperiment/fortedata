@@ -2,8 +2,8 @@
 % Please edit documentation in R/utils.R
 \name{calc_biomass}
 \alias{calc_biomass}
-\title{Calculate biomass from DBH data in fd_inventory() using equations fromTable  . Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
-
+\title{Calculate biomass from DBH data in fd_inventory() using equations from
+Table  . Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
 sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint.}
 \usage{
 calc_biomass()
