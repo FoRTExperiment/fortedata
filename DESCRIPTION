@@ -5,8 +5,7 @@ Authors@R: c(person("Jeff", "Atkins", email = "jwatkins6@vcu.edu", role = c("aut
           person("Ben", "Bond-Lamberty", role = "aut"),
           person("Kaylen", "Dorheim", rol = "aut"),
           person("Stephanie", "Pennington", role = "aut"),
-          person("Alexey", "Shiklomanov", role = "aut"),
-          person("Jason", "Tallant", role = "aut")
+          person("Alexey", "Shiklomanov", role = "aut")
           )
 Description: This package includes data from 2018 and 2019 from the FoRTE project at UMBS. This description is incomplete.
 Depends:
