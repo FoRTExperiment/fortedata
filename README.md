@@ -1,6 +1,6 @@
 # fortedata: An open-data package for the R programming Language
 
-![](./vignettes/forte_hex.png)![](./vignettes/readme_girdle.png)![](./vignettes/readme_three.png)</br>
+![](./vignettes/forte_hex.png)
 
 
 
