@@ -28,8 +28,8 @@ timeframe$year <- format(timeframe$timeframe, "%Y")
 a <- fd_ceptometer()
 
 # this makes the year and month column
-a$month <- format(as.Date(a$timestamp), "%m")
-a$year <- format(as.Date(a$timestamp), "%Y")
+a$month <- as.numeric(format(as.Date(a$timestamp), "%m"))
+a$year <- as.numeric(format(as.Date(a$timestamp), "%Y"))
 
 # count it up
 a.tally <- aggregate(lai_cept ~ month + year, data = a, FUN = length)
