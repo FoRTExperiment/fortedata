@@ -10,9 +10,21 @@
 fd_litter <- function() {
   litter <- read_csv_file("fd_littertrap.csv")
 
-  litter$Species <- toupper(litter$Species)
+  # make lower case
+  names(litter) <- tolower(names(litter))
+
+    # reformat subplot_id
+  names(litter)[names(litter) == "subplotid"] <- "subplot_id"
+
+  # format species names
+  litter$species <- toupper(litter$species)
+
+  # add subplot_id information . . . plot, replicate, subplot
   litter <- split_subplot_id(litter)
 
   # Reorder columns, dropping unneeded ones
-  litter[c("SubplotID", "Replicate", "Plot", "Subplot", "Year", "Species", "BagTare_g", "BagMass_g")]
+  litter <- litter[c("subplot_id", "replicate", "plot", "subplot", "year", "species", "bagtare_g", "bagmass_g")]
+  weak_as_tibble(litter)
 }
+
+

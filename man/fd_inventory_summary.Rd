@@ -15,11 +15,11 @@ Basic statistics generated from the raw inventory data.
 \details{
 The returned columns are as follows:
 \itemize{
-\item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
-\item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
-\item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
-\item \code{BA_m2_ha} (numeric): Basal area, square meters per hectare.
-\item \code{Stocking_ha} (numeric): Stocking, trees per hectare.
+\item \code{replicate} (character): Replicate code, extracted from \code{SubplotID}.
+\item \code{plot} (integer): Plot ID number, extracted from \code{SubplotID}.
+\item \code{subplot} (character): Subplot code, extracted from \code{SubplotID}.
+\item \code{ba_m2_ha} (numeric): Basal area, square meters per hectare.
+\item \code{stocking_ha} (numeric): Stocking, trees per hectare.
 }
 }
 \note{

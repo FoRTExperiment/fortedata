@@ -1,21 +1,26 @@
 Package: fortedata
 Title: Data from the Forest Resilience and Threshold Experiment
-Version: 0.1.0
+Version: 1.0.1
 Authors@R: c(person("Jeff", "Atkins", email = "jwatkins6@vcu.edu", role = c("aut", "cre")),
           person("Ben", "Bond-Lamberty", role = "aut"),
+          person("Kalyn", "Dorheim", rol = "aut"),
           person("Stephanie", "Pennington", role = "aut"),
-          person("Alexey", "Shiklomanov", role = "aut"),
-          person("Jason", "Tallant", role = "aut")
+          person("Alexey", "Shiklomanov", role = "aut")
           )
 Description: This package includes data from 2018 and 2019 from the FoRTE project at UMBS. This description is incomplete.
 Depends:
     R (>= 3.5.0)
-License: MIT + file LICENSE
+License: file LICENSE
 Suggests: 
     testthat,
     tibble,
-    stringr
+    stringr,
+    knitr,
+    ggplot2,
+    rmarkdown,
+    viridis
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE)
+VignetteBuilder: knitr

@@ -1,0 +1,42 @@
+---
+title: "fortedata: Forest Inventory Data"
+author: "Jeff Atkins"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FoRTE Forest Inventory}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  require(fortedata),
+  require(ggplot2),
+  require(viridis)
+)
+```
+
+## Forest Inventory Data
+The `fd_inventory()` script within `fortedata` currently includes one function:
+
+* `fd_inventory()` returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), latitude, longitude, and biomass for each measured stem, as well as information on vitality and canopy position . There are 3165 observations in the dataset, all measured in 2018.
+
+```{r fd_inventory}
+fd_inventory()
+```
+## Inventory Data
+  
+  Biomass can be calculated from `fd_inventory()` directly, without assignment, by using the function `calc_biomass()` as such using site/regionally specific allometries (details need to be added.)
+
+```{r biomass, fig.height = 3.5, fig.width = 7.5, fig.align = "center"}
+# import the biomass data
+df <- fortedata::calc_biomass()
+
+# return density plot of replicate biomass
+ggplot2::ggplot(df, ggplot2::aes(x = biomass, fill = as.factor(replicate)))+
+  ggplot2::geom_density(alpha = 0.4)+
+  ggplot2::theme(legend.position = "none")+
+  ggplot2::facet_grid(.~replicate)
+```
