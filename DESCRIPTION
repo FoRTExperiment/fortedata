@@ -3,7 +3,7 @@ Title: Data from the Forest Resilience and Threshold Experiment
 Version: 1.0.1
 Authors@R: c(person("Jeff", "Atkins", email = "jwatkins6@vcu.edu", role = c("aut", "cre")),
           person("Ben", "Bond-Lamberty", role = "aut"),
-          person("Kaylen", "Dorheim", rol = "aut"),
+          person("Kalyn", "Dorheim", rol = "aut"),
           person("Stephanie", "Pennington", role = "aut"),
           person("Alexey", "Shiklomanov", role = "aut")
           )
