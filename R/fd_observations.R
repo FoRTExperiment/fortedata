@@ -20,8 +20,8 @@ timeframe <- seq.Date(from = begin_date, to = current_date, by = "month", format
 # Empty data frame
 timeframe <- data.frame(timeframe)
 
-timeframe$month <- format(timeframe$timeframe, "%m")
-timeframe$year <- format(timeframe$timeframe, "%Y")
+timeframe$month <- as.numeric(format(timeframe$timeframe, "%m"))
+timeframe$year <- as.numeric(format(timeframe$timeframe, "%Y"))
 
 #####################
 # CEPTOMETER!
