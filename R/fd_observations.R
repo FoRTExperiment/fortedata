@@ -62,8 +62,8 @@ no_soil_r <- merge(x, b.tally, by = c("month", "year"), all = TRUE)
 b <- fd_leaf_spectrometry()
 
 # this makes the year and month column
-b$month <- format(as.Date(b$date), "%m")
-b$year <- format(as.Date(b$date), "%Y")
+b$month <- as.numeric(format(as.Date(b$date), "%m"))
+b$year <- as.numeric(format(as.Date(b$date), "%Y"))
 
 # count it up
 b.tally <- aggregate(index ~ month + year, data = b, FUN = length)
