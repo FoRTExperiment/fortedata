@@ -11,3 +11,4 @@ coverage.R
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^LICENSE\.md$

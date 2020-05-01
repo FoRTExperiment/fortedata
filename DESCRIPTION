@@ -1,6 +1,6 @@
 Package: fortedata
 Title: Data from the Forest Resilience and Threshold Experiment
-Version: 0.1.0
+Version: 1.0.1
 Authors@R: c(person("Jeff", "Atkins", email = "jwatkins6@vcu.edu", role = c("aut", "cre")),
           person("Ben", "Bond-Lamberty", role = "aut"),
           person("Kaylen", "Dorheim", rol = "aut"),
@@ -10,7 +10,7 @@ Authors@R: c(person("Jeff", "Atkins", email = "jwatkins6@vcu.edu", role = c("aut
 Description: This package includes data from 2018 and 2019 from the FoRTE project at UMBS. This description is incomplete.
 Depends:
     R (>= 3.5.0)
-License: MIT + file LICENSE
+License: file LICENSE
 Suggests: 
     testthat,
     tibble,
