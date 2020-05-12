@@ -5,6 +5,7 @@
 #' @param path Path to write files to, character
 #' @param zip_release Zip files into a single archive? Logical
 #' @return Fully-qualified filename of release file
+#' @importFrom utils write.csv packageVersion
 #' @export
 fd_make_release <- function(path, zip_release = TRUE) {
   fmd <- fd_metadata()
