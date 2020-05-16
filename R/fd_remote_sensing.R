@@ -10,6 +10,7 @@
 #' @examples
 #' fd_hemi_camera()
 fd_hemi_camera <- function() {
+  cam <- NULL
   cam <- read_csv_file("fd_hemi_camera.csv")
 
   # Format columns
@@ -28,7 +29,7 @@ fd_hemi_camera <- function() {
   # Filter to just FoRTE data
   cam <- subset(cam, cam$project == "forte")
 
-  cam$nested_subplot <- cam$nsp
+  cam$nested_subplot <- NA
   # Replace NSP data with numbers
   cam$nested_subplot[cam$nsp == "C"] <- 0
   cam$nested_subplot[cam$nsp == "N"] <- 1
