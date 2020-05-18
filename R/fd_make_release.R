@@ -8,6 +8,9 @@
 #' @importFrom utils write.csv packageVersion
 #' @export
 fd_make_release <- function(path, zip_release = TRUE) {
+  stopifnot(is.character(path))
+  stopifnot(is.logical(zip_release))
+
   fmd <- fd_metadata()
 
   if(!dir.exists(path)) {
