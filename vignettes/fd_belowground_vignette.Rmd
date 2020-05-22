@@ -31,5 +31,6 @@ fd_soil_respiration()
   To isolate the microbial component of Rs in the FoRTE manipulation, Heterotrophic soil respiration (Rh) was estimated with in vitro root-free soil incubations from 132 soil sampling plots in July 2019. Each of the 32 subplots contained four 1 meter squared destructive soil sampling plots and 3 pseudo-replicate soil cores were harvested to 10 cm in each destructive plot. Soil cores were stored for 24 hours at 4°C before being processed and were then sieved to eliminate roots. Root-free soil was then weighed into ventilated mason jars and incubated at the average soil temperature (Ts ) for two weeks. Rh was measured with a LI-6400 and custom soil chamber cuvette (Curtis et al 2005). Four efflux values were recorded in each mason jar over 90 second intervals. Soil jars were vented for 75 mins to stabilize gas exchange before measuring (time to stabilization was determined from a degassing trial with a randomized subset of soil jars, n = 5).
  
 ## Soil Micrometeorology
+
 Soil temperature (Ts) and soil moisture (s) were measured concurrently with in situ bulk Rs and soil cores harvested for in vitro Rh. Ts (°C) was measured to 7 cm using a thermocouple wire fitted to the LI-6400 and s was measured to 20 cm with a CS620 soil moisture probe.
 
