@@ -62,7 +62,7 @@ fd_nested_subplots <- function() {
   read_csv_file("fd_nested_subplots.csv")
 }
 
-#' Nested subplots table.
+#' Treatment assignments
 #'
 #' @details The columns are as follows:
 #' - `replicate` (character): Replicate code. Each replicate contains
@@ -78,7 +78,7 @@ fd_nested_subplots <- function() {
 #' @export
 #' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
-#' fd_nested_subplots()
+#' fd_treatments()
 fd_treatments <- function() {
   x <- read_csv_file("forte_plot_metadata.csv")
 
