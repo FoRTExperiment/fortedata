@@ -61,3 +61,28 @@ fd_subplots <- function() {
 fd_nested_subplots <- function() {
   read_csv_file("fd_nested_subplots.csv")
 }
+
+#' Nested subplots table.
+#'
+#' @details The columns are as follows:
+#' - `replicate` (character): Replicate code. Each replicate contains
+#'   multiple plots with different disturbance treatments.#'
+#' - `plot` (integer): plot code
+#' one in the eastern part, one in the western.
+#' - `subplot` (double): Area of the nested subplot, in square meters.
+#' - `disturbance_severity` (integer): assigned targeted distrubance severity
+#' percentage, based on leaf area
+#' - `treatment` (character): either top as T or bottomup B
+#'
+#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @export
+#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
+#' @examples
+#' fd_nested_subplots()
+fd_treatments <- function() {
+  x <- read_csv_file("forte_plot_metadata.csv")
+
+  x <- x[c("replicate", "plot", "subplot","disturbance_severity", "treatment")]
+
+  weak_as_tibble(x)
+}
