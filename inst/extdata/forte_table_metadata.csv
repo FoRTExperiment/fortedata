@@ -21,6 +21,8 @@ fd_subplots,subplot,"Subplot (E, W)",character,,NA
 fd_subplots,latitude_subplot,Decimal latitude of subplot center,numeric,degrees N,NA
 fd_subplots,longitude_subplot,Decimal longitude of subplot center,numeric,degrees E,NA
 fd_subplots,subplot_area_m2,,integer,m2,NA
+fd_subplots,disturbance_severity,severity disturbance assignment,integer,,NA
+fd_subplots,treatment,disturbance treatment,character,,NA
 fd_nested_subplots,replicate,Replicate group (A-D),character,,NA
 fd_nested_subplots,plot,Plot number,integer,,NA
 fd_nested_subplots,subplot,"Subplot (E, W)",character,,NA
