@@ -1,6 +1,6 @@
 # fortedata: An open-data package for the R programming Language
 
-![](./vignettes/forte_hex.PNG)
+![FoRTE Hex Sticker](https://user-images.githubusercontent.com/8354517/87047244-3da40200-c1c8-11ea-91fd-61104ad0f4f8.PNG)
 
 
 
