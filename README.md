@@ -38,6 +38,6 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 
 * REU Students: Evan Paris, Carly Rodriguez
 
-* Reserach Collaborators: Elizabeth Agee, Kyla M. Dahlin, Aaron G. Kamoske,  Jason Tallant
+* Reserach Collaborators: Elizabeth Agee, Brandon Alveshare, Kyla M. Dahlin, Robert T. Fahey, Aaron G. Kamoske, Jason Tallant
 
 

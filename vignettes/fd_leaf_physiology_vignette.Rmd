@@ -17,10 +17,10 @@ knitr::opts_chunk$set(
 ```
 
 ## Leaf Physiology Data
-The `fd_lefa_physiology()` script within `fortedata` currently includes the following functions:
+The `fd_leaf_physiology()` script within `fortedata` currently includes the following functions:
 
 * `fd_leaf_spectrometry()` returns a single dataset of vegetation indices derived from leaf-level spectrometry data collected via a CI-710 handheld spectrometer (Table S6). The package includes 7155 observations of spectral indices for three species each in eight subplots within the D replicate (Figs. 1 and 4).  
-* `fd_photosynthesis()` returns a single dataset of leaf physiology variables, including photosynthesis, transpiration, etc, measured using a LI-6400 XT (LI-COR Biosciences; Lincoln, NE)(Table S7). The package includes 2215 observations from 2018 (Fig. 4). 
+* `fd_photosynthesis()` returns a single dataset of leaf physiology variables, including photosynthesis, transpiration, etc, measured using a LI-6400 XT (LI-COR Biosciences; Lincoln, NE). The package includes 2215 observations from 2018. 
 
 ## Photosynthesis Data
   
