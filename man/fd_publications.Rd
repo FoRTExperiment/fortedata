@@ -22,6 +22,9 @@ The columns are as follows:
 \item \code{DOI} (character): Digital Object Identifier
 }
 }
+\note{
+A list of all FoRTE related publications.
+}
 \examples{
 fd_publications()
 }

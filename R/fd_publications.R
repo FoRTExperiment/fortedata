@@ -3,6 +3,8 @@
 
 #' Return a list of all FoRTE related publications.
 #'
+#' @note A list of all FoRTE related publications.
+#'
 #' @details The columns are as follows:
 #' - `Entry` (character): Abbreviated in-text entry in the form of author last name and year
 #' - `PubYear` (integer): Year of publication

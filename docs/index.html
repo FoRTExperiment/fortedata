@@ -89,9 +89,39 @@
 <div id="fortedata-an-open-data-package-for-the-r-programming-language" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#fortedata-an-open-data-package-for-the-r-programming-language" class="anchor"></a>fortedata: An open-data package for the R programming Language</h1></div>
-<p><img src="https://user-images.githubusercontent.com/8354517/87047244-3da40200-c1c8-11ea-91fd-61104ad0f4f8.PNG" alt="FoRTE Hex Sticker"></p>
-<p>Authors: Jeff W. Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, and Alexey Shiklomanov</p>
-<p>The <em>fortedata</em> package provides functions for accessing and interpreting data associated with FoRTE: Forest Resilience Threshold Experiment located at the University of Michigan Biological Station.</p>
+<p><img src="https://user-images.githubusercontent.com/8354517/87047244-3da40200-c1c8-11ea-91fd-61104ad0f4f8.PNG"></p>
+<div id="overview" class="section level3">
+<h3 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h3>
+<p><em>fortedata</em> is an R package that provides functions for accessing and interpreting data associated with FoRTE: Forest Resilience Threshold Experimen–a modeling and manipulative field experiment that tests the effects of disturbance severity and disturbance type on carbon cycling dynamics in a temperate forest. Package data consists of measurements of carbon pools and fluxes and ancillary measurements to help analyse and users analyse and interpret carbon cycling over time.</p>
+</div>
+<div id="getting-started" class="section level3">
+<h3 class="hasAnchor">
+<a href="#getting-started" class="anchor"></a>Getting Started</h3>
+<p>We recommend that users begin with either package <a href="https://fortexperiment.github.io/fortedata/articles/index.html">vignettes</a> that provide detailed examples of package funcitons and potential use cases, or with package <a href="https://fortexperiment.github.io/fortedata/reference/index.html">documentation</a>.</p>
+</div>
+<div id="installation" class="section level3">
+<h3 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h3>
+<p>Installing the latest development version of <em>fortedata</em> from GitHub (requires <a href="https://github.com/hadley/devtools">devtools</a>):</p>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"devtools"</span>)) {
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
+}
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"FoRTExperiment/fortedata"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">build_vignettes</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></div>
+</div>
+<div id="the-forte-team" class="section level3">
+<h3 class="hasAnchor">
+<a href="#the-forte-team" class="anchor"></a>The FoRTE Team</h3>
+<ul>
+<li><p>Principal Investigators: <a href="http://www.people.vcu.edu/~cmgough/">Chris M. Gough</a> and <a href="https://www.pnnl.gov/science/staff/staff_info.asp?staff_num=7203">Ben Bond-Lamberty</a></p></li>
+<li><p>PNNL Science Team: Kalyn Dorheim, Stephanie Pennington</p></li>
+<li><p>Postdoctoral Researchers: Jeff W. Atkins, Alexey Shiklomanov</p></li>
+<li><p>Graduate Students: Maxim S. Grigri, Lisa T. Haber, Kayla Mathes</p></li>
+<li><p>Undergraduate Students: Alexandra Barry, Laura J. Hickey, Catherine McGuigan, Autym Shafer</p></li>
+<li><p>REU Students: Evan Paris, Carly Rodriguez</p></li>
+<li><p>Reserach Collaborators: Elizabeth Agee, Kyla M. Dahlin, Aaron G. Kamoske, Jason Tallant</p></li>
+</ul>
+</div>
 </div>
   </div>
 

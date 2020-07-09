@@ -3,9 +3,11 @@
 
 #' Raw inventory table.
 #'
+#' @note Data were collected by Gough Lab team members Autym Shafer, Catherine McGuigan, and Alexandra Barry
+#' using a Haglof Postex Inventory Unit.
+#'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.#'
 #' @export
-#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_inventory()
 fd_inventory <- function() {

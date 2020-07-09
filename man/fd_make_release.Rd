@@ -17,3 +17,6 @@ Fully-qualified filename of release file
 \description{
 Write files for a GitHub data release
 }
+\note{
+This function creates output that is mirrored at https://figshare.com/articles/dataset/fortedata-1_0_1/12292490
+}

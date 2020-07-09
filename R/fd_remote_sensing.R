@@ -3,10 +3,13 @@
 
 #' Hemispherical camera data.
 #'
+#' @note Data were collected by Jeff W. Atkins and Evan Pari using a 24 Megapixel
+#' Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
+#' 180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
+#' channel, which allows direct calculation of NDVI.
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @importFrom stats na.omit
 #' @export
-#' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @examples
 #' fd_hemi_camera()
 fd_hemi_camera <- function() {
@@ -39,15 +42,6 @@ fd_hemi_camera <- function() {
   cam$nested_subplot[cam$nsp == "X"] <- NA
   cam$nested_subplot[cam$nsp == ""] <- NA
 
-  #
-  # cam$nested_subplot[cam$nested_subplot == "C"] <- 0
-  # cam$nested_subplot[cam$nested_subplot == "N"] <- 1
-  # cam$nested_subplot[cam$nested_subplot == "E"] <- 3
-  # cam$nested_subplot[cam$nested_subplot == "S"] <- 5
-  # cam$nested_subplot[cam$nested_subplot == "W"] <- 7
-  # cam$nested_subplot[cam$nested_subplot == "X"] <- NA
-  # cam$nested_subplot[cam$nested_subplot == ""] <- NA
-
   cam$nested_subplot <- as.integer(cam$nested_subplot)
   # Remove the images that were retained as placemarkers
   # (if there are any that missed being culled)
@@ -62,12 +56,13 @@ fd_hemi_camera <- function() {
 
 #' Canopy structural traits from 2D canopy LiDAR.
 #'
-#' @note The Canopy structural traits were derived using the
+#'
+#' @note Data were collected by Jeff W. Atkins and Brandon Alveshare using an upward facing, portable canopy lidar unit.
+#' The Canopy structural traits were derived using the
 #' \code{forestr} 1.0.1 package from 2D portable canopy lidar
 #' @return A `data.frame` or `tibble` of hemispherical camera data.
 #' Call \code{\link{fd_metadata}} for field metadata.
 #' @export
-#' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @examples
 #' fd_canopy_structure()
 fd_canopy_structure <- function() {
@@ -87,10 +82,13 @@ fd_canopy_structure <- function() {
 
 
 #' Ceptometer data.
+#'
+#' @note Data were collected by Jeff W. Atkins and Brandon Alveshare using
+#' a Decagon LP-80 Handheld Ceptometer
+#'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' Call \code{\link{fd_metadata}} for field metadata.
 #' @export
-#' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @examples
 #' fd_ceptometer()
 fd_ceptometer <- function() {

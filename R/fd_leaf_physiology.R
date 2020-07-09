@@ -3,9 +3,9 @@
 
 #' Leaf spectrometry data
 #'
+#' @note Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
-#' @author Measurements by Lisa Haber at the University of Michigan Biological Station.
 #' @examples
 #' fd_leaf_spectrometry()
 fd_leaf_spectrometry <- function() {
@@ -39,9 +39,9 @@ fd_leaf_spectrometry <- function() {
 
 #' Leaf photosynthesis measurements.
 #'
+#' @note Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
-#' @author Measurements by Lisa Haber at the University of Michigan Biological Station.
 #' @examples
 #' fd_photosynthesis()
 fd_photosynthesis <- function() {

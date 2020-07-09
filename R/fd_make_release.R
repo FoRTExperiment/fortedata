@@ -2,6 +2,8 @@
 
 #' Write files for a GitHub data release
 #'
+#' @note This function creates output that is mirrored at https://figshare.com/articles/dataset/fortedata-1_0_1/12292490
+#'
 #' @param path Path to write files to, character
 #' @param zip_release Zip files into a single archive? Logical
 #' @return Fully-qualified filename of release file
