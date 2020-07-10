@@ -129,33 +129,33 @@ fd_canopy_structure,replicate,Replicate group (A-D),character,,NA
 fd_canopy_structure,plot,Plot number,integer,,NA
 fd_canopy_structure,subplot,"Subplot (E, W)",character,,NA
 fd_canopy_structure,year,Year of measurement,integer,,NA
-fd_canopy_structure,mean.height,Mean height of vai,numeric,,NA
-fd_canopy_structure,height.2,Standard deviation of mean height,numeric,,NA
-fd_canopy_structure,mean.height.var,Variance of mean height,numeric,,NA
-fd_canopy_structure,mean.height.rms,Root mean square height,numeric,,NA
-fd_canopy_structure,transect.length,Length of transect,integer,,NA
-fd_canopy_structure,mode.el,Mean heigh of maximum VAI,numeric,,NA
-fd_canopy_structure,max.el,"Greatest density of vai x, z position",numeric,,NA
-fd_canopy_structure,mode.2,Variance of maximum vai,numeric,,NA
-fd_canopy_structure,max.can.ht,Maximum measured canopy height,numeric,,NA
-fd_canopy_structure,mean.max.ht,Mean outer canopy height or moch,numeric,,NA
-fd_canopy_structure,mean.vai,Average vai across transect,numeric,,NA
-fd_canopy_structure,mean.peak.vai,Average height of maximum vai,numeric,,NA
-fd_canopy_structure,deep.gaps,Number of 1 m wide bins with no lidar returns,integer,,NA
-fd_canopy_structure,deep.gap.fraction,Deep gaps dividied by transect length,numeric,,NA
+fd_canopy_structure,mean_height,Mean height of vai,numeric,,NA
+fd_canopy_structure,height_2,Standard deviation of mean height,numeric,,NA
+fd_canopy_structure,mean_height_var,Variance of mean height,numeric,,NA
+fd_canopy_structure,mean_height_rms,Root mean square height,numeric,,NA
+fd_canopy_structure,transect_length,Length of transect,integer,,NA
+fd_canopy_structure,mode_el,Mean heigh of maximum VAI,numeric,,NA
+fd_canopy_structure,max_el,"Greatest density of vai x, z position",numeric,,NA
+fd_canopy_structure,mode_2,Variance of maximum vai,numeric,,NA
+fd_canopy_structure,max_can_ht,Maximum measured canopy height,numeric,,NA
+fd_canopy_structure,mean_max_ht,Mean outer canopy height or moch,numeric,,NA
+fd_canopy_structure,mean_vai,Average vai across transect,numeric,,NA
+fd_canopy_structure,mean_peak_vai,Average height of maximum vai,numeric,,NA
+fd_canopy_structure,deep_gaps,Number of 1 m wide bins with no lidar returns,integer,,NA
+fd_canopy_structure,deep_gap_fraction,Deep gaps dividied by transect length,numeric,,NA
 fd_canopy_structure,porosity,Ratio of empty to filled bins in the canopy,numeric,,NA
-fd_canopy_structure,std.std,Precursor to rugosity,numeric,,NA
-fd_canopy_structure,mean.std,Precursor to rugosity,numeric,,NA
+fd_canopy_structure,std_std,Precursor to rugosity,numeric,,NA
+fd_canopy_structure,mean_std,Precursor to rugosity,numeric,,NA
 fd_canopy_structure,rugosity,Accumulated canopy complexity metric,numeric,,NA
-fd_canopy_structure,top.rugosity,Standard deviation of final lidar returns,numeric,,NA
-fd_canopy_structure,mean.return.ht,Average lidar return distance,numeric,,NA
-fd_canopy_structure,sd.return.ht,Standard deviation of lidar return distances,numeric,,NA
-fd_canopy_structure,sky.fraction,Ratio of sky hits to lidar returns,numeric,,NA
-fd_canopy_structure,cover.fraction,1/sky fraction,numeric,,NA
-fd_canopy_structure,max.ht,"Same as max can ht, removed in later forestr updates",numeric,,NA
-fd_canopy_structure,scan.density,No. of lidar returns divided by transect length,numeric,,NA
+fd_canopy_structure,top_rugosity,Standard deviation of final lidar returns,numeric,,NA
+fd_canopy_structure,mean_return_ht,Average lidar return distance,numeric,,NA
+fd_canopy_structure,sd_return_ht,Standard deviation of lidar return distances,numeric,,NA
+fd_canopy_structure,sky_fraction,Ratio of sky hits to lidar returns,numeric,,NA
+fd_canopy_structure,cover_fraction,1/sky fraction,numeric,,NA
+fd_canopy_structure,max_ht,"Same as max can ht, removed in later forestr updates",numeric,,NA
+fd_canopy_structure,scan_density,No. of lidar returns divided by transect length,numeric,,NA
 fd_canopy_structure,rumple,Outer surface variability divided by transect length,numeric,,NA
-fd_canopy_structure,clumping.index,the ratio of the effective leaf area index to the true leaf area index,numeric,,NA
+fd_canopy_structure,clumping_index,the ratio of the effective leaf area index to the true leaf area index,numeric,,NA
 fd_canopy_structure,enl,Effective number of layers,numeric,,NA
 fd_publications,entry,Abbreviated in-text entry in the form of author last name and year,character,,NA
 fd_publications,pub_year,Year of publication,integer,,NA

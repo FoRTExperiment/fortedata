@@ -73,6 +73,26 @@ split_subplot_id <- function(df) {
   df
 }
 
+
+# data conditions
+# data.frame() if necessary
+# not a user-facing function; document via roxygen?
+data_conditions <- function(x, published = FALSE, contact_person, citation) {
+
+  if(!published) {
+    warning("These data are unpublished. Please contact ", contact_person, " to ask about using")
+  }
+
+  message("Data citation: ", citation)
+  message("Contact person: ", contact_person)
+
+  # add the above information to `x` as attributes...
+
+  invisible(x)
+}
+
+
+
 #' FoRTE color palette
 
 #' The FoRTE color palettte

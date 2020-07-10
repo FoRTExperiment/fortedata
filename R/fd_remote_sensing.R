@@ -54,6 +54,61 @@ fd_hemi_camera <- function() {
   weak_as_tibble(cam)
 }
 
+#' Summary data for hemispherical camera data.
+#'
+#' @details The columns are as follows:
+#' - `replicate` (character): Replicate code, extracted from `SubplotID`.
+#' - `plot` (integer): Plot ID number, extracted from `SubplotID`.
+#' - `subplot` (character): Subplot code, extracted from `SubplotID`.
+#' - `date` (date): Date of measurement
+#' - `lai_cam` (numeric): mean of leaf area index
+#' - `lai_cam_sd` (numeric): sd of leaf area index
+#' - `lai_cam_n` (integer): number of observations per sample
+#' - `lai_cam_se` (numeric): se of leaf area index
+#' - `ndvi` (numeric): mean of plot ndvi
+#' - `ndvi_sd` (numeric): sd of plot ndvi
+#' - `ndvi_n` (numeric): number of observations per sample
+#' - `ndvi_se` (numeric): se of plot ndvi
+#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @note For now this is pretty basic. More detailed summaries could be made,
+#' e.g. by live/dead, species, etc.
+#' @export
+#' @importFrom stats aggregate sd na.omit
+#' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
+#' @examples
+#' fd_hemi_camera_summary()
+fd_hemi_camera_summary <- function() {
+  # Load the inventory and subplot tables and merge them
+  # vsubplots <- fd_hemi_camera()[c("SubplotID", "Replicate", "Plot", "Subplot", "NestedPlot")]
+  df <- fd_hemi_camera()
+
+  # Calculate rugosity means and SD
+  lai <- aggregate(lai_cam ~ replicate + plot + subplot + date, data = df, FUN = mean)
+  lai_sd <- aggregate(lai_cam ~ replicate + plot + subplot + date, data = df, FUN = sd)
+  lai_n <- aggregate(lai_cam ~ replicate + plot + subplot + date, data = df, FUN = length)
+
+  # Merge and munge
+  names(lai_sd)[names(lai_sd) == "lai_cam"] <- "lai_cam_sd"
+  names(lai_n)[names(lai_n) == "lai_cam"] <- "lai_cam_n"
+
+  lai <- merge(lai, lai_sd)
+  lai <- merge(lai, lai_n)
+  lai$lai_cam_se <- lai$lai_cam_sd / sqrt(lai$lai_cam_n)  # based on the SD /sqrt(n)
+
+  # VAI means and SD
+  ndvi <- aggregate(ndvi ~ replicate , data = df, FUN = mean)
+  ndvi_sd <- aggregate(ndvi ~ replicate , data = df, FUN = sd)
+
+  # Merge and munge
+  names(ndvi_sd)[names(ndvi_sd) == "ndvi"] <- "ndvi_sd"
+  ndvi <- merge(ndvi, ndvi_sd)
+  ndvi$ndvi_se <- ndvi$ndvi_sd / sqrt(8)
+
+  weak_as_tibble(merge(lai, ndvi))
+}
+
+
+
 #' Canopy structural traits from 2D canopy LiDAR.
 #'
 #'
@@ -74,12 +129,72 @@ fd_canopy_structure <- function() {
 
   cst <- split_subplot_id(cst)
 
+  names(cst) <- gsub(x = names(cst), pattern = "\\.", replacement = "_")
+
   # Reorder columns
   cst <- cst[c(1, 31, 32, 33, 2, 3:30 )]
 
   weak_as_tibble(cst)
 }
 
+#' Summary data for canopy structural data
+#'
+#' @details The columns are as follows:
+#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
+#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
+#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
+#' - `Year` (integer): Year in which measurement was taken
+#' - `rugosity` (numeric): mean of leaf area index
+#' - `rugosity_sd` (numeric): sd of leaf area index
+#' - `rugosity_n` (integer): number of observations per sample
+#' - `rugosity_se` (numeric): se of leaf area index
+#' - `mean_vai` (numeric): mean of leaf area index
+#' - `mean_vai_sd` (numeric): sd of leaf area index
+#' - `mean_vai_n` (integer): number of observations per sample
+#' - `mean_vai_se` (numeric): se of leaf area index
+#'
+#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @note For now this is pretty basic.
+#' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
+#' @export
+#' @importFrom stats aggregate sd na.omit
+#' @examples
+#' fd_canopy_structure_summary()
+fd_canopy_structure_summary <- function() {
+  # Load the inventory and subplot tables and merge them
+  subplots <- fd_canopy_structure()[c("subplot_id", "replicate", "plot", "subplot")]
+  csc <- merge(fd_canopy_structure(), subplots)
+
+  # Calculate rugosity means and SD
+  r_c <- aggregate(rugosity ~ replicate , data = csc, FUN = mean)
+  r_c.sd <- aggregate(rugosity ~ replicate , data = csc, FUN = sd)
+  r_c.n <- aggregate(rugosity ~ replicate, data = csc, FUN = length)
+
+  # Merge and munge
+  names(r_c.sd)[names(r_c.sd) == "rugosity"] <- "rugosity_sd"
+  names(r_c.n)[names(r_c.n) == "rugosity"] <- "rugosity_n"
+
+  r_c <- merge(r_c, r_c.sd)
+  r_c <- merge(r_c, r_c.n)
+
+  r_c$rugosity_se <- r_c$rugosity_sd / sqrt(r_c$rugosity_n)  # based on the SD /sqrt(n)
+
+  # VAI means and SD
+  vai <- aggregate(mean_vai ~ replicate , data = csc, FUN = mean)
+  vai_sd <- aggregate(mean_vai ~ replicate , data = csc, FUN = sd)
+  vai_n <- aggregate(mean_vai ~ replicate, data = csc, FUN = length)
+
+  # Merge and munge
+  names(vai_sd)[names(vai_sd) == "mean_vai"] <- "mean_vai_sd"
+  names(vai_n)[names(vai_n) == 'mean_vai'] <- "mean_vai_n"
+
+  vai <- merge(vai, vai_sd)
+  vai <- merge(vai, vai_n)
+
+  vai$mean_vai_se <- vai$mean_vai_sd / sqrt(vai$mean_vai_n)
+
+  weak_as_tibble(merge(r_c, vai))
+}
 
 #' Ceptometer data.
 #'
@@ -104,7 +219,7 @@ fd_ceptometer <- function() {
   names(cept)[names(cept) == "Leaf.Area.Index..LAI."] <- "lai_cept"
 
   # Make DateTime column as datetime object
-  cept$timestamp <- as.POSIXct(cept$DateTime, format = "%m/%d/%Y %H:%M")
+  cept$timestamp <- as.POSIXct(cept$DateTime, format = "%m/%d/%Y %H:%M", tz = "America/Detroit")
 
   # Remove erroneous entires
   cept$Annotation <- gsub("2019", "", cept$Annotation)
@@ -121,3 +236,7 @@ fd_ceptometer <- function() {
 
   weak_as_tibble(cept)
 }
+
+
+
+

@@ -4,7 +4,7 @@ author: "Jeff Atkins and Kayla Mathes"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{FoRTE Belowground}
+  %\VignetteIndexEntry{fortedata: Belowground Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

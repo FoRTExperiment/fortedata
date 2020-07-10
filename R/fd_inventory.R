@@ -11,6 +11,11 @@
 #' @examples
 #' fd_inventory()
 fd_inventory <- function() {
+
+  # Data Creation and Authorship Information
+  contact_person <- "Jeff Atkins"
+  citation <- "ESSD"
+
   inv <- read_csv_file("forte_inventory.csv")
   inv$date <- as.Date(inv$date, format = "%m/%d/%Y")
 
@@ -22,6 +27,9 @@ fd_inventory <- function() {
   inv <- inv[c("subplot_id", "replicate", "plot", "subplot","date","tag", "species", "dbh_cm", "health_status", "canopy_status", "notes")]
 
   weak_as_tibble(inv)
+
+  # data conditions
+  #data_conditions(x, published = FALSE, contact_person, citation)
 }
 
 #' Basic statistics generated from the raw inventory data.
@@ -62,4 +70,6 @@ fd_inventory_summary <- function() {
 
   #ba$Stocking <- stocking$DBH_cm
   weak_as_tibble(merge(ba, stocking))
+
+
 }
