@@ -176,10 +176,12 @@ stem$biomass <- stem$a_biomass * stem$dbh^stem$b_biomass
 stem <- weak_as_tibble(stem)
 }
 
+#' Function that brings in all plot metadata for assignment
+#'
 #' @return gives the plot info
 #' @export
 #' @examples
-#' fortedata::assign_disturbance()
+#' fortedata::plot_metadata()
 
 plot_metadata <- function(){
   # The allometries
