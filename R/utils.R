@@ -74,6 +74,7 @@ split_subplot_id <- function(df) {
 }
 
 
+
 # data conditions
 # data.frame() if necessary
 # not a user-facing function; document via roxygen?
@@ -173,6 +174,18 @@ stem <- merge(df, allo.df)
 #calculates biomass in units of kg
 stem$biomass <- stem$a_biomass * stem$dbh^stem$b_biomass
 stem <- weak_as_tibble(stem)
+}
+
+#' @return gives the plot info
+#' @export
+#' @examples
+#' fortedata::assign_disturbance()
+
+plot_metadata <- function(){
+  # The allometries
+  dat <- read_csv_file("forte_plot_metadata.csv") #this has the same equations AmeriFlux uses
+
+  dat<- weak_as_tibble(dat)
 }
 
 
