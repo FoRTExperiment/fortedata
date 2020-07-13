@@ -123,16 +123,13 @@ fd_hemi_camera_summary <- function() {
 fd_canopy_structure <- function() {
   cst <- read_csv_file("canopy_structural_traits.csv")
 
-  # Rename columns that need it
-  names(cst)[names(cst) == "subplotID"] <- "subplot_id"
-  names(cst)[names(cst) == "year"] <- "year"
-
+  #
   cst <- split_subplot_id(cst)
 
   names(cst) <- gsub(x = names(cst), pattern = "\\.", replacement = "_")
 
   # Reorder columns
-  cst <- cst[c(1, 31, 32, 33, 2, 3:30 )]
+  cst <- cst[c(1, 54, 55, 56, 2, 3:53 )]
 
   weak_as_tibble(cst)
 }
@@ -140,18 +137,18 @@ fd_canopy_structure <- function() {
 #' Summary data for canopy structural data
 #'
 #' @details The columns are as follows:
-#' - `Replicate` (character): Replicate code, extracted from `SubplotID`.
-#' - `Plot` (integer): Plot ID number, extracted from `SubplotID`.
-#' - `Subplot` (character): Subplot code, extracted from `SubplotID`.
-#' - `Year` (integer): Year in which measurement was taken
+#' - `replicate` (character): Replicate code, extracted from `subplot_id`.
+#' - `plot` (integer): Plot ID number, extracted from `subplot_id`.
+#' - `subplot` (character): Subplot code, extracted from `subplot_id`.
+#' - `year` (integer): Year in which measurement was taken
 #' - `rugosity` (numeric): mean of leaf area index
 #' - `rugosity_sd` (numeric): sd of leaf area index
 #' - `rugosity_n` (integer): number of observations per sample
 #' - `rugosity_se` (numeric): se of leaf area index
-#' - `mean_vai` (numeric): mean of leaf area index
-#' - `mean_vai_sd` (numeric): sd of leaf area index
-#' - `mean_vai_n` (integer): number of observations per sample
-#' - `mean_vai_se` (numeric): se of leaf area index
+#' - `vai_mean` (numeric): mean of leaf area index
+#' - `vai_mean_sd` (numeric): sd of leaf area index
+#' - `vai_mean_n` (integer): number of observations per sample
+#' - `vai_mean_se` (numeric): se of leaf area index
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @note For now this is pretty basic.
@@ -180,18 +177,18 @@ fd_canopy_structure_summary <- function() {
   r_c$rugosity_se <- r_c$rugosity_sd / sqrt(r_c$rugosity_n)  # based on the SD /sqrt(n)
 
   # VAI means and SD
-  vai <- aggregate(mean_vai ~ replicate , data = csc, FUN = mean)
-  vai_sd <- aggregate(mean_vai ~ replicate , data = csc, FUN = sd)
-  vai_n <- aggregate(mean_vai ~ replicate, data = csc, FUN = length)
+  vai <- aggregate(vai_mean ~ replicate , data = csc, FUN = mean)
+  vai_sd <- aggregate(vai_mean ~ replicate , data = csc, FUN = sd)
+  vai_n <- aggregate(vai_mean ~ replicate, data = csc, FUN = length)
 
   # Merge and munge
-  names(vai_sd)[names(vai_sd) == "mean_vai"] <- "mean_vai_sd"
-  names(vai_n)[names(vai_n) == 'mean_vai'] <- "mean_vai_n"
+  names(vai_sd)[names(vai_sd) == "vai_mean"] <- "vai_mean_sd"
+  names(vai_n)[names(vai_n) == 'vai_mean'] <- "vai_mean_n"
 
   vai <- merge(vai, vai_sd)
   vai <- merge(vai, vai_n)
 
-  vai$mean_vai_se <- vai$mean_vai_sd / sqrt(vai$mean_vai_n)
+  vai$vai_mean_se <- vai$vai_mean_sd / sqrt(vai$vai_mean_n)
 
   weak_as_tibble(merge(r_c, vai))
 }

@@ -15,18 +15,18 @@ Summary data for canopy structural data
 \details{
 The columns are as follows:
 \itemize{
-\item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
-\item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
-\item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
-\item \code{Year} (integer): Year in which measurement was taken
+\item \code{replicate} (character): Replicate code, extracted from \code{subplot_id}.
+\item \code{plot} (integer): Plot ID number, extracted from \code{subplot_id}.
+\item \code{subplot} (character): Subplot code, extracted from \code{subplot_id}.
+\item \code{year} (integer): Year in which measurement was taken
 \item \code{rugosity} (numeric): mean of leaf area index
 \item \code{rugosity_sd} (numeric): sd of leaf area index
 \item \code{rugosity_n} (integer): number of observations per sample
 \item \code{rugosity_se} (numeric): se of leaf area index
-\item \code{mean_vai} (numeric): mean of leaf area index
-\item \code{mean_vai_sd} (numeric): sd of leaf area index
-\item \code{mean_vai_n} (integer): number of observations per sample
-\item \code{mean_vai_se} (numeric): se of leaf area index
+\item \code{vai_mean} (numeric): mean of leaf area index
+\item \code{vai_mean_sd} (numeric): sd of leaf area index
+\item \code{vai_mean_n} (integer): number of observations per sample
+\item \code{vai_mean_se} (numeric): se of leaf area index
 }
 }
 \note{
