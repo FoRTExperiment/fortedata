@@ -19,17 +19,18 @@ knitr::opts_chunk$set(
 ## Belowground Measurements
 The `fd_belowground()` script within `fortedata` currently includes one function:
 
-`fd_soil_respiration()` which returns a single dataset of 2780 observations each of soil CO2 efflux (μmol CO2 m-2 s-1), soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) for the year 2019 (Figs. 3, 4; Table S5).
+`fd_soil_respiration()` which returns a single dataset of 2780 observations each of soil CO2 efflux (μmol CO2 m-2 s-1) as well as soil micrometeorological measurements: soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) for the year 2019.
 
 ```{r fd_soil_respiration}
 fd_soil_respiration()
 ```
-## Soil CO2 Efflux
+
+## Soil CO~2~ Efflux
   
-  To quantify soil CO2 efflux in the FoRTE manipulation, bulk soil respiration (Rs) was measured at 160 soil collars 11 times between July  2018 (pre-disturbance) and November 2019 (post-disturbance). Each of the 32 subplots contained five 10cm diameter PVC collars that were spatially paired with litter traps and root in-growth cores. In situ point Rs measurements (umol C02 m-2 s-1) were made using a LI-6400 portable gas analyzer with 10 cm diameter soil CO2 closed chamber cuvette (LI-COR Inc, Lincoln, NE, USA). Two efflux values were recorded at each collar over 90 second intervals.
+  The soil CO~2~ efflux values in this data set represent bulk soil respiration (R~s~) and were measured at 160 soil collars 11 times between July  2018 (pre-disturbance) and November 2019 (post-disturbance). Each of the 32 subplots contained five 10 cm diameter PVC collars that were spatially paired with litter traps and root in-growth cores. In situ point Rs measurements (umol C0~2~ m^-2^ s^-1^) were made using a LI-6400 portable gas analyzer with 10 cm diameter soil CO2 closed chamber cuvette (LI-COR Inc, Lincoln, NE, USA). Two efflux values were recorded at each collar over 90 second intervals.
   
-  To isolate the microbial component of Rs in the FoRTE manipulation, Heterotrophic soil respiration (Rh) was estimated with in vitro root-free soil incubations from 132 soil sampling plots in July 2019. Each of the 32 subplots contained four 1 meter squared destructive soil sampling plots and 3 pseudo-replicate soil cores were harvested to 10 cm in each destructive plot. Soil cores were stored for 24 hours at 4°C before being processed and were then sieved to eliminate roots. Root-free soil was then weighed into ventilated mason jars and incubated at the average soil temperature (Ts ) for two weeks. Rh was measured with a LI-6400 and custom soil chamber cuvette (Curtis et al 2005). Four efflux values were recorded in each mason jar over 90 second intervals. Soil jars were vented for 75 mins to stabilize gas exchange before measuring (time to stabilization was determined from a degassing trial with a randomized subset of soil jars, n = 5).
+  Additionally, to isolate the microbial component of Rs, Heterotrophic soil respiration (R~h~) was estimated with in vitro root-free soil incubations from 132 soil sampling plots in July 2019. Each of the 32 subplots contained four 1 meter squared destructive soil sampling plots and 3 pseudo-replicate soil cores were harvested to 10 cm in each destructive plot. Soil cores were stored for 24 hours at 4°C before being processed and were then sieved to eliminate roots. Root-free soil was then weighed into ventilated mason jars and incubated at the average soil temperature (T~s~) for two weeks. Rh was measured with a LI-6400 and custom soil chamber cuvette (Curtis et al. 2005). Four efflux values were recorded in each mason jar over 90 second intervals. Soil jars were vented for 75 mins to stabilize gas exchange before measuring (time to stabilization was determined from a degassing trial with a randomized subset of soil jars, n = 5). These data are not in the current version of `fortedata`.
  
 ## Soil Micrometeorology
-Soil temperature (Ts) and soil moisture (s) were measured concurrently with in situ bulk Rs and soil cores harvested for in vitro Rh. Ts (°C) was measured to 7 cm using a thermocouple wire fitted to the LI-6400 and s was measured to 20 cm with a CS620 soil moisture probe.
+Soil temperature (T~s~) and soil moisture (s) were measured concurrently with in situ bulk Rs and soil cores harvested for in vitro Rh. Ts (°C) was measured to 7 cm using a thermocouple wire fitted to the LI-6400. Volumetric water content (%) was measured with a CS620 soil moisture sensor with 20 cm probes.
 
