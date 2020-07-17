@@ -1,0 +1,61 @@
+---
+title: "fortedata: Experimental Design and Treatment"
+author: "Jeff Atkins"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fortedata: Experimental Design and Treatment}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  require(fortedata)
+)
+```
+
+## Overview
+
+
+## Site Description
+The Forest Resilience Threshold Experiment (FoRTE) is conducted at the University of Michigan Biological Station (UMBS) in northern lower Michigan, USA (45.56 N, -84.67 W), where mean annual air temperature is 5.5°C and mean annual precipitation is 817 mm (Gough and others 2013). The vegetation communities included in our analysis are transitioning 100-yr-old middle successional forests, with a dominant upper canopy comprised mainly of pioneer bigtooth and trembling aspen (Populus grandidentata and P. tremuloides, respectively) and paper birch (Betula papyrifera) established following region-wide harvesting and fire in the early 20th Century. This cohort of early successional tree species is rapidly declining (Gough and others 2010), and giving way to later‐successional red oak (Quercus rubra), eastern white pine (Pinus strobus), sugar maple (Acer saccharum), red maple (Acer rubrum), and American beech (Fagus grandifolia). 
+
+Despite sharing a relatively uniform disturbance history, tree species’ dominance and plant community composition along with structure and complexity vary substantially among the “landscape ecosystems” of UMBS (Table 1;  Figure 2; Scheuermann and others 2018). The term “landscape ecosystems” is used to describe land units forming a unique complex of climate, soils, biota and landform (Pearsall et al. 1995). The compositional and structural variability associated with landscape ecosystems is paralleled by substantial spatial variability in NPP, which spanned a 4-fold range across our site prior to experimental disturbance (Hardiman and others 2011). 
+
+## Disturbance Treatment
+We established the Forest Resilience Threshold Experiment (FoRTE) with the goal of understanding how and why disturbance severity and type affect key C cycling processes and ecosystem C balance. During Spring 2019, we randomly assigned factorial combinations of disturbance severity (4 levels) and type (2 levels) within four separate landscape ecosystems representing a range in site productivity characteristic of the forests of the Upper Great Lakes Region (Lapin and Barnes 1995). The approach used to implement disturbance was stem girdling, which, like wood boring insects (e.g., emerald ash borer, mountain pine beetle), causes gradual defoliation by eliminating the transport of photosynthate to roots, killing trees once carbohydrate reserves are exhausted over a period of two to three years (Dietze and others 2014; Gough and others 2013). 
+
+In late May 2019 (days 140 to 143), prior to leaf-out, we selected >3600 trees for girdling from censused and mapped stems  8 cm diameter at breast height (DBH). Specifically, within each of the four replicates, we used species- and site- or region-specific allometries (Gough and others 2008) relating DBH to leaf area to target gross LAI reductions within each plot of 0% (control), 45%, 65%, or 85%. Severity levels were assigned at random to four, 0.5 ha circular whole plots, which were split into 0.25 ha halves and randomly designated a “top-down” or “bottom-up” disturbance type treatment (Figure 2B). For the “top-down” disturbance type, we girdled the largest trees first, irrespective of species, starting with the highest leaf area individual and sequentially girdling lower leaf area trees until the assigned plot disturbance severity was reached. For the “bottom-up” treatment, we stem girdled trees (>8 cm DBH) with the lowest individual leaf area first, progressively girdling larger trees up to the targeted disturbance severity. A 10-cm band of phloem tissue was girdled ~1 m above the forest floor and below DBH using pry bars. 
+Circular, 0.1 ha sampling subplots were established within each disturbance severity x type treatment in each of the four replicates, resulting in a total of 32 subplots surrounded by a 5-m wide measurement-free treatment buffer. Within each subplot and following methods detailed below, we measured ANPPw, Rs, and Asat, and we used terrestrial (i.e., ground-based) lidar and hemispherical imagery along with stem census data to derive measures of diversity, structure and complexity. Because of variation among C cycling processes in sampling effort and timing, the frequency of measurements varied. Our methods are summarized below and described extensively in vignettes contained within the project’s open field notebook: https://fortexperiment.github.io/fortedata/. 
+
+```{r distrubance-assignment, echo = TRUE, results = 'hide'}
+#set random seed
+set.seed(9925)
+
+#define parameters
+w <- c("top", "bottom")
+x <- c("E", "W")  
+y <- c(1, 2, 3, 4)
+z <- c(0, 45, 65, 85)
+
+# example treatment using group A
+# all other groups simulated in identical fashion
+# then merged at the end of file and written to .csv
+plot.disturbance.a <- data.frame(group = "A", plot = sample(y), disturbance = sample(z))
+plot.disturbance.a <- plot.disturbance.a[order(plot.disturbance.a$plot),]
+
+# randomization of how which side E = east or W = west is chosen for
+# top = top-down or bottom - bottom-up treatment
+plot.treatment <- data.frame(plot.side = sample(w), treatment = sample(x))
+```
+
+
+  ![FoRTE subplot diagram](https://user-images.githubusercontent.com/8354517/87793298-12965f80-c813-11ea-956d-b9f9824a6d18.PNG){width=50%}
+  
+  
+  (https://user-images.githubusercontent.com/8354517/87793689-96e8e280-c813-11ea-9fab-54dd50d2c8db.jpeg)
+  
+
+```

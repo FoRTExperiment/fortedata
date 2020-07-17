@@ -57,6 +57,9 @@
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
     </li>
     <li>
+      <a href="../articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
+    </li>
+    <li>
       <a href="../articles/fd_forte_proposal_vignette.html">fortedata: Proposal Narrative</a>
     </li>
     <li>
@@ -84,13 +87,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="fd_belowground_vignette_files/header-attrs-2.3/header-attrs.js"></script><script src="fd_belowground_vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>fortedata: Belowground Data</h1>
                         <h4 class="author">Jeff Atkins and Kayla Mathes</h4>
             
-            <h4 class="date">2020-07-09</h4>
+            <h4 class="date">2020-07-17</h4>
       
       
       <div class="hidden name"><code>fd_belowground_vignette.Rmd</code></div>
@@ -102,9 +105,20 @@
 <div id="belowground-measurements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#belowground-measurements" class="anchor"></a>Belowground Measurements</h2>
+</div>
+<div id="belowground-measurements-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#belowground-measurements-1" class="anchor"></a>Belowground Measurements</h2>
 <p>The <code>fd_belowground()</code> script within <code>fortedata</code> currently includes one function:</p>
-<p><code><a href="../reference/fd_soil_respiration.html">fd_soil_respiration()</a></code> which returns a single dataset of 2780 observations each of soil CO2 efflux (μmol CO2 m-2 s-1), soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) for the year 2019 (Figs. 3, 4; Table S5).</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="../reference/fd_soil_respiration.html">fd_soil_respiration</a></span>()
+<p><code><a href="../reference/fd_soil_respiration.html">fd_soil_respiration()</a></code> which returns a single dataset of 2780 observations each of soil CO2 efflux (μmol CO2 m-2 s-1) as well as soil micrometeorological measurements: soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) for the year 2019.</p>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="kw pkg">fortedata</span><span class="kw ns">::</span><span class="fu"><a href="../reference/fd_soil_respiration.html">fd_soil_respiration</a></span>()
+<span class="co">## Warning: `...` is not empty.</span>
+<span class="co">## </span>
+<span class="co">## We detected these problematic arguments:</span>
+<span class="co">## * `needs_dots`</span>
+<span class="co">## </span>
+<span class="co">## These dots only exist to allow future extensions and should be empty.</span>
+<span class="co">## Did you misspecify an argument?</span>
 <span class="co">## # A tibble: 2,791 x 11</span>
 <span class="co">##    subplot_id replicate  plot subplot date       timestamp          </span>
 <span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;date&gt;     &lt;dttm&gt;             </span>
@@ -123,14 +137,17 @@
 </div>
 <div id="soil-co2-efflux" class="section level2">
 <h2 class="hasAnchor">
-<a href="#soil-co2-efflux" class="anchor"></a>Soil CO2 Efflux</h2>
-<p>To quantify soil CO2 efflux in the FoRTE manipulation, bulk soil respiration (Rs) was measured at 160 soil collars 11 times between July 2018 (pre-disturbance) and November 2019 (post-disturbance). Each of the 32 subplots contained five 10cm diameter PVC collars that were spatially paired with litter traps and root in-growth cores. In situ point Rs measurements (umol C02 m-2 s-1) were made using a LI-6400 portable gas analyzer with 10 cm diameter soil CO2 closed chamber cuvette (LI-COR Inc, Lincoln, NE, USA). Two efflux values were recorded at each collar over 90 second intervals.</p>
-<p>To isolate the microbial component of Rs in the FoRTE manipulation, Heterotrophic soil respiration (Rh) was estimated with in vitro root-free soil incubations from 132 soil sampling plots in July 2019. Each of the 32 subplots contained four 1 meter squared destructive soil sampling plots and 3 pseudo-replicate soil cores were harvested to 10 cm in each destructive plot. Soil cores were stored for 24 hours at 4°C before being processed and were then sieved to eliminate roots. Root-free soil was then weighed into ventilated mason jars and incubated at the average soil temperature (Ts ) for two weeks. Rh was measured with a LI-6400 and custom soil chamber cuvette (Curtis et al 2005). Four efflux values were recorded in each mason jar over 90 second intervals. Soil jars were vented for 75 mins to stabilize gas exchange before measuring (time to stabilization was determined from a degassing trial with a randomized subset of soil jars, n = 5).</p>
+<a href="#soil-co2-efflux" class="anchor"></a>Soil CO<sub>2</sub> Efflux</h2>
+<p>The soil CO<sub>2</sub> efflux values in this data set represent bulk soil respiration (R<sub>s</sub>) and were measured at 160 soil collars 11 times between July 2018 (pre-disturbance) and November 2019 (post-disturbance). Each of the 32 subplots contained five 10 cm diameter PVC collars that were spatially paired with litter traps and root in-growth cores. In situ point Rs measurements (umol C0<sub>2</sub> m<sup>-2</sup> s<sup>-1</sup>) were made using a LI-6400 portable gas analyzer with 10 cm diameter soil CO2 closed chamber cuvette (LI-COR Inc, Lincoln, NE, USA). Two efflux values were recorded at each collar over 90 second intervals.</p>
+<div class="figure">
+<img src="https://user-images.githubusercontent.com/8354517/87793258-01e5e980-c813-11ea-9f43-8a82e26dbf37.jpg" style="width:50.0%" alt=""><p class="caption">PhD Student Kayla Mathes taking measurements with the Li-Cor 6400</p>
+</div>
+<p>Additionally, to isolate the microbial component of Rs, Heterotrophic soil respiration (R<sub>h</sub>) was estimated with in vitro root-free soil incubations from 132 soil sampling plots in July 2019. Each of the 32 subplots contained four 1 meter squared destructive soil sampling plots and 3 pseudo-replicate soil cores were harvested to 10 cm in each destructive plot. Soil cores were stored for 24 hours at 4°C before being processed and were then sieved to eliminate roots. Root-free soil was then weighed into ventilated mason jars and incubated at the average soil temperature (T<sub>s</sub>) for two weeks. Rh was measured with a LI-6400 and custom soil chamber cuvette (Curtis et al. 2005). Four efflux values were recorded in each mason jar over 90 second intervals. Soil jars were vented for 75 mins to stabilize gas exchange before measuring (time to stabilization was determined from a degassing trial with a randomized subset of soil jars, n = 5). These data are not in the current version of <code>fortedata</code>.</p>
 </div>
 <div id="soil-micrometeorology" class="section level2">
 <h2 class="hasAnchor">
 <a href="#soil-micrometeorology" class="anchor"></a>Soil Micrometeorology</h2>
-<p>Soil temperature (Ts) and soil moisture (s) were measured concurrently with in situ bulk Rs and soil cores harvested for in vitro Rh. Ts (°C) was measured to 7 cm using a thermocouple wire fitted to the LI-6400 and s was measured to 20 cm with a CS620 soil moisture probe.</p>
+<p>Soil temperature (T<sub>s</sub>) and soil moisture (s) were measured concurrently with in situ bulk Rs and soil cores harvested for in vitro Rh. Ts (°C) was measured to 7 cm using a thermocouple wire fitted to the LI-6400. Volumetric water content (%) was measured with a CS620 soil moisture sensor with 20 cm probes.</p>
 </div>
   </div>
 
