@@ -3,9 +3,10 @@
 
 #' Soil respiration (soil to atmosphere CO2 efflux) table.
 #'
+#' @note Measurements taken by Kayla Mathes and Carly Rodriguez
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
-#' @author Measurements by Kayla Mathes at the University of Michigan Biological Station.
+#'
 #' @examples
 #' fd_soil_respiration()
 fd_soil_respiration <- function() {

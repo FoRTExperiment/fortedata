@@ -1,10 +1,10 @@
 ---
-title: "Forest Resilience Threshold Experiment (FoRTE) Proposal Narrative"
+title: "fortedata: Proposal Narrative"
 author: "Drs. Ben Bond-Lamberty and Christopher M. Gough"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{FoRTE Proposal}
+  %\VignetteIndexEntry{fortedata: Proposal Narrative}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

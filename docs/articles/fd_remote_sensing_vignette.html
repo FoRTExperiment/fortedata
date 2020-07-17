@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -57,7 +57,7 @@
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
     </li>
     <li>
-      <a href="../articles/fd_forte_proposal_vignette.html">Forest Resilience Threshold Experiment (FoRTE) Proposal Narrative</a>
+      <a href="../articles/fd_forte_proposal_vignette.html">fortedata: Proposal Narrative</a>
     </li>
     <li>
       <a href="../articles/fd_inventory_vignette.html">fortedata: Forest Inventory Data</a>
@@ -84,13 +84,13 @@
 
       
 
-      </header><script src="fd_remote_sensing_vignette_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>fortedata: Remote Sensing Data</h1>
                         <h4 class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-04-24</h4>
+            <h4 class="date">2020-07-09</h4>
       
       
       <div class="hidden name"><code>fd_remote_sensing_vignette.Rmd</code></div>
@@ -136,7 +136,7 @@
 <p>We derived canopy structural trait metrics (Fahey et al. 2019) from 2-D terrestrial lidar data collected with a user-mounted, portable canopy lidar (PCL) system equipped with an upward facing, Riegl 3100VHS near‐infrared pulsed‐laser operating at 2000 Hz (Riegl LD90 3100 VHS; Riegl USA Inc., Orlando, Florida, USA). The PCL generates continuous LiDAR returns from a “slice” of the canopy as it is walked along a measured transect. For this study, we used 40 m transects at cardinal directions–north-to-south, east-to-west–through subplot center for a total of 80 m of transect length per subplot. This mirrors the approach of Atkins et al. (2018) and Haridman et al. (2013) and is sufficient to account for spatial variability of forest structure (Hardiman et al. 2019). A more detailed description of the development and implementation of this terrestrial laser scanning system is available in Parker et al. (2004) and Hardiman et al. ( 2011). We derived canopy structural metrics using the forestr package (Atkins et al. 2018a, b) in R 3.5 (R Core Team, 2018). forestr produces a suite of canopy structural traits metrics that describe canopy area/density, openness, height, complexity, and arrangement (Atkins et al. (2018a).</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/fd_canopy_structure.html">fd_canopy_structure</a></span>()
 <span class="co">## # A tibble: 62 x 33</span>
-<span class="co">##    subplot_id replicate  plot subplot  year mean.height height.2 mean.height.var</span>
+<span class="co">##    subplot_id replicate  plot subplot  year mean_height height_2 mean_height_var</span>
 <span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;int&gt;       &lt;dbl&gt;    &lt;dbl&gt;           &lt;dbl&gt;</span>
 <span class="co">##  1 D04E       D             4 E        2018        6.09     2.83            7.99</span>
 <span class="co">##  2 D04E       D             4 E        2018        7.72     3.81           14.5 </span>
@@ -148,13 +148,13 @@
 <span class="co">##  8 D02W       D             2 W        2018        7.90     3.95           15.6 </span>
 <span class="co">##  9 D01E       D             1 E        2018        9.93     2.48            6.13</span>
 <span class="co">## 10 D01E       D             1 E        2018        8.51     3.68           13.5 </span>
-<span class="co">## # ... with 52 more rows, and 25 more variables: mean.height.rms &lt;dbl&gt;,</span>
-<span class="co">## #   transect.length &lt;int&gt;, mode.el &lt;dbl&gt;, max.el &lt;dbl&gt;, mode.2 &lt;dbl&gt;,</span>
-<span class="co">## #   max.can.ht &lt;dbl&gt;, mean.max.ht &lt;dbl&gt;, mean.vai &lt;dbl&gt;, mean.peak.vai &lt;dbl&gt;,</span>
-<span class="co">## #   deep.gaps &lt;int&gt;, deep.gap.fraction &lt;dbl&gt;, porosity &lt;dbl&gt;, std.std &lt;dbl&gt;,</span>
-<span class="co">## #   mean.std &lt;dbl&gt;, rugosity &lt;dbl&gt;, top.rugosity &lt;dbl&gt;, mean.return.ht &lt;dbl&gt;,</span>
-<span class="co">## #   sd.return.ht &lt;dbl&gt;, sky.fraction &lt;dbl&gt;, cover.fraction &lt;dbl&gt;, max.ht &lt;dbl&gt;,</span>
-<span class="co">## #   scan.density &lt;dbl&gt;, rumple &lt;dbl&gt;, clumping.index &lt;dbl&gt;, enl &lt;dbl&gt;</span></pre></body></html></div>
+<span class="co">## # ... with 52 more rows, and 25 more variables: mean_height_rms &lt;dbl&gt;,</span>
+<span class="co">## #   transect_length &lt;int&gt;, mode_el &lt;dbl&gt;, max_el &lt;dbl&gt;, mode_2 &lt;dbl&gt;,</span>
+<span class="co">## #   max_can_ht &lt;dbl&gt;, mean_max_ht &lt;dbl&gt;, mean_vai &lt;dbl&gt;, mean_peak_vai &lt;dbl&gt;,</span>
+<span class="co">## #   deep_gaps &lt;int&gt;, deep_gap_fraction &lt;dbl&gt;, porosity &lt;dbl&gt;, std_std &lt;dbl&gt;,</span>
+<span class="co">## #   mean_std &lt;dbl&gt;, rugosity &lt;dbl&gt;, top_rugosity &lt;dbl&gt;, mean_return_ht &lt;dbl&gt;,</span>
+<span class="co">## #   sd_return_ht &lt;dbl&gt;, sky_fraction &lt;dbl&gt;, cover_fraction &lt;dbl&gt;, max_ht &lt;dbl&gt;,</span>
+<span class="co">## #   scan_density &lt;dbl&gt;, rumple &lt;dbl&gt;, clumping_index &lt;dbl&gt;, enl &lt;dbl&gt;</span></pre></body></html></div>
 </div>
 <div id="light-interception-and-availbility" class="section level2">
 <h2 class="hasAnchor">
@@ -189,7 +189,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kaylen Dorheim, Stephanie Pennington, Alexey Shiklomanov, Jason Tallant.</p>
+  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
 </div>
 
 <div class="pkgdown">

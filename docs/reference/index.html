@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -97,7 +97,7 @@
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
     </li>
     <li>
-      <a href="../articles/fd_forte_proposal_vignette.html">Forest Resilience Threshold Experiment (FoRTE) Proposal Narrative</a>
+      <a href="../articles/fd_forte_proposal_vignette.html">fortedata: Proposal Narrative</a>
     </li>
     <li>
       <a href="../articles/fd_inventory_vignette.html">fortedata: Forest Inventory Data</a>
@@ -157,22 +157,25 @@
         <td>
           <p><code><a href="calc_biomass.html">calc_biomass()</a></code> </p>
         </td>
-        <td><p>Calculate biomass from DBH data in fd_inventory() using equations fromTable  . Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
-
-sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint.</p></td>
+        <td><p>Calculate biomass from DBH data in fd_inventory()</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="calc_lai.html">calc_lai()</a></code> </p>
         </td>
-        <td><p>Function that returns LAI values at the plot scale
-#'</p></td>
+        <td><p>Function that returns LAI values at the plot scale</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="fd_canopy_structure.html">fd_canopy_structure()</a></code> </p>
         </td>
         <td><p>Canopy structural traits from 2D canopy LiDAR.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fd_canopy_structure_summary.html">fd_canopy_structure_summary()</a></code> </p>
+        </td>
+        <td><p>Summary data for canopy structural data</p></td>
       </tr><tr>
         
         <td>
@@ -185,6 +188,12 @@ sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flu
           <p><code><a href="fd_hemi_camera.html">fd_hemi_camera()</a></code> </p>
         </td>
         <td><p>Hemispherical camera data.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fd_hemi_camera_summary.html">fd_hemi_camera_summary()</a></code> </p>
+        </td>
+        <td><p>Summary data for hemispherical camera data.</p></td>
       </tr><tr>
         
         <td>
@@ -209,6 +218,12 @@ sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flu
           <p><code><a href="fd_litter.html">fd_litter()</a></code> </p>
         </td>
         <td><p>Litter trap data.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fd_make_release.html">fd_make_release()</a></code> </p>
+        </td>
+        <td><p>Write files for a GitHub data release</p></td>
       </tr><tr>
         
         <td>
@@ -279,7 +294,7 @@ The FoRTE color palettte</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kaylen Dorheim, Stephanie Pennington, Alexey Shiklomanov, Jason Tallant.</p>
+  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
 </div>
 
 <div class="pkgdown">

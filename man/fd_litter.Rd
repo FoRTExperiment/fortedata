@@ -12,9 +12,9 @@ A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field m
 \description{
 Litter trap data.
 }
+\note{
+Data were collected by multiple Gough Lab team members
+}
 \examples{
 fd_litter()
-}
-\author{
-Measurements by Gough Lab at the University of Michigan Biological Station.
 }

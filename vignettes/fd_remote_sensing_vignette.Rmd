@@ -4,7 +4,7 @@ author: "Jeff Atkins"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{FoRTE Remote Sensing}
+  %\VignetteIndexEntry{fortedata: Remote Sensing Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

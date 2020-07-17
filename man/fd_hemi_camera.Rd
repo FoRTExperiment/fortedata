@@ -12,9 +12,12 @@ A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field m
 \description{
 Hemispherical camera data.
 }
+\note{
+Data were collected by Jeff W. Atkins and Evan Pari using a 24 Megapixel
+Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
+180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
+channel, which allows direct calculation of NDVI.
+}
 \examples{
 fd_hemi_camera()
-}
-\author{
-Measurements by Jeff Atkins at the University of Michigan Biological Station.
 }

@@ -2,9 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{calc_biomass}
 \alias{calc_biomass}
-\title{Calculate biomass from DBH data in fd_inventory() using equations from
-Table  . Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
-sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint.}
+\title{Calculate biomass from DBH data in fd_inventory()}
 \usage{
 calc_biomass()
 }
@@ -12,8 +10,13 @@ calc_biomass()
 A data frame of biomass at the individual level build from fd_inventory
 }
 \description{
+calc_biomass() uses biomass equations from fd_table_biomass_allometries.csv.
+Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
+sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint.
+}
+\details{
 Studies used to augment Cooper’s raw data for a species are denoted by superscripts.
-BIOMASS BACKGROUND INFO
+
 Species	a	b	DBH range (cm)
 Acer rubrum a	0.0312	2.7780	1 – 40
 Acer saccharum b	0.1693	2.3436	3 – 66
@@ -25,6 +28,7 @@ Pinus strobus e	0.0408	2.5735	1 – 32
 Populus grandidentata f	0.1387	2.3498	1 – 37
 Populus tremuloides b	0.0589	2.6235	3 – 51
 Quercus rubra g	0.0398	2.7734	1 – 44
+
 a Crow and Erdmann, 1983, Perala and Alban, 1994, Young et al., 1980.
 b Young et al., 1980 equations used exclusively, DBH range estimated by Ker-Mikaelian and Korzukhin, 1997.
 c Perala and Alban, 1994 equations used exclusively.

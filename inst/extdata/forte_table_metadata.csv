@@ -1,6 +1,6 @@
 table,field,description,class,units,notes
-fd_inventory,subplot_id,"concatenation of replicate, plot, subplot",character,,NA
-fd_inventory,tag,tree ID number on tag,integer,,NA
+fd_inventory,subplot_id,,character,,NA
+fd_inventory,tag,,integer,,NA
 fd_inventory,species,Species code from the USDA Plants Database,character,,NA
 fd_inventory,dbh_cm,Bole diameter at 1.37 m,numeric,cm,NA
 fd_inventory,health_status,"Live (L), moribund (M), or dead (D)",character,,NA
@@ -20,9 +20,9 @@ fd_subplots,plot,Plot number,integer,,NA
 fd_subplots,subplot,"Subplot (E, W)",character,,NA
 fd_subplots,latitude_subplot,Decimal latitude of subplot center,numeric,degrees N,NA
 fd_subplots,longitude_subplot,Decimal longitude of subplot center,numeric,degrees E,NA
-fd_subplots,subplot_area_m2,Area of Subplot,integer,m2,NA
-fd_subplots,treatment,"Top-down, or bottom-up assignment of disturbance",character,,
-fd_subplots,disturbance_severity,Targeted defoliation,integer,,
+fd_subplots,subplot_area_m2,,integer,m2,NA
+fd_subplots,disturbance_severity,severity disturbance assignment,integer,,NA
+fd_subplots,treatment,disturbance treatment,character,,NA
 fd_nested_subplots,replicate,Replicate group (A-D),character,,NA
 fd_nested_subplots,plot,Plot number,integer,,NA
 fd_nested_subplots,subplot,"Subplot (E, W)",character,,NA
@@ -36,14 +36,13 @@ fd_soil_respiration,date,Date of measurement,date,,NA
 fd_soil_respiration,timestamp,Timestamp of measurement,POSIXct,,NA
 fd_soil_respiration,nested_subplot,Nested subplot sampling point inside subplot,character,,NA
 fd_soil_respiration,run,Indicates first or second sample taken with IRGA,integer,,NA
-fd_soil_respiration,soil_co2_efflux,Soil surface CO2 efflux measured with a LI-6400,numeric,µmol CO2/m2/s,NA
+fd_soil_respiration,soil_co2_efflux,Soil surface CO2 efflux measured with a LI-6400,numeric,Âµmol CO2/m2/s,NA
 fd_soil_respiration,soil_temp,Soil temperature measured at 7 cm depth,numeric,degrees C,NA
 fd_soil_respiration,vwc,Volumetric water content,numeric,percent,NA
 fd_leaf_spectrometry,subplot_id,"Subplot ID number, a concatenation of replicate, plot, and subplot codes",character,,NA
 fd_leaf_spectrometry,replicate,Replicate group (A-D),character,,NA
 fd_leaf_spectrometry,plot,Plot number,integer,,NA
 fd_leaf_spectrometry,subplot,"Subplot (E, W)",character,,NA
-fd_leaf_spectrometry,tree_id,Tree ID (Haber plots),,,NA
 fd_leaf_spectrometry,date,Date of measurement,Date,,NA
 fd_leaf_spectrometry,species,Species code from the USDA Plants Database; see https://plants.sc.egov.usda.gov/java/,character,,NA
 fd_leaf_spectrometry,index,Spectral index measured from the CID 710,character,,NA
@@ -56,9 +55,9 @@ fd_photosynthesis,timestamp,Timestamp of measurement,POSIXct,,NA
 fd_photosynthesis,obs,Observation number within file,integer,,NA
 fd_photosynthesis,ftime,Number of seconds since logging began,numeric,,NA
 fd_photosynthesis,ebal,Energy balance on?,integer,,NA
-fd_photosynthesis,photo,Photosynthetic rate,numeric,µmol CO2/m2/s,NA
+fd_photosynthesis,photo,Photosynthetic rate,numeric,Âµmol CO2/m2/s,NA
 fd_photosynthesis,cond,Stomatal conductance,numeric,mol H2O/m2/s,NA
-fd_photosynthesis,ci,Intracellular CO2 concentration,numeric,µmol/mol,NA
+fd_photosynthesis,ci,Intracellular CO2 concentration,numeric,Âµmol/mol,NA
 fd_photosynthesis,trmmol,Transpiration rate,numeric,mmol H2o/m2/s,NA
 fd_photosynthesis,vpdl,Leaf-level vapor pressure deficit,numeric,kPa,NA
 fd_photosynthesis,ctleaf,Leaf temperature from energy balance calculation,numeric,degrees C,NA
@@ -69,15 +68,15 @@ fd_photosynthesis,blcond,Boundary layer conductance,numeric,mol/m2/s,NA
 fd_photosynthesis,tair,Chamber air temperature,numeric,degrees C,NA
 fd_photosynthesis,tleaf,Leaf surface temperature,numeric,degrees C,NA
 fd_photosynthesis,tblk,IRGA block temperature,numeric,degrees C,NA
-fd_photosynthesis,co2r,Reference CO2 concentration,numeric,µmol/mol,NA
-fd_photosynthesis,co2s,Sample CO2 concentration,numeric,µmol/mol,NA
-fd_photosynthesis,h2or,Reference H20 concentration,numeric,µmol/mol,NA
-fd_photosynthesis,h2os,Sample H20 concentration,numeric,µmol/mol,NA
+fd_photosynthesis,co2r,Reference CO2 concentration,numeric,Âµmol/mol,NA
+fd_photosynthesis,co2s,Sample CO2 concentration,numeric,Âµmol/mol,NA
+fd_photosynthesis,h2or,Reference H20 concentration,numeric,Âµmol/mol,NA
+fd_photosynthesis,h2os,Sample H20 concentration,numeric,Âµmol/mol,NA
 fd_photosynthesis,rh_r,Reference relative humidity,numeric,percent,NA
 fd_photosynthesis,rh_s,Sample relative humidity,numeric,percent,NA
-fd_photosynthesis,flow,Flow rate,numeric,µmol/mol,NA
-fd_photosynthesis,pari,In-chamber PAR,integer,µmol/m2/s,NA
-fd_photosynthesis,paro,External PAR,integer,µmol/m2/s,NA
+fd_photosynthesis,flow,Flow rate,numeric,Âµmol/mol,NA
+fd_photosynthesis,pari,In-chamber PAR,integer,Âµmol/m2/s,NA
+fd_photosynthesis,paro,External PAR,integer,Âµmol/m2/s,NA
 fd_photosynthesis,press,Atmospheric pressure,numeric,kPa,NA
 fd_photosynthesis,csmch,,numeric,,NA
 fd_photosynthesis,hsmch,,numeric,,NA
@@ -130,34 +129,57 @@ fd_canopy_structure,replicate,Replicate group (A-D),character,,NA
 fd_canopy_structure,plot,Plot number,integer,,NA
 fd_canopy_structure,subplot,"Subplot (E, W)",character,,NA
 fd_canopy_structure,year,Year of measurement,integer,,NA
-fd_canopy_structure,mean.height,Mean height of vai,numeric,m,NA
-fd_canopy_structure,height.2,Standard deviation of mean height,numeric,m,NA
-fd_canopy_structure,mean.height.var,Variance of mean height,numeric,m,NA
-fd_canopy_structure,mean.height.rms,Root mean square height,numeric,m,NA
-fd_canopy_structure,transect.length,Length of transect,integer,m,NA
-fd_canopy_structure,mode.el,Mean heigh of maximum VAI,numeric,,NA
-fd_canopy_structure,max.el,"Greatest density of vai x, z position",numeric,,NA
-fd_canopy_structure,mode.2,Variance of maximum vai,numeric,,NA
-fd_canopy_structure,max.can.ht,Maximum measured canopy height,numeric,m,NA
-fd_canopy_structure,mean.max.ht,Mean outer canopy height or moch,numeric,,NA
-fd_canopy_structure,mean.vai,Average vai across transect,numeric,,NA
-fd_canopy_structure,mean.peak.vai,Average height of maximum vai,numeric,,NA
-fd_canopy_structure,deep.gaps,Number of 1 m wide bins with no lidar returns,integer,,NA
-fd_canopy_structure,deep.gap.fraction,Deep gaps dividied by transect length,numeric,,NA
+fd_canopy_structure,mean_height_mean,Mean leaf height,numeric,,NA
+fd_canopy_structure,height_2,Standard deviation of mean leaf height,numeric,,NA
+fd_canopy_structure,mean_height_median,median of mean leaf height,numeric,,NA
+fd_canopy_structure,mean_height_var,Variance of mean height,numeric,,NA
+fd_canopy_structure,mean_height_rms,Root mean square height,numeric,,NA
+fd_canopy_structure,transect_length,Length of transect,integer,,NA
+fd_canopy_structure,can_max_ht,Maximum measured canopy height,numeric,,NA
+fd_canopy_structure,moch,Mean outer canopy height or moch,numeric,,NA
+fd_canopy_structure,can_max_ht_median,Median outer canopy height,numeric,,NA
+fd_canopy_structure,vai_mean,Mean vegetation area index,numeric,,NA
+fd_canopy_structure,vai_sd,Standard deviation of VAI,numeric,,NA
+fd_canopy_structure,vai_median,Median of VAI,numeric,,NA
+fd_canopy_structure,vai_column_max,"Need to cut, artifact",integer,,NA
+fd_canopy_structure,vai_max_ht_mean,Mean height of maximum VAI density,numeric,,NA
+fd_canopy_structure,vai_max_ht_sd,SD of maximum VAI density,numeric,,NA
+fd_canopy_structure,vai_max_ht_median,Median of max VAI density,numeric,,NA
+fd_canopy_structure,vai_max,"Max VAI density for any x,z",numeric,,NA
+fd_canopy_structure,vai_mean_peak,Mean peak VAI for entire transect,numeric,,NA
+fd_canopy_structure,vai_peak_sd,SD of peak VAI,numeric,,NA
+fd_canopy_structure,vai_peak_median,Median of peak VAI,numeric,,NA
+fd_canopy_structure,deep_gaps,Number of 1 m wide bins with no lidar returns,integer,,NA
+fd_canopy_structure,deep_gap_fraction,Deep gaps dividied by transect length,numeric,,NA
 fd_canopy_structure,porosity,Ratio of empty to filled bins in the canopy,numeric,,NA
-fd_canopy_structure,std.std,Precursor to rugosity,numeric,,NA
-fd_canopy_structure,mean.std,Precursor to rugosity,numeric,,NA
-fd_canopy_structure,rugosity,Accumulated canopy complexity metric,numeric,m,NA
-fd_canopy_structure,top.rugosity,Standard deviation of final lidar returns,numeric,m,NA
-fd_canopy_structure,mean.return.ht,Average lidar return distance,numeric,m,NA
-fd_canopy_structure,sd.return.ht,Standard deviation of lidar return distances,numeric,m,NA
-fd_canopy_structure,sky.fraction,Ratio of sky hits to lidar returns,numeric,,NA
-fd_canopy_structure,cover.fraction,1/sky fraction,numeric,,NA
-fd_canopy_structure,max.ht,"Same as max can ht, removed in later forestr updates",numeric,m,NA
-fd_canopy_structure,scan.density,No. of lidar returns divided by transect length,numeric,,NA
+fd_canopy_structure,std_std,Precursor to rugosity,numeric,,NA
+fd_canopy_structure,mean_std,Precursor to rugosity,numeric,,NA
+fd_canopy_structure,rugosity,Accumulated canopy complexity metric,numeric,,NA
+fd_canopy_structure,top_rugosity,Standard deviation of final lidar returns,numeric,,NA
+fd_canopy_structure,mean_return_ht,Mean raw lidar return height,numeric,,NA
+fd_canopy_structure,sd_return_ht,Standard deviation of raw lidar return distances,numeric,,NA
+fd_canopy_structure,median_ht,Median of raw lidar return distances,numeric,,NA
+fd_canopy_structure,sky_fraction,Ratio of sky hits to lidar returns,numeric,,NA
+fd_canopy_structure,cover_fraction,1/sky fraction,numeric,,NA
+fd_canopy_structure,max_ht,"Same as max can ht, removed in later forestr updates",numeric,,NA
+fd_canopy_structure,scan_density,No. of lidar returns divided by transect length,numeric,,NA
 fd_canopy_structure,rumple,Outer surface variability divided by transect length,numeric,,NA
-fd_canopy_structure,clumping.index,the ratio of the effective leaf area index to the true leaf area index,numeric,,NA
+fd_canopy_structure,clumping_index,the ratio of the effective leaf area index to the true leaf area index,numeric,,NA
 fd_canopy_structure,enl,Effective number of layers,numeric,,NA
+fd_canopy_structure,fhd,Distribution of canopy cover among forest strata expressed as a diversity index,numeric,,NA
+fd_canopy_structure,gini,a statistical measure of the degree of variation or inequality represented in a set of values,numeric,,NA
+fd_canopy_structure,mean_intensity,Mean of lidar intensity values,numeric,,NA
+fd_canopy_structure,median_intensity,Median of lidar intensity values,integer,,NA
+fd_canopy_structure,sd_intensity,SD of lidar intensity values,numeric,,NA
+fd_canopy_structure,max_intensity,Maximum lidar intensity value,numeric,,NA
+fd_canopy_structure,min_intensity,Minimum lidar intensity value,numeric,,NA
+fd_canopy_structure,skew_intensity,Skewness  of intensity values,numeric,,NA
+fd_canopy_structure,kurtosis_intensity,Kurtosis of intensity values,numeric,,NA
+fd_canopy_structure,p10,10 percentile height,numeric,,NA
+fd_canopy_structure,p25,25 percentile height,numeric,,NA
+fd_canopy_structure,p50,50 percentile height,numeric,,NA
+fd_canopy_structure,p75,75 percentile height,numeric,,NA
+fd_canopy_structure,p90,90 percentile height,numeric,,NA
 fd_publications,entry,Abbreviated in-text entry in the form of author last name and year,character,,NA
 fd_publications,pub_year,Year of publication,integer,,NA
 fd_publications,title,Title of publication,character,,NA
@@ -168,14 +190,3 @@ fd_observations,year,Year value,character,,NA
 fd_observations,timeframe,Concatenation of Month and Year,Date,,NA
 fd_observations,table,Table value,character,,NA
 fd_observations,no_of_obs,No of records for each funcition,integer,,NA
-fd_mortality,subplot_id,"Subplot ID number, a concatenation of replicate, plot, and subplot codes",,,
-fd_mortality,replicate,Replicate group (A-D),,,
-fd_mortality,plot,Plot number,,,
-fd_mortality,subplot,"Subplot (E, W)",,,
-fd_mortality,tag,tree ID number on tag,,,
-fd_mortality,species,Species code from the USDA Plants Database,,,
-fd_mortality,dbh_cm,Bole diameter at 1.37 m,,,
-fd_mortality,health_status,"Live (L), moribund (M), or dead (D)",,,
-fd_mortality,canopy_status,"Overstory dominant (OD), overstory submissive (OS), sapling (SA), understory (UN)",,,
-fd_mortality,fate,Date of measurement,,,
-fd_mortality,notes,Additional infromation,,,
