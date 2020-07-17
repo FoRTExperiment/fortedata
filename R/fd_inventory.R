@@ -70,9 +70,9 @@ fd_inventory_summary <- function() {
 
   #ba$Stocking <- stocking$DBH_cm
   weak_as_tibble(merge(ba, stocking))
-
-
 }
+
+
 
 #' Mortality Assignments for Girdling 2018
 #'

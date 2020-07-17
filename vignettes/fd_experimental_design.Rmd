@@ -1,6 +1,6 @@
 ---
 title: "fortedata: Experimental Design and Treatment"
-author: "Jeff Atkins"
+author: "FoRTE Team"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -17,18 +17,15 @@ knitr::opts_chunk$set(
 ```
 
 ## Overview
-
+We established the Forest Resilience Threshold Experiment (FoRTE) with the goal of understanding how and why disturbance severity and type affect key C cycling processes and ecosystem C balance.
 
 ## Site Description
-The Forest Resilience Threshold Experiment (FoRTE) is conducted at the University of Michigan Biological Station (UMBS) in northern lower Michigan, USA (45.56 N, -84.67 W), where mean annual air temperature is 5.5°C and mean annual precipitation is 817 mm (Gough and others 2013). The vegetation communities included in our analysis are transitioning 100-yr-old middle successional forests, with a dominant upper canopy comprised mainly of pioneer bigtooth and trembling aspen (Populus grandidentata and P. tremuloides, respectively) and paper birch (Betula papyrifera) established following region-wide harvesting and fire in the early 20th Century. This cohort of early successional tree species is rapidly declining (Gough and others 2010), and giving way to later‐successional red oak (Quercus rubra), eastern white pine (Pinus strobus), sugar maple (Acer saccharum), red maple (Acer rubrum), and American beech (Fagus grandifolia). 
+FoRTE is conducted at the University of Michigan Biological Station (UMBS) in northern lower Michigan, USA (45.56 N, -84.67 W), where mean annual air temperature is 5.5°C and mean annual precipitation is 817 mm (Gough and others 2013). The vegetation communities included in our analysis are transitioning 100-yr-old middle successional forests, with a dominant upper canopy comprised mainly of pioneer bigtooth and trembling aspen (Populus grandidentata and P. tremuloides, respectively) and paper birch (Betula papyrifera) established following region-wide harvesting and fire in the early 20th Century. This cohort of early successional tree species is rapidly declining (Gough and others 2010), and giving way to later‐successional red oak (Quercus rubra), eastern white pine (Pinus strobus), sugar maple (Acer saccharum), red maple (Acer rubrum), and American beech (Fagus grandifolia). 
 
-Despite sharing a relatively uniform disturbance history, tree species’ dominance and plant community composition along with structure and complexity vary substantially among the “landscape ecosystems” of UMBS (Table 1;  Figure 2; Scheuermann and others 2018). The term “landscape ecosystems” is used to describe land units forming a unique complex of climate, soils, biota and landform (Pearsall et al. 1995). The compositional and structural variability associated with landscape ecosystems is paralleled by substantial spatial variability in NPP, which spanned a 4-fold range across our site prior to experimental disturbance (Hardiman and others 2011). 
+Despite sharing a relatively uniform disturbance history, tree species’ dominance and plant community composition along with structure and complexity vary substantially among the “landscape ecosystems” of UMBS (Table 1;  Figure 2; Scheuermann and others 2018). The term “landscape ecosystems” is used to describe land units forming a unique complex of climate, soils, biota and landform (Pearsall et al. 1995). 
 
-## Disturbance Treatment
-We established the Forest Resilience Threshold Experiment (FoRTE) with the goal of understanding how and why disturbance severity and type affect key C cycling processes and ecosystem C balance. During Spring 2019, we randomly assigned factorial combinations of disturbance severity (4 levels) and type (2 levels) within four separate landscape ecosystems representing a range in site productivity characteristic of the forests of the Upper Great Lakes Region (Lapin and Barnes 1995). The approach used to implement disturbance was stem girdling, which, like wood boring insects (e.g., emerald ash borer, mountain pine beetle), causes gradual defoliation by eliminating the transport of photosynthate to roots, killing trees once carbohydrate reserves are exhausted over a period of two to three years (Dietze and others 2014; Gough and others 2013). 
-
-In late May 2019 (days 140 to 143), prior to leaf-out, we selected >3600 trees for girdling from censused and mapped stems  8 cm diameter at breast height (DBH). Specifically, within each of the four replicates, we used species- and site- or region-specific allometries (Gough and others 2008) relating DBH to leaf area to target gross LAI reductions within each plot of 0% (control), 45%, 65%, or 85%. Severity levels were assigned at random to four, 0.5 ha circular whole plots, which were split into 0.25 ha halves and randomly designated a “top-down” or “bottom-up” disturbance type treatment (Figure 2B). For the “top-down” disturbance type, we girdled the largest trees first, irrespective of species, starting with the highest leaf area individual and sequentially girdling lower leaf area trees until the assigned plot disturbance severity was reached. For the “bottom-up” treatment, we stem girdled trees (>8 cm DBH) with the lowest individual leaf area first, progressively girdling larger trees up to the targeted disturbance severity. A 10-cm band of phloem tissue was girdled ~1 m above the forest floor and below DBH using pry bars. 
-Circular, 0.1 ha sampling subplots were established within each disturbance severity x type treatment in each of the four replicates, resulting in a total of 32 subplots surrounded by a 5-m wide measurement-free treatment buffer. Within each subplot and following methods detailed below, we measured ANPPw, Rs, and Asat, and we used terrestrial (i.e., ground-based) lidar and hemispherical imagery along with stem census data to derive measures of diversity, structure and complexity. Because of variation among C cycling processes in sampling effort and timing, the frequency of measurements varied. Our methods are summarized below and described extensively in vignettes contained within the project’s open field notebook: https://fortexperiment.github.io/fortedata/. 
+## Factorial Design, Disturbance Severities and Types
+During Spring 2019, we randomly assigned factorial combinations of disturbance severity at 4 levels (0, 45, 65, 85%) targeted leaf area reductions) and two treatment types (top-down - starting at the largest diameter canopy tree; bottom-up, starting at the smallest diameter canopy tree--with the caveat there is an 8 cm DBH cut-off for a tree to be considered a canopy tree) within four separate landscape ecosystems representing a range in site productivity characteristic of the forests of the Upper Great Lakes Region (Lapin and Barnes 1995), here represented by the replicate names (A, B, C, D; see map below). The code used to generate the random assignments is illustrated below: 
 
 ```{r distrubance-assignment, echo = TRUE, results = 'hide'}
 #set random seed
@@ -51,11 +48,25 @@ plot.disturbance.a <- plot.disturbance.a[order(plot.disturbance.a$plot),]
 plot.treatment <- data.frame(plot.side = sample(w), treatment = sample(x))
 ```
 
+Circular, 0.1 ha sampling subplots were established within each disturbance severity x type treatment in each of the four replicates, resulting in a total of 32 subplots surrounded by a 5-m wide measurement-free treatment buffer. Within each subplot and following methods detailed below, we measured ANPPw, Rs, and Asat, and we used terrestrial (i.e., ground-based) lidar and hemispherical imagery along with stem census data to derive measures of diversity, structure and complexity. 
 
-  ![FoRTE subplot diagram](https://user-images.githubusercontent.com/8354517/87793298-12965f80-c813-11ea-956d-b9f9824a6d18.PNG){width=50%}
-  
-  
-  (https://user-images.githubusercontent.com/8354517/87793689-96e8e280-c813-11ea-9fab-54dd50d2c8db.jpeg)
+![FoRTE subplot diagram](https://user-images.githubusercontent.com/8354517/87793298-12965f80-c813-11ea-956d-b9f9824a6d18.PNG){width=98%}
+
+## Stem-Girdling
+Disturbance was implemented via stem girdling, which, like wood boring insects (e.g., emerald ash borer, mountain pine beetle), causes gradual defoliation by eliminating the transport of photosynthate to roots, killing trees once carbohydrate reserves are exhausted over a period of two to three years (Dietze and others 2014; Gough and others 2013). Stem-girdling occurred in late May 2019 (DOY 140 to 143), prior to leaf-out.
+
+![VCU student Laura Hickey shows proper girdling technique](https://user-images.githubusercontent.com/8354517/87794847-378bd200-c815-11ea-87cf-aa424b9f8a4a.jpg)
+
+## Mortality Assignment
+We selected approximately 3600 trees to for girdling. 1207 of these trees were located in censused and mapped subplots 0.1 ha), with an additional 2400 trees located in the plot areas outside of subplot locations as well as in the 5 m buffer zones around all plots. To clarify, as mentioned above, each plot is 0.5 ha and contains 2 seperate 0.1 ha subplots. Only trees in subplots are censused. The estimate of 2400 trees girdled outside of the censuseed areas is based on extrapolation from plot-specific stem densities. 
+
+Mortality was assigned based on disturbance severity--0, 45, 65, 85%--where the disturbance levels are targetted reductions in leaf area. Estimated leaf area per stem was derived from species- and site- or region-specific allometries (Gough and others 2008) relating DBH to leaf area for all canopy trees (trees >8 cm DBH). to target gross LAI reductions within each plot of 0% (control), 45%, 65%, or 85%. Severity levels were assigned at random to four, 0.5 ha circular whole plots, which were split into 0.25 ha halves and randomly designated a “top-down” or “bottom-up” disturbance type treatment (Figure 2B). For the “top-down” disturbance type, we girdled the largest trees first, irrespective of species, starting with the highest leaf area individual and sequentially girdling lower leaf area trees until the assigned plot disturbance severity was reached. For the “bottom-up” treatment, we stem girdled trees (>8 cm DBH) with the lowest individual leaf area first, progressively girdling larger trees up to the targeted disturbance severity. A 10-cm band of phloem tissue was girdled ~1 m above the forest floor and below DBH using pry bars. 
+
+Individual mortality assignments at the stem level can be accessed via `fd_mortality()`
+
+![Mortality assignment on plot D3 where the assigned disturbance severity is 45%. Top-down treatment is shown on the left, while bottom-up is at right](https://user-images.githubusercontent.com/8354517/87803848-192bd380-c821-11ea-8114-dad5c29321d2.png){width=98%}
+
+
   
 
 ```
