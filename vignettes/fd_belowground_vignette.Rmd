@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 ## Belowground Measurements
 The `fd_belowground()` script within `fortedata` currently includes one function:
 
-`fd_soil_respiration()` which returns a single dataset of 2780 observations each of soil CO2 efflux (μmol CO2 m-2 s-1) as well as soil micrometeorological measurements: soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) for the year 2019.
+`fd_soil_respiration()` which returns a single dataset of 2780 observations each of soil CO2 efflux (μmol CO~2~ m^-2^ s^-1^) as well as soil micrometeorological measurements: soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) for the year 2019.
 
 ```{r fd_soil_respiration}
 fd_soil_respiration()
