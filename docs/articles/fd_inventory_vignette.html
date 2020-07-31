@@ -57,6 +57,9 @@
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
     </li>
     <li>
+      <a href="../articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
+    </li>
+    <li>
       <a href="../articles/fd_forte_proposal_vignette.html">fortedata: Proposal Narrative</a>
     </li>
     <li>
@@ -84,13 +87,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="fd_inventory_vignette_files/header-attrs-2.3/header-attrs.js"></script><script src="fd_inventory_vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>fortedata: Forest Inventory Data</h1>
                         <h4 class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-07-09</h4>
+            <h4 class="date">2020-07-17</h4>
       
       
       <div class="hidden name"><code>fd_inventory_vignette.Rmd</code></div>
@@ -108,6 +111,13 @@
 <code><a href="../reference/fd_inventory.html">fd_inventory()</a></code> returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), latitude, longitude, and biomass for each measured stem, as well as information on vitality and canopy position . There are 3165 observations in the dataset, all measured in 2018.</li>
 </ul>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="../reference/fd_inventory.html">fd_inventory</a></span>()
+<span class="co">## Warning: `...` is not empty.</span>
+<span class="co">## </span>
+<span class="co">## We detected these problematic arguments:</span>
+<span class="co">## * `needs_dots`</span>
+<span class="co">## </span>
+<span class="co">## These dots only exist to allow future extensions and should be empty.</span>
+<span class="co">## Did you misspecify an argument?</span>
 <span class="co">## # A tibble: 3,165 x 11</span>
 <span class="co">##    subplot_id replicate  plot subplot date         tag species dbh_cm</span>
 <span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;date&gt;     &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt;</span>

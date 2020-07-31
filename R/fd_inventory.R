@@ -70,6 +70,25 @@ fd_inventory_summary <- function() {
 
   #ba$Stocking <- stocking$DBH_cm
   weak_as_tibble(merge(ba, stocking))
+}
 
 
+
+#' Mortality Assignments for Girdling 2018
+#'
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.#'
+#' @export
+#' @author Atkins
+#' @examples
+#' fd_mortality()
+fd_mortality <- function() {
+  kill <- read_csv_file("fd_mortality_assignment.csv")
+  #inv$date <- as.Date(inv$date, format = "%m/%d/%Y")
+
+  kill <- split_subplot_id(kill)
+
+
+  kill <- kill[c("subplot_id", "replicate", "plot", "subplot","tag", "species", "dbh_cm", "health_status", "canopy_status", "fate", "notes")]
+
+  weak_as_tibble(kill)
 }

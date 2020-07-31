@@ -43,6 +43,7 @@ fd_leaf_spectrometry,subplot_id,"Subplot ID number, a concatenation of replicate
 fd_leaf_spectrometry,replicate,Replicate group (A-D),character,,NA
 fd_leaf_spectrometry,plot,Plot number,integer,,NA
 fd_leaf_spectrometry,subplot,"Subplot (E, W)",character,,NA
+fd_leaf_spectrometry,tree_id,Tree ID (Haber plots),character,,NA
 fd_leaf_spectrometry,date,Date of measurement,Date,,NA
 fd_leaf_spectrometry,species,Species code from the USDA Plants Database; see https://plants.sc.egov.usda.gov/java/,character,,NA
 fd_leaf_spectrometry,index,Spectral index measured from the CID 710,character,,NA
