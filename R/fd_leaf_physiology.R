@@ -22,7 +22,7 @@ fd_leaf_spectrometry <- function() {
   leaf_spec$species <- as.character(substr(leaf_spec$filepath, 6, 9))
   leaf_spec$date <- as.character(substr(leaf_spec$filepath, 17, 24))
   leaf_spec$date <- as.Date(as.character(leaf_spec$date), format = "%m%d%Y")
-  leaf_spec <- leaf_spec[grepl('([A-Za-z])', leaf_spec$index_value), ]
+  #leaf_spec <-leaf_spec[grepl('([A-Za-z])', leaf_spec$index_value), ]    # if I comment this out, it works
   leaf_spec <- leaf_spec[!grepl('\\.$', leaf_spec$index_value), ]
   leaf_spec$index_value <- iconv(leaf_spec$index_value, from = "latin1", to = "ASCII", "")
   leaf_spec$index_value <- as.numeric(as.character(leaf_spec$index_value))
