@@ -96,15 +96,25 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 
 #' FoRTE color palette
 
-#' The FoRTE color palettte
+#' The FoRTE color palette
 #'
-#' These are a handful of color palettes pulled from photographs of US National Parks.
-#' @return A vector of colours.
+#' A FoRTE specific color palette used for color-classificaiton of disturbance severity
+#' treatments. 0% = "#000000", 45% = "#009E73", 65% = "#0072B2", and 85% = "#D55E00".
+#'
+#' Per the example below, `forte_colors()` can be used to define a custom palette that
+#' can then be used for plotting with other commands such as `scale_fill_manual()`, etc.
+#' @return A vector of colors.
 #' @export
-#' @keywords colors
+#' @keywords colors palette
 #' @examples
 #'
-#' pal <- forte_colors()
+#'  forte.pal <- forte_colors()
+#'
+#'  ggplot(...)+
+#'  geom_point()+
+#'  scale_fill_manual(values = forte.pal)
+
+
 forte_colors <- function() {
   pal <- c("#000000", "#009E73", "#0072B2", "#D55E00")
   pal <- structure(pal, class = "palette", name = 'forte')
@@ -133,7 +143,7 @@ print.palette <- function(x, ...) {
 #' Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
 #' sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint.
 #'
-#' Studies used to augment Cooper’s raw data for a species are denoted by superscripts.
+#' Studies used to augment Cooper’s raw data for a species are denoted below.
 #'
 #' Species	a	b	DBH range (cm)
 #' Acer rubrum a	0.0312	2.7780	1 – 40
@@ -157,7 +167,10 @@ print.palette <- function(x, ...) {
 #' h Diameter at 15 cm height.
 #'
 #'
-#' @return A data frame of biomass at the individual level build from fd_inventory
+#' @return A `data.frame` or `tibble` of tree biomass calculated
+#' using allometries (listed in ?calc_biomass().
+#' Call \code{\link{fd_metadata}} for field metadata.
+#'
 #' @export
 #' @examples
 #' fortedata::calc_biomass()
@@ -193,8 +206,8 @@ plot_metadata <- function(){
 
 #' Function that returns LAI values at the plot scale
 #'
-#' LAI is calculated using the equation SLA * mass, where SLA is specific leaf area. Species and site specific values
-#' are in fd_sla.csv
+#' LAI is calculated using the equation SLA * mass, where SLA is specific leaf area.
+#' Species and site specific values are in fd_sla.csv.
 #'
 #' @return A data frame of leaf area fro SLA * mass at the plot scale
 #' @export
