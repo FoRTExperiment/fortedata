@@ -21,12 +21,23 @@ test_that("Metadata function", {
     expected.label = "Units"
   )
 
-  # Make sure everything in tables column refers to a `fortedata` function
+  # Make sure everything in tables column refers to a `fortedata` function,
+  # and that subsetting metadata works correctly.
   tables <- unique(dat[["table"]])
   for (tab in tables) {
     expect_true(exists(!!tab))
-    expect_s3_class(do.call(!!tab, list()), "data.frame")
+    target_dat <- do.call(tab, list())
+    target_meta <- fd_metadata(tab)
+    expect_true(all(colnames(target_dat) %in% target_meta[["field"]]))
+    expect_true(all(target_meta[["field"]] %in% colnames(target_dat)))
+    expect_true(is.data.frame(target_dat), label = tab)
   }
+
+  expect_error(
+    fd_metadata("notatable"),
+    "Table notatable is not present in metadata"
+  )
+
 })
 
 test_that("Metadata CSV file", {
