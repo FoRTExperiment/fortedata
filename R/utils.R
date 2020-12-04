@@ -13,6 +13,8 @@ read_csv_file <- function(...) {
   weak_as_tibble(
     read.csv(
       system.file("extdata", ..., package = "fortedata", mustWork = TRUE),
+      # Empty strings, and ONLY empty strings, should be interpreted as missing values.
+      na.strings = "",
       stringsAsFactors = FALSE
     )
   )

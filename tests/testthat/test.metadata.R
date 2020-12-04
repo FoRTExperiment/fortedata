@@ -27,3 +27,9 @@ test_that("Metadata", {
     }
   }
 })
+
+test_that("Metadata function", {
+  dat <- fd_metadata()
+  # Make sure empty strings are correctly converted to NA
+  expect_true(!any(na.omit(dat$units) == ""))
+})
