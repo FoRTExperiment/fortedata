@@ -8,7 +8,7 @@ test_that("Inventory table", {
   # Health_status should be either L or D, or M
   expect_true(all(dat$health_status %in% c("L", "D", "M")))
   # Canopy status has to be one of our four recognized values, or blank
-  expect_true(all(dat$canopy_status %in% c("OD", "UN", "OS", "SA", "")))
+  expect_true(all(dat$canopy_status %in% c("OD", "UN", "OS", "SA", NA_character_)))
   # Once we standardize on an 'unknown' code, we'll add a four-letter test
 
   # All the replicate/plot/subplot codes should exist
