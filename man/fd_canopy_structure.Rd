@@ -14,12 +14,10 @@ Call \code{\link{fd_metadata}} for field metadata.
 Canopy structural traits from 2D canopy LiDAR.
 }
 \note{
+Data were collected by Jeff W. Atkins and Brandon Alveshare using an upward facing, portable canopy lidar unit.
 The Canopy structural traits were derived using the
 \code{forestr} 1.0.1 package from 2D portable canopy lidar
 }
 \examples{
 fd_canopy_structure()
-}
-\author{
-Measurements by Jeff Atkins at the University of Michigan Biological Station.
 }

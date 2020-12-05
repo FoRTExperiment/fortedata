@@ -2,8 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{calc_lai}
 \alias{calc_lai}
-\title{Function that returns LAI values at the plot scale
-#'}
+\title{Function that returns LAI values at the plot scale}
 \usage{
 calc_lai()
 }
@@ -11,8 +10,8 @@ calc_lai()
 A data frame of leaf area fro SLA * mass at the plot scale
 }
 \description{
-Function that returns LAI values at the plot scale
-#'
+LAI is calculated using the equation SLA * mass, where SLA is specific leaf area. Species and site specific values
+are in fd_sla.csv
 }
 \examples{
 fortedata::calc_lai()

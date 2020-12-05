@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -57,7 +57,10 @@
       <a href="articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
     </li>
     <li>
-      <a href="articles/fd_forte_proposal_vignette.html">Forest Resilience Threshold Experiment (FoRTE) Proposal Narrative</a>
+      <a href="articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
+    </li>
+    <li>
+      <a href="articles/fd_forte_proposal_vignette.html">fortedata: Proposal Narrative</a>
     </li>
     <li>
       <a href="articles/fd_inventory_vignette.html">fortedata: Forest Inventory Data</a>
@@ -86,9 +89,42 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="fortedata" class="section level1">
+<div id="fortedata-an-open-data-package-for-the-r-programming-language" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#fortedata" class="anchor"></a>fortedata</h1></div>
+<a href="#fortedata-an-open-data-package-for-the-r-programming-language" class="anchor"></a>fortedata: An open-data package for the R programming Language</h1></div>
+<p><img src="https://user-images.githubusercontent.com/8354517/87047244-3da40200-c1c8-11ea-91fd-61104ad0f4f8.PNG"></p>
+<div id="overview" class="section level3">
+<h3 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h3>
+<p><em>fortedata</em> is an R package that provides functions for accessing and interpreting data associated with FoRTE: Forest Resilience Threshold Experimen–a modeling and manipulative field experiment that tests the effects of disturbance severity and disturbance type on carbon cycling dynamics in a temperate forest. Package data consists of measurements of carbon pools and fluxes and ancillary measurements to help analyse and users analyse and interpret carbon cycling over time.</p>
+</div>
+<div id="getting-started" class="section level3">
+<h3 class="hasAnchor">
+<a href="#getting-started" class="anchor"></a>Getting Started</h3>
+<p>We recommend that users begin with either package <a href="https://fortexperiment.github.io/fortedata/articles/index.html">vignettes</a> that provide detailed examples of package funcitons and potential use cases, or with package <a href="https://fortexperiment.github.io/fortedata/reference/index.html">documentation</a>.</p>
+</div>
+<div id="installation" class="section level3">
+<h3 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h3>
+<p>Installing the latest development version of <em>fortedata</em> from GitHub (requires <a href="https://github.com/hadley/devtools">devtools</a>):</p>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"devtools"</span>)) {
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
+}
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"FoRTExperiment/fortedata"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">build_vignettes</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></div>
+</div>
+<div id="the-forte-team" class="section level3">
+<h3 class="hasAnchor">
+<a href="#the-forte-team" class="anchor"></a>The FoRTE Team</h3>
+<ul>
+<li><p>Principal Investigators: <a href="http://www.people.vcu.edu/~cmgough/">Chris M. Gough</a> and <a href="https://www.pnnl.gov/science/staff/staff_info.asp?staff_num=7203">Ben Bond-Lamberty</a></p></li>
+<li><p>PNNL Science Team: Kalyn Dorheim, Stephanie Pennington</p></li>
+<li><p>Postdoctoral Researchers: Jeff W. Atkins, Alexey Shiklomanov</p></li>
+<li><p>Graduate Students: Maxim S. Grigri, Lisa T. Haber, Kayla Mathes</p></li>
+<li><p>Undergraduate Students: Alexandra Barry, Laura J. Hickey, Catherine McGuigan, Autym Shafer</p></li>
+<li><p>REU Students: Evan Paris, Carly Rodriguez</p></li>
+<li><p>Reserach Collaborators: Elizabeth Agee, Brandon Alveshare, Kyla M. Dahlin, Robert T. Fahey, Aaron G. Kamoske, Jason Tallant</p></li>
+</ul>
+</div>
 </div>
   </div>
 
@@ -96,9 +132,14 @@
     <div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
-<li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+<li>file <a href="LICENSE-text.html">LICENSE</a>
 </li>
+</ul>
+</div>
+<div class="citation">
+<h2>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html">Citing fortedata</a></li>
 </ul>
 </div>
 <div class="developers">
@@ -106,10 +147,9 @@
 <ul class="list-unstyled">
 <li>Jeff Atkins <br><small class="roles"> Author, maintainer </small>  </li>
 <li>Ben Bond-Lamberty <br><small class="roles"> Author </small>  </li>
-<li>Kaylen Dorheim <br><small class="roles"> Author </small>  </li>
+<li>Kalyn Dorheim <br><small class="roles"> Author </small>  </li>
 <li>Stephanie Pennington <br><small class="roles"> Author </small>  </li>
 <li>Alexey Shiklomanov <br><small class="roles"> Author </small>  </li>
-<li>Jason Tallant <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
@@ -118,7 +158,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kaylen Dorheim, Stephanie Pennington, Alexey Shiklomanov, Jason Tallant.</p>
+  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
 </div>
 
 <div class="pkgdown">

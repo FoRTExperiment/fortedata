@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -57,7 +57,10 @@
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
     </li>
     <li>
-      <a href="../articles/fd_forte_proposal_vignette.html">Forest Resilience Threshold Experiment (FoRTE) Proposal Narrative</a>
+      <a href="../articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
+    </li>
+    <li>
+      <a href="../articles/fd_forte_proposal_vignette.html">fortedata: Proposal Narrative</a>
     </li>
     <li>
       <a href="../articles/fd_inventory_vignette.html">fortedata: Forest Inventory Data</a>
@@ -84,13 +87,13 @@
 
       
 
-      </header><script src="fd_leaf_physiology_vignette_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
+      </header><script src="fd_leaf_physiology_vignette_files/header-attrs-2.3/header-attrs.js"></script><script src="fd_leaf_physiology_vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>fortedata: Ecophsyiology Data</h1>
                         <h4 class="author">Lisa Haber and Jeff Atkins</h4>
             
-            <h4 class="date">2020-04-24</h4>
+            <h4 class="date">2020-07-17</h4>
       
       
       <div class="hidden name"><code>fd_leaf_physiology_vignette.Rmd</code></div>
@@ -102,13 +105,13 @@
 <div id="leaf-physiology-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#leaf-physiology-data" class="anchor"></a>Leaf Physiology Data</h2>
-<p>The <code>fd_lefa_physiology()</code> script within <code>fortedata</code> currently includes the following functions:</p>
+<p>The <code>fd_leaf_physiology()</code> script within <code>fortedata</code> currently includes the following functions:</p>
 <ul>
 <li>
 <code><a href="../reference/fd_leaf_spectrometry.html">fd_leaf_spectrometry()</a></code> returns a single dataset of vegetation indices derived from leaf-level spectrometry data collected via a CI-710 handheld spectrometer (Table S6). The package includes 7155 observations of spectral indices for three species each in eight subplots within the D replicate (Figs. 1 and 4).<br>
 </li>
 <li>
-<code><a href="../reference/fd_photosynthesis.html">fd_photosynthesis()</a></code> returns a single dataset of leaf physiology variables, including photosynthesis, transpiration, etc, measured using a LI-6400 XT (LI-COR Biosciences; Lincoln, NE)(Table S7). The package includes 2215 observations from 2018 (Fig. 4).</li>
+<code><a href="../reference/fd_photosynthesis.html">fd_photosynthesis()</a></code> returns a single dataset of leaf physiology variables, including photosynthesis, transpiration, etc, measured using a LI-6400 XT (LI-COR Biosciences; Lincoln, NE). The package includes 2215 observations from 2018.</li>
 </ul>
 </div>
 <div id="photosynthesis-data" class="section level2">
@@ -117,6 +120,13 @@
 <p>Between July 11 – August 3, 2018, and again between July 8 – 28, 2019, we measured the light-saturated CO2 assimilation (Asat), stomatal conductance (gs), and ancillary variables of subcanopy leaves for each subplot. To capture inter- and intra-specific subplot physiological variability, we randomly selected three leaves 1 to 2 m above the forest floor in each of four 2 m x 2 m subcanopy vegetation survey sites for a total of 12 leaves per subplot. When leaves in the 1 to 2 m stratum were not present, the closest seedling or sapling leaf outside of the vegetation survey site was selected for measurement. Upon selection, we measured leaves using an LI-6400 XT portable photosynthesis system (LI-COR Inc., Licoln, NE) programmed to maintain the following chamber conditions: 2000 umol/m2/s PAR, 400 ppm CO2, and 25 °C. In order to avoid excessive leaf stress during measurement, we attempted, through manipulation of chamber humidity, to maintain a leaf vapor pressure deficit below 2 kPa, but this was not always possible given atmospheric conditions in summer at our site. Leaves that failed to produce stable Asat after 5 minutes were discarded and a new leaf selected. In some plots, the majority of needleleaf trees sampled from vegetation survey locations exhibited leaf stress during sampling, so we collected additional samples and targeted broadleaf trees in order to hedge against insufficient sample size in these locations. Thus, the total number of leaves sampled across all 32 subplots was n = 443.</p>
 <p>Using identical equipment and settings, we measured Asat, gs, and related variables for leaves from the canopy stratum of a single FoRTE replicate where a preexisting dirt road allowed aerial lift vehicle access. This data collection effort targeted three tree species: bigtooth aspen (Populus grandidentata), red maple (Acer rubrum), and Northern red oak (Quercus rubra). Tree crowns were sampled July 17 – 23, 2018, and twice the following year: June 11 – July 4, 2019, and July 30 – August 8, 2019. Sampling took place in accessible crowns of trees within or adjacent to experimental plots and proceeded as follows: 6 crowns per species x 3 species x 4 plots = 72 crowns. In our first sampled plot in 2018, we randomly chose five healthy, sun-adapted leaves from different terminal branches within each crown, but later reduced this number to three leaves per crown due to time and equipment constraints. Thus, the total number of leaves sampled in 2018 was n = 243, and in 2019 was n = 226. Accidental girdling of two trees in 2019 reduced the overall sample size to 70 crowns.</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="../reference/fd_photosynthesis.html">fd_photosynthesis</a></span>()
+<span class="co">## Warning: `...` is not empty.</span>
+<span class="co">## </span>
+<span class="co">## We detected these problematic arguments:</span>
+<span class="co">## * `needs_dots`</span>
+<span class="co">## </span>
+<span class="co">## These dots only exist to allow future extensions and should be empty.</span>
+<span class="co">## Did you misspecify an argument?</span>
 <span class="co">## # A tibble: 2,215 x 47</span>
 <span class="co">##    subplot_id replicate  plot subplot timestamp             obs ftime  ebal</span>
 <span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;dttm&gt;              &lt;int&gt; &lt;dbl&gt; &lt;int&gt;</span>
@@ -144,20 +154,25 @@
 <a href="#leaf-spectrometry" class="anchor"></a>Leaf spectrometry</h2>
 <p>We collected leaf reflectance spectra, used as a proxy for leaf biochemistry (including N content; Yang et al. 2017), with a CI-710 miniature leaf spectrometer (CID Biosciences, Camas, WA). We measured axial sides of leaves that met the minimum area requirement for the instrument (20 mm x 20 mm) in the range of visible to near infrared light (400-950 nm) immediately following physiological measurements and while still attached to trees. Because pine needles did not meet the minimum requirement for leaf area, only broadleaf specimens were available for measurement. Data output included waveform and individual wavelength spectral data, as well as a suite of derived vegetation indices including the normalized difference vegetation index (NDVI).</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/fd_leaf_spectrometry.html">fd_leaf_spectrometry</a></span>()
-<span class="co">## # A tibble: 7,213 x 8</span>
-<span class="co">##    subplot_id replicate  plot subplot date       species index index_value</span>
-<span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;</span>
-<span class="co">##  1 DO1E       D             1 E       2018-07-22 ACRU    ARI1     -0.00167</span>
-<span class="co">##  2 DO1E       D             1 E       2018-07-22 ACRU    ARI2     -0.147  </span>
-<span class="co">##  3 DO1E       D             1 E       2018-07-22 ACRU    CRI1      0.0541 </span>
-<span class="co">##  4 DO1E       D             1 E       2018-07-22 ACRU    CRI2      0.0524 </span>
-<span class="co">##  5 DO1E       D             1 E       2018-07-22 ACRU    SIPI      0.795  </span>
-<span class="co">##  6 DO1E       D             1 E       2018-07-22 ACRU    FRI      -1.28   </span>
-<span class="co">##  7 DO1E       D             1 E       2018-07-22 ACRU    CNDVI     0.465  </span>
-<span class="co">##  8 DO1E       D             1 E       2018-07-22 ACRU    Ctr1      1.03   </span>
-<span class="co">##  9 DO1E       D             1 E       2018-07-22 ACRU    Ctr2      0.159  </span>
-<span class="co">## 10 DO1E       D             1 E       2018-07-22 ACRU    G         2.96   </span>
-<span class="co">## # ... with 7,203 more rows</span></pre></body></html></div>
+<span class="co">## Warning: `...` is not empty.</span>
+<span class="co">## </span>
+<span class="co">## We detected these problematic arguments:</span>
+<span class="co">## * `needs_dots`</span>
+<span class="co">## </span>
+<span class="co">## These dots only exist to allow future extensions and should be empty.</span>
+<span class="co">## Did you misspecify an argument?</span>
+<span class="co">## # A tibble: 8 x 9</span>
+<span class="co">##   subplot_id replicate  plot subplot date       tree_id species index</span>
+<span class="co">##   &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;</span>
+<span class="co">## 1 DO1E       D             1 E       2018-07-22 CAN08   QURU    PSRI </span>
+<span class="co">## 2 DO1W       D             1 W       2018-07-23 CAN05   QURU    ARI1 </span>
+<span class="co">## 3 DO1W       D             1 W       2018-07-23 CAN06   QURU    ARI1 </span>
+<span class="co">## 4 DO2E       D             2 E       2018-07-18 CAN05   ACRU    ARI1 </span>
+<span class="co">## 5 DO2E       D             2 E       2018-07-19 CAN13   QURU    PSRI </span>
+<span class="co">## 6 DO2W       D             2 W       2018-07-17 CAN10   QURU    ARI1 </span>
+<span class="co">## 7 DO3W       D             3 W       2018-07-22 CAN03   QURU    ARI1 </span>
+<span class="co">## 8 DO4E       D             4 E       2018-07-19 CAN07   ACRU    ARI1 </span>
+<span class="co">## # ... with 1 more variable: index_value &lt;dbl&gt;</span></pre></body></html></div>
 </div>
 <div id="leaf-morphology" class="section level2">
 <h2 class="hasAnchor">
@@ -177,7 +192,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kaylen Dorheim, Stephanie Pennington, Alexey Shiklomanov, Jason Tallant.</p>
+  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
 </div>
 
 <div class="pkgdown">

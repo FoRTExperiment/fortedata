@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -98,7 +98,10 @@
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
     </li>
     <li>
-      <a href="../articles/fd_forte_proposal_vignette.html">Forest Resilience Threshold Experiment (FoRTE) Proposal Narrative</a>
+      <a href="../articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
+    </li>
+    <li>
+      <a href="../articles/fd_forte_proposal_vignette.html">fortedata: Proposal Narrative</a>
     </li>
     <li>
       <a href="../articles/fd_inventory_vignette.html">fortedata: Forest Inventory Data</a>
@@ -145,22 +148,29 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>data.frame</code> or <code>tibble</code>. Call <code><a href='fd_metadata.html'>fd_metadata</a></code> for field metadata.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fd_leaf_spectrometry</span>()</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 7,213 x 8</span><span>
-#&gt;    subplot_id replicate  plot subplot date       species index index_value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> DO1E       D             1 E       2018-07-22 ACRU    ARI1     -</span><span style='color: #BB0000;'>0.001</span><span style='color: #BB0000;text-decoration: underline;'>67</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> DO1E       D             1 E       2018-07-22 ACRU    ARI2     -</span><span style='color: #BB0000;'>0.147</span><span>  
-#&gt; </span><span style='color: #555555;'> 3</span><span> DO1E       D             1 E       2018-07-22 ACRU    CRI1      0.054</span><span style='text-decoration: underline;'>1</span><span> 
-#&gt; </span><span style='color: #555555;'> 4</span><span> DO1E       D             1 E       2018-07-22 ACRU    CRI2      0.052</span><span style='text-decoration: underline;'>4</span><span> 
-#&gt; </span><span style='color: #555555;'> 5</span><span> DO1E       D             1 E       2018-07-22 ACRU    SIPI      0.795  
-#&gt; </span><span style='color: #555555;'> 6</span><span> DO1E       D             1 E       2018-07-22 ACRU    FRI      -</span><span style='color: #BB0000;'>1.28</span><span>   
-#&gt; </span><span style='color: #555555;'> 7</span><span> DO1E       D             1 E       2018-07-22 ACRU    CNDVI     0.465  
-#&gt; </span><span style='color: #555555;'> 8</span><span> DO1E       D             1 E       2018-07-22 ACRU    Ctr1      1.03   
-#&gt; </span><span style='color: #555555;'> 9</span><span> DO1E       D             1 E       2018-07-22 ACRU    Ctr2      0.159  
-#&gt; </span><span style='color: #555555;'>10</span><span> DO1E       D             1 E       2018-07-22 ACRU    G         2.96   
-#&gt; </span><span style='color: #555555;'># ... with 7,203 more rows</span><span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fd_leaf_spectrometry</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 8 x 9</span><span>
+#&gt;   subplot_id replicate  plot subplot date       tree_id species index
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> DO1E       D             1 E       2018-07-22 CAN08   QURU    PSRI 
+#&gt; </span><span style='color: #555555;'>2</span><span> DO1W       D             1 W       2018-07-23 CAN05   QURU    ARI1 
+#&gt; </span><span style='color: #555555;'>3</span><span> DO1W       D             1 W       2018-07-23 CAN06   QURU    ARI1 
+#&gt; </span><span style='color: #555555;'>4</span><span> DO2E       D             2 E       2018-07-18 CAN05   ACRU    ARI1 
+#&gt; </span><span style='color: #555555;'>5</span><span> DO2E       D             2 E       2018-07-19 CAN13   QURU    PSRI 
+#&gt; </span><span style='color: #555555;'>6</span><span> DO2W       D             2 W       2018-07-17 CAN10   QURU    ARI1 
+#&gt; </span><span style='color: #555555;'>7</span><span> DO3W       D             3 W       2018-07-22 CAN03   QURU    ARI1 
+#&gt; </span><span style='color: #555555;'>8</span><span> DO4E       D             4 E       2018-07-19 CAN07   ACRU    ARI1 
+#&gt; </span><span style='color: #555555;'># ... with 1 more variable: index_value </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -172,7 +182,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kaylen Dorheim, Stephanie Pennington, Alexey Shiklomanov, Jason Tallant.</p>
+  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
 </div>
 
 <div class="pkgdown">

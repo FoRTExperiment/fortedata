@@ -13,6 +13,8 @@ read_csv_file <- function(...) {
   weak_as_tibble(
     read.csv(
       system.file("extdata", ..., package = "fortedata", mustWork = TRUE),
+      # Empty strings, and ONLY empty strings, should be interpreted as missing values.
+      na.strings = "",
       stringsAsFactors = FALSE
     )
   )
@@ -49,8 +51,11 @@ weak_as_tibble <- function(..., .force_df = FALSE) {
 fd_metadata <- function(table = NULL) {
   md <- read_csv_file("forte_table_metadata.csv")
 
-  if(!is.null(table) && table %in% md$Table) {
-    md <- md[md$Table == table,]
+  if (!is.null(table)) {
+    md <- md[md$table == table,]
+    if (nrow(md) < 1) {
+      stop("Table ", table, " is not present in metadata.")
+    }
   }
   weak_as_tibble(md)
 }
@@ -72,6 +77,27 @@ split_subplot_id <- function(df) {
   df$subplot <- substr(df$subplot_id, 4, 4)
   df
 }
+
+
+
+# data conditions
+# data.frame() if necessary
+# not a user-facing function; document via roxygen?
+data_conditions <- function(x, published = FALSE, contact_person, citation) {
+
+  if(!published) {
+    warning("These data are unpublished. Please contact ", contact_person, " to ask about using")
+  }
+
+  message("Data citation: ", citation)
+  message("Contact person: ", contact_person)
+
+  # add the above information to `x` as attributes...
+
+  invisible(x)
+}
+
+
 
 #' FoRTE color palette
 
@@ -106,12 +132,14 @@ print.palette <- function(x, ...) {
   text((n + 1) / 2, 1, labels = attr(x, "name"), cex = 1, family = "serif")
 }
 
-#' Calculate biomass from DBH data in fd_inventory() using equations from
-#' Table  . Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
+#' Calculate biomass from DBH data in fd_inventory()
+#'
+#' calc_biomass() uses biomass equations from fd_table_biomass_allometries.csv.
+#' Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
 #' sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint.
 #'
 #' Studies used to augment Cooper’s raw data for a species are denoted by superscripts.
-#' BIOMASS BACKGROUND INFO
+#'
 #' Species	a	b	DBH range (cm)
 #' Acer rubrum a	0.0312	2.7780	1 – 40
 #' Acer saccharum b	0.1693	2.3436	3 – 66
@@ -123,6 +151,7 @@ print.palette <- function(x, ...) {
 #' Populus grandidentata f	0.1387	2.3498	1 – 37
 #' Populus tremuloides b	0.0589	2.6235	3 – 51
 #' Quercus rubra g	0.0398	2.7734	1 – 44
+#'
 #' a Crow and Erdmann, 1983, Perala and Alban, 1994, Young et al., 1980.
 #' b Young et al., 1980 equations used exclusively, DBH range estimated by Ker-Mikaelian and Korzukhin, 1997.
 #' c Perala and Alban, 1994 equations used exclusively.
@@ -152,9 +181,26 @@ stem$biomass <- stem$a_biomass * stem$dbh^stem$b_biomass
 stem <- weak_as_tibble(stem)
 }
 
+#' Function that brings in all plot metadata for assignment
+#'
+#' @return gives the plot info
+#' @export
+#' @examples
+#' fortedata::plot_metadata()
+
+plot_metadata <- function(){
+  # The allometries
+  dat <- read_csv_file("forte_plot_metadata.csv") #this has the same equations AmeriFlux uses
+
+  dat<- weak_as_tibble(dat)
+}
+
 
 #' Function that returns LAI values at the plot scale
-#' #'
+#'
+#' LAI is calculated using the equation SLA * mass, where SLA is specific leaf area. Species and site specific values
+#' are in fd_sla.csv
+#'
 #' @return A data frame of leaf area fro SLA * mass at the plot scale
 #' @export
 #' @examples

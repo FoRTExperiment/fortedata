@@ -12,9 +12,10 @@ A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field m
 \description{
 Raw inventory table.
 }
+\note{
+Data were collected by Gough Lab team members Autym Shafer, Catherine McGuigan, and Alexandra Barry
+using a Haglof Postex Inventory Unit.
+}
 \examples{
 fd_inventory()
-}
-\author{
-Measurements by Gough Lab at the University of Michigan Biological Station.
 }

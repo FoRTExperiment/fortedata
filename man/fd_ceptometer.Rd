@@ -13,9 +13,10 @@ Call \code{\link{fd_metadata}} for field metadata.
 \description{
 Ceptometer data.
 }
+\note{
+Data were collected by Jeff W. Atkins and Brandon Alveshare using
+a Decagon LP-80 Handheld Ceptometer
+}
 \examples{
 fd_ceptometer()
-}
-\author{
-Measurements by Jeff Atkins at the University of Michigan Biological Station.
 }

@@ -2,9 +2,10 @@
 
 #' Litter trap data.
 #'
+#' @note Data were collected by multiple Gough Lab team members
+#'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
-#' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
 #' fd_litter()
 fd_litter <- function() {

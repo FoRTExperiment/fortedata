@@ -3,26 +3,27 @@
 
 #' Leaf spectrometry data
 #'
+#' @note Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
-#' @author Measurements by Lisa Haber at the University of Michigan Biological Station.
 #' @examples
 #' fd_leaf_spectrometry()
 fd_leaf_spectrometry <- function() {
   leaf_spec <- read_csv_file("fd_leaf_spectral_indices.csv")
 
   # Change column name
-  names(leaf_spec)[names(leaf_spec) == "v1"] <- "filepath"
   names(leaf_spec)[names(leaf_spec) == "calculation"] <- "index"
   names(leaf_spec)[names(leaf_spec) == "value"] <- "index_value"
+  names(leaf_spec)[names(leaf_spec) == "v1"] <- "filepath"
 
   # Adjust column data
-  leaf_spec$index <- as.character(stringr::str_replace_all(leaf_spec$index, "[^[:alnum:]]", ""))
+  leaf_spec$index <- gsub("[^[:alnum:]]", "", leaf_spec$index)
+  leaf_spec$tree_id <- as.character(substr(leaf_spec$filepath, 11, 15))
   leaf_spec$species <- as.character(substr(leaf_spec$filepath, 6, 9))
   leaf_spec$date <- as.character(substr(leaf_spec$filepath, 17, 24))
   leaf_spec$date <- as.Date(as.character(leaf_spec$date), format = "%m%d%Y")
-  leaf_spec <- leaf_spec[!stringr::str_detect(leaf_spec$index_value, '([A-Za-z])'), ]
-  leaf_spec <- leaf_spec[!stringr::str_detect(leaf_spec$index_value, '\\.$'), ]
+  leaf_spec <- leaf_spec[grepl('([A-Za-z])', leaf_spec$index_value), ]
+  leaf_spec <- leaf_spec[!grepl('\\.$', leaf_spec$index_value), ]
   leaf_spec$index_value <- iconv(leaf_spec$index_value, from = "latin1", to = "ASCII", "")
   leaf_spec$index_value <- as.numeric(as.character(leaf_spec$index_value))
 
@@ -31,7 +32,7 @@ fd_leaf_spectrometry <- function() {
   leaf_spec <- split_subplot_id(leaf_spec)
 
   # Reorder columns, dropping unneeded FilePath
-  leaf_spec <- leaf_spec[c("subplot_id", "replicate", "plot", "subplot", "date", "species", "index", "index_value")]
+  leaf_spec <- leaf_spec[c("subplot_id", "replicate", "plot", "subplot", "date", "tree_id", "species", "index", "index_value")]
 
   leaf_spec
 }
@@ -39,9 +40,9 @@ fd_leaf_spectrometry <- function() {
 
 #' Leaf photosynthesis measurements.
 #'
+#' @note Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
-#' @author Measurements by Lisa Haber at the University of Michigan Biological Station.
 #' @examples
 #' fd_photosynthesis()
 fd_photosynthesis <- function() {
