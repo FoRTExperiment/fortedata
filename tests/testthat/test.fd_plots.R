@@ -10,15 +10,15 @@ test_that("Plots table", {
   expect_s3_class(dat, "data.frame")
 
   with(dat, {
-    expect_true(all(Latitude_plot > min(umbs_lat)))
-    expect_true(all(Latitude_plot < max(umbs_lat)))
-    expect_true(all(Longitude_plot > min(umbs_lon)))
-    expect_true(all(Longitude_plot < max(umbs_lon)))
-    expect_true(all(Plot_area_m2 > 0))
+    expect_true(all(latitude_plot > min(umbs_lat)))
+    expect_true(all(latitude_plot < max(umbs_lat)))
+    expect_true(all(longitude_plot > min(umbs_lon)))
+    expect_true(all(longitude_plot < max(umbs_lon)))
+    expect_true(all(plot_area_m2 > 0))
   })
 
   # Replicate x Plot should be unique
-  expect_equal(nrow(unique(dat[, c("Replicate", "Plot")])), nrow(dat))
+  expect_equal(nrow(unique(dat[, c("replicate", "plot")])), nrow(dat))
 })
 
 test_that("Sublots table", {
@@ -26,15 +26,15 @@ test_that("Sublots table", {
   expect_s3_class(dat, "data.frame")
 
   with(dat, {
-    expect_true(all(Latitude_subplot > min(umbs_lat)))
-    expect_true(all(Latitude_subplot < max(umbs_lat)))
-    expect_true(all(Longitude_subplot > min(umbs_lon)))
-    expect_true(all(Longitude_subplot < max(umbs_lon)))
-    expect_true(all(Subplot_area_m2 > 0))
+    expect_true(all(latitude_subplot > min(umbs_lat)))
+    expect_true(all(latitude_subplot < max(umbs_lat)))
+    expect_true(all(longitude_subplot > min(umbs_lon)))
+    expect_true(all(longitude_subplot < max(umbs_lon)))
+    expect_true(all(subplot_area_m2 > 0))
   })
 
   # Replicate x Plot x Subplot should be unique
-  expect_equal(nrow(unique(dat[, c("Replicate", "Plot", "Subplot")])), nrow(dat))
+  expect_equal(nrow(unique(dat[, c("replicate", "plot", "subplot")])), nrow(dat))
 })
 
 test_that("Nested sublots table", {
@@ -42,9 +42,9 @@ test_that("Nested sublots table", {
   expect_s3_class(dat, "data.frame")
 
   with(dat, {
-    expect_true(all(Nested_subplot_area_m2 > 0))
+    expect_true(all(nested_subplot_area_m2 > 0))
   })
 
   # Replicate x Plot x Subplot x Nested_subplot should be unique
-  expect_equal(nrow(unique(dat[, c("Replicate", "Plot", "Subplot", "Nested_subplot")])), nrow(dat))
+  expect_equal(nrow(unique(dat[, c("replicate", "plot", "subplot", "nested_subplot")])), nrow(dat))
 })
