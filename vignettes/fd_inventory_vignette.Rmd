@@ -21,14 +21,14 @@ knitr::opts_chunk$set(
 ## Forest Inventory Data
 The `fd_inventory()` script within `fortedata` currently includes one function:
 
-* `fd_inventory()` returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), latitude, longitude, and biomass for each measured stem, as well as information on vitality and canopy position . There are 3165 observations in the dataset, all measured in 2018.
+* `fd_inventory()` returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), latitude, longitude, and biomass for each measured stem, as well as information on vitality and canopy position. There are 3165 observations in the dataset, all measured in 2018.
 
 ```{r fd_inventory}
 fd_inventory()
 ```
 ## Inventory Data
   
-  Biomass can be calculated from `fd_inventory()` directly, without assignment, by using the function `calc_biomass()` as such using site/regionally specific allometries (details need to be added.)
+Biomass can be calculated from `fd_inventory()` by using the function `calc_biomass()`.
 
 ```{r biomass, fig.height = 3.5, fig.width = 7.5, fig.align = "center"}
 # import the biomass data

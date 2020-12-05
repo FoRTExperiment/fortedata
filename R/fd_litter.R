@@ -14,7 +14,7 @@ fd_litter <- function() {
   # make lower case
   names(litter) <- tolower(names(litter))
 
-    # reformat subplot_id
+  # reformat subplot_id
   names(litter)[names(litter) == "subplotid"] <- "subplot_id"
 
   # format species names

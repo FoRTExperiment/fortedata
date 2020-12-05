@@ -25,8 +25,6 @@ The `fd_remote_sensing()` script within `fortedata` currently includes the follo
 
 
 ## Litter Trap Data
-  
-  Placeholder
 
 ```{r fd_litter, fig.height = 4, fig.width = 6, fig.align = "center"}
 # import litter mass dataset
@@ -47,7 +45,7 @@ ggplot2::ggplot(df, ggplot2::aes(x = as.factor(replicate), y = leafmass_g, fill 
 
 ## Leaf Area Index (LAI)
 
-Leaf Area Index can be calculated from `fd_litter()` via the `calc_lai()` function
+Leaf Area Index can be calculated from `fd_litter()` via the `calc_lai()` function.
 
 ```{r lai, fig.height = 3.5, fig.width = 6, fig.align = "center"}
 # import lai values at the plot scale
