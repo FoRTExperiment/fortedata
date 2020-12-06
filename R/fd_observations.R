@@ -27,6 +27,7 @@ fd_observations <- function() {
   a <- fd_ceptometer()
 
   # this makes the year and month column
+  # this makes the year and month column
   a$month <- as.numeric(format(as.Date(a$timestamp), "%m"))
   a$year <- as.numeric(format(as.Date(a$timestamp), "%Y"))
 
@@ -41,25 +42,26 @@ fd_observations <- function() {
 
   #####################
   # SOIL RESPIRATION!
-  b <- fd_soil_respiration()
+  a <- fd_soil_respiration()
 
   # this makes the year and month column
-  b$month <- format(as.Date(b$timestamp), "%m")
-  b$year <- format(as.Date(b$timestamp), "%Y")
+  a$month <- as.numeric(format(as.Date(a$date), "%m"))
+  a$year <- as.numeric(format(as.Date(a$date), "%Y"))
 
   # count it up
-  b.tally <- aggregate(soil_co2_efflux ~ month + year, data = b, FUN = length)
+  a.tally <- aggregate(soil_co2_efflux ~ month + year, data = a, FUN = length)
   #a.tally$Table <- "fd_ceptometer"
-  names(b.tally)[3] <- "no_of_obs"
+  names(a.tally)[3] <- "no_of_obs"
 
   # make time composite
   x <- data.frame(timeframe, Table = "fd_soil_respiration")
-  no_soil_r <- merge(x, b.tally, by = c("month", "year"), all = TRUE)
+  no_soil_r <- merge(x, a.tally, by = c("month", "year"), all = TRUE)
 
   #####################
   # LEAF SPECTROMETRY!
   b <- fd_leaf_spectrometry()
 
+  # this makes the year and month column
   # this makes the year and month column
   b$month <- as.numeric(format(as.Date(b$date), "%m"))
   b$year <- as.numeric(format(as.Date(b$date), "%Y"))
@@ -77,8 +79,9 @@ fd_observations <- function() {
   a <- fd_photosynthesis()
 
   # this makes the year and month column
-  a$month <- format(as.Date(a$timestamp), "%m")
-  a$year <- format(as.Date(a$timestamp), "%Y")
+  # this makes the year and month column
+  a$month <- as.numeric(format(as.Date(a$timestamp), "%m"))
+  a$year <- as.numeric(format(as.Date(a$timestamp), "%Y"))
 
   # count it up
   a.tally <- aggregate(photo ~ month + year, data = a, FUN = length)
@@ -93,8 +96,8 @@ fd_observations <- function() {
   a <- fd_hemi_camera()
 
   # this makes the year and month column
-  a$month <- format(as.Date(a$date), "%m")
-  a$year <- format(as.Date(a$date), "%Y")
+  a$month <- as.numeric(format(as.Date(a$date), "%m"))
+  a$year <- as.numeric(format(as.Date(a$date), "%Y"))
 
   # count it up
   a.tally <- aggregate(lai_cam ~ month + year, data = a, FUN = length)
@@ -111,5 +114,33 @@ fd_observations <- function() {
   no_of_records$Table <- as.character(no_of_records$Table)
   names(no_of_records)[names(no_of_records) == "Table"] <- "table"
 
+  #####################
+  # pcl lidar data
+  a <- fd_canopy_structure()
+
+  # this makes the year and month column
+  a$date <- as.Date(paste(a$year, 7, 1, sep = "-"), "%Y-%m-%d") # this line is added b/c the data set does not have a date column, but rather just a year column. All data are gathered in July.
+  # this makes the year and month column
+  a$month <- as.numeric(format(as.Date(a$date), "%m"))
+  a$year <- as.numeric(format(as.Date(a$date), "%Y"))
+
+  # count it up
+  a.tally <- aggregate(rugosity ~ month + year, data = a, FUN = length)
+  names(a.tally)[3] <- "no_of_obs"
+
+  # make time composite
+  x <- data.frame(timeframe, Table = "fd_canopy_structure")
+  no_csc <- merge(x, a.tally, by = c("month", "year"), all = TRUE)
+
+  ##############################
+  no_of_records <- rbind(no_soil_r, no_leaf_spec, no_photo, no_cam, no_par, no_csc)
+
+  # no_of_records$month <- as.numeric(no_of_records$month)
+  # no_of_records$year <- as.numeric(no_of_records$year)
+
+  # change the table column to be character in line w/ package convention
+  no_of_records$Table <- as.character(no_of_records$Table)
+  names(no_of_records)[names(no_of_records) == "Table"] <- "table"
+  #########################
   weak_as_tibble(no_of_records)
 }
