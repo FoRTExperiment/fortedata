@@ -3,10 +3,13 @@
 
 #' Raw inventory table.
 #'
-#' @note Data were collected by Gough Lab team members Autym Shafer, Catherine McGuigan, and Alexandra Barry
-#' using a Haglof Postex Inventory Unit.
+#' @note Data were collected by Gough Lab team members Autym Shafer,
+#' Catherine McGuigan, and Alexandra Barry in 2018
+#' using a Haglof Postex Inventory Unit with DPII Caliper
+#' Where 'species' column is '????" indicates unknown plant id to be corrected
+#' in future work.
 #'
-#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.#'
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
 #' @examples
 #' fd_inventory()
