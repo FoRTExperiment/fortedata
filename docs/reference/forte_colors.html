@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>FoRTE color palette
-The FoRTE color palettte — forte_colors • fortedata</title>
+The FoRTE color palette — forte_colors • fortedata</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,9 @@ The FoRTE color palettte — forte_colors • fortedata</title>
 
 
 <meta property="og:title" content="FoRTE color palette
-The FoRTE color palettte — forte_colors" />
-<meta property="og:description" content="These are a handful of color palettes pulled from photographs of US National Parks." />
+The FoRTE color palette — forte_colors" />
+<meta property="og:description" content="A FoRTE specific color palette used for color-classificaiton of disturbance severity
+treatments. 0% = &quot;#000000&quot;, 45% = &quot;#009E73&quot;, 65% = &quot;#0072B2&quot;, and 85% = &quot;#D55E00&quot;." />
 
 
 
@@ -136,13 +137,14 @@ The FoRTE color palettte — forte_colors" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>FoRTE color palette
-The FoRTE color palettte</h1>
+The FoRTE color palette</h1>
     
     <div class="hidden name"><code>forte_colors.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>These are a handful of color palettes pulled from photographs of US National Parks.</p>
+    <p>A FoRTE specific color palette used for color-classificaiton of disturbance severity
+treatments. 0% = "#000000", 45% = "#009E73", 65% = "#0072B2", and 85% = "#D55E00".</p>
     </div>
 
     <pre class="usage"><span class='fu'>forte_colors</span><span class='op'>(</span><span class='op'>)</span></pre>
@@ -150,12 +152,20 @@ The FoRTE color palettte</h1>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector of colours.</p>
+    <p>A vector of colors.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Per the example below, <code>forte_colors()</code> can be used to define a custom palette that
+can then be used for plotting with other commands such as <code>scale_fill_manual()</code>, etc.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='va'>pal</span> <span class='op'>&lt;-</span> <span class='fu'>forte_colors</span><span class='op'>(</span><span class='op'>)</span>
-</div></pre>
+ <span class='va'>forte.pal</span> <span class='op'>&lt;-</span> <span class='fu'>forte_colors</span><span class='op'>(</span><span class='op'>)</span>
+
+ <span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span><span class='op'>+</span>
+ <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
+ <span class='fu'>scale_fill_manual</span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>forte.pal</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in ggplot(...): could not find function "ggplot"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

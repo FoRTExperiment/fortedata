@@ -7,14 +7,17 @@
 fd_inventory()
 }
 \value{
-A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.#'
+A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
 Raw inventory table.
 }
 \note{
-Data were collected by Gough Lab team members Autym Shafer, Catherine McGuigan, and Alexandra Barry
-using a Haglof Postex Inventory Unit.
+Data were collected by Gough Lab team members Autym Shafer,
+Catherine McGuigan, and Alexandra Barry in 2018
+using a Haglof Postex Inventory Unit with DPII Caliper
+Where 'species' column is '????" indicates unknown plant id to be corrected
+in future work.
 }
 \examples{
 fd_inventory()

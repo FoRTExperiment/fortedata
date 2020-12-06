@@ -10,8 +10,8 @@ calc_lai()
 A data frame of leaf area fro SLA * mass at the plot scale
 }
 \description{
-LAI is calculated using the equation SLA * mass, where SLA is specific leaf area. Species and site specific values
-are in fd_sla.csv
+LAI is calculated using the equation SLA * mass, where SLA is specific leaf area.
+Species and site specific values are in fd_sla.csv.
 }
 \examples{
 fortedata::calc_lai()
