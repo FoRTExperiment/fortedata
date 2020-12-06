@@ -93,7 +93,7 @@
       <h1 data-toc-skip>fortedata: Remote Sensing Data</h1>
                         <h4 class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-07-17</h4>
+            <h4 class="date">2020-12-06</h4>
       
       
       <div class="hidden name"><code>fd_remote_sensing_vignette.Rmd</code></div>
@@ -102,29 +102,59 @@
 
     
     
-<div id="remote-sensing-data" class="section level2">
+<div id="remote-sensing" class="section level2">
 <h2 class="hasAnchor">
-<a href="#remote-sensing-data" class="anchor"></a>Remote Sensing Data</h2>
+<a href="#remote-sensing" class="anchor"></a>Remote Sensing</h2>
+<p>During FoRTE, multiple types of remote sensing data are being collected with the goal of creating a record of forest structural and spectral change. These data are collected coincidently with other data as outline below (see Remote Sensing Methods)</p>
+</div>
+<div id="remote-sensing-functions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#remote-sensing-functions" class="anchor"></a>Remote Sensing Functions</h2>
 <p>The <code>fd_remote_sensing()</code> script within <code>fortedata</code> currently includes the following functions:</p>
 <ul>
 <li><p><code><a href="../reference/fd_hemi_camera.html">fd_hemi_camera()</a></code> returns a single dataset that includes derived estimates of leaf area index, gap fraction, clumping index, and NDVI (normalized difference vegetation index) from terrestrial, upward-facing hemispherical photos looking into the forest canopy taken 1 meter above-ground (Table S9). The data package includes 1028 observations of each variable from 2018 and 2019.</p></li>
-<li><p><code><a href="../reference/fd_canopy_structure.html">fd_canopy_structure()</a></code> returns a single dataset that includes estimates of canopy structural traits such as height, area/density, openness, complexity, and arrangement derived from terrestrial lidar and processed using forestr version 1.0.1 (Atkins et al. 2018) in R Version 3.6.2 (R Core Team, 2020). The package includes 62 observations for each metric (28 canopy structural metrics are included in forestr v1.0.1 that estimate canopy structural traits such as area/density, openness, arrangement, heterogeneity, and layering (Atkins et al. 2018; Fahey et al. 2019)) from 2018.</p></li>
-<li><p><code><a href="../reference/fd_ceptometer.html">fd_ceptometer()</a></code> returns a single dataset that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI_cept)–each derived from a handheld ceptometer (LP-80; Decagon Devices). The package includes 32 observations of each variable from 2019 and 16 from 2018.</p></li>
+<li><p><code><a href="../reference/fd_canopy_structure.html">fd_canopy_structure()</a></code> returns a single dataset that includes 28 structural metrics estimating canopy structural traits such as height, area/density, openness, complexity, and arrangement. Data were processed using <code>forestr</code> version 1.0.1 (Atkins et al. 2018) in R Version 3.6.2 (R Core Team, 2020).</p></li>
+<li><p><code><a href="../reference/fd_ceptometer.html">fd_ceptometer()</a></code> returns a single dataset that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI_cept)–each derived from a handheld ceptometer (LP-80; Decagon Devices) (Table S11). The package includes 32 observations of each variable from 2019 and 16 from 2018 (Fig. 4). r</p></li>
 </ul>
 </div>
-<div id="hemispherical-camera-imagery" class="section level2">
+<div id="data-availbility" class="section level2">
 <h2 class="hasAnchor">
-<a href="#hemispherical-camera-imagery" class="anchor"></a>Hemispherical Camera Imagery</h2>
+<a href="#data-availbility" class="anchor"></a>Data Availbility</h2>
+<pre><code>## Warning: Removed 65 rows containing missing values (geom_text).</code></pre>
+<p><img src="fd_remote_sensing_vignette_files/figure-html/data-availble-1.png" width="576"></p>
+</div>
+<div id="remote-sensing-methods" class="section level2">
+<h2 class="hasAnchor">
+<a href="#remote-sensing-methods" class="anchor"></a>Remote Sensing Methods</h2>
+<div id="terrestrial-lidar" class="section level3">
+<h3 class="hasAnchor">
+<a href="#terrestrial-lidar" class="anchor"></a>Terrestrial lidar</h3>
+<p>Annual measurements of forest structure were taken using both 2- and 3-D terrestrial lidar during peak growing season (July-early August). 2-D lidar data are gathered using a Riegl 3100 VHSFLP portable canopy lidar unit (See Parker et al. 2004 and Hardiman et al. 2011 for a full description) and 3-D lidar data are collected using a Leica BLK360. Currently, 3-D lidar data are not included in <code>fortedata</code> due to processing delays resulting from Covid-19. ### Canopy Structural Traits (CSTs)</p>
+<p>We derived canopy structural trait metrics (Fahey et al. 2019) from 2-D terrestrial lidar data collected with a user-mounted, portable canopy lidar (PCL) system equipped with an upward facing, Riegl 3100VHS near‐infrared pulsed‐laser operating at 2000 Hz (Riegl LD90 3100 VHS; Riegl USA Inc., Orlando, Florida, USA). The PCL generates continuous LiDAR returns from a “slice” of the canopy as it is walked along a measured transect. For this study, we used 40 m transects at cardinal directions–north-to-south, east-to-west–through subplot center for a total of 80 m of transect length per subplot. This mirrors the approach of Atkins et al. (2018) and Haridman et al. (2013) and is sufficient to account for spatial variability of forest structure (Hardiman et al. 2019). A more detailed description of the development and implementation of this terrestrial laser scanning system is available in Parker et al. (2004) and Hardiman et al. ( 2011). We derived canopy structural metrics using the forestr package (Atkins et al. 2018a, b) in R 3.5 (R Core Team, 2018). forestr produces a suite of canopy structural traits metrics that describe canopy area/density, openness, height, complexity, and arrangement (Atkins et al. (2018a).</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/fd_canopy_structure_summary.html">fd_canopy_structure_summary</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">## # A tibble: 4 x 9</span>
+<span class="co">##   replicate rugosity rugosity_sd rugosity_n rugosity_se vai_mean vai_mean_sd</span>
+<span class="co">##   &lt;chr&gt;        &lt;dbl&gt;       &lt;dbl&gt;      &lt;int&gt;       &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;</span>
+<span class="co">## 1 A            28.0        10.5         403       0.525     6.57       0.933</span>
+<span class="co">## 2 B            22.7         6.04        237       0.392     6.92       0.567</span>
+<span class="co">## 3 C            14.5         5.03        307       0.287     6.21       0.668</span>
+<span class="co">## 4 D             9.38        4.06        290       0.238     5.35       1.24 </span>
+<span class="co">## # ... with 2 more variables: vai_mean_n &lt;int&gt;, vai_mean_se &lt;dbl&gt;</span></code></pre></div>
+<p><img src="fd_remote_sensing_vignette_files/figure-html/rug-1.png" width="576"></p>
+</div>
+<div id="hemispherical-camera-imagery" class="section level3">
+<h3 class="hasAnchor">
+<a href="#hemispherical-camera-imagery" class="anchor"></a>Hemispherical Camera Imagery</h3>
 <p>Below-canopy, hemispherical images were taken using a 24 Megapixel DSLR camera (Regent Instruments; Quebec, QU, Canda) with a 180° hemispherical lens during peak leaf-out (~July). The camera was facing-upwards, into the canopy and was mounted on a self-leveling tripod with the lens at 1 m from the ground. Leaf area index (LAI<sub>CAM</sub>) was estimated using WinSCANOPY (Regent Instruments).</p>
-<p><img src="https://user-images.githubusercontent.com/8354517/87785843-e83ea500-c806-11ea-8218-d04d0f6d3a1d.jpg" style="width:45.0%" alt="REU student Evan Paris taking images of the canopy using the NDVI camera"><img src="https://user-images.githubusercontent.com/8354517/87794606-dd8b0c80-c814-11ea-982a-5b3ee7920d86.jpg" style="width:45.0%" alt="Sample NDVI image"></p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="../reference/fd_hemi_camera.html">fd_hemi_camera</a></span>()
-<span class="co">## Warning: `...` is not empty.</span>
-<span class="co">## </span>
-<span class="co">## We detected these problematic arguments:</span>
-<span class="co">## * `needs_dots`</span>
-<span class="co">## </span>
-<span class="co">## These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">## Did you misspecify an argument?</span>
+<div class="figure">
+<img src="https://user-images.githubusercontent.com/8354517/87785843-e83ea500-c806-11ea-8218-d04d0f6d3a1d.jpg" style="width:50.0%" alt=""><p class="caption">REU student Evan Paris taking images of the canopy using the NDVI camera</p>
+</div>
+<div class="figure">
+<img src="https://user-images.githubusercontent.com/8354517/87794606-dd8b0c80-c814-11ea-982a-5b3ee7920d86.jpg" style="width:40.0%" alt=""><p class="caption">Sample NDVI image</p>
+</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/fd_hemi_camera.html">fd_hemi_camera</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,189 x 11</span>
 <span class="co">##    subplot_id replicate  plot subplot nested_subplot date        ndvi</span>
 <span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;            &lt;int&gt; &lt;date&gt;     &lt;dbl&gt;</span>
@@ -139,61 +169,15 @@
 <span class="co">##  9 A01W       A             1 W                    5 2018-07-23 0.783</span>
 <span class="co">## 10 A01W       A             1 W                    7 2018-07-23 0.786</span>
 <span class="co">## # ... with 1,179 more rows, and 4 more variables: gap_fraction &lt;dbl&gt;,</span>
-<span class="co">## #   openness &lt;dbl&gt;, lai_cam &lt;dbl&gt;, clumping_index &lt;dbl&gt;</span></pre></body></html></div>
+<span class="co">## #   openness &lt;dbl&gt;, lai_cam &lt;dbl&gt;, clumping_index &lt;dbl&gt;</span></code></pre></div>
+<p><img src="fd_remote_sensing_vignette_files/figure-html/cam-1.png" width="576"></p>
 </div>
-<div id="canopy-structural-traits-csts" class="section level2">
-<h2 class="hasAnchor">
-<a href="#canopy-structural-traits-csts" class="anchor"></a>Canopy Structural Traits (CSTs)</h2>
-<p>We derived canopy structural trait metrics (Fahey et al. 2019) from 2-D terrestrial lidar data collected with a user-mounted, portable canopy lidar (PCL) system equipped with an upward facing, Riegl 3100VHS near‐infrared pulsed‐laser operating at 2000 Hz (Riegl LD90 3100 VHS; Riegl USA Inc., Orlando, Florida, USA). The PCL generates continuous LiDAR returns from a “slice” of the canopy as it is walked along a measured transect. For this study, we used 40 m transects at cardinal directions–north-to-south, east-to-west–through subplot center for a total of 80 m of transect length per subplot. This mirrors the approach of Atkins et al. (2018) and Haridman et al. (2013) and is sufficient to account for spatial variability of forest structure (Hardiman et al. 2019). A more detailed description of the development and implementation of this terrestrial laser scanning system is available in Parker et al. (2004) and Hardiman et al. (2011). We derived canopy structural metrics using the forestr package (Atkins et al. 2018a, b) in R 3.5 (R Core Team, 2018). forestr produces a suite of canopy structural traits metrics that describe canopy area/density, openness, height, complexity, and arrangement (Atkins et al. (2018a).</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/fd_canopy_structure.html">fd_canopy_structure</a></span>()
-<span class="co">## Warning: `...` is not empty.</span>
-<span class="co">## </span>
-<span class="co">## We detected these problematic arguments:</span>
-<span class="co">## * `needs_dots`</span>
-<span class="co">## </span>
-<span class="co">## These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">## Did you misspecify an argument?</span>
-<span class="co">## # A tibble: 129 x 56</span>
-<span class="co">##    subplot_id replicate  plot subplot  year mean_height_mean height_2</span>
-<span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;int&gt;            &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">##  1 C01E       C             1 E        2019             9.75     4.87</span>
-<span class="co">##  2 C01E       C             1 E        2019            10.3      4.37</span>
-<span class="co">##  3 C01W       C             1 W        2019             9.57     4.31</span>
-<span class="co">##  4 C01W       C             1 W        2019             8.05     4.30</span>
-<span class="co">##  5 C02E       C             2 E        2019             9.61     5.97</span>
-<span class="co">##  6 C02E       C             2 E        2019            10.9      5.04</span>
-<span class="co">##  7 C02W       C             2 W        2019            11.8      7.00</span>
-<span class="co">##  8 C02W       C             2 W        2019            12.8      6.77</span>
-<span class="co">##  9 C03E       C             3 E        2019             7.11     3.13</span>
-<span class="co">## 10 C03E       C             3 E        2019             8.34     4.20</span>
-<span class="co">## # ... with 119 more rows, and 49 more variables: mean_height_median &lt;dbl&gt;,</span>
-<span class="co">## #   mean_height_var &lt;dbl&gt;, mean_height_rms &lt;dbl&gt;, transect_length &lt;int&gt;,</span>
-<span class="co">## #   can_max_ht &lt;dbl&gt;, moch &lt;dbl&gt;, can_max_ht_median &lt;dbl&gt;, vai_mean &lt;dbl&gt;,</span>
-<span class="co">## #   vai_sd &lt;dbl&gt;, vai_median &lt;dbl&gt;, vai_column_max &lt;int&gt;,</span>
-<span class="co">## #   vai_max_ht_mean &lt;dbl&gt;, vai_max_ht_sd &lt;dbl&gt;, vai_max_ht_median &lt;dbl&gt;,</span>
-<span class="co">## #   vai_max &lt;dbl&gt;, vai_mean_peak &lt;dbl&gt;, vai_peak_sd &lt;dbl&gt;,</span>
-<span class="co">## #   vai_peak_median &lt;dbl&gt;, deep_gaps &lt;int&gt;, deep_gap_fraction &lt;dbl&gt;,</span>
-<span class="co">## #   porosity &lt;dbl&gt;, std_std &lt;dbl&gt;, mean_std &lt;dbl&gt;, rugosity &lt;dbl&gt;,</span>
-<span class="co">## #   top_rugosity &lt;dbl&gt;, mean_return_ht &lt;dbl&gt;, sd_return_ht &lt;dbl&gt;,</span>
-<span class="co">## #   median_ht &lt;dbl&gt;, sky_fraction &lt;dbl&gt;, cover_fraction &lt;dbl&gt;, max_ht &lt;dbl&gt;,</span>
-<span class="co">## #   scan_density &lt;dbl&gt;, rumple &lt;dbl&gt;, clumping_index &lt;dbl&gt;, enl &lt;dbl&gt;,</span>
-<span class="co">## #   fhd &lt;dbl&gt;, gini &lt;dbl&gt;, mean_intensity &lt;dbl&gt;, median_intensity &lt;int&gt;,</span>
-<span class="co">## #   sd_intensity &lt;dbl&gt;, max_intensity &lt;dbl&gt;, min_intensity &lt;dbl&gt;,</span>
-<span class="co">## #   skew_intensity &lt;dbl&gt;, kurtosis_intensity &lt;dbl&gt;, p10 &lt;dbl&gt;, p25 &lt;dbl&gt;,</span>
-<span class="co">## #   p50 &lt;dbl&gt;, p75 &lt;dbl&gt;, p90 &lt;dbl&gt;</span></pre></body></html></div>
-</div>
-<div id="light-interception-and-availbility" class="section level2">
-<h2 class="hasAnchor">
-<a href="#light-interception-and-availbility" class="anchor"></a>Light Interception and Availbility</h2>
-<p>Light data–as <em>fpar</em>, the fraction of photosynthetically availble radiation absorbed by the canopy–was acquired using a Decagon LP-80 handheld ceptometer (Decagon Devices; Pullman, Washington). <em>fpar</em> is the ratio of PAR above the canopy, to that measured below. <em>fpar</em> is assumed to be the difference between the two values. Below-canopy PAR measurements for each plot were taken along north-south and east-west transects (simlar to PCL data above), with measurements taken every 1 to 3 m for a total of 30 - 60 measurements then averaged to make a subplot level mean of below-canopy PAR. Above-canopy PAR measuremnets were taken in open areas to ensure no interference from the canopy.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/fd_ceptometer.html">fd_ceptometer</a></span>()
-<span class="co">## Warning: `...` is not empty.</span>
-<span class="co">## </span>
-<span class="co">## We detected these problematic arguments:</span>
-<span class="co">## * `needs_dots`</span>
-<span class="co">## </span>
-<span class="co">## These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">## Did you misspecify an argument?</span>
+<div id="light-interception-and-availbility" class="section level3">
+<h3 class="hasAnchor">
+<a href="#light-interception-and-availbility" class="anchor"></a>Light Interception and Availbility</h3>
+<p>Light data–as <em>fpar</em>, the fraction of photosynthetically available radiation absorbed by the canopy–was acquired using a Decagon LP-80 handheld ceptometer (Decagon Devices; Pullman, Washington). <em>fpar</em> is the ratio of PAR above the canopy, to that measured below. <em>fpar</em> is assumed to be the difference between the two values. Below-canopy PAR measurements for each plot were taken along north-south and east-west transects (similar to PCL data above), with measurements taken every 1 to 3 m for a total of 30 - 60 measurements then averaged to make a subplot level mean of below-canopy PAR. Above-canopy PAR measurements were taken in open areas to ensure no interference from the canopy.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/fd_ceptometer.html">fd_ceptometer</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">## # A tibble: 48 x 9</span>
 <span class="co">##    subplot_id replicate  plot subplot timestamp           a_par b_par  fapar</span>
 <span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span>
@@ -207,7 +191,12 @@
 <span class="co">##  8 C01W       C             1 W       2018-07-25 11:52:00 1475. 116   0.0786</span>
 <span class="co">##  9 B04W       B             4 W       2018-07-25 13:25:00 1708.  61.7 0.0361</span>
 <span class="co">## 10 B03E       B             3 E       2018-07-25 13:36:00 1768. 110.  0.0623</span>
-<span class="co">## # ... with 38 more rows, and 1 more variable: lai_cept &lt;dbl&gt;</span></pre></body></html></div>
+<span class="co">## # ... with 38 more rows, and 1 more variable: lai_cept &lt;dbl&gt;</span></code></pre></div>
+</div>
+</div>
+<div id="references" class="section level2">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
 </div>
   </div>
 
@@ -226,7 +215,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

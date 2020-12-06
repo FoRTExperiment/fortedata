@@ -142,7 +142,7 @@
     <p>Leaf spectrometry data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fd_leaf_spectrometry</span>()</pre>
+    <pre class="usage"><span class='fu'>fd_leaf_spectrometry</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -153,24 +153,21 @@
     <p>Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fd_leaf_spectrometry</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>We detected these problematic arguments:</span>
-#&gt; <span class='warning'>* `needs_dots`</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
-#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 8 x 9</span><span>
-#&gt;   subplot_id replicate  plot subplot date       tree_id species index
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> DO1E       D             1 E       2018-07-22 CAN08   QURU    PSRI 
-#&gt; </span><span style='color: #555555;'>2</span><span> DO1W       D             1 W       2018-07-23 CAN05   QURU    ARI1 
-#&gt; </span><span style='color: #555555;'>3</span><span> DO1W       D             1 W       2018-07-23 CAN06   QURU    ARI1 
-#&gt; </span><span style='color: #555555;'>4</span><span> DO2E       D             2 E       2018-07-18 CAN05   ACRU    ARI1 
-#&gt; </span><span style='color: #555555;'>5</span><span> DO2E       D             2 E       2018-07-19 CAN13   QURU    PSRI 
-#&gt; </span><span style='color: #555555;'>6</span><span> DO2W       D             2 W       2018-07-17 CAN10   QURU    ARI1 
-#&gt; </span><span style='color: #555555;'>7</span><span> DO3W       D             3 W       2018-07-22 CAN03   QURU    ARI1 
-#&gt; </span><span style='color: #555555;'>8</span><span> DO4E       D             4 E       2018-07-19 CAN07   ACRU    ARI1 
-#&gt; </span><span style='color: #555555;'># ... with 1 more variable: index_value </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fd_leaf_spectrometry</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 7,221 x 9</span><span>
+#&gt;    subplot_id replicate  plot subplot date       tree_id species index
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> DO1E       D             1 E       2018-07-22 CAN01   ACRU    ARI1 
+#&gt; </span><span style='color: #555555;'> 2</span><span> DO1E       D             1 E       2018-07-22 CAN01   ACRU    ARI2 
+#&gt; </span><span style='color: #555555;'> 3</span><span> DO1E       D             1 E       2018-07-22 CAN01   ACRU    CRI1 
+#&gt; </span><span style='color: #555555;'> 4</span><span> DO1E       D             1 E       2018-07-22 CAN01   ACRU    CRI2 
+#&gt; </span><span style='color: #555555;'> 5</span><span> DO1E       D             1 E       2018-07-22 CAN01   ACRU    SIPI 
+#&gt; </span><span style='color: #555555;'> 6</span><span> DO1E       D             1 E       2018-07-22 CAN01   ACRU    FRI  
+#&gt; </span><span style='color: #555555;'> 7</span><span> DO1E       D             1 E       2018-07-22 CAN01   ACRU    CNDVI
+#&gt; </span><span style='color: #555555;'> 8</span><span> DO1E       D             1 E       2018-07-22 CAN01   ACRU    Ctr1 
+#&gt; </span><span style='color: #555555;'> 9</span><span> DO1E       D             1 E       2018-07-22 CAN01   ACRU    Ctr2 
+#&gt; </span><span style='color: #555555;'>10</span><span> DO1E       D             1 E       2018-07-22 CAN01   ACRU    G    
+#&gt; </span><span style='color: #555555;'># ... with 7,211 more rows, and 1 more variable: index_value </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -186,7 +183,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

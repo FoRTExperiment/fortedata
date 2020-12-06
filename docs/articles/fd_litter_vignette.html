@@ -93,7 +93,7 @@
       <h1 data-toc-skip>fortedata: Litter Data</h1>
                         <h4 class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-07-17</h4>
+            <h4 class="date">2020-12-06</h4>
       
       
       <div class="hidden name"><code>fd_litter_vignette.Rmd</code></div>
@@ -114,38 +114,39 @@
 <div id="litter-trap-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#litter-trap-data" class="anchor"></a>Litter Trap Data</h2>
-<p>Placeholder</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># import litter mass dataset</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/fd_litter.html">fd_litter</a></span>()
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># import litter mass dataset</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fd_litter.html">fd_litter</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># we want to calculate the leaf mass by subtracting the tare weight `bagtare_g` from `bagmass_g`</span>
-<span class="no">df</span>$<span class="no">leafmass_g</span> <span class="kw">&lt;-</span> <span class="no">df</span>$<span class="no">bagmass_g</span> - <span class="no">df</span>$<span class="no">bagtare_g</span>
+<span class="va">df</span><span class="op">$</span><span class="va">leafmass_g</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">$</span><span class="va">bagmass_g</span> <span class="op">-</span> <span class="va">df</span><span class="op">$</span><span class="va">bagtare_g</span>
 
 <span class="co"># let's plot it</span>
-<span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">df</span>, <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">replicate</span>), <span class="kw">y</span> <span class="kw">=</span> <span class="no">leafmass_g</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">replicate</span>) ))+
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span>()+
-  <span class="kw pkg">viridis</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_color_viridis</a></span>(<span class="kw">discrete</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">option</span> <span class="kw">=</span> <span class="st">"D"</span>)+
-  <span class="kw pkg">viridis</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_fill_viridis</a></span>(<span class="kw">discrete</span> <span class="kw">=</span> <span class="fl">TRUE</span>)+
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Leaf Mass [g]"</span>)+
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Replicate"</span>)+
-  <span class="fu">theme</span>(<span class="kw">legend.position</span> <span class="kw">=</span> <span class="st">"NONE"</span>)</pre></body></html></div>
+<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">leafmass_g</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span> <span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_color_viridis</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">TRUE</span>, option <span class="op">=</span> <span class="st">"D"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_fill_viridis</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Leaf Mass [g]"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Replicate"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"NONE"</span><span class="op">)</span></code></pre></div>
 <p><img src="fd_litter_vignette_files/figure-html/fd_litter-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div id="leaf-area-index-lai" class="section level2">
 <h2 class="hasAnchor">
 <a href="#leaf-area-index-lai" class="anchor"></a>Leaf Area Index (LAI)</h2>
-<p>Leaf Area Index can be calculated from <code><a href="../reference/fd_litter.html">fd_litter()</a></code> via the <code><a href="../reference/calc_lai.html">calc_lai()</a></code> function</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># import lai values at the plot scale</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/calc_lai.html">calc_lai</a></span>()
+<p>Leaf Area Index can be calculated from <code><a href="../reference/fd_litter.html">fd_litter()</a></code> via the <code><a href="../reference/calc_lai.html">calc_lai()</a></code> function.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># import lai values at the plot scale</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calc_lai.html">calc_lai</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># let's plot it</span>
-<span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">df</span>, <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">replicate</span>), <span class="kw">y</span> <span class="kw">=</span> <span class="no">lai</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">replicate</span>) ))+
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span>()+
-  <span class="kw pkg">viridis</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_color_viridis</a></span>(<span class="kw">discrete</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">option</span> <span class="kw">=</span> <span class="st">"D"</span>)+
-  <span class="kw pkg">viridis</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_fill_viridis</a></span>(<span class="kw">discrete</span> <span class="kw">=</span> <span class="fl">TRUE</span>)+
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Leaf Area Index (LAI)"</span>)+
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Replicate"</span>)+
-  <span class="fu">theme</span>(<span class="kw">legend.position</span> <span class="kw">=</span> <span class="st">"NONE"</span>)</pre></body></html></div>
+<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">lai</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span> <span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_color_viridis</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">TRUE</span>, option <span class="op">=</span> <span class="st">"D"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_fill_viridis</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Leaf Area Index (LAI)"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Replicate"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"NONE"</span><span class="op">)</span></code></pre></div>
 <p><img src="fd_litter_vignette_files/figure-html/lai-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
   </div>
@@ -165,7 +166,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

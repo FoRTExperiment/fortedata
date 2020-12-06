@@ -1,5 +1,5 @@
 pandoc: 2.9.2.1
-pkgdown: 1.5.1
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   fd_belowground_vignette: fd_belowground_vignette.html
@@ -9,5 +9,5 @@ articles:
   fd_leaf_physiology_vignette: fd_leaf_physiology_vignette.html
   fd_litter_vignette: fd_litter_vignette.html
   fd_remote_sensing_vignette: fd_remote_sensing_vignette.html
-last_built: 2020-07-17T16:29Z
+last_built: 2020-12-06T16:34Z
 
