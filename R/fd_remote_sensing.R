@@ -49,7 +49,7 @@ fd_hemi_camera <- function() {
 
   # Reorder columns, dropping ones we don't need
   cam <- cam[c("subplot_id", "replicate", "plot", "subplot", "nested_subplot", "date",
-        "ndvi", "gap_fraction", "openness", "lai_cam", "clumping_index")]
+               "ndvi", "gap_fraction", "openness", "lai_cam", "clumping_index")]
 
   weak_as_tibble(cam)
 }

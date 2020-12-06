@@ -13,6 +13,8 @@ read_csv_file <- function(...) {
   weak_as_tibble(
     read.csv(
       system.file("extdata", ..., package = "fortedata", mustWork = TRUE),
+      # Empty strings, and ONLY empty strings, should be interpreted as missing values.
+      na.strings = "",
       stringsAsFactors = FALSE
     )
   )
@@ -49,8 +51,11 @@ weak_as_tibble <- function(..., .force_df = FALSE) {
 fd_metadata <- function(table = NULL) {
   md <- read_csv_file("forte_table_metadata.csv")
 
-  if(!is.null(table) && table %in% md$Table) {
-    md <- md[md$Table == table,]
+  if (!is.null(table)) {
+    md <- md[md$table == table,]
+    if (nrow(md) < 1) {
+      stop("Table ", table, " is not present in metadata.")
+    }
   }
   weak_as_tibble(md)
 }
