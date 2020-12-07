@@ -36,7 +36,7 @@ r
 
 ## Data Availability
 
-```{r data-availble, fig.width = 6, fig.asp = .62, messages = FALSE, echo = FALSE}
+```{r data-availble, fig.height = 4, fig.width = 6, fig.align = "center"}
 no_of_records.df <- fd_observations()
 
 no_of_records <- subset(no_of_records.df, table == 'fd_canopy_structure' | table == 'fd_hemi_camera')
@@ -76,22 +76,21 @@ We derived canopy structural trait metrics (Fahey et al. 2019) from 2-D terrestr
 fd_canopy_structure_summary()
 ```
 
-```{r rug, fig.width = 6, fig.asp = .65, messages = FALSE, echo = FALSE}
+```{r rug, fig.height = 4, fig.width = 6, fig.align = "center"}
 x <- fd_canopy_structure()
 
-rugosity_boxplot <- ggplot(x, aes(y = rugosity, x = replicate))+
-  geom_boxplot()+
-  xlab("Replicate")+
-  ylab("Canopy Rugosity [m]")+
-  facet_grid(.~year)
+ggplot2::ggplot(x, aes(y = rugosity, x = replicate))+
+  ggplot2::geom_boxplot()+
+  ggplot2::xlab("Replicate")+
+  ggplot2::ylab("Canopy Rugosity [m]")+
+  ggplot2::facet_grid(.~year)
 
-#print(rugosity_boxplot)
-
-#png("rugosity_boxplot.png")
-ggsave(filename = "rugosity_boxplot.png", plot = rugosity_boxplot, device = "png")
-print(rugosity_boxplot)
+# #print(rugosity_boxplot)
+# 
+# #png("rugosity_boxplot.png")
+# ggsave(filename = "rugosity_boxplot.png", plot = rugosity_boxplot, device = "png")
+# print(rugosity_boxplot)
 ```
-![Figure 1. Canopy Rugosity by replicate, by year](rugosity_boxplot.png){width=50%}
 
 ### Hemispherical Camera Imagery
 
