@@ -84,12 +84,12 @@ rugosity_boxplot <- ggplot(x, aes(y = rugosity, x = replicate))+
   ylab("Canopy Rugosity [m]")+
   facet_grid(.~year)
 
-print(rugosity_boxplot)
+#print(rugosity_boxplot)
 
 #png("rugosity_boxplot.png")
-#ggsave(filename = "rugosity_boxplot.png", plot = rugosity_boxplot, device = "png", path = "./docs/articles/images/")
+ggsave(filename = "rugosity_boxplot.png", plot = rugosity_boxplot, device = "png")
 ```
-<!-- ![Figure 1. Canopy Rugosity by replicate, by year](./vignettes/canopy_rugosity.png) -->
+![Figure 1. Canopy Rugosity by replicate, by year](rugosity_boxplot.png){width=50%}
 
 ### Hemispherical Camera Imagery
 
