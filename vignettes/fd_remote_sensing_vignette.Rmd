@@ -15,6 +15,7 @@ knitr::opts_chunk$set(
   require(fortedata),
   require(ggplot2)
 )
+
 ```
 
 ## Remote Sensing 
@@ -88,6 +89,7 @@ rugosity_boxplot <- ggplot(x, aes(y = rugosity, x = replicate))+
 
 #png("rugosity_boxplot.png")
 ggsave(filename = "rugosity_boxplot.png", plot = rugosity_boxplot, device = "png")
+print(rugosity_boxplot)
 ```
 ![Figure 1. Canopy Rugosity by replicate, by year](rugosity_boxplot.png){width=50%}
 

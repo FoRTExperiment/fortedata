@@ -5,6 +5,7 @@ knitr::opts_chunk$set(
   require(ggplot2)
 )
 
+
 ## ----data-availble, fig.width = 6, fig.asp = .62, messages = FALSE, echo = FALSE----
 no_of_records.df <- fd_observations()
 
@@ -41,10 +42,11 @@ rugosity_boxplot <- ggplot(x, aes(y = rugosity, x = replicate))+
   ylab("Canopy Rugosity [m]")+
   facet_grid(.~year)
 
-print(rugosity_boxplot)
+#print(rugosity_boxplot)
 
 #png("rugosity_boxplot.png")
-#ggsave(filename = "rugosity_boxplot.png", plot = rugosity_boxplot, device = "png", path = "./docs/articles/images/")
+ggsave(filename = "rugosity_boxplot.png", plot = rugosity_boxplot, device = "png")
+print(rugosity_boxplot)
 
 ## ----fd_hemi_camera-----------------------------------------------------------
 fd_hemi_camera()
