@@ -35,11 +35,16 @@ fd_canopy_structure_summary()
 ## ----rug, fig.width = 6, fig.asp = .65, messages = FALSE, echo = FALSE--------
 x <- fd_canopy_structure()
 
-ggplot(x, aes(y = rugosity, x = replicate))+
+rugosity_boxplot <- ggplot(x, aes(y = rugosity, x = replicate))+
   geom_boxplot()+
   xlab("Replicate")+
-  ylab("Canopy Rugosity [m]")
+  ylab("Canopy Rugosity [m]")+
+  facet_grid(.~year)
 
+print(rugosity_boxplot)
+
+#png("rugosity_boxplot.png")
+#ggsave(filename = "rugosity_boxplot.png", plot = rugosity_boxplot, device = "png", path = "./docs/articles/images/")
 
 ## ----fd_hemi_camera-----------------------------------------------------------
 fd_hemi_camera()
