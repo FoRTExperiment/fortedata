@@ -226,7 +226,7 @@ fd_ceptometer <- function() {
   cept <- split_subplot_id(cept)
 
   # faPAR
-  cept$fapar <- cept$b_par / cept$a_par
+  cept$fapar <- (1 - (cept$b_par / cept$a_par))
 
   # Reorder columns, dropping ones we don't need
   cept <- cept[c("subplot_id", "replicate", "plot", "subplot", "timestamp", "a_par", "b_par", "fapar", "lai_cept")]
