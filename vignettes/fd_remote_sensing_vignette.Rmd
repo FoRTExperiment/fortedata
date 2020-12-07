@@ -19,9 +19,7 @@ knitr::opts_chunk$set(
 ```
 
 ## Remote Sensing 
-TEST TEST TEST TEST
-
-During FoRTE, multiple types of remote sensing data are being collected with the goal of creating a record of forest structural and spectral change. These data are collected coincident with other data as outline below (see Remote Sensing Methods) 
+Multiple remote sensing technologies are being employed in FoRTE to collect data with the goal of creating a record of forest structural and spectral change. These data are collected coincident with other data as outline below (see Remote Sensing Methods). Specifically we are focusing on collecting data monitoring canopy structural change. Canopy structure affects ecosystem functioning through altering light transmission/interception, subsequently affecting ecosystem functioning (e.g. productivity and the acquisition/use-efficiency of resources). See [the FoRTE Proposal Narrative] (https://fortexperiment.github.io/fortedata/articles/fd_forte_proposal_vignette.html) for further details. Below we outline the remote sensing orienteed data and funcitons included in `fortedata`.
 
 ## Remote Sensing Functions
 
@@ -66,14 +64,14 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
 ### Terrestrial lidar
 
 Annual measurements of forest structure were taken using both 2- and 3-D terrestrial lidar during peak growing season (July-early August). 2-D lidar data are gathered using a Riegl 3100 VHSFLP portable canopy lidar unit (See Parker et al. 2004 and Hardiman et al. 2011 for a full description) and 3-D lidar data are collected using a Leica BLK360. Currently, 3-D lidar data are not included in `fortedata` due to processing delays resulting from Covid-19. 
-### Canopy Structural Traits (CSTs)
 
+### Canopy Structural Traits (CSTs)
 
 We derived canopy structural trait metrics (Fahey et al. 2019) from 2-D terrestrial lidar data collected with a user-mounted, portable canopy lidar (PCL) system equipped with an upward facing, Riegl 3100VHS near‐infrared pulsed‐laser operating at 2000 Hz (Riegl LD90 3100 VHS; Riegl USA Inc., Orlando, Florida, USA). The PCL generates continuous LiDAR returns from a “slice” of the canopy as it is walked along a measured transect. For this study, we used 40 m transects at cardinal directions--north-to-south,  east-to-west--through subplot center for a total of 80 m of transect length per subplot. This mirrors the approach of Atkins et al. (2018) and Haridman et al. (2013) and is sufficient to account for spatial variability of forest structure (Hardiman et al. 2019).  A more detailed description of the development and implementation of this terrestrial laser scanning system is available in Parker et al. (2004) and Hardiman et al. ( 2011).  We derived canopy structural metrics using the forestr package (Atkins et al. 2018a, b) in R 3.5 (R Core Team, 2018). forestr produces a suite of canopy structural traits metrics that describe canopy area/density, openness, height, complexity, and arrangement (Atkins et al. (2018a). 
 
 
 ```{r fd_canopy_structure}
-fd_canopy_structure_summary()
+data.frame(fd_canopy_structure_summary())
 ```
 
 ```{r rug, fig.height = 4, fig.width = 6, fig.align = "center"}
@@ -85,11 +83,6 @@ ggplot2::ggplot(x, aes(y = rugosity, x = replicate))+
   ggplot2::ylab("Canopy Rugosity [m]")+
   ggplot2::facet_grid(.~year)
 
-# #print(rugosity_boxplot)
-# 
-# #png("rugosity_boxplot.png")
-# ggsave(filename = "rugosity_boxplot.png", plot = rugosity_boxplot, device = "png")
-# print(rugosity_boxplot)
 ```
 
 ### Hemispherical Camera Imagery
