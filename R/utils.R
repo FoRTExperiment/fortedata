@@ -115,9 +115,7 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 #'
 #'  forte.pal <- forte_colors()
 #'
-#'  ggplot(...)+
-#'  geom_point()+
-#'  scale_fill_manual(values = forte.pal)
+
 
 
 forte_colors <- function() {

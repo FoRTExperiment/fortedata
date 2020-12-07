@@ -22,9 +22,6 @@ can then be used for plotting with other commands such as \code{scale_fill_manua
 
  forte.pal <- forte_colors()
 
- ggplot(...)+
- geom_point()+
- scale_fill_manual(values = forte.pal)
 }
 \keyword{colors}
 \keyword{palette}
