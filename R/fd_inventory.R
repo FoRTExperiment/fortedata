@@ -1,7 +1,11 @@
 # Inventory data
 
 
-#' Raw inventory table.
+#' Forest inventory data for the 32 FoRTE subplots. Includes diameter-at-breast-height
+#' (DBH) measurements in units of cm as well as information on health (i.e. see
+#'  `health_status` column where D = dead, M = moribund, and L = live) and canopy status
+#'  (i.e. see `canopy_status` where OD = overstory dominant, UN = understory,
+#'  OS = overstory submissive, SA = sapling,  and NA is a blank or missing record)
 #'
 #' @note Data were collected by Gough Lab team members Autym Shafer,
 #' Catherine McGuigan, and Alexandra Barry in 2018

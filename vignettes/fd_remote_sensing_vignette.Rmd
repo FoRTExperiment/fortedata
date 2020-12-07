@@ -25,15 +25,15 @@ During FoRTE, multiple types of remote sensing data are being collected with the
 
 The `fd_remote_sensing()` script within `fortedata` currently includes the following functions:
 
-* `fd_hemi_camera()` returns a single dataset that includes derived estimates of leaf area index, gap fraction, clumping index, and NDVI (normalized difference vegetation index) from terrestrial, upward-facing hemispherical photos looking into the forest canopy taken 1 meter above-ground (Table S9). The data package includes 1028 observations of each variable from 2018 and 2019.
+* `fd_hemi_camera()` returns a single dataset that includes derived estimates of leaf area index, gap fraction, clumping index, and NDVI (normalized difference vegetation index) from terrestrial, upward-facing hemispherical photos looking into the forest canopy taken 1 meter above-ground (Table S9 in ESSD manuscript, Atkins et al. 2020). The data package includes 1028 observations of each variable from 2018 and 2019.
 
-* `fd_canopy_structure()` returns a single dataset that includes 28 structural metrics estimating canopy structural traits such as height, area/density, openness, complexity, and arrangement. Data were processed using  `forestr` version 1.0.1 (Atkins et al. 2018) in R Version 3.6.2 (R Core Team, 2020).
+* `fd_canopy_structure()` returns a single dataset that includes 28 structural metrics estimating canopy structural traits such as height, area/density, openness, complexity, and arrangement. Data were processed using  `forestr` version 1.0.1 (Atkins et al. 2018) in R Version 3.6.2.
 
 
 * `fd_ceptometer()` returns a single dataset that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI_cept)--each derived from a handheld ceptometer (LP-80; Decagon Devices) (Table S11). The package includes 32 observations of each variable from 2019 and 16 from 2018 (Fig. 4). 
 r
 
-## Data Availbility
+## Data Availability
 
 ```{r data-availble, fig.width = 6, fig.asp = .62, messages = FALSE, echo = FALSE}
 no_of_records.df <- fd_observations()
@@ -121,3 +121,10 @@ fd_ceptometer()
 
 
 ## References
+[Atkins, J. W., Bohrer, G., Fahey, R. T., Hardiman, B. S., Morin, T. H., Stovall, A. E., ... & Gough, C. M. (2018). Quantifying vegetation and canopy structural complexity from terrestrial LiDAR data using the forestr r package. Methods in Ecology and Evolution, 9(10), 2057-2066.](https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/2041-210X.13061)
+
+[Atkins, J. W., Agee, E., Barry, A., Dahlin, K. M., Dorheim, K., Grigri, M. S., ... & McGuigan, C. (2020). The fortedata R package: open-science datasets from a manipulative experiment testing forest resilience. Earth System Science Data Discussions, 1-18.](https://essd.copernicus.org/preprints/essd-2020-112/essd-2020-112.pdf)
+
+[Hardiman, B. S., Bohrer, G., Gough, C. M., Vogel, C. S., & Curtis, P. S. (2011). The role of canopy structural complexity in wood net primary production of a maturing northern deciduous forest. Ecology, 92(9), 1818-1827.](https://esajournals.onlinelibrary.wiley.com/doi/pdf/10.1890/10-2192.1?casa_token=MQZpgQKa6ewAAAAA:DSJJvB1zmKSdyDGGjQzVdvBfobmyYlp1uOl2oa9fn8mvetH1-z2fgqdnyD5EJxPjRPqUHOx4Jn1c-Q)
+
+[Parker, G. G., Harding, D. J., & Berger, M. L. (2004). A portable LIDAR system for rapid determination of forest canopy structure. Journal of Applied Ecology, 41(4), 755-767.](https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/j.0021-8901.2004.00925.x)
