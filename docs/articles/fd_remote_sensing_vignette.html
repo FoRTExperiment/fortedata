@@ -206,13 +206,20 @@
 <span class="co">## 10 A01W       A             1 W                    7 2018-07-23 0.786</span>
 <span class="co">## # ... with 1,179 more rows, and 4 more variables: gap_fraction &lt;dbl&gt;,</span>
 <span class="co">## #   openness &lt;dbl&gt;, lai_cam &lt;dbl&gt;, clumping_index &lt;dbl&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fd_hemi_camera.html">fd_hemi_camera</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">x</span>, <span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">lai_cam</span>, x <span class="op">=</span> <span class="va">replicate</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">xlab</span><span class="op">(</span><span class="st">"Replicate"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ylab</span><span class="op">(</span><span class="st">"Leaf Area Index"</span><span class="op">)</span></code></pre></div>
 <p><img src="fd_remote_sensing_vignette_files/figure-html/cam-1.png" width="576"></p>
 </div>
 <div id="light-interception-and-availbility" class="section level3">
 <h3 class="hasAnchor">
 <a href="#light-interception-and-availbility" class="anchor"></a>Light Interception and Availbility</h3>
 <p>Light data–as <em>fpar</em>, the fraction of photosynthetically available radiation absorbed by the canopy–was acquired using a Decagon LP-80 handheld ceptometer (Decagon Devices; Pullman, Washington). <em>fpar</em> is the ratio of PAR above the canopy, to that measured below. <em>fpar</em> is assumed to be the difference between the two values. Below-canopy PAR measurements for each plot were taken along north-south and east-west transects (similar to PCL data above), with measurements taken every 1 to 3 m for a total of 30 - 60 measurements then averaged to make a subplot level mean of below-canopy PAR. Above-canopy PAR measurements were taken in open areas to ensure no interference from the canopy.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fd_ceptometer.html">fd_ceptometer</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">## # A tibble: 48 x 9</span>
 <span class="co">##    subplot_id replicate  plot subplot timestamp           a_par b_par  fapar</span>

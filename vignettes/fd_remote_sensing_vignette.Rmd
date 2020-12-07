@@ -108,7 +108,7 @@ Below-canopy, hemispherical images  were taken using a 24 Megapixel DSLR camera 
 fd_hemi_camera()
 ```
 
-```{r cam, fig.width = 6, fig.asp = .65, messages = FALSE, echo = FALSE}
+```{r cam, fig.width = 6, fig.asp = .65}
 x <- fd_hemi_camera()
 
 ggplot(x, aes(y = lai_cam, x = replicate))+

@@ -6,7 +6,7 @@ knitr::opts_chunk$set(
 )
 
 
-## ----data-availble, fig.width = 6, fig.asp = .62, messages = FALSE, echo = FALSE----
+## ----data-availble, fig.height = 4, fig.width = 6, fig.align = "center"-------
 no_of_records.df <- fd_observations()
 
 no_of_records <- subset(no_of_records.df, table == 'fd_canopy_structure' | table == 'fd_hemi_camera')
@@ -33,25 +33,25 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
 ## ----fd_canopy_structure------------------------------------------------------
 fd_canopy_structure_summary()
 
-## ----rug, fig.width = 6, fig.asp = .65, messages = FALSE, echo = FALSE--------
+## ----rug, fig.height = 4, fig.width = 6, fig.align = "center"-----------------
 x <- fd_canopy_structure()
 
-rugosity_boxplot <- ggplot(x, aes(y = rugosity, x = replicate))+
-  geom_boxplot()+
-  xlab("Replicate")+
-  ylab("Canopy Rugosity [m]")+
-  facet_grid(.~year)
+ggplot2::ggplot(x, aes(y = rugosity, x = replicate))+
+  ggplot2::geom_boxplot()+
+  ggplot2::xlab("Replicate")+
+  ggplot2::ylab("Canopy Rugosity [m]")+
+  ggplot2::facet_grid(.~year)
 
-#print(rugosity_boxplot)
-
-#png("rugosity_boxplot.png")
-ggsave(filename = "rugosity_boxplot.png", plot = rugosity_boxplot, device = "png")
-print(rugosity_boxplot)
+# #print(rugosity_boxplot)
+# 
+# #png("rugosity_boxplot.png")
+# ggsave(filename = "rugosity_boxplot.png", plot = rugosity_boxplot, device = "png")
+# print(rugosity_boxplot)
 
 ## ----fd_hemi_camera-----------------------------------------------------------
 fd_hemi_camera()
 
-## ----cam, fig.width = 6, fig.asp = .65, messages = FALSE, echo = FALSE--------
+## ----cam, fig.width = 6, fig.asp = .65----------------------------------------
 x <- fd_hemi_camera()
 
 ggplot(x, aes(y = lai_cam, x = replicate))+
