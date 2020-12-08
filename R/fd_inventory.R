@@ -99,3 +99,4 @@ fd_mortality <- function() {
 
   weak_as_tibble(kill)
 }
+

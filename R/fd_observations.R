@@ -57,6 +57,7 @@ fd_observations <- function() {
   x <- data.frame(timeframe, Table = "fd_soil_respiration")
   no_soil_r <- merge(x, a.tally, by = c("month", "year"), all = TRUE)
 
+
   #####################
   # LEAF SPECTROMETRY!
   b <- fd_leaf_spectrometry()
