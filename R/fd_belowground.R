@@ -30,6 +30,10 @@ fd_soil_respiration <- function() {
 
   flux <- split_subplot_id(flux)
 
+  # fix any missing/error lowercase
+  flux$replicate <- toupper(flux$replicate)
+
+
   # Reorder columns, dropping ones we don't need
   flux <- flux[c("subplot_id", "replicate", "plot", "subplot", "date", "timestamp", "nested_subplot",  "run", "soil_co2_efflux", "soil_temp", "vwc")]
 
