@@ -14,12 +14,13 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata),
   require(ggplot2),
-  require(viridis)
+  require(viridis),
+  require(tidyverse)
 )
 
 ```
 
-## Remote Sensing 
+## Remote Sensing Background and Introduction
 Multiple remote sensing technologies are being employed in FoRTE to collect data with the goal of creating a record of forest canopy structural and spectral change. These data are collected coincident with other data as outlined below (see Remote Sensing Methods). Canopy structure affects ecosystem functioning through altering light transmission/interception, subsequently affecting ecosystem functioning (e.g. productivity and the acquisition/use-efficiency of resources). See [the FoRTE Proposal Narrative] (https://fortexperiment.github.io/fortedata/articles/fd_forte_proposal_vignette.html) for further details. 
 
 Below we outline the remote sensing oriented data and functions included in `fortedata`.
@@ -72,19 +73,55 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
 data.frame(fd_canopy_structure_summary())
 ```
 
-```{r rug, fig.height = 4, fig.width = 6, fig.align = "center"}
+```{r rug, fig.width = 6, fig.height = 6, fig.align = "center", echo = FALSE}
 x <- fd_canopy_structure()
 
-ggplot2::ggplot(x, aes(y = rugosity, x = replicate, fill = as.factor(replicate)))+
-  ggplot2::geom_boxplot()+
-  ggplot2::xlab("Replicate")+
-  ggplot2::ylab("Canopy Rugosity [m]")+
+
+# bring in metadata via the plot_metadata() function
+df <- fortedata::plot_metadata()
+
+# now we convert the tibble to a data frame
+df <- data.frame(df)
+
+# First we want to concatenate our replicate, plot and subplot data to make a subplot_id column 
+df$subplot_id <- paste(df$replicate, 0, df$plot, df$subplot, sep = "")
+df$subplot_id <- as.factor(df$subplot_id)
+
+# Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
+df %>%
+  select(subplot_id, disturbance_severity, treatment) %>%
+  distinct() %>%
+  data.frame() -> dis.meta.data
+
+# this filters the metadata down to the subplot_id level
+dis.meta.data <- dis.meta.data[c(1:32), ]
+
+# Then we merge with the metadata from above
+x <- merge(x, dis.meta.data)
+
+# For this analysis we want to code both disturbance severity and treatment as factors
+x$disturbance_severity <- as.factor(x$disturbance_severity)
+x$treatment <- as.factor(x$treatment)
+
+# forte color palette
+forte_pal <- forte_colors()
+
+# first let's make some new, more informative labels for our facets
+facet.labs <- c("B" = "Bottom-Up", "T" = "Top-Down")
+
+ggplot2::ggplot(x, aes(y = rugosity, x = disturbance_severity, fill = disturbance_severity))+
+  geom_boxplot(color = "black")+
+  geom_jitter(position = position_jitter(0.2), shape = 21, alpha = 0.3)+
+  xlab("Disturbance Severity")+
+  ylab("Canopy Rugosity [m]")+
   theme_minimal()+
-  viridis::scale_color_viridis(discrete = TRUE, option = "D")+
-  viridis::scale_fill_viridis(discrete = TRUE)+
-    ggplot2::ggtitle(paste("Figure 2:  Canopy rugosity, a measure of canopy structural \n complexity by replicate, by year"))+
-  theme(legend.position = "NONE")+
-  ggplot2::facet_grid(.~year)
+  scale_color_manual(values = forte_pal, guide = FALSE)+
+  scale_fill_manual(values = forte_pal,
+                    name = "Disturbance Severity",
+                    labels = c("0%", "45%", "65%", "85%"))+
+  theme(legend.position = "bottom")+
+  ggplot2::ggtitle(paste("Figure 2:  Canopy rugosity, a measure of canopy structural \n complexity by replicate, by year"))+
+  facet_grid(year ~ treatment, labeller = labeller(treatment = facet.labs)) 
 
 ```
 
@@ -101,18 +138,54 @@ Below-canopy, hemispherical images  were taken using a 24 Megapixel DSLR camera 
 fd_hemi_camera()
 ```
 
-```{r cam, fig.width = 6, fig.asp = .65}
+```{r cam, fig.width = 6, fig.asp = .65, echo = FALSE}
 x <- fd_hemi_camera()
 
-ggplot(x, aes(y = lai_cam, x = replicate, fill = as.factor(replicate)))+
-  geom_boxplot()+
-  xlab("Replicate")+
+# bring in metadata via the plot_metadata() function
+df <- fortedata::plot_metadata()
+
+# now we convert the tibble to a data frame
+df <- data.frame(df)
+
+# First we want to concatenate our replicate, plot and subplot data to make a subplot_id column 
+df$subplot_id <- paste(df$replicate, 0, df$plot, df$subplot, sep = "")
+df$subplot_id <- as.factor(df$subplot_id)
+
+# Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
+df %>%
+  select(subplot_id, disturbance_severity, treatment) %>%
+  distinct() %>%
+  data.frame() -> dis.meta.data
+
+# this filters the metadata down to the subplot_id level
+dis.meta.data <- dis.meta.data[c(1:32), ]
+
+# Then we merge with the metadata from above
+x <- merge(x, dis.meta.data)
+
+# For this analysis we want to code both disturbance severity and treatment as factors
+x$disturbance_severity <- as.factor(x$disturbance_severity)
+x$treatment <- as.factor(x$treatment)
+
+# forte color palette
+forte_pal <- forte_colors()
+
+# first let's make some new, more informative labels for our facets
+facet.labs <- c("B" = "Bottom-Up", "T" = "Top-Down")
+
+# let's look at distribution by year, by disturbance severity and treatment
+ggplot(x, aes(y = lai_cam, x = disturbance_severity, fill = disturbance_severity))+
+  geom_boxplot(color = "black")+
+  geom_jitter(position = position_jitter(0.2), shape = 21, alpha = 0.3)+
+  xlab("Disturbance Severity")+
   ylab("Leaf Area Index")+
   theme_minimal()+
-  viridis::scale_color_viridis(discrete = TRUE, option = "D")+
-  viridis::scale_fill_viridis(discrete = TRUE)+
-      ggplot2::ggtitle(paste("Figure 3:  Leaf area index (LAI) dervied from \nhemispherical camera imagery by replicate"))+
-  theme(legend.position = "NONE")
+  scale_color_manual(values = forte_pal, guide = FALSE)+
+  scale_fill_manual(values = forte_pal,
+                    name = "Disturbance Severity",
+                    labels = c("0%", "45%", "65%", "85%"))+
+  theme(legend.position = "bottom")+
+  facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs))
 
 ```
 
@@ -125,18 +198,54 @@ fd_ceptometer()
 ```
 
 
-```{r light, fig.width = 6, fig.asp = .65}
+```{r light, fig.width = 6, fig.asp = .65, echo = FALSE}
 x <- fd_ceptometer()
 
-ggplot(x, aes(y = fapar, x = replicate, fill = as.factor(replicate)))+
-  geom_boxplot()+
-  xlab("Replicate")+
+# bring in metadata via the plot_metadata() function
+df <- fortedata::plot_metadata()
+
+# now we converte the tibble to a data frame
+df <- data.frame(df)
+
+# First we want to concatenate our replicate, plot and subplot data to make a subplot_id column 
+df$subplot_id <- paste(df$replicate, 0, df$plot, df$subplot, sep = "")
+df$subplot_id <- as.factor(df$subplot_id)
+
+# Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
+df %>%
+  select(subplot_id, disturbance_severity, treatment) %>%
+  distinct() %>%
+  data.frame() -> dis.meta.data
+
+# this filters the metadata down to the subplot_id level
+dis.meta.data <- dis.meta.data[c(1:32), ]
+
+# Then we merge with the metadata from above
+x <- merge(x, dis.meta.data)
+
+# For this analysis we want to code both disturbance severity and treatment as factors
+x$disturbance_severity <- as.factor(x$disturbance_severity)
+x$treatment <- as.factor(x$treatment)
+
+# forte color palette
+forte_pal <- forte_colors()
+
+# first let's make some new, more informative labels for our facets
+facet.labs <- c("B" = "Bottom-Up", "T" = "Top-Down")
+
+# let's look at distribution by year, by disturbance severity and treatment
+ggplot(x, aes(y = fapar, x = disturbance_severity, fill = disturbance_severity))+
+  geom_boxplot(color = "black")+
+  geom_jitter(position = position_jitter(0.2), shape = 21, alpha = 0.3)+
+  xlab("Disturbance Severity")+
   ylab("faPAR")+
   theme_minimal()+
-  viridis::scale_color_viridis(discrete = TRUE, option = "D")+
-  viridis::scale_fill_viridis(discrete = TRUE)+
-      ggplot2::ggtitle(paste("Figure 4:  Fraction of absorbed photosynthetically available \nradiation in units of umol per m^2 per s^-1"))+
-  theme(legend.position = "NONE")
+  scale_color_manual(values = forte_pal, guide = FALSE)+
+  scale_fill_manual(values = forte_pal,
+                    name = "Disturbance Severity",
+                    labels = c("0%", "45%", "65%", "85%"))+
+  theme(legend.position = "bottom")+
+  facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs))
 
 ```
 
