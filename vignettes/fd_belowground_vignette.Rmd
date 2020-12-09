@@ -67,18 +67,17 @@ The soil CO~2~ efflux values in this data set represent bulk soil respiration (R
   
 
 ```{r soil_r, fig.width = 6, fig.height = 6, fig.align = "center", echo = FALSE}
-x <- fd_soil_respiration()
+x <- data.frame(fd_soil_respiration())
 
 # add the year column
-x$year <- format(as.Date(x$date, "%Y"))
+x$year <- as.numeric(format(x$date, "%Y"))
 
 # bring in metadata via the plot_metadata() function
 df <- data.frame(fortedata::plot_metadata())
 
-# First we want to concatenate our replicate, plot and subplot data to make a subplot_id column 
+# # First we want to concatenate our replicate, plot and subplot data to make a subplot_id column 
 df$subplot_id <- paste(df$replicate, 0, df$plot, df$subplot, sep = "")
 df$subplot_id <- as.factor(df$subplot_id)
-
 
 
 # Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
@@ -97,6 +96,8 @@ x <- merge(x, dis.meta.data)
 x$disturbance_severity <- as.factor(x$disturbance_severity)
 x$treatment <- as.factor(x$treatment)
 
+# remove these weird ones with no year
+x <- x[!is.na(x$year), ]
 # forte color palette
 forte_pal <- forte_colors()
 

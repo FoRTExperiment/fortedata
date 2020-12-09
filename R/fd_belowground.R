@@ -12,9 +12,6 @@
 fd_soil_respiration <- function() {
   flux <- read_csv_file("fd_soil_efflux.csv")
 
-  # Make subplotID column
-  flux$subplot_id <- paste0(flux$Rep_ID, "0", flux$Plot_ID, flux$Subplot)
-
   # Change column names
   names(flux)[names(flux) == "nestedPlot"] <- "nested_subplot"
   names(flux)[names(flux) == "soilCO2Efflux"] <- "soil_co2_efflux"
@@ -22,7 +19,14 @@ fd_soil_respiration <- function() {
   names(flux)[names(flux) == "VWC"] <- "vwc"
   #names(flux)[names(flux) == "date"] <- "Date"
 
-  # Timestamp
+  # fix lower case values
+  flux$Rep_ID <- toupper(flux$Rep_ID)
+  flux$Subplot <- toupper(flux$Subplot)
+
+  # Make subplotID column
+  flux$subplot_id <- paste0(flux$Rep_ID, "0", flux$Plot_ID, flux$Subplot)
+
+    # Timestamp
   flux$timestamp <- as.POSIXct(flux$dateTime, format = "%m/%d/%Y %H:%M", tz = "America/Detroit")
 
   # Retaining date
@@ -31,8 +35,10 @@ fd_soil_respiration <- function() {
   flux <- split_subplot_id(flux)
 
   # fix any missing/error lowercase
-  flux$replicate <- toupper(flux$replicate)
+  flux$soil_temp <- suppressWarnings(as.numeric(flux$soil_temp))
 
+  # this removes these weird lines.
+  flux <- flux[!is.na(flux$soil_temp), ]
 
   # Reorder columns, dropping ones we don't need
   flux <- flux[c("subplot_id", "replicate", "plot", "subplot", "date", "timestamp", "nested_subplot",  "run", "soil_co2_efflux", "soil_temp", "vwc")]

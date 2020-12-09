@@ -142,7 +142,7 @@
 <p><code><a href="../reference/fd_soil_respiration.html">fd_soil_respiration()</a></code> returns a single dataset of 2780 observations each of soil CO2 efflux (μmol CO<sub>2</sub> m<sup>-2</sup> s<sup>-1</sup>) as well as soil micrometeorological measurements: soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) for the year 2019 (Figs. 3, 4; Table S5).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fortedata</span><span class="fu">::</span><span class="fu"><a href="../reference/fd_soil_respiration.html">fd_soil_respiration</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">## # A tibble: 2,791 x 11</span>
+<span class="co">## # A tibble: 3,929 x 11</span>
 <span class="co">##    subplot_id replicate  plot subplot date       timestamp          </span>
 <span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;date&gt;     &lt;dttm&gt;             </span>
 <span class="co">##  1 A03E       A             3 E       2019-05-15 2019-05-15 12:53:00</span>
@@ -155,13 +155,16 @@
 <span class="co">##  8 A03E       A             3 E       2019-05-15 2019-05-15 13:05:00</span>
 <span class="co">##  9 A03E       A             3 E       2019-05-15 2019-05-15 13:07:00</span>
 <span class="co">## 10 A03E       A             3 E       2019-05-15 2019-05-15 13:09:00</span>
-<span class="co">## # ... with 2,781 more rows, and 5 more variables: nested_subplot &lt;chr&gt;,</span>
-<span class="co">## #   run &lt;int&gt;, soil_co2_efflux &lt;dbl&gt;, soil_temp &lt;dbl&gt;, vwc &lt;dbl&gt;</span></code></pre></div>
+<span class="co">## # ... with 3,919 more rows, and 5 more variables: nested_subplot &lt;chr&gt;,</span>
+<span class="co">## #   run &lt;int&gt;, soil_co2_efflux &lt;dbl&gt;, soil_temp &lt;chr&gt;, vwc &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="soil-co2-efflux" class="section level2">
 <h2 class="hasAnchor">
 <a href="#soil-co2-efflux" class="anchor"></a>Soil CO<sub>2</sub> Efflux</h2>
 <p>The soil CO<sub>2</sub> efflux values in this data set represent bulk soil respiration (R<sub>s</sub>) and were measured at 160 soil collars 11 times between July 2018 (pre-disturbance) and November 2019 (post-disturbance). Each of the 32 subplots contained five 10 cm diameter PVC collars that were installed 4 cm deep, leaving 1 cm in height above the soil surface. Collars were spatially paired with litter traps and root in-growth cores with 1 collar located at subplot center and 4 collars 8m away in each cardinal direction. In situ point Rs measurements (umol CO<sub>2</sub> m<sup>-2</sup> s<sup>-1</sup>) were made following protocols from Curtis et al. 2005 using a LI-6400 portable gas analyzer with 10 cm diameter soil CO<sub>2</sub> closed chamber cuvette (LI-COR Inc, Lincoln, NE, USA). During each of the 11 total measurement efforts, two efflux values were recorded and averaged at each collar over 90 second intervals. To account for diurnal fluctuations in Rs, starting replicate and plot were randomized for each round of measurements. Recent precipitation events were documented and measurements were not taken with 24 hrs following heavy precipitation.</p>
+<pre><code>## Warning: Removed 11 rows containing non-finite values (stat_boxplot).
+## Warning: Removed 11 rows containing missing values (geom_point).</code></pre>
+<p><img src="fd_belowground_vignette_files/figure-html/soil_r-1.png" width="576" style="display: block; margin: auto;"></p>
 <div class="figure">
 <img src="https://user-images.githubusercontent.com/8354517/87793258-01e5e980-c813-11ea-9f43-8a82e26dbf37.jpg" style="width:50.0%" alt=""><p class="caption">PhD Student Kayla Mathes taking measurements with the Li-Cor 6400</p>
 </div>

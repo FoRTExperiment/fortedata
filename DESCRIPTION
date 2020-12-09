@@ -17,6 +17,7 @@ Suggests:
     knitr,
     ggplot2,
     rmarkdown,
+    tidyverse,
     viridis,
     udunits2
 Encoding: UTF-8
