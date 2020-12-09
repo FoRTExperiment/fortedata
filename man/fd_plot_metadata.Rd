@@ -2,16 +2,16 @@
 % Please edit documentation in R/utils.R
 \name{fd_plot_metadata}
 \alias{fd_plot_metadata}
-\title{Function that brings in all plot metadata for assignment}
+\title{Metadata for the experimental field plots}
 \usage{
 fd_plot_metadata()
 }
 \value{
-gives the plot info
+A A \code{data.frame} or \code{tibble} with the experimental treatments by UMBS plot.
 }
 \description{
-Function that brings in all plot metadata for assignment
+Metadata for the experimental field plots
 }
 \examples{
-fortedata::fd_plot_metadata()
+fd_plot_metadata()
 }

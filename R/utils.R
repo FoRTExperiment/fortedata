@@ -46,7 +46,7 @@ weak_as_tibble <- function(..., .force_df = FALSE) {
 #' Data tables' metadata.
 #'
 #' @param table Name of table to return, character, optional
-#' @return A `data.frame` or `tibble` holding field metadata.
+#' @return A `data.frame` or `tibble` holding data table metadata.
 #' @export
 fd_metadata <- function(table = NULL) {
   md <- read_csv_file("forte_table_metadata.csv")
@@ -177,7 +177,6 @@ print.palette <- function(x, ...) {
 #' @export
 #' @examples
 #' fortedata::calc_biomass()
-
 calc_biomass <- function(){
   # The allometries
   allo.df <- read_csv_file("fd_biomass_allometries.csv") #this has the same equations AmeriFlux uses
@@ -192,34 +191,34 @@ calc_biomass <- function(){
   stem <- weak_as_tibble(stem)
 }
 
-#' Function that brings in all plot metadata for assignment
+#' Metadata for the experimental field plots
 #'
-#' @return gives the plot info
+#' @return A A `data.frame` or `tibble` with the experimental treatments by UMBS plot.
 #' @export
 #' @examples
-#' fortedata::fd_plot_metadata()
+#' fd_plot_metadata()
 fd_plot_metadata <- function(){
-  dat <- read_csv_file("forte_plot_metadata.csv") #this has the same equations AmeriFlux uses
+  dat <- read_csv_file("forte_plot_metadata.csv")
 
   weak_as_tibble(dat)
 }
 
 
-#' Function that returns LAI values at the plot scale
+#' LAI values at the plot scale
 #'
 #' LAI is calculated using the equation SLA * mass, where SLA is specific leaf area.
 #' Species and site specific values are in fd_sla.csv.
 #'
-#' @return A data frame of leaf area fro SLA * mass at the plot scale
+#' @return A data frame of leaf area fro SLA * mass at the plot scale.
 #' @export
 #' @examples
-#' fortedata::calc_lai()
+#' calc_lai()
 calc_lai <- function() {
 
-  # importlitter mass
+  # litter mass
   leaf <- fd_litter()
 
-  # bring in the specific leaf area
+  # specific leaf area
   sla <- read_csv_file("fd_sla.csv") #this has the same equations AmeriFlux uses
 
   # calculate mass of leaves only
