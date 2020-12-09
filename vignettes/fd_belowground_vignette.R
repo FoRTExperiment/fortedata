@@ -1,9 +1,12 @@
-## ----setup, include = FALSE---------------------------------------------------
+## ----setup, include = FALSE----------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata),
   require(ggplot2),
+<<<<<<< HEAD
   require(tidyverse),
+=======
+>>>>>>> cb9893702271eb3ec6e45781def98757a5820179
   require(viridis)
 )
 
@@ -29,7 +32,11 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
     color="black", fill="white", size= 0.5, linetype="solid"))
 
 
+<<<<<<< HEAD
 ## ----fd_soil_respiration------------------------------------------------------
+=======
+## ----fd_soil_respiration-------------------------------------------------
+>>>>>>> cb9893702271eb3ec6e45781def98757a5820179
 fortedata::fd_soil_respiration()
 
 ## ----soil_r, fig.width = 6, fig.height = 6, fig.align = "center", echo = FALSE----

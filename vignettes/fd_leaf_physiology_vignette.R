@@ -1,4 +1,4 @@
-## ----setup, include = FALSE---------------------------------------------------
+## ----setup, include = FALSE----------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata),
@@ -6,6 +6,7 @@ knitr::opts_chunk$set(
   require(tidyverse)
 )
 
+<<<<<<< HEAD
 ## ----fd_photosynthesis--------------------------------------------------------
 head(data.frame(fd_photosynthesis()))
 
@@ -59,7 +60,11 @@ ggplot2::ggplot(x, aes(y = photo, x = disturbance_severity, fill = disturbance_s
   ggplot2::ggtitle(paste("Figure 1:  Canopy Photosynthesis"))+
   facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs)) 
 
+=======
+## ----fd_photosynthesis---------------------------------------------------
+fd_photosynthesis()
+>>>>>>> cb9893702271eb3ec6e45781def98757a5820179
 
-## ----fd_leaf_spectrometry-----------------------------------------------------
+## ----fd_leaf_spectrometry------------------------------------------------
 fd_leaf_spectrometry()
 

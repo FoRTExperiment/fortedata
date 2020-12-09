@@ -36,7 +36,7 @@ First, we want to bring the metadata into the workspace
 ```{r disturb1}
 
 # bring in metadata via the plot_metadata() function
-df <- fortedata::plot_metadata()
+df <- fortedata::fd_plot_metadata()
 
 # now we converte the tibble to a data frame
 df <- data.frame(df)
