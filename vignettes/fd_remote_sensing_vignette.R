@@ -1,4 +1,4 @@
-## ----setup, include = FALSE---------------------------------------------------
+## ----setup, include = FALSE----------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata),
@@ -29,10 +29,10 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
     color="black", fill="white", size= 0.5, linetype="solid"))
 
 
-## ----fd_canopy_structure------------------------------------------------------
+## ----fd_canopy_structure-------------------------------------------------
 data.frame(fd_canopy_structure_summary())
 
-## ----rug, fig.height = 4, fig.width = 6, fig.align = "center"-----------------
+## ----rug, fig.height = 4, fig.width = 6, fig.align = "center"------------
 x <- fd_canopy_structure()
 
 ggplot2::ggplot(x, aes(y = rugosity, x = replicate, fill = as.factor(replicate)))+
@@ -47,10 +47,10 @@ ggplot2::ggplot(x, aes(y = rugosity, x = replicate, fill = as.factor(replicate))
   ggplot2::facet_grid(.~year)
 
 
-## ----fd_hemi_camera-----------------------------------------------------------
+## ----fd_hemi_camera------------------------------------------------------
 fd_hemi_camera()
 
-## ----cam, fig.width = 6, fig.asp = .65----------------------------------------
+## ----cam, fig.width = 6, fig.asp = .65-----------------------------------
 x <- fd_hemi_camera()
 
 ggplot(x, aes(y = lai_cam, x = replicate, fill = as.factor(replicate)))+
@@ -64,10 +64,10 @@ ggplot(x, aes(y = lai_cam, x = replicate, fill = as.factor(replicate)))+
   theme(legend.position = "NONE")
 
 
-## ----fd_ceptometer------------------------------------------------------------
+## ----fd_ceptometer-------------------------------------------------------
 fd_ceptometer()
 
-## ----light, fig.width = 6, fig.asp = .65--------------------------------------
+## ----light, fig.width = 6, fig.asp = .65---------------------------------
 x <- fd_ceptometer()
 
 ggplot(x, aes(y = fapar, x = replicate, fill = as.factor(replicate)))+

@@ -179,17 +179,17 @@ print.palette <- function(x, ...) {
 #' fortedata::calc_biomass()
 
 calc_biomass <- function(){
-# The allometries
-allo.df <- read_csv_file("fd_biomass_allometries.csv") #this has the same equations AmeriFlux uses
-df <- fortedata::fd_inventory()
+  # The allometries
+  allo.df <- read_csv_file("fd_biomass_allometries.csv") #this has the same equations AmeriFlux uses
+  df <- fortedata::fd_inventory()
 
 
-# merge the two
-stem <- merge(df, allo.df)
+  # merge the two
+  stem <- merge(df, allo.df)
 
-#calculates biomass in units of kg
-stem$biomass <- stem$a_biomass * stem$dbh^stem$b_biomass
-stem <- weak_as_tibble(stem)
+  #calculates biomass in units of kg
+  stem$biomass <- stem$a_biomass * stem$dbh^stem$b_biomass
+  stem <- weak_as_tibble(stem)
 }
 
 #' Function that brings in all plot metadata for assignment
@@ -197,13 +197,11 @@ stem <- weak_as_tibble(stem)
 #' @return gives the plot info
 #' @export
 #' @examples
-#' fortedata::plot_metadata()
-
-plot_metadata <- function(){
-  # The allometries
+#' fortedata::fd_plot_metadata()
+fd_plot_metadata <- function(){
   dat <- read_csv_file("forte_plot_metadata.csv") #this has the same equations AmeriFlux uses
 
-  dat<- weak_as_tibble(dat)
+  weak_as_tibble(dat)
 }
 
 

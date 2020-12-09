@@ -1,4 +1,4 @@
-## ----setup, include = FALSE---------------------------------------------------
+## ----setup, include = FALSE----------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata),
@@ -6,7 +6,7 @@ knitr::opts_chunk$set(
   require(viridis)
 )
 
-## ----fd_litter, fig.height = 4, fig.width = 6, fig.align = "center"-----------
+## ----fd_litter, fig.height = 4, fig.width = 6, fig.align = "center"------
 # import litter mass dataset
 df <- fd_litter()
 
@@ -22,7 +22,7 @@ ggplot2::ggplot(df, ggplot2::aes(x = as.factor(replicate), y = leafmass_g, fill 
   ggplot2::xlab("Replicate")+
   theme(legend.position = "NONE")
 
-## ----lai, fig.height = 3.5, fig.width = 6, fig.align = "center"---------------
+## ----lai, fig.height = 3.5, fig.width = 6, fig.align = "center"----------
 # import lai values at the plot scale
 df <- calc_lai()
 
