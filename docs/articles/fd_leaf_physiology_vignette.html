@@ -57,6 +57,9 @@
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
     </li>
     <li>
+      <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
+    </li>
+    <li>
       <a href="../articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
     </li>
     <li>
@@ -93,7 +96,7 @@
       <h1 data-toc-skip>fortedata: Ecophsyiology Data</h1>
                         <h4 class="author">Lisa Haber and Jeff Atkins</h4>
             
-            <h4 class="date">2020-12-07</h4>
+            <h4 class="date">2020-12-09</h4>
       
       
       <div class="hidden name"><code>fd_leaf_physiology_vignette.Rmd</code></div>
@@ -114,34 +117,53 @@
 <code><a href="../reference/fd_photosynthesis.html">fd_photosynthesis()</a></code> returns a single dataset of leaf physiology variables, including photosynthesis, transpiration, etc, measured using a LI-6400 XT (LI-COR Biosciences; Lincoln, NE). The package includes 2215 observations from 2018 (Fig. 4).</li>
 </ul>
 </div>
-<div id="photosynthesis-data" class="section level2">
+<div id="ecophysiology-methods" class="section level2">
 <h2 class="hasAnchor">
-<a href="#photosynthesis-data" class="anchor"></a>Photosynthesis Data</h2>
-<p>Between July 11 – August 3, 2018, and again between July 8 – 28, 2019, we measured the light-saturated CO2 assimilation (Asat), stomatal conductance (gs), and ancillary variables of subcanopy leaves for each subplot. To capture inter- and intra-specific subplot physiological variability, we randomly selected three leaves 1 to 2 m above the forest floor in each of four 2 m x 2 m subcanopy vegetation survey sites for a total of 12 leaves per subplot. When leaves in the 1 to 2 m stratum were not present, the closest seedling or sapling leaf outside of the vegetation survey site was selected for measurement. Upon selection, we measured leaves using an LI-6400 XT portable photosynthesis system (LI-COR Inc., Licoln, NE) programmed to maintain the following chamber conditions: 2000 µmol/m2/s PAR, 400 ppm CO2, and 25 °C. In order to avoid excessive leaf stress during measurement, we attempted, through manipulation of chamber humidity, to maintain a leaf vapor pressure deficit below 2 kPa, but this was not always possible given atmospheric conditions in summer at our site. Leaves that failed to produce stable Asat after 5 minutes were discarded and a new leaf selected. In some plots, the majority of needleleaf trees sampled from vegetation survey locations exhibited leaf stress during sampling, so we collected additional samples and targeted broadleaf trees in order to hedge against insufficient sample size in these locations. Thus, the total number of leaves sampled across all 32 subplots was n = 443.</p>
+<a href="#ecophysiology-methods" class="anchor"></a>Ecophysiology Methods</h2>
+</div>
+<div id="canopy-photosynthesis" class="section level2">
+<h2 class="hasAnchor">
+<a href="#canopy-photosynthesis" class="anchor"></a>Canopy Photosynthesis</h2>
+<p>Between July 11 – August 3, 2018, and again between July 8 – 28, 2019, we measured the light-saturated CO<sub>2</sub> assimilation (Asat), stomatal conductance (gs), and ancillary variables of subcanopy leaves for each subplot. To capture inter- and intra-specific subplot physiological variability, we randomly selected three leaves 1 to 2 m above the forest floor in each of four 2 m x 2 m subcanopy vegetation survey sites for a total of 12 leaves per subplot. When leaves in the 1 to 2 m stratum were not present, the closest seedling or sapling leaf outside of the vegetation survey site was selected for measurement. Upon selection, we measured leaves using an LI-6400 XT portable photosynthesis system (LI-COR Inc., Licoln, NE) programmed to maintain the following chamber conditions: 2000 µmol/m2/s PAR, 400 ppm CO2, and 25 °C. In order to avoid excessive leaf stress during measurement, we attempted, through manipulation of chamber humidity, to maintain a leaf vapor pressure deficit below 2 kPa, but this was not always possible given atmospheric conditions in summer at our site. Leaves that failed to produce stable Asat after 5 minutes were discarded and a new leaf selected. In some plots, the majority of needleleaf trees sampled from vegetation survey locations exhibited leaf stress during sampling, so we collected additional samples and targeted broadleaf trees in order to hedge against insufficient sample size in these locations. Thus, the total number of leaves sampled across all 32 subplots was n = 443.</p>
 <p>Using identical equipment and settings, we measured Asat, gs, and related variables for leaves from the canopy stratum of a single FoRTE replicate where a preexisting dirt road allowed aerial lift vehicle access. This data collection effort targeted three tree species: bigtooth aspen (Populus grandidentata), red maple (Acer rubrum), and Northern red oak (Quercus rubra). Tree crowns were sampled July 17 – 23, 2018, and twice the following year: June 11 – July 4, 2019, and July 30 – August 8, 2019. Sampling took place in accessible crowns of trees within or adjacent to experimental plots and proceeded as follows: 6 crowns per species x 3 species x 4 plots = 72 crowns. In our first sampled plot in 2018, we randomly chose five healthy, sun-adapted leaves from different terminal branches within each crown, but later reduced this number to three leaves per crown due to time and equipment constraints. Thus, the total number of leaves sampled in 2018 was n = 243, and in 2019 was n = 226. Accidental girdling of two trees in 2019 reduced the overall sample size to 70 crowns.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/fd_photosynthesis.html">fd_photosynthesis</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">## # A tibble: 2,215 x 47</span>
-<span class="co">##    subplot_id replicate  plot subplot timestamp             obs ftime  ebal</span>
-<span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;dttm&gt;              &lt;int&gt; &lt;dbl&gt; &lt;int&gt;</span>
-<span class="co">##  1 A01E       A             1 E       2018-08-02 15:09:39     1  176.     0</span>
-<span class="co">##  2 A01E       A             1 E       2018-08-02 15:09:40     2  176.     0</span>
-<span class="co">##  3 A01E       A             1 E       2018-08-02 15:09:41     3  177      0</span>
-<span class="co">##  4 A01E       A             1 E       2018-08-02 15:09:42     4  178      0</span>
-<span class="co">##  5 A01E       A             1 E       2018-08-02 15:09:43     5  179      0</span>
-<span class="co">##  6 A01E       A             1 E       2018-08-02 15:14:08     1  208.     0</span>
-<span class="co">##  7 A01E       A             1 E       2018-08-02 15:14:09     2  208.     0</span>
-<span class="co">##  8 A01E       A             1 E       2018-08-02 15:14:10     3  210.     0</span>
-<span class="co">##  9 A01E       A             1 E       2018-08-02 15:14:11     4  210.     0</span>
-<span class="co">## 10 A01E       A             1 E       2018-08-02 15:14:12     5  212.     0</span>
-<span class="co">## # ... with 2,205 more rows, and 39 more variables: photo &lt;dbl&gt;, cond &lt;dbl&gt;,</span>
-<span class="co">## #   ci &lt;dbl&gt;, trmmol &lt;dbl&gt;, vpdl &lt;dbl&gt;, ctleaf &lt;dbl&gt;, area &lt;dbl&gt;, blc_1 &lt;dbl&gt;,</span>
-<span class="co">## #   stmrat &lt;dbl&gt;, blcond &lt;dbl&gt;, tair &lt;dbl&gt;, tleaf &lt;dbl&gt;, tblk &lt;dbl&gt;,</span>
-<span class="co">## #   co2r &lt;dbl&gt;, co2s &lt;dbl&gt;, h2or &lt;dbl&gt;, h2os &lt;dbl&gt;, rh_r &lt;dbl&gt;, rh_s &lt;dbl&gt;,</span>
-<span class="co">## #   flow &lt;dbl&gt;, pari &lt;int&gt;, paro &lt;int&gt;, press &lt;dbl&gt;, csmch &lt;dbl&gt;, hsmch &lt;dbl&gt;,</span>
-<span class="co">## #   csmchsd &lt;dbl&gt;, hsmchsd &lt;dbl&gt;, crmchsd &lt;dbl&gt;, hrmchsd &lt;dbl&gt;, stablef &lt;dbl&gt;,</span>
-<span class="co">## #   blcslope &lt;dbl&gt;, blcoffst &lt;dbl&gt;, f_parin &lt;dbl&gt;, f_parout &lt;dbl&gt;,</span>
-<span class="co">## #   alphak &lt;dbl&gt;, status &lt;int&gt;, species &lt;chr&gt;, sample &lt;int&gt;, comments &lt;chr&gt;</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/fd_photosynthesis.html">fd_photosynthesis</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="co">##   subplot_id replicate plot subplot           timestamp obs ftime ebal photo</span>
+<span class="co">## 1       A01E         A    1       E 2018-08-02 15:09:39   1 175.5    0  2.22</span>
+<span class="co">## 2       A01E         A    1       E 2018-08-02 15:09:40   2 176.5    0  2.23</span>
+<span class="co">## 3       A01E         A    1       E 2018-08-02 15:09:41   3 177.0    0  2.25</span>
+<span class="co">## 4       A01E         A    1       E 2018-08-02 15:09:42   4 178.0    0  2.23</span>
+<span class="co">## 5       A01E         A    1       E 2018-08-02 15:09:43   5 179.0    0  2.24</span>
+<span class="co">## 6       A01E         A    1       E 2018-08-02 15:14:08   1 207.5    0  2.42</span>
+<span class="co">##     cond  ci trmmol vpdl ctleaf area blc_1 stmrat blcond  tair tleaf  tblk</span>
+<span class="co">## 1 0.0177 192  0.220  1.2  24.88    6  1.42      1   2.84 20.87 24.88 20.07</span>
+<span class="co">## 2 0.0175 189  0.217  1.2  24.88    6  1.42      1   2.84 20.87 24.88 20.06</span>
+<span class="co">## 3 0.0175 187  0.217  1.2  24.88    6  1.42      1   2.84 20.87 24.88 20.07</span>
+<span class="co">## 4 0.0176 190  0.219  1.2  24.88    6  1.42      1   2.84 20.87 24.88 20.07</span>
+<span class="co">## 5 0.0176 189  0.219  1.2  24.88    6  1.42      1   2.84 20.87 24.88 20.06</span>
+<span class="co">## 6 0.0222 218  0.275  1.2  24.88    6  1.42      1   2.84 20.88 24.88 20.06</span>
+<span class="co">##     co2r   co2s   h2or   h2os  rh_r  rh_s  flow pari paro press csmch  hsmch</span>
+<span class="co">## 1 402.79 400.02 19.601 19.860 78.02 79.04 500.6 1999    0 98.54 -5.18 0.0655</span>
+<span class="co">## 2 402.80 400.02 19.603 19.859 78.02 79.04 500.5 1999    0 98.54 -5.18 0.0655</span>
+<span class="co">## 3 402.81 400.01 19.604 19.859 78.03 79.04 500.5 1999    0 98.54 -5.18 0.0655</span>
+<span class="co">## 4 402.81 400.02 19.602 19.860 78.02 79.04 500.4 1999    0 98.54 -5.18 0.0655</span>
+<span class="co">## 5 402.80 400.01 19.601 19.858 78.01 79.04 500.3 1999    0 98.54 -5.18 0.0655</span>
+<span class="co">## 6 403.00 399.97 19.519 19.842 77.65 78.93 500.4 2000    0 98.56 -5.18 0.0655</span>
+<span class="co">##   csmchsd hsmchsd crmchsd hrmchsd stablef blcslope blcoffst f_parin f_parout</span>
+<span class="co">## 1  0.0214 0.00919  0.0263 0.00643     1.0    -0.22     2.74       1        0</span>
+<span class="co">## 2  0.0214 0.00919  0.0263 0.00643     0.7    -0.22     2.74       1        0</span>
+<span class="co">## 3  0.0214 0.00919  0.0263 0.00643     0.7    -0.22     2.74       1        0</span>
+<span class="co">## 4  0.0214 0.00919  0.0263 0.00643     0.7    -0.22     2.74       1        0</span>
+<span class="co">## 5  0.0214 0.00919  0.0263 0.00643     1.0    -0.22     2.74       1        0</span>
+<span class="co">## 6  0.0214 0.00919  0.0263 0.00643     0.7    -0.22     2.74       1        0</span>
+<span class="co">##   alphak status species sample               comments</span>
+<span class="co">## 1   0.16 111115    ACPE      1 15:07:05 in NE #2784; </span>
+<span class="co">## 2   0.16 111115    ACPE      1 15:07:05 in NE #2784; </span>
+<span class="co">## 3   0.16 111115    ACPE      1 15:07:05 in NE #2784; </span>
+<span class="co">## 4   0.16 111115    ACPE      1 15:07:05 in NE #2784; </span>
+<span class="co">## 5   0.16 111115    ACPE      1 15:07:05 in NE #2784; </span>
+<span class="co">## 6   0.16 111115    ACPE      2       15:10:53 in NE;</span></code></pre></div>
+<p><img src="fd_leaf_physiology_vignette_files/figure-html/photo-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div id="leaf-spectrometry" class="section level2">
 <h2 class="hasAnchor">
