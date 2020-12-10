@@ -73,7 +73,7 @@ x <- data.frame(fd_soil_respiration())
 x$year <- as.numeric(format(x$date, "%Y"))
 
 # bring in metadata via the plot_metadata() function
-df <- data.frame(fortedata::plot_metadata())
+df <- data.frame(fortedata::fd_plot_metadata())
 
 # # First we want to concatenate our replicate, plot and subplot data to make a subplot_id column 
 df$subplot_id <- paste(df$replicate, 0, df$plot, df$subplot, sep = "")

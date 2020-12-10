@@ -44,7 +44,7 @@ x <- data.frame(fd_photosynthesis())
 
 
 # bring in metadata via the plot_metadata() function
-df <- fortedata::plot_metadata()
+df <- fortedata::fd_plot_metadata()
 
 # now we convert the tibble to a data frame
 df <- data.frame(df)

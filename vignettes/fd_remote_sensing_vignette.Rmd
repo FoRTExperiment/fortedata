@@ -78,7 +78,7 @@ x <- fd_canopy_structure()
 
 
 # bring in metadata via the plot_metadata() function
-df <- fortedata::plot_metadata()
+df <- fortedata::fd_plot_metadata()
 
 # now we convert the tibble to a data frame
 df <- data.frame(df)
@@ -142,7 +142,7 @@ fd_hemi_camera()
 x <- fd_hemi_camera()
 
 # bring in metadata via the plot_metadata() function
-df <- fortedata::plot_metadata()
+df <- fortedata::fd_plot_metadata()
 
 # now we convert the tibble to a data frame
 df <- data.frame(df)
@@ -202,7 +202,7 @@ fd_ceptometer()
 x <- fd_ceptometer()
 
 # bring in metadata via the plot_metadata() function
-df <- fortedata::plot_metadata()
+df <- fortedata::fd_plot_metadata()
 
 # now we converte the tibble to a data frame
 df <- data.frame(df)
