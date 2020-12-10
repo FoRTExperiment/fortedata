@@ -32,6 +32,7 @@ The `fd_leaf_physiology()` script within `fortedata` currently includes the foll
 
 ## Data Availability
 `fortedata` is an evolving, open-science data package with data updated in near-real time. The current number of leaf physiology data observations available as of `r Sys.Date()` are detailed in Figure 1.
+
 ```{r observations, fig.height=4, fig.width=6, message=FALSE, warning=FALSE}
 no_of_records.df <- fd_observations()
 
@@ -62,13 +63,13 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
   
 Between July 11 – August 3, 2018; July 8 – 28, 2019; and July 9 - 24, 2020, we measured the light-saturated CO~2~ assimilation (A~sat~), stomatal conductance (g~s~), and ancillary variables of subcanopy leaves for each subplot. To capture inter- and intra-specific subplot physiological variability, we randomly selected three leaves 1 to 2 m above the forest floor in each of four 2 m x 2 m subcanopy vegetation survey sites for a total of 12 leaves per subplot. When leaves in the 1 to 2 m stratum were not present, the closest seedling or sapling leaf outside of the vegetation survey site was selected for measurement. Upon selection, we measured leaves using an LI-6400 XT portable photosynthesis system (LI-COR Inc., Licoln, NE) programmed to maintain the following chamber conditions: 2000 µmol/m^2^/s PAR, 400 ppm CO~2~, and 25 °C. In order to avoid excessive leaf stress during measurement, we attempted, through manipulation of chamber humidity, to maintain a leaf vapor pressure deficit below 2 kPa, but this was not always possible given atmospheric conditions in summer at our site. Leaves that failed to produce stable A~sat~ after 5 minutes were discarded and a new leaf selected. In some plots, the majority of needleleaf trees sampled from vegetation survey locations exhibited leaf stress during sampling, so we collected additional samples and targeted broadleaf trees in order to hedge against insufficient sample size in these locations. Thus, the total number of leaves sampled across all 32 subplots was n = 443. 
 
-![PhD student Lisa Haber collecting subcanopy leaf physiology measurements using a LI-6400 XT in 2018.](https://user-images.githubusercontent.com/31964725/101687914-32842500-3a39-11eb-83df-a236ecca3cd0.png){width=50%}
+![PhD student Lisa Haber collecting subcanopy leaf physiology measurements using a LI-6400 XT in 2018.](https://user-images.githubusercontent.com/8354517/101810582-f909f300-3ae6-11eb-8106-8ccef4225e88.png){width=50%}
 
 ### Canopy Photosynthesis
 
 Using identical equipment and settings, we measured A~sat~, g~s~, and related variables for leaves from the canopy stratum of a single FoRTE replicate where a preexisting dirt road allowed aerial lift vehicle access. This data collection effort targeted three tree species: bigtooth aspen (*Populus grandidentata*), red maple (*Acer rubrum*), and Northern red oak (*Quercus rubra*). Tree crowns were sampled July 17 – 23, 2018, and twice the following year: June 11 – July 4, 2019, and July 30 – August 8, 2019. Sampling took place in accessible crowns of trees within or adjacent to experimental plots and proceeded as follows: 6 crowns per species x 3 species x 4 plots = 72 crowns. In our first sampled plot in 2018, we randomly chose five healthy, sun-adapted leaves from different terminal branches within each crown, but later reduced this number to three leaves per crown due to time and equipment constraints. Thus, the total number of leaves sampled in 2018 was n = 243, and in 2019 was n = 226. Accidental girdling of two trees in 2019 reduced the overall sample size to 70 crowns.
 
-![FoRTE team members Lisa Haber and Alley Barry collecting canopy leaf physiology measurements using the UMBS Zero Emissions Canopy Access Vehicle, or "Zeke."](https://user-images.githubusercontent.com/31964725/101687487-922e0080-3a38-11eb-8368-8881ccc3b19b.png){width=50%}
+![FoRTE team members Lisa Haber and Alley Barry collecting canopy leaf physiology measurements using the UMBS Zero Emissions Canopy Access Vehicle, or "Zeke."](https://user-images.githubusercontent.com/8354517/101810611-feffd400-3ae6-11eb-98c7-1c6fe28c7d8b.png){width=50%}
 
 
 ```{r fd_photosynthesis}
@@ -116,7 +117,7 @@ ggplot2::ggplot(x, aes(y = photo, x = disturbance_severity, fill = disturbance_s
   geom_boxplot(color = "black")+
   geom_jitter(position = position_jitter(0.2), shape = 21, alpha = 0.3)+
   xlab("Disturbance Severity")+
-  ylab(bquote('Subcanopy leaf photosynthetic rate ( '*mu~ 'mol' ~CO[2]~ m^-2~s^-1*')')) +
+  ylab(bquote('Subcanopy leaf photosynthetic rate\n ( '*mu~ 'mol' ~CO[2]~ m^-2~s^-1*')')) +
   theme_minimal()+
   scale_color_manual(values = forte_pal, guide = FALSE)+
   scale_fill_manual(values = forte_pal,
@@ -128,23 +129,24 @@ ggplot2::ggplot(x, aes(y = photo, x = disturbance_severity, fill = disturbance_s
 
 ```
 
+
 ### Leaf spectrometry
 
 We collected leaf reflectance spectra, used as a proxy for leaf biochemistry (including N content; Yang et al. 2017), with a CI-710 miniature leaf spectrometer (CID Biosciences, Camas, WA). We measured axial sides of leaves that met the minimum area requirement for the instrument (20 mm x 20 mm) in the range of visible to near infrared light (400-950 nm) immediately following physiological measurements and while still attached to trees. Because pine needles did not meet the minimum requirement for leaf area, only broadleaf specimens were available for measurement. Data output included waveform and individual wavelength spectral data, as well as a suite of derived vegetation indices including the normalized difference vegetation index (NDVI).
 
-![Lisa Haber using the CI-710 mini leaf spectrometer to gather FoRTE subcanopy leaf reflectance measurements in 2018.](https://user-images.githubusercontent.com/31964725/101687959-416ad780-3a39-11eb-9268-32d1b6f8c1d7.png){width=50%}
+![Lisa Haber using the CI-710 mini leaf spectrometer to gather FoRTE subcanopy leaf reflectance measurements in 2018.](https://user-images.githubusercontent.com/8354517/101810605-fdcea700-3ae6-11eb-9b12-575a14afa1fa.png){width=50%}
 
 
 ```{r fd_leaf_spectrometry}
 fd_leaf_spectrometry()
 ```
 
-```{r spectrometry, fig.width = 6, fig.asp = 0.65, fig.align = "center", echo = FALSE}
+```{r ndvi-plot, fig.width = 6, fig.asp = 0.65, fig.align = "center", echo = FALSE}
 x <- data.frame(fd_leaf_spectrometry())
 
 
 # bring in metadata via the plot_metadata() function
-df <- fortedata::plot_metadata()
+df <- fortedata::fd_plot_metadata()
 
 # now we convert the tibble to a data frame
 df <- data.frame(df)
@@ -160,7 +162,7 @@ df %>%
   data.frame() -> dis.meta.data
 
 # this filters the metadata down to the subplot_id level
-dis.meta.data <- dis.meta.data[c(1:8), ]
+dis.meta.data <- dis.meta.data[c(25:32), ]
 
 # Then we merge with the metadata from above
 x <- merge(x, dis.meta.data)
@@ -176,10 +178,10 @@ forte_pal <- forte_colors()
 facet.labs <- c("B" = "Bottom-Up", "T" = "Top-Down")
 
 # filter by index, select only NDVI observations
-x <- x %>%
-  filter(index == "NDVI")
+ x %>%
+  filter(index == "NDVI" & index_value > 0.2) -> y
 
-ggplot2::ggplot(x, aes(y = index_value, x = disturbance_severity, fill = disturbance_severity))+
+ggplot2::ggplot(y, aes(y = index_value, x = disturbance_severity, fill = disturbance_severity))+
   geom_boxplot(color = "black")+
   geom_jitter(position = position_jitter(0.2), shape = 21, alpha = 0.3)+
   xlab("Disturbance Severity")+
@@ -193,6 +195,7 @@ ggplot2::ggplot(x, aes(y = index_value, x = disturbance_severity, fill = disturb
   ggplot2::ggtitle(paste("Figure 3:  2018 Canopy NDVI")) 
 
 ```
+
 
 ### Leaf morphology
   

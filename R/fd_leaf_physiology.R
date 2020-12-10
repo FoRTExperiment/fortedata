@@ -16,6 +16,7 @@ fd_leaf_spectrometry <- function() {
   names(leaf_spec)[names(leaf_spec) == "value"] <- "index_value"
   names(leaf_spec)[names(leaf_spec) == "v1"] <- "filepath"
 
+
   # Adjust column data
   leaf_spec$index <- gsub("[^[:alnum:]]", "", leaf_spec$index)
   leaf_spec$tree_id <- as.character(substr(leaf_spec$filepath, 11, 15))
@@ -29,7 +30,10 @@ fd_leaf_spectrometry <- function() {
 
   # Extract the SubplotID
   leaf_spec$subplot_id <- substr(leaf_spec$filepath, 1, 4)
+  leaf_spec$subplot_id <- gsub("O", 0, leaf_spec$subplot_id)
+
   leaf_spec <- split_subplot_id(leaf_spec)
+
 
   # Reorder columns, dropping unneeded FilePath
   leaf_spec <- leaf_spec[c("subplot_id", "replicate", "plot", "subplot", "date", "tree_id", "species", "index", "index_value")]

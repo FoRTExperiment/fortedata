@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return a list of all FoRTE related publications. — fd_publications • fortedata</title>
+<title>Metadata for the experimental field plots — fd_plot_metadata • fortedata</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Return a list of all FoRTE related publications. — fd_publications" />
-<meta property="og:description" content="Return a list of all FoRTE related publications." />
+<meta property="og:title" content="Metadata for the experimental field plots — fd_plot_metadata" />
+<meta property="og:description" content="Metadata for the experimental field plots" />
 
 
 
@@ -136,45 +136,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return a list of all FoRTE related publications.</h1>
+    <h1>Metadata for the experimental field plots</h1>
     
-    <div class="hidden name"><code>fd_publications.Rd</code></div>
+    <div class="hidden name"><code>fd_plot_metadata.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Return a list of all FoRTE related publications.</p>
+    <p>Metadata for the experimental field plots</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fd_publications</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>fd_plot_metadata</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>data.frame</code> or <code>tibble</code>. See "Details" for column descriptions.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The columns are as follows:</p><ul>
-<li><p><code>Entry</code> (character): Abbreviated in-text entry in the form of author last name and year</p></li>
-<li><p><code>PubYear</code> (integer): Year of publication</p></li>
-<li><p><code>Title</code> (character): Title of publication</p></li>
-<li><p><code>Journal</code> (character): Journal article was published in</p></li>
-<li><p><code>DOI</code> (character): Digital Object Identifier</p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>A list of all FoRTE related publications.</p>
+    <p>A A <code>data.frame</code> or <code>tibble</code> with the experimental treatments by UMBS plot.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fd_publications</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 5 x 5</span><span>
-#&gt;   entry       pub_year title                         journal       doi          
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-#&gt; </span><span style='color: #555555;'>1</span><span> Atkins et ~     </span><span style='text-decoration: underline;'>2</span><span>019 Multidimensional Structural ~ PrePrint      10.20944/pre~
-#&gt; </span><span style='color: #555555;'>2</span><span> Atkins et ~     </span><span style='text-decoration: underline;'>2</span><span>020 Application of Multidimensio~ Ecosphere     submitted    
-#&gt; </span><span style='color: #555555;'>3</span><span> Gough et a~     </span><span style='text-decoration: underline;'>2</span><span>020 Diversity, structure and com~ Ecosystems    submitted    
-#&gt; </span><span style='color: #555555;'>4</span><span> Atkins et ~     </span><span style='text-decoration: underline;'>2</span><span>020 The fortedata R package: ope~ Earth System~ submitted    
-#&gt; </span><span style='color: #555555;'>5</span><span> Shikomanov~     </span><span style='text-decoration: underline;'>2</span><span>020 Structure and parameter unce~ Global Chang~ in press     </div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fd_plot_metadata</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 336 x 10</span><span>
+#&gt;    replicate  plot subplot latitude longitude disturbance_sev~ treatment
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> A             1 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>               85 B        
+#&gt; </span><span style='color: #555555;'> 2</span><span> A             1 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>               85 T        
+#&gt; </span><span style='color: #555555;'> 3</span><span> A             2 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>               45 T        
+#&gt; </span><span style='color: #555555;'> 4</span><span> A             2 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>               45 B        
+#&gt; </span><span style='color: #555555;'> 5</span><span> A             3 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>               65 B        
+#&gt; </span><span style='color: #555555;'> 6</span><span> A             3 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>               65 T        
+#&gt; </span><span style='color: #555555;'> 7</span><span> A             4 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                0 B        
+#&gt; </span><span style='color: #555555;'> 8</span><span> A             4 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                0 T        
+#&gt; </span><span style='color: #555555;'> 9</span><span> B             1 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                0 B        
+#&gt; </span><span style='color: #555555;'>10</span><span> B             1 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                0 T        
+#&gt; </span><span style='color: #555555;'># ... with 326 more rows, and 3 more variables: plot_type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, nsp_id </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   area </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
