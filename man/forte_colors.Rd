@@ -2,17 +2,27 @@
 % Please edit documentation in R/utils.R
 \name{forte_colors}
 \alias{forte_colors}
+
 \title{The FoRTE color palettte}
+
 \usage{
 forte_colors()
 }
 \value{
-A vector of colours.
+A vector of colors.
 }
 \description{
-These are a handful of color palettes pulled from photographs of US National Parks.
+A FoRTE specific color palette used for color-classificaiton of disturbance severity
+treatments. 0\% = "#000000", 45\% = "#009E73", 65\% = "#0072B2", and 85\% = "#D55E00".
+}
+\details{
+Per the example below, \code{forte_colors()} can be used to define a custom palette that
+can then be used for plotting with other commands such as \code{scale_fill_manual()}, etc.
 }
 \examples{
+
 pal <- forte_colors()
+
 }
 \keyword{colors}
+\keyword{palette}

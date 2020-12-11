@@ -8,29 +8,15 @@ fd_ceptometer()
 }
 \value{
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
+Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
 Ceptometer data.
 }
-\details{
-The columns are as follows:
-\itemize{
-\item \code{SubplotID} (character): Subplot ID number. These subplot codes are a
-concatenation of the plot (\code{\link{fd_plots}}) and
-subplot \code{\link{fd_subplots}} codes.
-\item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
-\item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
-\item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
-\item \code{Timestamp} (POSIXlt): Date of measurment
-\item \code{aPAR} (numeric): above canopy PAR (photosynthetically available radiation)
-\item \code{bPAR} (numeric): below canopy PAR (photosynthetically available radiation)
-\item \code{faPAR} (numeric): fraction of PAR absorbed by the canopy
-\item \code{LAI_cept} (numeric): leaf area index derived from ceptometer
-}
+\note{
+Data were collected by Jeff W. Atkins and Brandon Alveshare using
+a Decagon LP-80 Handheld Ceptometer
 }
 \examples{
 fd_ceptometer()
-}
-\author{
-Measurements by Jeff Atkins at the University of Michigan Biological Station.
 }

@@ -1,0 +1,29 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "The fortedata R package: open-science datasets from a
+         manipulative experiment testing forest resilience",
+         author = c(person(c("Jeff", "W."), "Atkins"),
+                    person("Elizabeth", "Agee"),
+                    person("Alexandra", "Barry"),
+                    person(c("Kyla", "M."), "Dahlin"),
+                    person("Kalyn", "Dorheim" ),
+                    person(c("Maxim", "S."), "Grigri"),
+                    person(c("Lisa", "T."), 'Haber'),
+                    person(c("Laura", "J."), "Hickey"),
+                    person(c("Aaron", "G."), "Kamoske"),
+                    person("Kayla", "Mathes"),
+                    person("Catherine", "McGuigan"),
+                    person("Evan", "Paris"),
+                    person(c("Stephanie", "C."), "Pennington"),
+                    person("Carly", "Rodriguez"),
+                    person("Autym", "Shafer"),
+                    person("Alexey", "Shiklomanov"),
+                    person("Jason", "Tallant"),
+                    person(c("Christopher", "M."), "Gough"),
+                    person("Ben", "Bond-Lamberty")),
+         year = 2020,
+         note = note,
+         journal = "In Review at ESSD",
+         url = "https://github.com/FoRTExperiment/fortedata")

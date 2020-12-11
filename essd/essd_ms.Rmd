@@ -1,16 +1,22 @@
 ---
-title: "ESSD fortedata manuscript"
-author: "Jeff Atkins"
+title: "The fortedata R package: open-science datasets from a manipulative experiment testing forest resilience"
+author: "FoRTE Project Team"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
-  word_document: default
   html_document: default
+  word_document: default
 ---
 
-This document is intended to be the core of the planned ESSD manuscript: summarizing the database, giving stats, describing datasets, etc.
+.
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE, 
+  echo = FALSE
+)
 
 library(fortedata)
 library(dplyr)
@@ -19,80 +25,131 @@ library(readr)
 library(covr)
 library(tidyr)
 library(ggplot2)
+library(kableExtra)
+library(viridis)
 theme_set(theme_bw())
-```
 
-## Abstract
+```
+## Author List
+**Jeff W. Atkins** *Department of Biology, Virginia Commonwealth University*
+**Elizabeth Agee** *Environmental Sciences Division and Climate Change Science Institute, Oak Ridge National Laboratory*
+**Alexandria Barry** *Department of Biology, Virginia Commonwealth University*
+**Kyla M. Dahlin** *Department of Geography, Environment, & Spatial Sciences, Michigan State University*
+**Kalyn Dorheim** *Joint Global Change Research Institute at the University of Maryland, Pacific Northwest National Laboratory*
+**Lisa T. Haber** *Department of Biology, Virginia Commonwealth University*
+**Laura J. Hickey** *Department of Biology, Virginia Commonwealth University*
+**Maxim S. Grigri** *Department of Biology, Virginia Commonwealth University*
+**Aaron G. Kamoske** *Department of Geography, Environment, & Spatial Sciences, Michigan State University*
+**Kayla Mathes** *Department of Biology, Virginia Commonwealth University*
+**Catherine McQuigan** *Department of Biology, Virginia Commonwealth University*
+**Evan Paris** *Vassar College*
+**Stephanie C. Pennington** *Joint Global Change Research Institute at the University of Maryland, Pacific Northwest National Laboratory*
+**Carly Rodriguez** *Western Colorado University*
+**Autymn Shafer** *Department of Biology, Virginia Commonwealth University*
+**Alexey Shiklomanov** *NASA Goddard Space Flight Center, Greenbelt, MD 20771, USA*
+**Jason Tallant** *University of Michigan Biological Station*
+**Christopher M. Gough** *Department of Biology, Virginia Commonwealth University*
+**Ben Bond-Lamberty** *Joint Global Change Research Institute at the University of Maryland, Pacific Northwest National Laboratory*
+
+
+## Abstract 
+The fortedata R package is an open data notebook from the Forest Resilience Threshold Experiment (FoRTE)--a modeling and manipulative field experiment that tests the effects of disturbance severity and disturbance type on carbon cycling dynamics in a temperate forest. Package data consists of measurements to support quantification of carbon pools and ancillary measurements to help analyse and interpret these carbon cycling dynamics over time.  Currently the package includes data and metadata from the first two years of FoRTE, and serves as a central, updatable resource for the FoRTE project team and all external users over the course of the experiment and in perpetuity. Further, it supports all associated FoRTE publications, analyses, and modeling efforts. This increases efficiency, consistency, compatibility, and productivity, while minimizing duplicated effort and error propagation that can arise as a function of a large, distributed and collaborative effort. More broadly, fortedata represents an innovative, collaborative way of approaching science that unites and expedites the delivery of complementary datasets in near real-time to the broader scientific community, and increases transparency and reproducibility. 
+
 
 ## Introduction
+Disturbance alters multiple carbon (C) cycling processes and, as a result, may affect forest C uptake and storage (Williams et al. 2016). The magnitude, timing and duration of changes in the C cycle following disturbance vary among forests (Amiro et al. 2010, Luo and Weng 2011, Coomes et al. 2012, Hicke et al. 2012, Gough et al. 2013, Peters et al. 2013, Vanderwel et al. 2013, Flower and Gonzalez-Meler 2015; Gu et al. 2019). C cycling responses may differ as a function of disturbance severity, type, and frequency along with the physical, structural, and biological properties of the affected ecosystem (Amiro et al., 2010; Williams et al., 2012; Scheuermann et al. 2018; Rebane et al. 2019; Fahey et al. 2020; Atkins et al. 2020). Understanding which forest ecosystems are most vulnerable to disturbance and, conversely, what characteristics of an ecosystem convey C cycling stability, remains an important frontier crucial to forecasting changes in the terrestrial C sink in the face of rising global disturbance frequencies (Frelich and Reich, 1999; White and Jentsch, 2001; Johnstone et al. 2010; 2016). Large-scale manipulative experiments may be particularly useful to identify the C fluxes and drivers that determine ecosystem C balance following disturbance (Fahey et al., 2020; Gough et al., 2013; Shiels and González, 2014).
 
-The importance of consistent, curated open data is well-recognized across many scientific disciplines. With the exception of subfields that inherently rely on ‘big data’ such as genomics or systematics, or subfields that require data from other sources, such as biogeography, ecological research has been somewhat constrained in the implementation of open science and data practices. This has been attributed to the nature of how ecological research is often traditionally conducted as individual or short-term projects, that create small-scale or boutique datasets (Wallis et al. 2013), or even the heterogeneous nature of ecological data (Colina et al. 2018).   Open data is the answer to the clarion call of ecological research moving forward to link, infer, and forecast pattern and process across species, time, and space. Observatory networks such as the National Ecological Observatory Network (NEON) and AmeriFlux, or sustained research platforms such as Long-Term Ecological Research (LTER) or Long-Term Agricultural (LTAR) sites provide substantially contribute to this need. However, the inclusion of hypothesis driven research conducted under an open science framework preserves collected data and provides much needed transparency to the application of the scientific method to allow ecological research to meet the needs of humanity. 
+Honing the prediction of how forests respond to disturbance requires the parallel examination of mechanisms leading to the stability or decline of multiple C stocks and fluxes to changing disturbance regimes. The calculation and interpretation of forest ecosystem C balance necessitates repeated measurements of aboveground C stocks and fluxes through tree and litterfall inventories and belowground processes including root production and soil respiration--the total CO2 efflux from roots and microbes to the atmosphere. Complementary process and structural measurements such as leaf physiology, morphology and chemistry along with remotely sensed measures of canopy structure and physiology provide important ancillary data useful to the interpretation of changes in C fluxes following disturbance. Few comprehensive datasets from such experiments exist in the public domain, and those that exist are almost never published in near-real-time concurrently as an experiment is conducted, which limits testing hypotheses related to forest resilience and functional change beyond the focus of the project and slowing the scientific enterprise more broadly (Falster et al. 2019).
 
-## The FoRTE Data Package
+The “open data” movement in science emphasizes transparency, reproducibility, and the moral imperative of making publicly-funded research products broadly available (Culina et al. 2018). A specific example of this is open notebook science where the entire data record of a research project is made publicly available in near-real time with the goal of generating, integrating, documenting, and reporting heterogeneous data streams (e,g. Bond-Lamberty et al. 2016; Falster et al. 2019). Open notebook science helps create accountability and transparency through detailing the provenance of a research project from conceptualization to publication, and fights against the ‘file drawer’ effect of lost data (Rosenthal 1979). The ability for a project team to pull from one well-documented and consistent open data notebook increases research productivity and efficiency--streamlining the process of data curation and manipulation, and eliminating errors or inconsistencies that may otherwise be introduced from multiple copies of datasets across multiple workstations. In turn, this increases the potential for reproducibility and data use outside of a core project (Powers and Hampton, 2019; Schapira et al., 2019, Gallagher et al. 2020). Open data notebooks perfectly complement mentoring and teaching—simultaneously serving to rapidly and effectively onboard new team members to the project, while also providing project-based learning opportunities in the classroom that teach open science and data science skills. 
 
-fortedata is a data package that includes field data from the Forest Resilience and Threshold Experiment (FoRTE)--
-a manipulative experiment located in northern, lower Michigan at the University of Michigan Biological Station. Field data in this package include: leaf physiology, canopy structural traits, soil respiration, micrometeorology, and forest inventory and biomass data.  
-
-As of this writing (`r Sys.Date()`) the current version of `fortedata` is `r packageVersion("fortedata")`.
+The goal of this manuscript is to (i) describe the scientific context and goals of the Forest Resilience Threshold Experiment (FoRTE), (ii) describe its experimental design and high-level measurement protocols, and (iii) document the open-source fortedata package that serves as the project data repository. The systematically documented and transparent approach to science outlined in this manuscript and in the fortedata package surpasses the data-sharing expectations of publishers and funding bodies—specifically the publication of data prior to manuscript(s) submission--and may be considered as a model for future experiments and projects. 
 
 
-### Database license
+## The FoRTE Project 
+FoRTE is a modeling and manipulative experiment that aims to identify the mechanisms underlying C cycling response to disturbance—specifically net primary productivity (NPP) resilience and its decline following disturbance. It centers on a manipulative field experiment located in northern, lower Michigan at the University of Michigan Biological Station (45.58 N, 84.71 W) with experimental plots that span ~8 ha of regionally representative landforms and forest types (Fig. 1). Data from the field experiment also informs a series of modeling experiments; specifically, data included in this package is used to initialize, calibrate, and validate dynamic vegetation model simulations of forest function and its responses to disturbance (e.g. Shiklomanov et al. in reviewaccepted).
 
-The database license is CC-BY-4 (https://creativecommons.org/licenses/by/4.0/); see the "LICENSE.md` file in the repository.
-This is identical to that used by e.g. Ameriflux and FLUXNET Tier 1. 
-In general, this license provides that users may copy and redistribute the database and R package code in any medium or format, adapting and building upon them for any scientific or commercial purpose, as long as appropriate credit is given.
-We request that users cite this database definition paper, and strongly encourage them to (i) cite all constituent dataset primary publications, and (ii) involve data contributors as co-authors when possible.
+The experimental design follows a hierarchical structure with four replicates (A, B, C, D) of each factorial combination of disturbance severity (4 levels) and type (2 levels) (Fig. 1a, 1b). Within each replicate, each 0.5 ha plot was randomly assigned a disturbance severity level of 0, 45, 65, or 85% gross defoliation, respectively (Fig 1a). Each plot is bisected, with each half subjected to a disturbance treatment preferentially targeting large (top-down) or small (bottom-up) canopy trees (Fig. 1). All trees larger than 8 cm in diameter-at-breast-height (DBH) are classified as canopy trees. An intensively surveyed 0.1 ha subplot is nested within each disturbance severity-treatment combination—there are a total of 32 subplots (Fig. 1). The standard nomenclature for subplots is a concatenation of the replicate (A, B, C, D) plot number (01, 02, 03, 04) and subplot location (E for east side of the plot, or W for the west side of the plot) referred to in datasets by the variable name of `subplot_id` (Fig. 1b; Table S1-S3). Within each subplot, all canopy trees are measured (DBH) and geolocated (Total no. of measured trees 3165; Fig. 2) and terrestrial laser scans using both 2D and 3D lidar (light detection and ranging) are taken to estimate canopy structural traits (Atkins et al. 2018; Fahey et al. 2019). 
 
-### Citing FoRTE
-
-Papers or other research products using any FoRTE data should cite this publication. 
-In addition, users should also reference the specific version of the data they used, access date, and ideally the specific Git commit number. 
-This provides full reproducibility of any analyses.
-As noted above, we encourage data users to cite the primary publication for each dataset
-they use in analyses as well.
-
-## Accessing FoRTE data
+Within each subplot, a series of C cycling and environmental measurements are taken withinat nested subplots. There are two types of nested subplot: 1) nested subplots 0, 1, 3, 5, 7 are 1 m2 plots located at plot center (0) and 10 m off plot center at cardinal directions (1 = north, 3 = east, 5 = south, and 7 = west) (Fig. 1b) where environmental measurements such as soil volumetric water content, soil temperature, soil CO2 efflux, and hemispherical imagery are taken; 2) nested subplots 2, 4, 6, and 8 are 4 m2 vegetation survey plots located 8 m from plot center at intercardinal directions (2 = northeast, 4 = southeast, 6 = southwest, and 8 = northwest)(Fig. 1b) where understory leaf physiology, morphology, and chemistry measurements are taken. Additionally, all stems in the 4m2 vegetation survey plots, including those below the 8 cm DBH canopy threshold, are counted and identified to the species level. The data detailed above are meant to be illustrative, but not entirely inclusive, of what is being measured in FoRTE. Additional environmental measurements will be taken as FoRTE matures and then added to fortedata in as near-real time as possible—including, but not limited to, soil chemical and physical properties, dendrometer readings, canopy profiles from 3D terrestrial lidar, fine root production, root density profiles, and  data products from a NEON Airborne Observation Platform fly-over from 2019.
+  
+Supporting project information, including detailed methods and data collection information (introduced briefly below and in Supplementary Information Tables S1-S11), can be found within package documentation: function help files (e.g. `?fd_inventory()`) and package vignettes--which can be accessed via `browseVignettes(“fortedata”)`. The funded project narrative (NSF DEB-165509) can be accessed directly within in the package via `vignette("fd_forte_proposal_vignette")` as well as from the GitHub repository (https://github.com/FoRTExperiment/fortedata), and outlines hypotheses, objectives, proposed methods, and supporting literature for the project. 
+ 
 
 
-### Using the R package
+## The fortedata Package
+fortedata is a package for the R language (R Core Team, 2020) that includes field data from FoRTE. fortedata version 1.0.1 includes: leaf physiology, canopy structural traits, soil respiration, litterfall, soil micrometeorology, and forest inventory data for the years 2018 and 2019. 
 
-It is necessary to install and use the `fortedata` R package in order to access FoRTE data.
-This provides a robust framework, including dedicated access functions, dataset and database
-report generation, and QA/QC (see below).
+## Versioning and Archiving
+fortedata is under a CC-BY-4 license (https://creativecommons.org/licenses/by/4.0/); see the `LICENSE` file in the repository. This is identical to that used by e.g. Ameriflux and FLUXNET Tier 1. This license provides that users may copy and redistribute this R package and its associated data in any medium or format, adapting and building upon them for any scientific or commercial purpose, as long as appropriate credit is given. We request that users cite this manuscript (see Section 3.4), and strongly encourage them to (i) cite all constituent dataset primary publications (see `fd_publications()`, and (ii) involve data contributors as co-authors when possible and appropriate. 
 
-```{r dbsize, include=FALSE, cache=TRUE}
-db_disksize <- system2("git", args = c("count-objects", "-vH"), stdout = TRUE)
-db_disksize <- db_disksize[grepl("size:",db_disksize)]
-db_disksize <- gsub("size: ", "", db_disksize)
-```
+## Package License
+fortedata is under a CC-BY-4 license (https://creativecommons.org/licenses/by/4.0/); see the "LICENSE" file in the repository. This is identical to that used by e.g. Ameriflux and FLUXNET Tier 1. This license provides that users may copy and redistribute this R package and its associated data in any medium or format, adapting and building upon them for any scientific or commercial purpose, as long as appropriate credit is given. We request that users cite this manuscript (see Section 3.4), and strongly encourage them to (i) cite all constituent dataset primary publications (see `fd_publications()`, and (ii) involve data contributors as co-authors when possible and appropriate
 
-Because currently all field data are included in the repository itself, `fortedata` is quite large (compared to most Git repositories) to download, ~`r db_disksize`. It thus cannot be hosted on CRAN (the Comprehensive R Archive Network), the canonical source for R packages. Installing directly from GitHub is however straightforward using the `devtools` or `remotes` packages:
+## Citing the FoRTE Data Package
+Papers or other research products using any FoRTE data should cite both this publication and the fortedata package, including the package version used. Appropriate citations can be found via the command `citation(“fortedata”)`. 
 
-```
+
+
+## Using the FoRTE Data Package to Access FoRTE Data
+It is necessary to install and use the fortedata R package in order to access FoRTE data. fortedata can be installed directly from GitHub (https://github.com/FoRTExperiment/fortedata) using the devtools package in R (Wickham et al. 2020):
+
+```{r install_instructions, eval = FALSE}
+# Installing from GitHub requirs the devtools package
 devtools::install_github("FoRTExperiment/fortedata")
+
+# Next, load the package into your environment
 library(fortedata)
 ```
 
-A specific release number may also be installed:
 
-```
-devtools::install_github("bpbond/cosore@v0.4")
-```
-
-Datasets are available via user-facing functions:
-
-* `fd_soil_respiration()` returns a single dataset that includes soil CO2 efflux measurements as well as soil temperature and soil water content. 
-* `fd_hemi_camera()` returns a single dataset that includes hemispherical photos of the forest canopy taken 1 meter above-ground, and includes estimates of leaf area index, gap fraction, and NDVI (normalized difference vegetation index). 
-* `fd_canopy_structure()` returns a single dataset that includes estimates of canopy structural traits such as height, area/density, openness, complexity, and arrangement derived from terrestrial lidar and processed using the `forestr` (Atkins et al. 2018; 2020) package in R Version 3.6.2 (R Core Team, 2020). 
-* `fd_par()` returns a single dataset that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI_cept)--each derived from a handheld ceptometer (LP-80; Decagon Devices).
-* `fd_lai()` returns a single dataset of leaf area index (LAI) estimated from litterfall captured via littertraps, calculated using specific leaf area values for each represented species. 
-* `fd_leaf_spectrometry()` returns a single data set of vegetation indices derived from leaf-level spectrometry data collected via a CID-710 handheld spectrometer.
-* `fd_photosynthesis()` returns a single dataset of leaf physiology variables, including photosynthesis, transpiration, etc, measured using a Li-Cor 6400 (Li-Cor Biosciences; Lincoln, NE).
-* `fd_inventory()` returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), as latitude, longitude, and biomass for each measured stem. Biomass is calculated from species specific allometries included in `biomass_allometry_table.csv` within `fortedata`. 
+## FoRTE Data Package Structure
+The package is structured as a collection of independent datasets with standardized plot notation, date (ISO 8601 standard YYYY-MM-DD) and time (HH:MM:SS TZ) formatting (see `fd_plot_metadata` and Tables S1-S3 for more information).  Datasets are available via user-facing, external functions outlined below. Additional metadata, instrument specifications, and abbreviated measurement protocols are available in supplementary information (Tables S1-S11) and in package documentation. Currently available functions: include:
 
 
-----this section should include the summary functions!!!!
+* `fd_inventory()` returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), latitude, longitude, and biomass for each measured stem, as well as information on vitality and canopy position (Table S4). There are 3165 observations in the dataset, all measured in 2018 (Fig. 2). 
+* `fd_soil_respiration()` returns a single dataset of 2780 observations each of soil CO2 efflux (μmol CO2 m-2 s-1), soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) for the year 2019 (Figs. 3, 4; Table S5).
+* `fd_leaf_spectrometry()` returns a single dataset of vegetation indices derived from leaf-level spectrometry data collected via a CI-710 handheld spectrometer (Table S6). The package includes 7155 observations of spectral indices for three species each in eight subplots within the D replicate (Figs. 1 and 4).  
+* `fd_photosynthesis()` returns a single dataset of leaf physiology variables, including photosynthesis, transpiration, etc, measured using a LI-6400 XT (LI-COR Biosciences; Lincoln, NE)(Table S7). The package includes 2215 observations from 2018 (Fig. 4). 
+* `fd_litter()` returns a single dataset of litter mass collected via litter traps (four in each subplot, at nested sampling points 1, 3, 5, 7). The data include the tare + oven-dried mass of leaves as well as the tare weight (the empty bag), by species, by subplot (Table S7). The data also include notations for “CWD”, the collection of coarse woody debris (e.g. sticks, branches), and “MIX”, fragments of leaves too small to identify to the species levels as well as other missed organic fragments in the basket. Litter mass can be calculated by subtracting the tare weight from the mass + tare. There are a total of 340 observations included in the package from 2018. 
+* `fd_hemi_camera()` returns a single dataset that includes derived estimates of leaf area index, gap fraction, clumping index, and NDVI (normalized difference vegetation index) from terrestrial, upward-facing hemispherical photos looking into the forest canopy taken 1 meter above-ground (Table S9). The data package includes 1028 observations of each variable from 2018 and 2019 (Fig. 4).
+* `fd_canopy_structure()` returns a single dataset that includes estimates of canopy structural traits such as height, area/density, openness, complexity, and arrangement derived from terrestrial lidar and processed using  forestr version 1.0.1 (Atkins et al. 2018) in R Version 3.6.2 (R Core Team, 2020). The package includes 62 observations for each metric (28 canopy structural metrics are included in forestr v1.0.1 that estimate canopy structural traits such as area/density, openness, arrangement, heterogeneity, and layering (Atkins et al. 2018; Fahey et al. 2019)) from 2018 (Table S10). 
+* `fd_ceptometer()` returns a single dataset that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI)--each derived from a handheld ceptometer (LP-80; Decagon Devices)(Table S11). The package includes 32 observations of each variable from 2019 and 16 from 2018 (Fig. 4). 
 
+Brief summaries of certain datasets are available via summary functions: 
+* `fd_inventory_summary()` returns a summary of the `fd_inventory()` dataset that includes stocking density (in stems per ha) and mean basal area (m2 per ha) averaged at the subplot level (n = 32) grouped by `Replicate`, `Plot`, and `Subplot` variables.
+
+
+## FoRTE Documentation and Vignettes
+This manuscript serves as the primary documentation for FoRTE data and all code to reproduce this manuscript—including the tables and plots herein—are available in the package (https://github.com/FoRTExperiment/fortedata/tree/master/essd). The package also includes additional supporting documentation via R's standard help system. Vignettes, which are guided tutorials that include example code or background information such as experimental design and proposal narratives, are also included both in the package and online and can be accessed via `BrowseVignettes(“fortedata”)`. Vignettes are currently available for the functions above and additional vignettes will be added as new data products are incorporated into fortedata.”
+
+## Testing and Quality Assurance
+The fortedata R package has a wide variety of unit tests that test code functionality, typically via assertions about function behavior, but also by verifying behavior of those functions when importing test datasets (of different formats and with a variety of errors, for example). These tests are run automatically every time fortedata code or data is updated on GitHub (using the “GitHub Actions” Continuous Integration system), ensuring continuing package validity for end users. These tests include:
+- Checks on appropriate date and timestamp formatting
+- Data class verification (e.g. plot numbers as integer values, soil CO2 efflux measurements as numeric, etc.)
+- Out of bounds latitude or longitude values
+- Appropriately formatted plot metadata that adheres to FoRTE naming conventions
+- Out of bound values for environmental measurements (e.g. negative values for tree DBH, soil water content < 0 or >100, etc.).
+
+
+
+## Reporting Issues
+We use the fortedata GitHub issue tracker (https://github.com/FoRTExperiment/fortedata/issues ) to track and categorize user improvement suggestions, problems or errors with the R package code and included data, as well as requests for new variables or functionality, and/or other questions. All past and current issues are viewable to the public, and new issues can be contributed by anyone with a (free) GitHub account.
+
+## Conclusion
+The fortedata package serves as a model for future experiments and projects by showcasing the advantages of supplying centralized project data openly and in near real-time to investigators within and external to the project. This approach is above and beyond the typical requirements and expectations for data availability, particularly in field-based–ecology where standard conventions for data availability, if and where they do exist, call for reporting only upon project completion or publication. The results of such modular practices often limit data availability to single spreadsheets of varying quality with limited, even non-existent, metadata. Open-notebook science, when possible, should be the new science normal.. When we fail to provide timely, open, and usable data, we fall short of our duty as scientists, and in doing so jeopardize scientific advancement and its societal benefits:
+
+> “…the free, open, and responsible practice of science is fundamental to scientific advancement for both human and environmental well-being. Science 
+> requires freedom of movement, collaboration, and communication, as well as equitable access to data and resources. It requires scientists to conduct and > communicate scientific work for the benefit of society, with excellence, integrity, respect, fairness, trustworthiness, clarity, and transparency.” 
+> – “The Responsibilities and Rights of Scientists”, American Geophysical Union, 2017
+
+While we acknowledge there may be legitimate barriers for some scientists/project teams—such as limited access to reliable internet, to resources to acquire necessary computational skills, to supportive and collaborative environments—these challenges require our attention and support. Where there exists the privilege of having access to the necessary resources to conduct science openly and equitably, choosing to do otherwise is unconscionable. Open science approaches should be the rule, not the exception and we anticipate that the release of fortedata in near real-time will motivate external collaboration, facilitate data exchange within the project, and provide project-wide data transparency, consistency, and availability, as well as increased team member efficiency and productivity. 
+
+## Author Contributions
+JWA, BBL, and CMG wrote the manuscript. JWA, EAA, AB, KMD, LTH, LJH, MSG, AGK, KM, CM, EP, CR, AS, and JT collected, processed, and provisioned data for the package, including providing details on methods and metadata included within the manuscript and in package documentation. JWA, BBL, KD, SCP, and AS contributed code and package oversight. BBL and CMG envisioned, proposed, and oversaw the project. All authors contributed to manuscript discussion, editing, and revision. 
+
+## Acknowledgements
+FoRTE is funded by the National Science Foundation [DEB-1655095]. NEON AOP data collection was supported by NSF award #1702379 to KMD. CR, LJH, and EP, whole or in part, were supported by the UMBS REU Program (NSF #1659338). We’d also like the gratefully acknowledge the University of Michigan Biological Station for their continued support.
 
 
 ### Structure
@@ -106,14 +163,17 @@ md <- read.csv(mdf, stringsAsFactors = FALSE)
 ```
 
 
+![**Figure 1:** **(A)** Map showing the distribution of plots in relation to landform types—colors indicate assigned severity levels. **(B)** Subplot diagram showing position of nested subplots for sampling and arrangement of subplots within the plot (orange).](essd_fig_1.png){ width=60% } 
+
 ### Plots table
 
+**Table S1.** Plots table. The `fd_plots()` function is an internal  function that contains plot level metadata.
 ```{r table_plots}
 options(knitr.kable.NA = "")
 make_table <- function(metadata, table_name) {
   metadata %>% 
-    filter(Table == table_name) %>%
-    select(-Table, -Notes) %>% 
+    filter(table == table_name) %>%
+    select(-table, -notes) %>% 
 #    arrange(Field) %>% 
     kableExtra::kable(format = "markdown")
 }
@@ -122,29 +182,119 @@ make_table(md, "fd_plots")
 
 ### Subplots table
 
+**Table S2.** Subplots table. `fd_subplots()` is an internal function that returns subplot-level metadata. 
 ```{r table_subplots}
 make_table(md, "fd_subplots")
 ```
 
 ### Nested subplots table
-
+**Table S3.** Nested subplots table. `fd_nested_subplots()` is an internal function that returns nested subplot metadata. Nested subplots are either sampling points (0, 1, 3, 5, 7) for specific FoRTE measurements (e.g. soil respiration, micrometeorology) or 4 m2 herbaceous layer vegetation sampling plots (2, 4, 6, 8)—illustrated in Figure 1B. 
 ```{r table_nested_subplots}
 make_table(md, "fd_nested_subplots")
 ```
 
+**Figure 2:** Number of available records as of `Sys.Date()` for time-series datasets including light availability from fd_ceptometer(),  camera derived LAI from fd_hemi_camera, leaf-level vegetation spectra indices from fd_spectrometry, photosynthesis and stomatal conductance from fd_photosynthesis, and soil CO2 efflux from fd_soil_respiration. 
+
+### Number of Observations
+```{r no_of_obs, fig.width = 8, fig.height = 8}
+no_of_records <- fd_observations()
+# Heatmap
+#x11(width = 10, height = 8)
+ggplot(no_of_records, aes(x = as.factor(month), y = as.integer(year), fill= no_of_obs)) +
+  geom_tile(aes(fill = no_of_obs), color = "black") +
+  geom_text(aes(label = no_of_obs), color = "white") +
+  coord_equal()+
+  scale_fill_gradient(low = "#450d54", high = "#450d54", na.value = 'white')+
+  #scale_fill_viridis(na.value = 'white')+
+  scale_y_reverse()+
+  theme_minimal()+
+  theme(legend.position = "none")+
+  ylab("Year")+
+  xlab("Month")+
+  ggtitle(paste("No. of observations currently availble \nin each function as of:", Sys.Date()))+
+  facet_grid(table ~ .,  space = "free")+
+  theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
+    color="black", fill="white", size= 0.5, linetype="solid"))
+
+```
+
+
 ### Inventory dataset
 
+**Table S4.** Inventory dataset. `fd_inventory` is an external function that returns forest inventory data. 
 ```{r table_inventory}
 make_table(md, "fd_inventory")
+
+inv <- data.frame(fd_inventory())
+
+
+inv <- subset(inv, species != "????")
+inv$species <- as.factor(inv$species)
+
+# function to make limits
+stat_box_data <- function(y, upper_limit = max(df$dbh_cm, na.rm = TRUE) * 1.15) {
+  return(
+    data.frame(
+      y = 0.95 * upper_limit,
+      label = paste('n =', length(y), sep = " ")
+    )
+  )
+}
+
+# good looking box plot with jitter plot on top
+ggplot(inv, aes(x = species, y = dbh_cm, fill = species)) +
+  geom_boxplot(outlier.size = 0) +
+  scale_fill_viridis(discrete = TRUE, alpha=0.6) +
+  #geom_jitter(color = "black", size = 0.5, alpha=0.2) +
+  stat_summary(
+    fun.data = stat_box_data,
+    geom = "text",
+    hjust = 0.5,
+    vjust = 0.9,
+    size = 3
+  )+
+  theme_bw()+
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size=11)
+  )+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  xlab("")+
+  ylab("Diameter at Breast Height (cm)")+
+  facet_grid(replicate ~ species, scales = "free", space = "free")+
+  theme(
+    strip.background.x = element_blank(),
+    strip.text.x = element_blank(),
+    panel.spacing.x = unit(0, "lines")
+  )
 ```
+
+**Figure 3:** Diameter-at-breast height (DBH) distributions for each species, grouped by replicate. The bounds of each box in the boxplot represents the 25th percentile at the lower bound, and the 75th percentile at the upper, and the horizontal line is the median. Lines extending from the lower and upper bounds represent values that are 1.5 times the interquartile range for the minimum and maximum values, respectively, while black circles indicate outliers. Above each box plot, n is the number of observations.
 
 ### Soil respiration
 
+**Table S5.** Soil respiration table. `fd_soil_respiration()` is an external function that returns soil respiration collected with a LI-COR Biosciences LI-6400 portable gas analyzer with 10 cm diameter soil CO2 closed chamber cuvette (LI-COR Inc, Lincoln, NE, USA). This dataset includes concurrently measured soil temperature (from surface to 7 cm depth) and soil water content (measured using a Campbell Sciences CS620 (Logan, UT). 
+
 ```{r table_soil_respiration}
 make_table(md, "fd_soil_respiration")
+pal <- viridis(4, begin = 0, end = 0.9)
+rs <- fd_soil_respiration()
+# Violin plot of rs data by rep
+rs %>% 
+  ggplot(aes(x = replicate, y = soil_co2_efflux)) + 
+  geom_jitter(aes(color = replicate), alpha = 0.2) +
+  geom_violin(aes(color = replicate), fill = NA, size = 1) + 
+  scale_color_manual(values = pal) + theme_bw() + 
+  labs(y = expression(Soil~Respiration~(μmol~CO[2]~m^-2~s^-1)), x = "Replicate")+
+   theme(legend.position = "none")
+  
 ```
 
+**Figure 4: Distribution of soil CO2 Efflux values from May-November, 2019 by replicate.**
+
 ### Leaf spectrometry
+
+**Table S6.** Leaf spectrometry. `fd_leaf_spectrometry()` is an external function that returns vegetation indices calculated from leaf spectra data collected on leaves from understory vegetation with a CID Biosciences CI-710 Handheld spectrometer (Camas, WA). 
 
 ```{r table_leaf_spec}
 make_table(md, "fd_leaf_spectrometry")
@@ -152,17 +302,57 @@ make_table(md, "fd_leaf_spectrometry")
 
 ### Photosynthesis
 
+**Table S7.** Photosynthesis table. `fd_photosynthesis()` is an external function that returns ecophysiological data (e.g. photosynthesis, transpiration) on subcanopy leaves measured with a LI-COR Biosciences LI-6400 (Lincoln, NE). 
+
 ```{r table_photosynthesis}
 make_table(md, "fd_photosynthesis")
 ```
 
 ### Litter
+**Table S8.** Litterfall table. `fd_litter()` is an external function that returns dry litter mass collected in litter traps located at nested subplots (1, 3, 5, 7) within each FoRTE subplot. The `bag_mass_g` values represent air-dried mass. 
 
 ```{r table_litter}
 make_table(md, "fd_litter")
+
+df <- data.frame(fd_litter())
+
+df$leaf_mass <- df$bagmass_g - df$bagtare_g
+
+
+df <- subset(df, species != "CWD")
+df <- subset(df, species != "SWD")
+
+
+# good looking box plot
+pal <- viridis(4, begin = 0, end = 0.9)
+df %>% 
+  ggplot(aes(x = replicate, y = leaf_mass)) + 
+  geom_jitter(aes(color = replicate), alpha = 0.2) +
+  geom_violin(aes(color = replicate), fill = NA, size = 1) + 
+  scale_color_manual(values = pal) + theme_bw() + 
+  ylab("Litter Fall (g)")+
+  xlab("Replicate")+
+   theme(legend.position = "none")
+  
+# 
+# ggplot(df, aes(x = replicate, y = leaf_mass, fill = replicate)) +
+#   geom_boxplot(outlier.size = 0) +
+#   scale_fill_viridis(discrete = TRUE, alpha=0.6) +
+#   geom_jitter(color = "black", size = 0.5, alpha=0.2) +
+#   theme_bw()+
+#   theme(
+#     legend.position = "none",
+#     plot.title = element_text(size=11)
+#   )+
+#   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+#   xlab("Replicate")+
+#   ylab("Litter Fall (g)")
 ```
+**Figure 5: Distribution of litter mass for 2018 by replicate.**
 
 ### Hemispherical camera
+
+**Table S9.** Hemispherical imagery table. `fd_hemi_camera()` is an external function that returns undercanopy, hemispherical imagery captured using a Sony DSLR camera (Regent Instruments; Quebec, QU) where the blue channel has been replaced with near-infrared in order to calculate normalized difference vegetation index (NDVI). Raw imagery has been processed using WinsCANOPY (Regent Instruments; Quebec, QU). 
 
 ```{r table_hemi_camera}
 make_table(md, "fd_hemi_camera")
@@ -170,23 +360,81 @@ make_table(md, "fd_hemi_camera")
 
 ### Canopy structure
 
+**Table S10.** Canopy structural traits table. `fd_canopy_structure()` is an external function that returns canopy structural trait data collected using a terrestrial based portable canopy lidar unit (Regent Instruments 3100 FHS; . Raw lidar data has been processed using `forestr` version 1.0.1 (Atkins et al. 2018) in R 3.6 (R Core Team, 2020) to calculate canopy structural trait metrics. 
+
 ```{r table_canopy_structure}
 make_table(md, "fd_canopy_structure")
 ```
 
 ### Ceptometer
 
+**Table S11.** Ceptometer table. `fd_par()` is an external function that returns concurrently measured above- and below-canopy light availability, as well as leaf area index (calculated from above- and below-canopy light) collected along 40 m long north-to-south and east-to-west transects through the center of each FoRTE subplot. Data were collected using a Decagon Devices LP-80 handheld ceptometer (Pullman, WA). 
 ```{r table_ceptometer}
 make_table(md, "fd_ceptometer")
 ```
 
-### Litter figure
 
 
-```{r fig_litter}
-ld <- fd_litter()
-ggplot(ld, aes(x = Species, y = BagMass_g - BagTare_g, color = Replicate)) + 
-  geom_boxplot() +
-  ylab("2018 litter mass (g)")
-ggsave("figures/litter.png", width = 8, height = 6)
-```
+## References
+
+American Geophysical Union (2017) The Responsibilities and Rights of Scientists. <https://www.agu.org/Share-and-Advocate/Share/Policymakers/Position-Statements/Rights-and-responsibilities-of-scientists> Accessed April, 23, 2020.
+
+Amiro, B. D., Barr, A. G., Barr, J. G., Black, T. A., Bracho, R., Brown, M., Chen, J. M., Clark, K. L., Davis, K. J., Desai, A. R., Dore, S., Engel, V., Fuentes, J. D., Goldstein, A. H., Goulden, M. L., Kolb, T. E., Lavigne, M. B., Law, B. E., Margolis, H. A., Martin, T. A., McCaughey, J. H., Misson, L., Montes-Helu, M., Noormets, A., Randerson, J. T., Starr,  and G. Xiao, J.: Ecosystem carbon dioxide fluxes after disturbance in forests of North America, JGR-Biogeosciences, 115, G00K02, 2010.
+
+Atkins, J. W., Bohrer, G., Fahey, R. T., Hardiman, B. S., Morin, T. H., Stovall, A. E., ... & Gough, C. M.: Quantifying vegetation and canopy structural complexity from terrestrial LiDAR data using the forestr r package. Methods in Ecology and Evolution, 9(10), 2057-2066, 2018.
+
+Atkins, J. W., Bond-Lamberty, B., Fahey, R. T., Hardiman, B. S., Haber, L., Stuart-Haëntjens, E., ... & Tallant, J.: Multidimensional Structural Characterization is Required to Detect and Differentiate Among Moderate Disturbance Agents, In Press Ecosphere (2020).
+
+Bond-Lamberty, B., Smith, A. P., & Bailey, V. (2016). Running an open experiment: transparency and reproducibility in soil and ecosystem science. Environmental Research Letters, 11(8), 084004.
+
+Coomes, D. A., Holdaway, R. J., Kobe, R. K., Lines, E. R., & Allen, R. B.:. A general integrative framework for modelling woody biomass production and carbon sequestration rates in forests. Journal of Ecology, 100(1), 42-64, 2012.
+
+Culina, A., Baglioni, M., Crowther, T. W., Visser, M. E., Woutersen-Windhouwer, S., and Manghi, P.: Navigating the unfolding open data landscape in ecology and evolution. Nature E and E, 2, 3, 420-426, 2018
+
+Fahey, R. T., Atkins, J. W., Gough, C. M., Hardiman, B. S., Nave, L. E., Tallant, J. M., ... & Haber, L. T.: Defining a spectrum of integrative trait‐based vegetation canopy structural types. Ecology letters, 22(12), 2049-2059, 2019.
+
+Fahey, R. T., Atkins, J. W., Campbell, J. L., Rustad, L. E., Duffy, M., Driscoll, C. T., Fahey, T. J., and Schaberg, P. G.: Effects of an experimental ice storm on forest canopy structure, Can. J. For. Res., 50(2), 136–145, 2020.
+
+Falster, D. S., FitzJohn, R. G., Pennell, M. W., & Cornwell, W. K. (2019). Datastorr: a workflow and package for delivering successive versions of'evolving data'directly into R. GigaScience, 8(5), giz035.
+
+Flower, C. E., & Gonzalez-Meler, M. A.: Responses of temperate forest productivity to insect and pathogen disturbances. Annual review of plant biology, 66, 547-569, 2015
+
+Frelich, L. E. and Reich, P. B.: Minireviews: Neighborhood Effects, Disturbance Severity, and Community Stability in Forests, Ecosystems, 2(2), 151–166, 1999.
+
+Gallagher, R. V., Falster, D. S., Maitner, B. S., Salguero-Gómez, R., Vandvik, V., Pearse, W. D., ... & Ankenbrand, M. J.:. Open Science principles for accelerating trait-based science across the Tree of Life. Nature E and E, 1-10, 2020.
+
+Gough, C. M., Hardiman, B. S., Nave, L. E., Bohrer, G., Maurer, K. D., Vogel, C. S., Nadelhoffer, K. J. and Curtis, P. S.: Sustained carbon uptake and storage following moderate disturbance in a Great Lakes forest, Ecol. Appl., 23(5), 1202–1215, 2013.
+
+Gu, H., Williams, C. A., Hasler, N., and Zhou, Y.:. The carbon balance of the southeastern US forest sector as driven by recent disturbance trends. JGR-Biogeo., 124, 9, 2786-2803, 2019.
+
+Hicke, J. A., Allen, C. D., Desai, A. R., Dietze, M. C., Hall, R. J., Hogg, E. H., ... & Vogelmann, J.: Effects of biotic disturbances on forest carbon cycling in the United States and Canada. Global Change Biology, 18(1), 7-34, 2012.
+
+Johnstone, J. F., McIntire, E. J., Pedersen, E. J., King, G., & Pisaric, M. J.: A sensitive slope: estimating landscape patterns of forest resilience in a changing climate. Ecosphere, 1(6), 1-21, 2010. 
+
+Johnstone, J. F., Allen, C. D., Franklin, J. F., Frelich, L. E., Harvey, B. J., Higuera, P. E., ... & Schoennagel, T.: Changing disturbance regimes, ecological memory, and forest resilience. Frontiers in Ecology and the Environment, 14(7), 369-378, 2016
+
+Luo, Y., & Weng, E.: Dynamic disequilibrium of the terrestrial carbon cycle under global change. Trends in Ecology & Evolution, 26(2), 96-104, 2010.
+Peters, E. B., Wythers, K. R., Bradford, J. B., & Reich, P. B.: Influence of disturbance on temperate forest productivity. Ecosystems, 16(1), 95-110, 2013.
+
+Powers, S. M. and Hampton, S. E.: Open science, reproducibility, and transparency in ecology, Ecol. Appl., 29(1), e01822, 2019.
+
+Rebane, S., Jõgiste, K., Põldveer, E., Stanturf, J. A., & Metslaid, M.: Direct measurements of carbon exchange at forest disturbance sites: a review of results with the eddy covariance method. Scandinavian Journal of Forest Research, 34(7), 585-597, 2019.
+
+Schapira, M., Harding, R. J. and The Open Lab Notebook Consortium: Open laboratory notebooks: good for science, good for society, good for scientists, F1000Research, 8, 87, doi:10.12688/f1000research.17710.1, 2019.
+
+Scheuermann, C. M., Nave, L. E., Fahey, R. T., Nadelhoffer, K. J.,  and Gough, C. M.: Effects of canopy structure and species diversity on primary production in upper Great Lakes forests. Oecologia, 2, 405-415, doi:10.1007/s00442-018-4236-x, 2018.
+
+Shiels, A. B. and González, G.: Understanding the key mechanisms of tropical forest responses to canopy loss and biomass deposition from experimental hurricane effects, For. Ecol. Manage., 332, 1–10, 2014.
+
+Shiklomanov, A.N.;  Bond-Lamberty, B.; Atkins, J.; Gough, C. M.. Structure and parameter uncertinty in centennial projections of forest community structure and carbon cycling. Global Change Biology. In review.
+
+Vanderwel, M. C., Coomes, D. A., & Purves, D. W.: Quantifying variation in forest disturbance, and its effects on aboveground biomass dynamics, across the eastern U nited S tates. Global change biology, 19(5), 1504-1517, 2013.
+
+White, P. S. and Jentsch, A.: The Search for Generality in Studies of Disturbance and Ecosystem Dynamics, in Progress in Botany: Genetics Physiology Systematics Ecology, edited by K. Esser, U. Lüttge, J. W. Kadereit, and W. Beyschlag, pp. 399–450, Springer Berlin Heidelberg, Berlin, Heidelberg., 2001.
+
+Wickham, H., Hester, J., and Change, W. (2020) devtools: Tools to Make Developing R Packages Easier. R   package version 2.3.0. https://CRAN.R-project.org/package=devtools
+
+Williams, C. A., Collatz, G. J., Masek, J. G. and Goward, S. N.: Carbon consequences of forest disturbance and recovery across the conterminous United States, Global Biochemical Cycles, 26, GB1005, 2012.
+
+Williams, C. A., Gu, H., MacLean, R., Masek, J. G., & Collatz, G. J. (2016). Disturbance and the carbon balance of US forests: A quantitative review of impacts from harvests, fires, insects, and droughts. Global and Planetary Change, 143, 66-80.
+

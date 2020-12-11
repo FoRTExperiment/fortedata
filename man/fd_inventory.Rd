@@ -2,41 +2,31 @@
 % Please edit documentation in R/fd_inventory.R
 \name{fd_inventory}
 \alias{fd_inventory}
-\title{Raw inventory table.}
+\title{Forest inventory data for the 32 FoRTE subplots. Includes diameter-at-breast-height
+(DBH) measurements in units of cm as well as information on health (i.e. see
+\code{health_status} column where D = dead, M = moribund, and L = live) and canopy status
+(i.e. see \code{canopy_status} where OD = overstory dominant, UN = understory,
+OS = overstory submissive, SA = sapling,  and NA is a blank or missing record)}
 \usage{
 fd_inventory()
 }
 \value{
-A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
+A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
-Raw inventory table.
+Forest inventory data for the 32 FoRTE subplots. Includes diameter-at-breast-height
+(DBH) measurements in units of cm as well as information on health (i.e. see
+\code{health_status} column where D = dead, M = moribund, and L = live) and canopy status
+(i.e. see \code{canopy_status} where OD = overstory dominant, UN = understory,
+OS = overstory submissive, SA = sapling,  and NA is a blank or missing record)
 }
-\details{
-The columns are as follows:
-\itemize{
-\item \code{Site} (character): Replicate code. Each replicate contains
-multiple plots with different disturbance treatments.
-\item \code{SubplotID} (character): Subplot ID number. These subplot codes are a
-concatenation of the plot (\code{\link{fd_plots}}) and
-subplot \code{\link{fd_subplots}} codes.
-\item \code{Tag} (integer): Tree tag number.
-\item \code{Species} (character): Species code from the USDA Plants Database; see
-\url{https://plants.sc.egov.usda.gov/java/}.
-\item \code{DBH_cm} (numeric): Diameter at breast height (1.37m), cm.
-\item \code{Health_status} (character): live (L), moribund (M), or dead (D).
-\item \code{Canopy_status} (character): Canopy status: overstory dominant (OD),
-overstory submissive (OS), sapling (SA), understory (UN).
-\item \code{Date} (date): Inventory entry date.
-\item \code{Notes} (character): Notes.
-\item \code{Replicate} (character): Replicate code, extracted from \code{SubplotID}.
-\item \code{Plot} (integer): Plot ID number, extracted from \code{SubplotID}.
-\item \code{Subplot} (character): Subplot code, extracted from \code{SubplotID}.
-}
+\note{
+Data were collected by Gough Lab team members Autym Shafer,
+Catherine McGuigan, and Alexandra Barry in 2018
+using a Haglof Postex Inventory Unit with DPII Caliper
+Where 'species' column is '????" indicates unknown plant id to be corrected
+in future work.
 }
 \examples{
 fd_inventory()
-}
-\author{
-Measurements by Gough Lab at the University of Michigan Biological Station.
 }

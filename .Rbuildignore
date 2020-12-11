@@ -5,3 +5,10 @@ essd
 
 .travis.yml
 coverage.R
+^\.github$
+^doc$
+^Meta$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^LICENSE\.md$

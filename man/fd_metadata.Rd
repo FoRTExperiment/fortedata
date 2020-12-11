@@ -10,7 +10,7 @@ fd_metadata(table = NULL)
 \item{table}{Name of table to return, character, optional}
 }
 \value{
-A \code{data.frame} or \code{tibble} holding field metadata.
+A \code{data.frame} or \code{tibble} holding data table metadata.
 }
 \description{
 Data tables' metadata.

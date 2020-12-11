@@ -12,9 +12,9 @@ A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field m
 \description{
 Soil respiration (soil to atmosphere CO2 efflux) table.
 }
+\note{
+Measurements taken by Kayla Mathes and Carly Rodriguez
+}
 \examples{
 fd_soil_respiration()
-}
-\author{
-Measurements by Kayla Mathes at the University of Michigan Biological Station.
 }
