@@ -1,0 +1,77 @@
+---
+title: "fortedata: Litter Data"
+author: "Jeff Atkins"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fortedata: Litter Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  require(fortedata),
+  require(ggplot2),
+  require(viridis),
+  require(tidyverse)
+)
+```
+
+## Introduction and Background
+
+In each of FoRTE's 32 subplots there are 4 littertraps located at nested sampling points 1, 3, 5, and 7 (see `fd_forte_sampling`). Leaves and fine woody debris are collected from these traps during the late fall (~November). Samples are taken back to Virginia Commonwealth University in Richmond, VA where they are air dried, sorted, and weighed, with a subset scanned for leaf area. 
+
+## Litter Data
+The `fd_litter()` script within `fortedata` currently includes the following functions:
+
+* `fd_litter()` returns a single dataset of litter mass collected via litter traps (four in each subplot, at nested sampling points 1, 3, 5, 7). The data include the tare + oven-dried mass of leaves as well as the tare weight (the empty bag), by species, by subplot (Table S7). The data also include the litter fraction--either `leaf`; `fwd`, the collection of fine woody debris (e.g. sticks, branches), and `misc`, fragments of leaves too small to identify to the species levels as well as other missed organic fragments in the basket. Litter mass can be calculated by subtracting the tare weight from the mass + tare. There are a total of 340 observations included in the package from 2018 with 2019 data expected by winter 2020 and 2020 data expected early 2021.
+
+
+## Litter Trap Data
+
+```{r fd_litter, fig.height = 4, fig.width = 6, fig.align = "center", echo = FALSE, message = FALSE}
+# import litter mass dataset
+df <- fd_litter()
+
+# we want to calculate the leaf mass by subtracting the tare weight `bagtare_g` from `bagmass_g`
+df$leafmass_g <- df$bagmass_g - df$bagtare_g
+
+# let's plot it
+ggplot2::ggplot(df, ggplot2::aes(x = as.factor(replicate), y = leafmass_g, fill = as.factor(replicate) ))+
+  ggplot2::geom_boxplot()+
+  theme_minimal()+
+  viridis::scale_color_viridis(discrete = TRUE, option = "D")+
+  viridis::scale_fill_viridis(discrete = TRUE)+
+  ggplot2::ylab("Leaf Mass [g]")+
+  ggplot2::xlab("Replicate")+
+  theme(legend.position = "NONE")
+```
+
+## Leaf Area Index (LAI)
+
+Leaf Area Index can be calculated from `fd_litter()` via the `calc_lai()` function. This function uses site-specific SLA (specific leaf area) data (Gough et al. 2007; 2013) to estimate leaf area index.
+
+```{r lai, fig.height = 3.5, fig.width = 6, fig.align = "center", echo = FALSE, message = FALSE}
+# import lai values at the plot scale
+df <- calc_lai()
+
+# let's plot it
+ggplot2::ggplot(df, ggplot2::aes(x = as.factor(replicate), y = lai, fill = as.factor(replicate) ))+
+  ggplot2::geom_boxplot()+
+  theme_minimal()+
+  viridis::scale_color_viridis(discrete = TRUE, option = "D")+
+  viridis::scale_fill_viridis(discrete = TRUE)+
+  ggplot2::ylab("Leaf Area Index (LAI)")+
+  ggplot2::xlab("Replicate")+
+  theme(legend.position = "NONE")
+```
+
+## References
+
+Gough, C. M., Vogel, C. S., Kazanski, C., Nagel, L., Flower, C. E., & Curtis, P. S. (2007). Coarse woody debris and the carbon balance of a north temperate forest. Forest Ecology and Management, 244(1-3), 60-67.
+
+Gough, C. M., Hardiman, B. S., Nave, L. E., Bohrer, G., Maurer, K. D., Vogel, C. S., ... & Curtis, P. S. (2013). Sustained carbon uptake and storage following moderate disturbance in a Great Lakes forest. Ecological Applications, 23(5), 1202-1215.
+
+

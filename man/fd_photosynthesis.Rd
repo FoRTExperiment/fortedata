@@ -12,9 +12,9 @@ A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field m
 \description{
 Leaf photosynthesis measurements.
 }
+\note{
+Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer
+}
 \examples{
 fd_photosynthesis()
-}
-\author{
-Measurements by Lisa Haber at the University of Michigan Biological Station.
 }
