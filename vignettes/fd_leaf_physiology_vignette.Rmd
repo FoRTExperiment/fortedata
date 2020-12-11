@@ -33,7 +33,7 @@ The `fd_leaf_physiology()` script within `fortedata` currently includes the foll
 ## Data Availability
 `fortedata` is an evolving, open-science data package with data updated in near-real time. The current number of leaf physiology data observations available as of `r Sys.Date()` are detailed in Figure 1.
 
-```{r observations, fig.height=4, fig.width=6, message=FALSE, warning=FALSE}
+```{r observations, fig.height=4, fig.width=6, echo = FALSE, message=FALSE, warning=FALSE}
 no_of_records.df <- fd_observations()
 
 no_of_records <- subset(no_of_records.df, table == 'fd_leaf_spectrometry' | table == 'fd_photosynthesis')
@@ -117,7 +117,7 @@ ggplot2::ggplot(x, aes(y = photo, x = disturbance_severity, fill = disturbance_s
   geom_boxplot(color = "black")+
   geom_jitter(position = position_jitter(0.2), shape = 21, alpha = 0.3)+
   xlab("Disturbance Severity")+
-  ylab(bquote('Subcanopy leaf photosynthetic rate\n ( '*mu~ 'mol' ~CO[2]~ m^-2~s^-1*')')) +
+  ylab(expression(atop('Subcanopy leaf photosynthetic rate', paste('('~mu~'mol' ~CO[2]~ m^-2~s^-1*')'))))+
   theme_minimal()+
   scale_color_manual(values = forte_pal, guide = FALSE)+
   scale_fill_manual(values = forte_pal,

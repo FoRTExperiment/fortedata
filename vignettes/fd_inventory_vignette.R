@@ -1,15 +1,16 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata),
   require(ggplot2),
-  require(viridis)
+  require(viridis),
+  require(tidyverse)
 )
 
-## ----fd_inventory--------------------------------------------------------
+## ----fd_inventory-------------------------------------------------------------
 fd_inventory()
 
-## ----biomass, fig.height = 3.5, fig.width = 7.5, fig.align = "center"----
+## ----biomass, fig.height = 3.5, fig.width = 7.5, fig.align = "center"---------
 # import the biomass data
 df <- fortedata::calc_biomass()
 

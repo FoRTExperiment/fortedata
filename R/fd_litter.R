@@ -24,7 +24,7 @@ fd_litter <- function() {
   litter <- split_subplot_id(litter)
 
   # Reorder columns, dropping unneeded ones
-  litter <- litter[c("subplot_id", "replicate", "plot", "subplot", "year", "species", "bagtare_g", "bagmass_g")]
+  litter <- litter[c("subplot_id", "replicate", "plot", "subplot", "year", "fraction", "species", "bagtare_g", "bagmass_g")]
   weak_as_tibble(litter)
 }
 

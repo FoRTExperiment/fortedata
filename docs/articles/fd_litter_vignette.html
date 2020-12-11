@@ -105,52 +105,36 @@
 
     
     
+<div id="introduction-and-background" class="section level2">
+<h2 class="hasAnchor">
+<a href="#introduction-and-background" class="anchor"></a>Introduction and Background</h2>
+<p>In each of FoRTE’s 32 subplots there are 4 littertraps located at nested sampling points 1, 3, 5, and 7 (see <code>fd_forte_sampling</code>). Leaves and fine woody debris are collected from these traps during the late fall (~November). Samples are taken back to Virginia Commonwealth University in Richmond, VA where they are air dried, sorted, and weighed, with a subset scanned for leaf area.</p>
+</div>
 <div id="litter-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#litter-data" class="anchor"></a>Litter Data</h2>
-<p>The <code>fd_remote_sensing()</code> script within <code>fortedata</code> currently includes the following functions:</p>
+<p>The <code><a href="../reference/fd_litter.html">fd_litter()</a></code> script within <code>fortedata</code> currently includes the following functions:</p>
 <ul>
 <li>
-<code><a href="../reference/fd_litter.html">fd_litter()</a></code> returns a single dataset of litter mass collected via litter traps (four in each subplot, at nested sampling points 1, 3, 5, 7). The data include the tare + oven-dried mass of leaves as well as the tare weight (the empty bag), by species, by subplot (Table S7). The data also include notations for “CWD”, the collection of coarse woody debris (e.g. sticks, branches), and “MIX”, fragments of leaves too small to identify to the species levels as well as other missed organic fragments in the basket. Litter mass can be calculated by subtracting the tare weight from the mass + tare. There are a total of 340 observations included in the package from 2018.</li>
+<code><a href="../reference/fd_litter.html">fd_litter()</a></code> returns a single dataset of litter mass collected via litter traps (four in each subplot, at nested sampling points 1, 3, 5, 7). The data include the tare + oven-dried mass of leaves as well as the tare weight (the empty bag), by species, by subplot (Table S7). The data also include the litter fraction–either <code>leaf</code>; <code>fwd</code>, the collection of fine woody debris (e.g. sticks, branches), and <code>misc</code>, fragments of leaves too small to identify to the species levels as well as other missed organic fragments in the basket. Litter mass can be calculated by subtracting the tare weight from the mass + tare. There are a total of 340 observations included in the package from 2018 with 2019 data expected by winter 2020 and 2020 data expected early 2021.</li>
 </ul>
 </div>
 <div id="litter-trap-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#litter-trap-data" class="anchor"></a>Litter Trap Data</h2>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># import litter mass dataset</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fd_litter.html">fd_litter</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># we want to calculate the leaf mass by subtracting the tare weight `bagtare_g` from `bagmass_g`</span>
-<span class="va">df</span><span class="op">$</span><span class="va">leafmass_g</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">$</span><span class="va">bagmass_g</span> <span class="op">-</span> <span class="va">df</span><span class="op">$</span><span class="va">bagtare_g</span>
-
-<span class="co"># let's plot it</span>
-<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">leafmass_g</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span> <span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_color_viridis</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">TRUE</span>, option <span class="op">=</span> <span class="st">"D"</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_fill_viridis</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Leaf Mass [g]"</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Replicate"</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"NONE"</span><span class="op">)</span></code></pre></div>
 <p><img src="fd_litter_vignette_files/figure-html/fd_litter-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div id="leaf-area-index-lai" class="section level2">
 <h2 class="hasAnchor">
 <a href="#leaf-area-index-lai" class="anchor"></a>Leaf Area Index (LAI)</h2>
-<p>Leaf Area Index can be calculated from <code><a href="../reference/fd_litter.html">fd_litter()</a></code> via the <code><a href="../reference/calc_lai.html">calc_lai()</a></code> function.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># import lai values at the plot scale</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calc_lai.html">calc_lai</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># let's plot it</span>
-<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">lai</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span> <span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_color_viridis</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">TRUE</span>, option <span class="op">=</span> <span class="st">"D"</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridis/man/scale_viridis.html">scale_fill_viridis</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Leaf Area Index (LAI)"</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Replicate"</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"NONE"</span><span class="op">)</span></code></pre></div>
+<p>Leaf Area Index can be calculated from <code><a href="../reference/fd_litter.html">fd_litter()</a></code> via the <code><a href="../reference/calc_lai.html">calc_lai()</a></code> function. This function uses site-specific SLA (specific leaf area) data (Gough et al. 2007; 2013) to estimate leaf area index.</p>
 <p><img src="fd_litter_vignette_files/figure-html/lai-1.png" width="576" style="display: block; margin: auto;"></p>
+</div>
+<div id="references" class="section level2">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<p>Gough, C. M., Vogel, C. S., Kazanski, C., Nagel, L., Flower, C. E., &amp; Curtis, P. S. (2007). Coarse woody debris and the carbon balance of a north temperate forest. Forest Ecology and Management, 244(1-3), 60-67.</p>
+<p>Gough, C. M., Hardiman, B. S., Nave, L. E., Bohrer, G., Maurer, K. D., Vogel, C. S., … &amp; Curtis, P. S. (2013). Sustained carbon uptake and storage following moderate disturbance in a Great Lakes forest. Ecological Applications, 23(5), 1202-1215.</p>
 </div>
   </div>
 

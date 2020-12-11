@@ -216,7 +216,10 @@ fd_plot_metadata <- function(){
 calc_lai <- function() {
 
   # litter mass
-  leaf <- fd_litter()
+  leafs <- fd_litter()
+
+  # subsetting leaves
+  leaf <- subset(leafs, leafs$fraction == "leaf")
 
   # specific leaf area
   sla <- read_csv_file("fd_sla.csv") #this has the same equations AmeriFlux uses
