@@ -7,7 +7,7 @@ knitr::opts_chunk$set(
   require(viridis)
 )
 
-## ----observations, fig.asp = 0.6, fig.width=6, message=FALSE, warning=FALSE----
+## ----observations, fig.asp = 0.6, fig.width=6, echo = FALSE, message=FALSE, warning=FALSE----
 no_of_records.df <- fd_observations()
 
 no_of_records <- subset(no_of_records.df, table == "fd_soil_respiration")

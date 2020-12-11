@@ -1,4 +1,4 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata),
@@ -30,19 +30,15 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
     color="black", fill="white", size= 0.5, linetype="solid"))
 
 
-## ----fd_canopy_structure-------------------------------------------------
+## ----fd_canopy_structure------------------------------------------------------
 data.frame(fd_canopy_structure_summary())
 
-<<<<<<< HEAD
 ## ----rug, fig.width = 6, fig.height = 6, fig.align = "center", echo = FALSE----
-=======
-## ----rug, fig.height = 4, fig.width = 6, fig.align = "center"------------
->>>>>>> cb9893702271eb3ec6e45781def98757a5820179
 x <- fd_canopy_structure()
 
 
 # bring in metadata via the plot_metadata() function
-df <- fortedata::plot_metadata()
+df <- fortedata::fd_plot_metadata()
 
 # now we convert the tibble to a data frame
 df <- data.frame(df)
@@ -88,18 +84,14 @@ ggplot2::ggplot(x, aes(y = rugosity, x = disturbance_severity, fill = disturbanc
   facet_grid(year ~ treatment, labeller = labeller(treatment = facet.labs)) 
 
 
-## ----fd_hemi_camera------------------------------------------------------
+## ----fd_hemi_camera-----------------------------------------------------------
 fd_hemi_camera()
 
-<<<<<<< HEAD
 ## ----cam, fig.width = 6, fig.asp = .65, echo = FALSE--------------------------
-=======
-## ----cam, fig.width = 6, fig.asp = .65-----------------------------------
->>>>>>> cb9893702271eb3ec6e45781def98757a5820179
 x <- fd_hemi_camera()
 
 # bring in metadata via the plot_metadata() function
-df <- fortedata::plot_metadata()
+df <- fortedata::fd_plot_metadata()
 
 # now we convert the tibble to a data frame
 df <- data.frame(df)
@@ -145,18 +137,14 @@ ggplot(x, aes(y = lai_cam, x = disturbance_severity, fill = disturbance_severity
   facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs))
 
 
-## ----fd_ceptometer-------------------------------------------------------
+## ----fd_ceptometer------------------------------------------------------------
 fd_ceptometer()
 
-<<<<<<< HEAD
 ## ----light, fig.width = 6, fig.asp = .65, echo = FALSE------------------------
-=======
-## ----light, fig.width = 6, fig.asp = .65---------------------------------
->>>>>>> cb9893702271eb3ec6e45781def98757a5820179
 x <- fd_ceptometer()
 
 # bring in metadata via the plot_metadata() function
-df <- fortedata::plot_metadata()
+df <- fortedata::fd_plot_metadata()
 
 # now we converte the tibble to a data frame
 df <- data.frame(df)

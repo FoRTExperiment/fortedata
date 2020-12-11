@@ -1,12 +1,14 @@
 # Remote sensing data
 
 
-#' Hemispherical camera data.
-#'
-#' @note Data were collected by Jeff W. Atkins and Evan Pari using a 24 Megapixel
+#' Hemispherical camera data collected using a 24 Megapixel
 #' Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
 #' 180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
-#' channel, which allows direct calculation of NDVI.
+#' channel, which allows direct calculation of plant greenness as the normalized difference
+#' vegetation index (NDVI). See `fd_remote_sensing_vignette` for more details.
+#'
+#' @note Data were collected by Jeff W. Atkins (2018, 2019, 2020) and Evan Paris (2019)
+#'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @importFrom stats na.omit
 #' @export
@@ -109,11 +111,14 @@ fd_hemi_camera_summary <- function() {
 
 
 
-#' Canopy structural traits from 2D canopy LiDAR.
+#' Canopy structural traits from 2D portable canopy lidar collected using a
+#' Riegl VHS3100FLP upward facing pulsed-laser system. Lidar point cloud data were converted to
+#' canopy strcuturla trait data using `forestr` version 1.0.1
+#' See `fd_remote_sensing_vignette` for more details.
 #'
 #'
-#' @note Data were collected by Jeff W. Atkins and Brandon Alveshare using an upward facing, portable canopy lidar unit.
-#' The Canopy structural traits were derived using the
+#' @note Data were collected by Jeff W. Atkins (2018, 2019, 2020) and Brandon Alveshare (2019)
+#'
 #' \code{forestr} 1.0.1 package from 2D portable canopy lidar
 #' @return A `data.frame` or `tibble` of hemispherical camera data.
 #' Call \code{\link{fd_metadata}} for field metadata.
@@ -134,7 +139,8 @@ fd_canopy_structure <- function() {
   weak_as_tibble(cst)
 }
 
-#' Summary data for canopy structural data
+#' Summary data for canopy structural data including canopy complexity and leaf area
+#' by replicate by year for 2018 to 2020
 #'
 #' @details The columns are as follows:
 #' - `replicate` (character): Replicate code, extracted from `subplot_id`.
@@ -151,7 +157,9 @@ fd_canopy_structure <- function() {
 #' - `vai_mean_se` (numeric): se of leaf area index
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
-#' @note For now this is pretty basic.
+#' @note This summary reports only canopy structural complexity (as canopy rugosity)
+#' and leaf area (as VAI, or vegetation area index--akin to PAI or LAI).
+#'
 #' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @export
 #' @importFrom stats aggregate sd na.omit
@@ -163,9 +171,9 @@ fd_canopy_structure_summary <- function() {
   csc <- merge(fd_canopy_structure(), subplots)
 
   # Calculate rugosity means and SD
-  r_c <- aggregate(rugosity ~ replicate , data = csc, FUN = mean)
-  r_c.sd <- aggregate(rugosity ~ replicate , data = csc, FUN = sd)
-  r_c.n <- aggregate(rugosity ~ replicate, data = csc, FUN = length)
+  r_c <- aggregate(rugosity ~ replicate + year, data = csc, FUN = mean)
+  r_c.sd <- aggregate(rugosity ~ replicate + year , data = csc, FUN = sd)
+  r_c.n <- aggregate(rugosity ~ replicate + year, data = csc, FUN = length)
 
   # Merge and munge
   names(r_c.sd)[names(r_c.sd) == "rugosity"] <- "rugosity_sd"
@@ -177,9 +185,9 @@ fd_canopy_structure_summary <- function() {
   r_c$rugosity_se <- r_c$rugosity_sd / sqrt(r_c$rugosity_n)  # based on the SD /sqrt(n)
 
   # VAI means and SD
-  vai <- aggregate(vai_mean ~ replicate , data = csc, FUN = mean)
-  vai_sd <- aggregate(vai_mean ~ replicate , data = csc, FUN = sd)
-  vai_n <- aggregate(vai_mean ~ replicate, data = csc, FUN = length)
+  vai <- aggregate(vai_mean ~ replicate + year , data = csc, FUN = mean)
+  vai_sd <- aggregate(vai_mean ~ replicate + year , data = csc, FUN = sd)
+  vai_n <- aggregate(vai_mean ~ replicate + year, data = csc, FUN = length)
 
   # Merge and munge
   names(vai_sd)[names(vai_sd) == "vai_mean"] <- "vai_mean_sd"

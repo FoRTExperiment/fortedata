@@ -2,7 +2,11 @@
 % Please edit documentation in R/fd_remote_sensing.R
 \name{fd_hemi_camera}
 \alias{fd_hemi_camera}
-\title{Hemispherical camera data.}
+\title{Hemispherical camera data collected using a 24 Megapixel
+Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
+180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
+channel, which allows direct calculation of plant greenness as the normalized difference
+vegetation index (NDVI). See \code{fd_remote_sensing_vignette} for more details.}
 \usage{
 fd_hemi_camera()
 }
@@ -10,13 +14,14 @@ fd_hemi_camera()
 A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
-Hemispherical camera data.
-}
-\note{
-Data were collected by Jeff W. Atkins and Evan Pari using a 24 Megapixel
+Hemispherical camera data collected using a 24 Megapixel
 Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
 180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
-channel, which allows direct calculation of NDVI.
+channel, which allows direct calculation of plant greenness as the normalized difference
+vegetation index (NDVI). See \code{fd_remote_sensing_vignette} for more details.
+}
+\note{
+Data were collected by Jeff W. Atkins (2018, 2019, 2020) and Evan Paris (2019)
 }
 \examples{
 fd_hemi_camera()

@@ -30,11 +30,10 @@ The columns are as follows:
 }
 }
 \note{
-For now this is pretty basic.
+This summary reports only canopy structural complexity (as canopy rugosity)
+and leaf area (as VAI, or vegetation area index--akin to PAI or LAI).
+#' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 }
 \examples{
 fd_canopy_structure_summary()
-}
-\author{
-Measurements by Jeff Atkins at the University of Michigan Biological Station.
 }
