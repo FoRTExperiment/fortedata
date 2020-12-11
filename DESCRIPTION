@@ -1,6 +1,6 @@
 Package: fortedata
 Title: Data from the Forest Resilience and Threshold Experiment
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c(person("Jeff", "Atkins", email = "jwatkins6@vcu.edu", role = c("aut", "cre")),
           person("Ben", "Bond-Lamberty", role = "aut"),
           person("Kalyn", "Dorheim", rol = "aut"),

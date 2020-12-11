@@ -5,12 +5,12 @@
 
 ### Overview
 
-*fortedata* is an R package that provides functions for accessing and interpreting data associated with FoRTE: Forest Resilience Threshold Experimen--a modeling and manipulative field experiment that tests the effects of disturbance severity and disturbance type on carbon cycling dynamics in a temperate forest. Package data consists of measurements of carbon pools and fluxes and ancillary measurements to help analyse and users analyse and interpret carbon cycling over time.  
+*fortedata* is an R package that provides functions for accessing and interpreting data associated with FoRTE: Forest Resilience Threshold Experiment--a modeling and manipulative field experiment that tests the effects of disturbance severity and disturbance type on carbon cycling dynamics in a temperate forest. Package data consists of measurements of carbon pools and fluxes and ancillary measurements to help users analyze and interpret carbon cycling over time.  
 
 
 ### Getting Started
 
-We recommend that users begin with either package [vignettes](https://fortexperiment.github.io/fortedata/articles/index.html) that provide detailed examples of package funcitons and potential use cases, or with package [documentation](https://fortexperiment.github.io/fortedata/reference/index.html).  
+We recommend that users begin with either package [vignettes](https://fortexperiment.github.io/fortedata/articles/index.html) that provide detailed examples of package functions and potential use cases, or with package [documentation](https://fortexperiment.github.io/fortedata/reference/index.html).  
 
 
 ### Installation
@@ -23,6 +23,23 @@ if (!require("devtools")) {
 }
 devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_vignettes = FALSE)
 ```
+
+
+### `fortedata` 1.0.2 Updates and Future Data Availability
+
+**Updates**
+
+* `fd_canopy_structure()` now includes 2020 lidar-derived canopy structural trait data.
+
+* `fd_soil_respiration()` now includes 2020 soil CO_2_ efflux, soil temperature, and soil water content data.
+
+**Future Data Availability**
+
+* Leaf spectral data (see `fd_leaf_spectrometry`) for 2019 and 2020 are on deck. Currently, there are issues with matching tree identification field codes to the data set.
+
+* Light interception data (see `fd_ceptometer()`) for 2020 is being calibrated with the adjacent UMBS AmeriFlux tower PAR data (US-UMb tower ID). 
+
+* 3-D lidar structural data has been held up further by Covid-19. Access to computing resrouces to process said data have been greatly encumbered.
 
 ### The FoRTE Team
 
@@ -38,6 +55,6 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 
 * REU Students: Evan Paris, Carly Rodriguez
 
-* Reserach Collaborators: Elizabeth Agee, Brandon Alveshare, Kyla M. Dahlin, Robert T. Fahey, Aaron G. Kamoske, Jason Tallant
+* Research Collaborators: Elizabeth Agee, Brandon Alveshare, Kyla M. Dahlin, Robert T. Fahey, Aaron G. Kamoske, Jason Tallant
 
 
