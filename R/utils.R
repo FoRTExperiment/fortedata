@@ -125,26 +125,12 @@ forte_colors <- function() {
 
 
 
-#' @export
-#' @importFrom graphics rect par image text
-#' @importFrom grDevices rgb
-print.palette <- function(x, ...) {
-  n <- length(x)
-  old <- par(mar = c(0.5, 0.5, 0.5, 0.5))
-  on.exit(par(old))
-
-  image(1:n, 1, as.matrix(1:n), col = x,
-        ylab = "", xaxt = "n", yaxt = "n", bty = "n")
-
-  rect(0, 0.9, n + 1, 1.1, col = rgb(1, 1, 1, 0.8), border = NA)
-  text((n + 1) / 2, 1, labels = attr(x, "name"), cex = 1, family = "serif")
-}
-
-#' Calculate biomass from DBH data in fd_inventory()
+#' Calculate biomass from DBH data in `fd_inventory()`
 #'
-#' calc_biomass() uses biomass equations from fd_table_biomass_allometries.csv.
+#' `calc_biomass()` uses biomass equations from `fd_table_biomass_allometries.csv`.
 #' Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
 #' sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint.
+#' See `fd_inventory_vignette` for further information.
 #'
 #' Studies used to augment Cooper’s raw data for a species are denoted below.
 #'
@@ -204,12 +190,15 @@ fd_plot_metadata <- function(){
 }
 
 
-#' LAI values at the plot scale
+#' LAI values at the subplot scale from littertrap data
 #'
-#' LAI is calculated using the equation SLA * mass, where SLA is specific leaf area.
-#' Species and site specific values are in fd_sla.csv.
+#' LAI is calculated using the equation SLA * mass, where SLA is specific leaf area and
+#' mass is leaf litter mass from `fd_litter()`. Species and site specific values are
+#' in `fd_sla.csv`. Also, see `fd_litter_vignette` for further explanation,
+#' including references, calculation, and possible use cases.
 #'
-#' @return A data frame of leaf area fro SLA * mass at the plot scale.
+#'
+#' @return A data frame of leaf area by year, at the subplot scale.
 #' @export
 #' @examples
 #' calc_lai()

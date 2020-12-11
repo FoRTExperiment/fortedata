@@ -33,7 +33,7 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
 ## ----fd_canopy_structure------------------------------------------------------
 data.frame(fd_canopy_structure_summary())
 
-## ----rug, fig.width = 6, fig.height = 6, fig.align = "center", echo = FALSE----
+## ----rug, fig.width = 6, fig.asp = 1, echo = FALSE----------------------------
 x <- fd_canopy_structure()
 
 

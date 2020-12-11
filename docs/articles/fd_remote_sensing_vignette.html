@@ -96,7 +96,7 @@
       <h1 data-toc-skip>fortedata: Remote Sensing Data</h1>
                         <h4 class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-12-10</h4>
+            <h4 class="date">2020-12-11</h4>
       
       
       <div class="hidden name"><code>fd_remote_sensing_vignette.Rmd</code></div>
@@ -124,7 +124,7 @@
 <div id="data-availability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-availability" class="anchor"></a>Data Availability</h2>
-<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current number of remote sensing data observations available as of 2020-12-10 are detailed in Figure 1.</p>
+<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current number of remote sensing data observations available as of 2020-12-11 are detailed in Figure 1.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">no_of_records.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fd_observations.html">fd_observations</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -156,17 +156,33 @@
 <p><code><a href="../reference/fd_canopy_structure.html">fd_canopy_structure()</a></code> contains canopy structural trait metrics (Fahey et al. 2019) derived from 2-D terrestrial lidar data. These data were collected with a user-mounted, portable canopy LiDAR (PCL) system equipped with an upward facing, pulsed‐laser operating at 2000 Hz (Riegl LD90 3100 VHS; Riegl USA Inc., Orlando, Florida, USA). The PCL generates continuous LiDAR returns from a “slice” of the canopy as it is walked along a measured transect. For this study, we used 40 m transects at cardinal directions–north-to-south, east-to-west–through subplot center for a total of 80 m of transect length per subplot. This mirrors the approach of Atkins et al. (2018) and Hardiman et al. (2013) and is sufficient to account for spatial variability of forest structure (Hardiman et al. 2019). A more detailed description of the development and implementation of this terrestrial laser scanning system is available in Parker et al. (2004) and Hardiman et al. ( 2011). We derived canopy structural metrics using the <code>forestr</code> package (Atkins et al. 2018a, b) in R 3.5 (R Core Team, 2018). Data here are provided at the transect level, but should be averaged to make a plot mean.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/fd_canopy_structure_summary.html">fd_canopy_structure_summary</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">##   replicate  rugosity rugosity_sd rugosity_n rugosity_se vai_mean vai_mean_sd</span>
-<span class="co">## 1         A 27.986946   10.537545        403   0.5249125 6.573103   0.9326255</span>
-<span class="co">## 2         B 22.704997    6.036525        237   0.3921144 6.924315   0.5668582</span>
-<span class="co">## 3         C 14.499417    5.026340        307   0.2868684 6.205155   0.6684200</span>
-<span class="co">## 4         D  9.376231    4.055208        290   0.2381300 5.348447   1.2436532</span>
-<span class="co">##   vai_mean_n vai_mean_se</span>
-<span class="co">## 1        403  0.04645738</span>
-<span class="co">## 2        237  0.03682140</span>
-<span class="co">## 3        307  0.03814874</span>
-<span class="co">## 4        290  0.07302983</span></code></pre></div>
-<p><img src="fd_remote_sensing_vignette_files/figure-html/rug-1.png" width="576" style="display: block; margin: auto;"></p>
+<span class="co">##    replicate year  rugosity rugosity_sd rugosity_n rugosity_se vai_mean</span>
+<span class="co">## 1          A 2018 29.608559   10.497869        129   0.9242858 6.796692</span>
+<span class="co">## 2          A 2019 29.735343    9.800674        139   0.8312823 5.996452</span>
+<span class="co">## 3          A 2020 24.637203   10.579291        135   0.9105204 6.953186</span>
+<span class="co">## 4          B 2018 22.436198    5.756363         70   0.6880170 7.232956</span>
+<span class="co">## 5          B 2019 23.611997    6.722365         81   0.7469295 6.520808</span>
+<span class="co">## 6          B 2020 22.069519    5.521884         86   0.5954400 7.053144</span>
+<span class="co">## 7          C 2018 14.014263    5.900967        109   0.5652101 6.695965</span>
+<span class="co">## 8          C 2019 14.580620    4.797647         93   0.4974929 5.941412</span>
+<span class="co">## 9          C 2020 14.931131    4.167939        105   0.4067492 5.929249</span>
+<span class="co">## 10         D 2018  9.080572    4.826094        121   0.4387359 5.832653</span>
+<span class="co">## 11         D 2019 10.567458    2.434255         78   0.2756251 5.259916</span>
+<span class="co">## 12         D 2020  8.748307    3.864607         91   0.4051209 4.780497</span>
+<span class="co">##    vai_mean_sd vai_mean_n vai_mean_se</span>
+<span class="co">## 1    0.8187640        129  0.07208815</span>
+<span class="co">## 2    0.9818119        139  0.08327619</span>
+<span class="co">## 3    0.6615754        135  0.05693934</span>
+<span class="co">## 4    0.3349234         70  0.04003100</span>
+<span class="co">## 5    0.5496304         81  0.06107005</span>
+<span class="co">## 6    0.5161193         86  0.05565458</span>
+<span class="co">## 7    0.5179845        109  0.04961391</span>
+<span class="co">## 8    0.5996817         93  0.06218410</span>
+<span class="co">## 9    0.5712212        105  0.05574548</span>
+<span class="co">## 10   1.0623365        121  0.09657604</span>
+<span class="co">## 11   0.8463590         78  0.09583129</span>
+<span class="co">## 12   1.4835040         91  0.15551347</span></code></pre></div>
+<p><img src="fd_remote_sensing_vignette_files/figure-html/rug-1.png" width="576"></p>
 </div>
 <div id="hemispherical-camera-imagery" class="section level3">
 <h3 class="hasAnchor">

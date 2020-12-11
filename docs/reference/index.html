@@ -163,25 +163,29 @@
         <td>
           <p><code><a href="calc_biomass.html">calc_biomass()</a></code> </p>
         </td>
-        <td><p>Calculate biomass from DBH data in fd_inventory()</p></td>
+        <td><p>Calculate biomass from DBH data in <code>fd_inventory()</code></p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="calc_lai.html">calc_lai()</a></code> </p>
         </td>
-        <td><p>LAI values at the plot scale</p></td>
+        <td><p>LAI values at the subplot scale from littertrap data</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="fd_canopy_structure.html">fd_canopy_structure()</a></code> </p>
         </td>
-        <td><p>Canopy structural traits from 2D canopy LiDAR.</p></td>
+        <td><p>Canopy structural traits from 2D portable canopy lidar collected using a
+Riegl VHS3100FLP upward facing pulsed-laser system. Lidar point cloud data were converted to
+canopy strcuturla trait data using <code>forestr</code> version 1.0.1
+See <code>fd_remote_sensing_vignette</code> for more details.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="fd_canopy_structure_summary.html">fd_canopy_structure_summary()</a></code> </p>
         </td>
-        <td><p>Summary data for canopy structural data</p></td>
+        <td><p>Summary data for canopy structural data including canopy complexity and leaf area
+by replicate by year for 2018 to 2020</p></td>
       </tr><tr>
         
         <td>
@@ -193,7 +197,11 @@
         <td>
           <p><code><a href="fd_hemi_camera.html">fd_hemi_camera()</a></code> </p>
         </td>
-        <td><p>Hemispherical camera data.</p></td>
+        <td><p>Hemispherical camera data collected using a 24 Megapixel
+Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
+180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
+channel, which allows direct calculation of plant greenness as the normalized difference
+vegetation index (NDVI). See <code>fd_remote_sensing_vignette</code> for more details.</p></td>
       </tr><tr>
         
         <td>
