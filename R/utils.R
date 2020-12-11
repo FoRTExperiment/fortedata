@@ -222,30 +222,24 @@ calc_lai <- function() {
   leaf <- subset(leafs, leafs$fraction == "leaf")
 
   # specific leaf area
-  sla <- read_csv_file("fd_sla.csv") #this has the same equations AmeriFlux uses
+  sla <- read_csv_file("fd_sla.csv") # this has the same equations AmeriFlux uses
 
   # calculate mass of leaves only
   leaf$leafmass_g <- leaf$bagmass_g - leaf$bagtare_g
 
-  # Add SLA to the leaf tibble
+  # Add SLA to the leaf tibble and calculate leaf area totals
   leaf <- merge(leaf, sla)
-
-  # calculate leaf area totals
   leaf$leaf_area <- leaf$leafmass_g * leaf$sla
 
-  # make plot lai by species
+  # aggregate by species
   lai <- stats::aggregate(leaf_area ~ subplot_id + year, data = leaf, FUN = sum)
-
-
-  # adds in plot area
-  plot_area <- 1000  #plot area in m^2 (is 0.1 ha)
-
-  # calculates LAI
+  plot_area <- 1000  # m^2 (= 0.1 ha)
   lai$lai <- lai$leaf_area / plot_area
 
   lai <- split_subplot_id(lai)
-  # reorders columns
+
+  # reorder columns
   lai <- lai[c("subplot_id", "replicate", "plot", "subplot", "year", "lai")]
 
-  lai <- weak_as_tibble(lai)
+  weak_as_tibble(lai)
 }
