@@ -7,23 +7,10 @@
 fd_treatments()
 }
 \value{
-A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
+A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
 Treatment assignments
-}
-\details{
-The columns are as follows:
-\itemize{
-\item \code{replicate} (character): Replicate code. Each replicate contains
-multiple plots with different disturbance treatments.#'
-\item \code{plot} (integer): plot code
-one in the eastern part, one in the western.
-\item \code{subplot} (double): Area of the nested subplot, in square meters.
-\item \code{disturbance_severity} (integer): assigned targeted distrubance severity
-percentage, based on leaf area
-\item \code{treatment} (character): either top as T or bottomup B
-}
 }
 \examples{
 fd_treatments()

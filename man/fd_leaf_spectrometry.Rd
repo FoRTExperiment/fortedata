@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_leaf_physiology.R
 \name{fd_leaf_spectrometry}
 \alias{fd_leaf_spectrometry}
-\title{Leaf spectrometry data}
+\title{Leaf spectrometery data}
 \usage{
 fd_leaf_spectrometry()
 }
@@ -10,7 +10,7 @@ fd_leaf_spectrometry()
 A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
-Leaf spectrometry data
+Leaf spectrometery data
 }
 \note{
 Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer

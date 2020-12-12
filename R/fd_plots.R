@@ -3,15 +3,8 @@
 
 #' Plots table.
 #'
-#' @details The columns are as follows:
-#' - `Replicate` (character): Replicate code. Each replicate contains
-#'   multiple plots with different disturbance treatments.
-#' - `Plot` (integer): Plot ID number. Plots are nested within replicates.
-#' - `Longitude_plot`, `Latitude_plot` (double): Plot coordinates, in decimal
-#'   degrees.
-#' - `Plot_area_m2` (double): Area of the plot, in square meters.
 #'
-#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
 #' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
@@ -23,17 +16,8 @@ fd_plots <- function() {
 
 #' Subplots table.
 #'
-#' @details The columns are as follows:
-#' - `Replicate` (character): Replicate code. Each replicate contains
-#'   multiple plots with different disturbance treatments.
-#' - `Plot` (integer): Plot ID number. Plots are nested within replicates.
-#' - `Subplot` (character): Subplot code. Subplots are nested within plots:
-#' one in the eastern part, one in the western.
-#' - `Longitude_subplot`, `Latitude_subplot` (double): Subplot coordinates, in decimal
-#'   degrees.
-#' - `Plot_area_m2` (double): Area of the subplot, in square meters.
 #'
-#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
 #' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
@@ -45,15 +29,8 @@ fd_subplots <- function() {
 
 #' Nested subplots table.
 #'
-#' @details The columns are as follows:
-#' - `Subplot` (character): Subplot code. Subplots are nested within plots:
-#' one in the eastern part, one in the western.
-#' - `Nested_subplot` (integer): Nested subplot code. Nested subplots are nested subplots,
-#' which are in turn are within plots:
-#' one in the eastern part, one in the western.
-#' - `Nested_subplot_area_m2` (double): Area of the nested subplot, in square meters.
 #'
-#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
 #' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples
@@ -64,17 +41,7 @@ fd_nested_subplots <- function() {
 
 #' Treatment assignments
 #'
-#' @details The columns are as follows:
-#' - `replicate` (character): Replicate code. Each replicate contains
-#'   multiple plots with different disturbance treatments.#'
-#' - `plot` (integer): plot code
-#' one in the eastern part, one in the western.
-#' - `subplot` (double): Area of the nested subplot, in square meters.
-#' - `disturbance_severity` (integer): assigned targeted distrubance severity
-#' percentage, based on leaf area
-#' - `treatment` (character): either top as T or bottomup B
-#'
-#' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
 #' @author Measurements by Gough Lab at the University of Michigan Biological Station.
 #' @examples

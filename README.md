@@ -29,17 +29,19 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 
 **Updates**
 
-* `fd_canopy_structure()` now includes 2020 lidar-derived canopy structural trait data.
+* `fd_leaf_spectrometry` now includes 2018 and 2020 data, as well as corrected leaf_id and tree_id data columns. Additionally, the original filename has been retained in the data set as id (2020-12-12)
 
-* `fd_soil_respiration()` now includes 2020 soil CO_2_ efflux, soil temperature, and soil water content data.
+* `fd_canopy_structure()` now includes 2020 lidar-derived canopy structural trait data.  (2020-12-09)
+
+* `fd_soil_respiration()` now includes 2020 soil CO_2_ efflux, soil temperature, and soil water content data.  (2020-12-09)
 
 **Future Data Availability**
 
-* Leaf spectral data (see `fd_leaf_spectrometry`) for 2019 and 2020 are on deck. Currently, there are issues with matching tree identification field codes to the data set.
+* Leaf spectral data (see `fd_leaf_spectrometry`) for 2019 are on deck. Currently, there are issues with matching tree identification field codes to the data set.
 
 * Light interception data (see `fd_ceptometer()`) for 2020 is being calibrated with the adjacent UMBS AmeriFlux tower PAR data (US-UMb tower ID). 
 
-* 3-D lidar structural data has been held up further by Covid-19. Access to computing resrouces to process said data have been greatly encumbered.
+* 3-D lidar structural data has been held up further by COVID-19. Access to computing resources to process said data have been greatly encumbered.
 
 ### The FoRTE Team
 

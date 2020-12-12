@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -96,7 +96,7 @@
       <h1 data-toc-skip>fortedata: Ecophysiology Data</h1>
                         <h4 class="author">Lisa Haber and Jeff Atkins</h4>
             
-            <h4 class="date">2020-12-11</h4>
+            <h4 class="date">2020-12-12</h4>
       
       
       <div class="hidden name"><code>fd_leaf_physiology_vignette.Rmd</code></div>
@@ -122,7 +122,7 @@
 <div id="data-availability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-availability" class="anchor"></a>Data Availability</h2>
-<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current number of leaf physiology data observations available as of 2020-12-11 are detailed in Figure 1.</p>
+<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current number of leaf physiology data observations available as of 2020-12-12 are detailed in Figure 1.</p>
 <p><img src="fd_leaf_physiology_vignette_files/figure-html/observations-1.png" width="576"></p>
 </div>
 <div id="ecophysiology-methods" class="section level2">
@@ -191,20 +191,22 @@
 </div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fd_leaf_spectrometry.html">fd_leaf_spectrometry</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">## # A tibble: 7,221 x 9</span>
-<span class="co">##    subplot_id replicate  plot subplot date       tree_id species index</span>
-<span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;</span>
-<span class="co">##  1 D01E       D             1 E       2018-07-22 CAN01   ACRU    ARI1 </span>
-<span class="co">##  2 D01E       D             1 E       2018-07-22 CAN01   ACRU    ARI2 </span>
-<span class="co">##  3 D01E       D             1 E       2018-07-22 CAN01   ACRU    CRI1 </span>
-<span class="co">##  4 D01E       D             1 E       2018-07-22 CAN01   ACRU    CRI2 </span>
-<span class="co">##  5 D01E       D             1 E       2018-07-22 CAN01   ACRU    SIPI </span>
-<span class="co">##  6 D01E       D             1 E       2018-07-22 CAN01   ACRU    FRI  </span>
-<span class="co">##  7 D01E       D             1 E       2018-07-22 CAN01   ACRU    CNDVI</span>
-<span class="co">##  8 D01E       D             1 E       2018-07-22 CAN01   ACRU    Ctr1 </span>
-<span class="co">##  9 D01E       D             1 E       2018-07-22 CAN01   ACRU    Ctr2 </span>
-<span class="co">## 10 D01E       D             1 E       2018-07-22 CAN01   ACRU    G    </span>
-<span class="co">## # ... with 7,211 more rows, and 1 more variable: index_value &lt;dbl&gt;</span></code></pre></div>
+<span class="co">## Warning in fd_leaf_spectrometry(): NAs introduced by coercion</span>
+<span class="co">## # A tibble: 6,873 x 11</span>
+<span class="co">##    subplot_id replicate  plot subplot date       tree_id leaf_id species index</span>
+<span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;</span>
+<span class="co">##  1 D01E       D             1 E       2020-07-29 1EA1    can01   ACRU    SIPI </span>
+<span class="co">##  2 D01E       D             1 E       2020-07-29 1EA1    can01   ACRU    GM1  </span>
+<span class="co">##  3 D01E       D             1 E       2020-07-29 1EA1    can01   ACRU    GM2  </span>
+<span class="co">##  4 D01E       D             1 E       2020-07-29 1EA1    can01   ACRU    CNDVI</span>
+<span class="co">##  5 D01E       D             1 E       2020-07-29 1EA1    can01   ACRU    CRI1 </span>
+<span class="co">##  6 D01E       D             1 E       2020-07-29 1EA1    can01   ACRU    ARI1 </span>
+<span class="co">##  7 D01E       D             1 E       2020-07-29 1EA1    can01   ACRU    G    </span>
+<span class="co">##  8 D01E       D             1 E       2020-07-29 1EA1    can01   ACRU    Lic1 </span>
+<span class="co">##  9 D01E       D             1 E       2020-07-29 1EA1    can01   ACRU    WBI  </span>
+<span class="co">## 10 D01E       D             1 E       2020-07-29 1EA1    can01   ACRU    NPCI </span>
+<span class="co">## # ... with 6,863 more rows, and 2 more variables: index_value &lt;dbl&gt;, id &lt;chr&gt;</span></code></pre></div>
+<pre><code>## Warning in fd_leaf_spectrometry(): NAs introduced by coercion</code></pre>
 <p><img src="fd_leaf_physiology_vignette_files/figure-html/ndvi-plot-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div id="leaf-morphology" class="section level3">
