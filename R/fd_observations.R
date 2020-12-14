@@ -133,8 +133,43 @@ fd_observations <- function() {
   x <- data.frame(timeframe, Table = "fd_canopy_structure")
   no_csc <- merge(x, a.tally, by = c("month", "year"), all = TRUE)
 
-  ##############################
-  no_of_records <- rbind(no_soil_r, no_leaf_spec, no_photo, no_cam, no_par, no_csc)
+  #####################
+  # forest inventory
+  a <- fd_inventory()
+
+  # this makes the year and month column
+  a$month <- as.numeric(format(as.Date(a$date), "%m"))
+  a$year <- as.numeric(format(as.Date(a$date), "%Y"))
+
+  # count it up
+  a.tally <- aggregate(dbh_cm ~ month + year, data = a, FUN = length)
+  names(a.tally)[3] <- "no_of_obs"
+
+  # make time composite
+  x <- data.frame(timeframe, Table = "fd_inventory")
+  no_inv <- merge(x, a.tally, by = c("month", "year"), all = TRUE)
+
+
+  #####################
+  # litter
+  a <- fd_litter()
+
+  a$date <- as.Date("2018-11-15")
+  # this makes the year and month column
+  a$month <- as.numeric(format(as.Date(a$date), "%m"))
+  a$year <- as.numeric(format(as.Date(a$date), "%Y"))
+
+  # count it up
+  a.tally <- aggregate(species ~ month + year, data = a, FUN = length)
+  names(a.tally)[3] <- "no_of_obs"
+
+  # make time composite
+  x <- data.frame(timeframe, Table = "fd_litter")
+  no_leaf <- merge(x, a.tally, by = c("month", "year"), all = TRUE)
+
+
+    ##############################
+  no_of_records <- rbind(no_soil_r, no_leaf_spec, no_photo, no_cam, no_par, no_csc, no_inv, no_leaf)
 
   # no_of_records$month <- as.numeric(no_of_records$month)
   # no_of_records$year <- as.numeric(no_of_records$year)

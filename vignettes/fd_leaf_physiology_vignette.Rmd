@@ -23,6 +23,7 @@ knitr::opts_chunk$set(
 Multiple types of ecophysiological data are collected annually during the growing season within FoRTE in order to capture the dynamic response of leaf functional traits to disturbance. We focus on two distinct strata within the forest: subcanopy and canopy. Within each stratum, we track changing leaf physiology year to year in a subset of surviving (i.e. ungirdled) trees through repeated measurements of leaves from the same branches on those trees each year. Within the canopy stratum, where access to light is generally high, leaves of surviving trees may adjust physiologically to loss of neighboring crown leaf area through increased access to other resources such as nitrogen and water (Nave et al., 2011). Within the subcanopy stratum, the ability of surviving trees to compensate for lost canopy leaf area becomes increasingly important to stabilizing C cycling as disturbance severity rises (Fahey et al., 2016; Stuart-Haëntjens et al., 2015). See [the FoRTE Proposal Narrative] (https://fortexperiment.github.io/fortedata/articles/fd_forte_proposal_vignette.html) for further details.
 
 ## Leaf Physiology Functions
+
 The `fd_leaf_physiology()` script within `fortedata` currently includes the following functions:
 
 

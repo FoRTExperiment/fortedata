@@ -103,7 +103,7 @@
       <h1 data-toc-skip>fortedata: Forest Inventory Data</h1>
                         <h4 class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-12-13</h4>
+            <h4 class="date">2020-12-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_inventory_vignette.Rmd"><code>vignettes/fd_inventory_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>fd_inventory_vignette.Rmd</code></div>
@@ -112,6 +112,25 @@
 
     
     
+<div id="forest-inventory-background-and-introduction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#forest-inventory-background-and-introduction" class="anchor"></a>Forest Inventory Background and Introduction</h2>
+<p>Each tree in FoRTE’s 32 subplots above 8 cm in diameter-at-breast-height (DBH) is tagged, measured, and monitored over time. These data are compiled in the <code>fd_inventory</code> data set, described in detail below. In short, these data are traditional forest inventory data. They include:</p>
+<ul>
+<li><p>Tree DBH in cm (<code>dbh_cm</code>) measured as the average of two caliper measurements taken with a Haglof Postex PDII Inventory Unit and Caliper Set. Initial measurements were taken in 2018, with intention of remeasurement at 4 to 5 year intervals with the first remeasurmennt slated for 2022. This time interval is chosen based on previous experience at the University of Michigan Biological Station. Given the slow tree growth rates at the station’s latitude, a 4 to 5 year measurement interval insures that growth will outpace measurment error.</p></li>
+<li><p>Canopy status (<code>canopy_status</code>) is recorded in this dataset where OD = overstory dominant, UN = understory, OS = overstory submissive, SA = sapling, and NA is a blank or missing record.</p></li>
+<li><p>Tree health status (<code>health_status</code>) where D = dead, M = moribund, and L = live</p></li>
+<li><p>Species (<code>species</code>) using the USDA Taxon system (e.g. FAGR is Fagus grandfolia, QURU is Quercus rubra, etc.).</p></li>
+<li><p>Tree individual identifier (<code>tag</code>) as the 4 digit tree tag number.</p></li>
+</ul>
+<p>These data were originally collected in 2018, pre-disturbance. For stem-girdled tree information, i.e. which trees were targeted for mortality, see <code>fd_mortatlity()</code>.</p>
+</div>
+<div id="data-availability" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-availability" class="anchor"></a>Data Availability</h2>
+<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current inventory observations available as of 2020-12-14 are detailed in Figure 1. Remeasurement is slated to occur in the summer of 2022.</p>
+<p><img src="fd_inventory_vignette_files/figure-html/observations-1.png" width="576"></p>
+</div>
 <div id="forest-inventory-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#forest-inventory-data" class="anchor"></a>Forest Inventory Data</h2>
@@ -137,22 +156,13 @@
 <span class="co">## 10 A01E       A             1 E       2018-07-12  2781 QURU      42.6</span>
 <span class="co">## # ... with 3,155 more rows, and 3 more variables: health_status &lt;chr&gt;,</span>
 <span class="co">## #   canopy_status &lt;chr&gt;, notes &lt;chr&gt;</span></code></pre></div>
+<p><img src="fd_inventory_vignette_files/figure-html/table_inventory-1.png" width="576"></p>
 </div>
 <div id="inventory-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#inventory-data" class="anchor"></a>Inventory Data</h2>
 <p>Biomass can be calculated from <code><a href="../reference/fd_inventory.html">fd_inventory()</a></code> by using the function <code><a href="../reference/calc_biomass.html">calc_biomass()</a></code>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># import the biomass data</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">fortedata</span><span class="fu">::</span><span class="fu"><a href="../reference/calc_biomass.html">calc_biomass</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># return density plot of replicate biomass</span>
-<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">biomass</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">.</span><span class="op">~</span><span class="va">replicate</span><span class="op">)</span>
-<span class="co">## Warning: Removed 2 rows containing non-finite values (stat_density).</span></code></pre></div>
-<p><img src="fd_inventory_vignette_files/figure-html/biomass-1.png" width="720" style="display: block; margin: auto;"></p>
+<p><img src="fd_inventory_vignette_files/figure-html/biomass-1.png" width="720" style="display: block; margin: auto;"><img src="fd_inventory_vignette_files/figure-html/biomass-2.png" width="720" style="display: block; margin: auto;"></p>
 </div>
   </div>
 
