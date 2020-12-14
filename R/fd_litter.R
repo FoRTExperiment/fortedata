@@ -1,6 +1,8 @@
 # Litterfall data from litter trap collections
 
-#' Litter trap data.
+#' Litter mass data from litter trap collections
+#'
+#' These data include leaf litter mass sorted by species as well as fine wood debris (`fwd` column) in grams collected annually every ~November from the litter traps located in each FoRTE  subplot. The `fraction` column informs the user is each row is either leaves which are broken down by species in the `species` column; misc which are small, unidentifiable leaf fragements or organic material; or fwd, for fine woody debris which are small twigs and sticks. For 2018-2020, there are four litter traps in each subplot. Each littertrap is circular (1.82 m circumference, 0.29 m radius, 0.26 m^2 area).See `fd_experimental_design_vignette` for more information. Within the dataset, the `bagtare_g` column is the mass of the measuring bag or tare and `bagmass_g` is the total mass of bag + sample.
 #'
 #' @note Data were collected by multiple Gough Lab team members
 #'

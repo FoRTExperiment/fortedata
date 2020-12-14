@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -84,7 +84,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/FoRTExperiment/fortedata/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -103,12 +110,12 @@
 <div id="overview" class="section level3">
 <h3 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h3>
-<p><em>fortedata</em> is an R package that provides functions for accessing and interpreting data associated with FoRTE: Forest Resilience Threshold Experimen–a modeling and manipulative field experiment that tests the effects of disturbance severity and disturbance type on carbon cycling dynamics in a temperate forest. Package data consists of measurements of carbon pools and fluxes and ancillary measurements to help analyse and users analyse and interpret carbon cycling over time.</p>
+<p><em>fortedata</em> is an R package that provides functions for accessing and interpreting data associated with FoRTE: Forest Resilience Threshold Experiment–a modeling and manipulative field experiment that tests the effects of disturbance severity and disturbance type on carbon cycling dynamics in a temperate forest. Package data consists of measurements of carbon pools and fluxes and ancillary measurements to help users analyze and interpret carbon cycling over time.</p>
 </div>
 <div id="getting-started" class="section level3">
 <h3 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting Started</h3>
-<p>We recommend that users begin with either package <a href="https://fortexperiment.github.io/fortedata/articles/index.html">vignettes</a> that provide detailed examples of package funcitons and potential use cases, or with package <a href="https://fortexperiment.github.io/fortedata/reference/index.html">documentation</a>.</p>
+<p>We recommend that users begin with either package <a href="https://fortexperiment.github.io/fortedata/articles/index.html">vignettes</a> that provide detailed examples of package functions and potential use cases, or with package <a href="https://fortexperiment.github.io/fortedata/reference/index.html">documentation</a>.</p>
 </div>
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
@@ -120,6 +127,22 @@
 <span class="op">}</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"FoRTExperiment/fortedata"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, build_vignettes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 </div>
+<div id="fortedata-102-updates-and-future-data-availability" class="section level3">
+<h3 class="hasAnchor">
+<a href="#fortedata-102-updates-and-future-data-availability" class="anchor"></a><code>fortedata</code> 1.0.2 Updates and Future Data Availability</h3>
+<p><strong>Updates</strong></p>
+<ul>
+<li><p><code>fd_leaf_spectrometry</code> now includes 2018 and 2020 data, as well as corrected leaf_id and tree_id data columns. Additionally, the original filename has been retained in the data set as id (2020-12-12)</p></li>
+<li><p><code><a href="reference/fd_canopy_structure.html">fd_canopy_structure()</a></code> now includes 2020 lidar-derived canopy structural trait data. (2020-12-09)</p></li>
+<li><p><code><a href="reference/fd_soil_respiration.html">fd_soil_respiration()</a></code> now includes 2020 soil CO_2_ efflux, soil temperature, and soil water content data. (2020-12-09)</p></li>
+</ul>
+<p><strong>Future Data Availability</strong></p>
+<ul>
+<li><p>Leaf spectral data (see <code>fd_leaf_spectrometry</code>) for 2019 are on deck. Currently, there are issues with matching tree identification field codes to the data set.</p></li>
+<li><p>Light interception data (see <code><a href="reference/fd_ceptometer.html">fd_ceptometer()</a></code>) for 2020 is being calibrated with the adjacent UMBS AmeriFlux tower PAR data (US-UMb tower ID).</p></li>
+<li><p>3-D lidar structural data has been held up further by COVID-19. Access to computing resources to process said data have been greatly encumbered.</p></li>
+</ul>
+</div>
 <div id="the-forte-team" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-forte-team" class="anchor"></a>The FoRTE Team</h3>
@@ -130,14 +153,23 @@
 <li><p>Graduate Students: Maxim S. Grigri, Lisa T. Haber, Kayla Mathes</p></li>
 <li><p>Undergraduate Students: Alexandra Barry, Laura J. Hickey, Catherine McGuigan, Autym Shafer</p></li>
 <li><p>REU Students: Evan Paris, Carly Rodriguez</p></li>
-<li><p>Reserach Collaborators: Elizabeth Agee, Brandon Alveshare, Kyla M. Dahlin, Robert T. Fahey, Aaron G. Kamoske, Jason Tallant</p></li>
+<li><p>Research Collaborators: Elizabeth Agee, Brandon Alveshare, Kyla M. Dahlin, Robert T. Fahey, Aaron G. Kamoske, Jason Tallant</p></li>
 </ul>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
+    <div class="links">
+<h2>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/FoRTExperiment/fortedata/">https://​github.com/​FoRTExperiment/​fortedata/​</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/FoRTExperiment/fortedata/issues">https://​github.com/​FoRTExperiment/​fortedata/​issues</a>
+</li>
+</ul>
+</div>
+<div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
 <li>file <a href="LICENSE-text.html">LICENSE</a>

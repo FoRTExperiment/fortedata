@@ -1,17 +1,16 @@
 # Inventory data
 
 
-#' Forest inventory data for the 32 FoRTE subplots. Includes diameter-at-breast-height
-#' (DBH) measurements in units of cm as well as information on health (i.e. see
-#'  `health_status` column where D = dead, M = moribund, and L = live) and canopy status
-#'  (i.e. see `canopy_status` where OD = overstory dominant, UN = understory,
-#'  OS = overstory submissive, SA = sapling,  and NA is a blank or missing record)
+#' Forest Inventory Data
+#'
+#' @details Forest inventory data for the 32 FoRTE subplots.
+#' Includes diameter-at-breast-height (DBH) measurements in units
+#' of cm as well as information on health (i.e. see
+#' `health_status` column where D = dead, M = moribund, and L = live) and canopy status (i.e. see `canopy_status` where OD = overstory dominant, UN = understory, OS = overstory submissive, SA = sapling,  and NA is a blank or missing record) and `species`, not species are identified using the USDA Taxon system (e.g. FAGR is Fagus grandfolia, QURU is Quercus rubra, etc.). The `tag` column is the tree tag number. These data were originally collected in 2018, pre-disturbance. For stem-girdled tree information, i.e. which trees were targeted for mortality, see `fd_mortatlity()`. Remeasure for dbh is planned for 2022.
 #'
 #' @note Data were collected by Gough Lab team members Autym Shafer,
 #' Catherine McGuigan, and Alexandra Barry in 2018
-#' using a Haglof Postex Inventory Unit with DPII Caliper
-#' Where 'species' column is '????" indicates unknown plant id to be corrected
-#' in future work.
+#' using a Haglof Postex Inventory Unit with PD II Caliper
 #'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
@@ -81,7 +80,9 @@ fd_inventory_summary <- function() {
 
 
 
-#' Mortality Assignments for Girdling 2018
+#' Mortality Assignments for 2018 Stem Girdling
+#'
+#' A data set similar to `fd_inventory` but includes the column `fate` which has a value of either "kill" or "live" with "kill" indicating the tree was stem girdled.
 #'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.#'
 #' @export

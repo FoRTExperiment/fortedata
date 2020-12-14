@@ -10,7 +10,7 @@ fd_leaf_spectrometry()
 A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
-Leaf spectrometery data
+These data were collected from repeated measures with a CI 710 Leaf Spectrometer from CID instruments on leaves in  canopy trees in FoRTE plots. Each individual tree can be identified by the \code{tree_id} and each leaf is id'ed as \code{leaf_id}. These data include several vegetation indices \code{index} derived from the instrument hyperspectral data. The data value for each index is in the \code{index_value} column and are unitless. Further information is availble in the \code{fd_ecophysiology_vignette}.
 }
 \note{
 Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer

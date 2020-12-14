@@ -11,7 +11,10 @@ A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
-Ceptometer data.
+Ceptometer derived light interception data
+}
+\details{
+data on light interception, as faPAR or the fraction of absorbed photosynthetically available radiation, based on the difference between above and below canopy PAR as measured by a Decagon LP-80 handheld ceptometer. Units of \code{a_par}, above canopy PAR, and \code{b_par}, below canopy PAR, are in units of micromoles per square meter per second while \code{fapar} and \code{lai_cept}, leaf area index derived from light data, are ratio-based, unitless data.
 }
 \note{
 Data were collected by Jeff W. Atkins and Brandon Alveshare using

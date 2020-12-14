@@ -1,17 +1,20 @@
 # Remote sensing data
 
 
-#' Hemispherical camera data collected using a 24 Megapixel
-#' Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
-#' 180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
-#' channel, which allows direct calculation of plant greenness as the normalized difference
-#' vegetation index (NDVI). See `fd_remote_sensing_vignette` for more details.
+#' Hemispherical Camera Imagery
+#'
+#' \code{fd_hemi_camera} provides a data set of hemispherical canopy imagery.
+#'
+#' @details Hemispherical imagery is collected using a 24 Megapixel Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a 180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared channel, which allows direct calculation of plant greenness as the normalized difference vegetation index (NDVI). See `fd_remote_sensing_vignette` for more details.
+#'
+#'
 #'
 #' @note Data were collected by Jeff W. Atkins (2018, 2019, 2020) and Evan Paris (2019)
 #'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @importFrom stats na.omit
 #' @export
+#'
 #' @examples
 #' fd_hemi_camera()
 fd_hemi_camera <- function() {
@@ -111,11 +114,13 @@ fd_hemi_camera_summary <- function() {
 
 
 
-#' Canopy structural traits from 2D portable canopy lidar collected using a
-#' Riegl VHS3100FLP upward facing pulsed-laser system. Lidar point cloud data were converted to
-#' canopy strcuturla trait data using `forestr` version 1.0.1
-#' See `fd_remote_sensing_vignette` for more details.
+#' Canopy Structural Trait Data
 #'
+#' Canopy structural traits from 2D portable canopy lidar
+#'
+#' @details These data were collected using a Riegl VHS3100FLP upward facing pulsed-laser system. Lidar point cloud data were converted to canopy structural trait data using `forestr` version 1.0.1
+#'
+#' See `fd_remote_sensing_vignette` for more details.
 #'
 #' @note Data were collected by Jeff W. Atkins (2018, 2019, 2020) and Brandon Alveshare (2019)
 #'
@@ -140,6 +145,7 @@ fd_canopy_structure <- function() {
 }
 
 #' Summary data for canopy structural data including canopy complexity and leaf area
+#'
 #' by replicate by year for 2018 to 2020
 #'
 #' @details The columns are as follows:
@@ -202,6 +208,10 @@ fd_canopy_structure_summary <- function() {
 }
 
 #' Ceptometer data.
+#'
+#' Ceptometer derived light interception data
+#'
+#' @details data on light interception, as faPAR or the fraction of absorbed photosynthetically available radiation, based on the difference between above and below canopy PAR as measured by a Decagon LP-80 handheld ceptometer. Units of `a_par`, above canopy PAR, and `b_par`, below canopy PAR, are in units of micromoles per square meter per second while `fapar` and `lai_cept`, leaf area index derived from light data, are ratio-based, unitless data.
 #'
 #' @note Data were collected by Jeff W. Atkins and Brandon Alveshare using
 #' a Decagon LP-80 Handheld Ceptometer

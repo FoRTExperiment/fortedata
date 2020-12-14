@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -122,7 +122,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/FoRTExperiment/fortedata/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -137,7 +142,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Treatment assignments</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/FoRTExperiment/fortedata/blob/master/R/fd_plots.R'><code>R/fd_plots.R</code></a></small>
     <div class="hidden name"><code>fd_treatments.Rd</code></div>
     </div>
 
@@ -150,20 +155,7 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>data.frame</code> or <code>tibble</code>. See "Details" for column descriptions.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The columns are as follows:</p><ul>
-<li><p><code>replicate</code> (character): Replicate code. Each replicate contains
-multiple plots with different disturbance treatments.#'</p></li>
-<li><p><code>plot</code> (integer): plot code
-one in the eastern part, one in the western.</p></li>
-<li><p><code>subplot</code> (double): Area of the nested subplot, in square meters.</p></li>
-<li><p><code>disturbance_severity</code> (integer): assigned targeted distrubance severity
-percentage, based on leaf area</p></li>
-<li><p><code>treatment</code> (character): either top as T or bottomup B</p></li>
-</ul>
-
+    <p>A <code>data.frame</code> or <code>tibble</code>. Call <code><a href='fd_metadata.html'>fd_metadata</a></code> for field metadata.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Measurements by Gough Lab at the University of Michigan Biological Station.</p>

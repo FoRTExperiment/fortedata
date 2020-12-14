@@ -6,11 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hemispherical camera data collected using a 24 Megapixel
-Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
-180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
-channel, which allows direct calculation of plant greenness as the normalized difference
-vegetation index (NDVI). See fd_remote_sensing_vignette for more details. — fd_hemi_camera • fortedata</title>
+<title>Hemispherical Camera Imagery — fd_hemi_camera • fortedata</title>
 
 
 <!-- jquery -->
@@ -43,16 +39,8 @@ vegetation index (NDVI). See fd_remote_sensing_vignette for more details. — fd
 
 
 
-<meta property="og:title" content="Hemispherical camera data collected using a 24 Megapixel
-Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
-180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
-channel, which allows direct calculation of plant greenness as the normalized difference
-vegetation index (NDVI). See fd_remote_sensing_vignette for more details. — fd_hemi_camera" />
-<meta property="og:description" content="Hemispherical camera data collected using a 24 Megapixel
-Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
-180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
-channel, which allows direct calculation of plant greenness as the normalized difference
-vegetation index (NDVI). See fd_remote_sensing_vignette for more details." />
+<meta property="og:title" content="Hemispherical Camera Imagery — fd_hemi_camera" />
+<meta property="og:description" content="fd_hemi_camera provides a data set of hemispherical canopy imagery." />
 
 
 
@@ -84,7 +72,7 @@ vegetation index (NDVI). See fd_remote_sensing_vignette for more details." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -134,7 +122,12 @@ vegetation index (NDVI). See fd_remote_sensing_vignette for more details." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/FoRTExperiment/fortedata/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -148,21 +141,13 @@ vegetation index (NDVI). See fd_remote_sensing_vignette for more details." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Hemispherical camera data collected using a 24 Megapixel
-Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
-180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
-channel, which allows direct calculation of plant greenness as the normalized difference
-vegetation index (NDVI). See <code>fd_remote_sensing_vignette</code> for more details.</h1>
-    
+    <h1>Hemispherical Camera Imagery</h1>
+    <small class="dont-index">Source: <a href='https://github.com/FoRTExperiment/fortedata/blob/master/R/fd_remote_sensing.R'><code>R/fd_remote_sensing.R</code></a></small>
     <div class="hidden name"><code>fd_hemi_camera.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Hemispherical camera data collected using a 24 Megapixel
-Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
-180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
-channel, which allows direct calculation of plant greenness as the normalized difference
-vegetation index (NDVI). See <code>fd_remote_sensing_vignette</code> for more details.</p>
+    <p><code>fd_hemi_camera</code> provides a data set of hemispherical canopy imagery.</p>
     </div>
 
     <pre class="usage"><span class='fu'>fd_hemi_camera</span><span class='op'>(</span><span class='op'>)</span></pre>
@@ -171,6 +156,9 @@ vegetation index (NDVI). See <code>fd_remote_sensing_vignette</code> for more de
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>data.frame</code> or <code>tibble</code>. Call <code><a href='fd_metadata.html'>fd_metadata</a></code> for field metadata.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Hemispherical imagery is collected using a 24 Megapixel Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a 180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared channel, which allows direct calculation of plant greenness as the normalized difference vegetation index (NDVI). See <code>fd_remote_sensing_vignette</code> for more details.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Data were collected by Jeff W. Atkins (2018, 2019, 2020) and Evan Paris (2019)</p>

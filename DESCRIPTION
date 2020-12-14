@@ -15,6 +15,7 @@ Description: Data and analysis scripts from the Forest Resilience Threshold Expe
 Depends:
     R (>= 3.5.0)
 License: file LICENSE
+BugReports: https://github.com/FoRTExperiment/fortedata/issues
 Suggests: 
     testthat,
     tibble,

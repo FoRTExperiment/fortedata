@@ -3,6 +3,8 @@
 
 #' Leaf spectrometery data
 #'
+#' These data were collected from repeated measures with a CI 710 Leaf Spectrometer from CID instruments on leaves in  canopy trees in FoRTE plots. Each individual tree can be identified by the `tree_id` and each leaf is id'ed as `leaf_id`. These data include several vegetation indices `index` derived from the instrument hyperspectral data. The data value for each index is in the `index_value` column and are unitless. Further information is availble in the `fd_ecophysiology_vignette`.
+#'
 #' @note Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export

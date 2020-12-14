@@ -179,6 +179,8 @@ calc_biomass <- function(){
 
 #' Metadata for the experimental field plots
 #'
+#' These data include `latitude` and `longitude` of each plot as well as eperimental assignments inluding `disturbance_severity` and `treatment`.
+#'
 #' @return A A `data.frame` or `tibble` with the experimental treatments by UMBS plot.
 #' @export
 #' @examples
