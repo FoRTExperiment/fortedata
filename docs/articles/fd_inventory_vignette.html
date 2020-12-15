@@ -103,7 +103,7 @@
       <h1 data-toc-skip>fortedata: Forest Inventory Data</h1>
                         <h4 class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-12-14</h4>
+            <h4 class="date">2020-12-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_inventory_vignette.Rmd"><code>vignettes/fd_inventory_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>fd_inventory_vignette.Rmd</code></div>
@@ -128,7 +128,7 @@
 <div id="data-availability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-availability" class="anchor"></a>Data Availability</h2>
-<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current inventory observations available as of 2020-12-14 are detailed in Figure 1. Remeasurement is slated to occur in the summer of 2022.</p>
+<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current inventory observations available as of 2020-12-15 are detailed in Figure 1. Remeasurement is slated to occur in the summer of 2022.</p>
 <p><img src="fd_inventory_vignette_files/figure-html/observations-1.png" width="576"></p>
 </div>
 <div id="forest-inventory-data" class="section level2">
@@ -156,13 +156,23 @@
 <span class="co">## 10 A01E       A             1 E       2018-07-12  2781 QURU      42.6</span>
 <span class="co">## # ... with 3,155 more rows, and 3 more variables: health_status &lt;chr&gt;,</span>
 <span class="co">## #   canopy_status &lt;chr&gt;, notes &lt;chr&gt;</span></code></pre></div>
-<p><img src="fd_inventory_vignette_files/figure-html/table_inventory-1.png" width="576"></p>
+<p><img src="fd_inventory_vignette_files/figure-html/table_inventory-1.png" width="672"></p>
+<p>###Species Abbreviations for Figure 2: ACPE - <em>Acer pensylvanicum</em>; ACRU - <em>Acer rubrum</em>; ACSA3 - <em>Acer saccharum</em>; AMELA - <em>Amelanchier Medik.</em>; BEAL2 - <em>Betula alleghaniensis</em>; BEPA - <em>Betula papyrifera</em>; FAGR - <em>Fagus grandifolia</em>; PIRE - <em>Pinus resinosa</em>; PIST - <em>Pinus strobus</em>; POGR4 - <em>Populus grandidentata</em>; POTR - <em>Populus tremuloides</em>; QURU - <em>Quercus rubra</em>; TSCA - <em>Tsuga canadensis</em>. Abbreviations are from the <a href="http://plants.usda.gov/dl_all_html">USDA PLANTS list</a>.</p>
 </div>
 <div id="inventory-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#inventory-data" class="anchor"></a>Inventory Data</h2>
 <p>Biomass can be calculated from <code><a href="../reference/fd_inventory.html">fd_inventory()</a></code> by using the function <code><a href="../reference/calc_biomass.html">calc_biomass()</a></code>.</p>
-<p><img src="fd_inventory_vignette_files/figure-html/biomass-1.png" width="720" style="display: block; margin: auto;"><img src="fd_inventory_vignette_files/figure-html/biomass-2.png" width="720" style="display: block; margin: auto;"></p>
+<p><img src="fd_inventory_vignette_files/figure-html/biomass-1.png" width="720" style="display: block; margin: auto;"></p>
+<p>In figure 3 we show above-ground woody biomass at the plot level. This can be done by summing the biomass estimates to the plot level and then multiplying by 0.001 to convert kg to Mg and then multiplying that value by 10 to scale from 0.1 ha to 1 ha as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># group the data by your factor of interest, here we show how the data are summed in Figure 3.</span>
+<span class="va">x</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">subplot_id</span>, <span class="va">disturbance_severity</span>, <span class="va">treatment</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarize</span><span class="op">(</span>biomass_plot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">biomass</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">y</span>
+
+<span class="co"># Above, y$biomass is in units of kg per 0.1 ha. We want to convert to Mg per ha</span>
+<span class="va">y</span><span class="op">$</span><span class="va">biomass_mg_ha</span> <span class="op">&lt;-</span> <span class="va">y</span><span class="op">$</span><span class="va">biomass_plot</span> <span class="op">*</span> <span class="fl">0.001</span> <span class="op">*</span> <span class="fl">10</span></code></pre></div>
 </div>
   </div>
 

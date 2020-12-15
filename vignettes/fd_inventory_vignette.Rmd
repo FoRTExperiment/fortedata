@@ -72,7 +72,7 @@ fd_inventory()
 
 
 
-```{r table_inventory, fig.width=6, echo = FALSE, message=FALSE, warning=FALSE}
+```{r table_inventory, fig.width=7, echo = FALSE, message=FALSE, warning=FALSE}
 
 inv <- data.frame(fd_inventory())
 
@@ -120,21 +120,24 @@ ggplot(inv, aes(x = species, y = dbh_cm, fill = species)) +
   
 ```
 
+###Species Abbreviations for Figure 2:
+ACPE - *Acer pensylvanicum*; ACRU - *Acer rubrum*; ACSA3 - *Acer saccharum*; AMELA - *Amelanchier Medik.*; BEAL2 - *Betula alleghaniensis*; BEPA - *Betula papyrifera*; FAGR - *Fagus grandifolia*; PIRE - *Pinus resinosa*; PIST - *Pinus strobus*; POGR4 - *Populus grandidentata*; POTR - *Populus tremuloides*; QURU - *Quercus rubra*; TSCA - *Tsuga canadensis*. Abbreviations are from the [USDA PLANTS list](http://plants.usda.gov/dl_all_html).
+
 ## Inventory Data
   
-Biomass can be calculated from `fd_inventory()` by using the function `calc_biomass()`.
+Biomass can be calculated from `fd_inventory()` by using the function `calc_biomass()`. 
 
-```{r biomass, fig.height = 3.5, fig.width = 7.5, fig.align = "center", echo = FALSE, warning=FALSE, message=FALSE}
+```{r biomass, fig.asp = 0.75, fig.width = 7.5, fig.align = "center", echo = FALSE, warning=FALSE, message=FALSE}
 # import the biomass data
 x <- fortedata::calc_biomass()
 
-# return density plot of replicate biomass
-ggplot2::ggplot(x, ggplot2::aes(x = biomass, fill = as.factor(replicate)))+
-  ggplot2::geom_density(alpha = 0.4)+
-  ggplot2::theme(legend.position = "none")+
-  ggplot2::facet_grid(.~replicate)+
-    ggplot2::ggtitle(paste("Figure 3:  Aboveground Woody Biomass by Replicate"))
-
+# # return density plot of replicate biomass
+# ggplot2::ggplot(x, ggplot2::aes(x = biomass, fill = as.factor(replicate)))+
+#   ggplot2::geom_density(alpha = 0.4)+
+#   ggplot2::theme(legend.position = "none")+
+#   ggplot2::facet_grid(.~replicate)+
+#     ggplot2::ggtitle(paste("Figure 3:  Aboveground Woody Biomass by Replicate"))
+# 
 
 
 
@@ -171,18 +174,39 @@ forte_pal <- forte_colors()
 # first let's make some new, more informative labels for our facets
 facet.labs <- c("B" = "Bottom-Up", "T" = "Top-Down")
 
-ggplot2::ggplot(x, aes(y = biomass, x = disturbance_severity, fill = disturbance_severity))+
+
+
+x %>%
+  group_by(subplot_id, disturbance_severity, treatment) %>%
+  summarize(biomass_plot = sum(biomass)) -> y
+
+y$biomass_mg_ha <- y$biomass_plot * 0.001 * 10
+
+ggplot2::ggplot(y, aes(y = biomass_mg_ha, x = disturbance_severity, fill = disturbance_severity))+
   geom_boxplot(color = "black")+
-  geom_jitter(position = position_jitter(0.2), shape = 21, alpha = 0.3)+
+  geom_jitter(position = position_jitter(0.2), shape = 21, alpha = 0.4, size = 4)+
   xlab("Disturbance Severity")+
-  ylab("Above-groudn Woody Biomass [g]")+
+  ylab(expression("Above-ground Woody Biomass [Mg per "~Ha^-1*"]"))+
   theme_minimal()+
   scale_color_manual(values = forte_pal, guide = FALSE)+
   scale_fill_manual(values = forte_pal,
                     name = "Disturbance Severity",
                     labels = c("0%", "45%", "65%", "85%"))+
   theme(legend.position = "bottom")+
-  ggplot2::ggtitle(paste("Figure 4:  Aboveground Woody Biomass \n by Treatment, Disturbance Severity "))+
+  ggplot2::ggtitle(paste("Figure 3:  Aboveground Woody Biomass \n by Treatment, Disturbance Severity "))+
   facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs)) 
+```
+
+In figure 3 we show above-ground woody biomass at the plot level. This can be done by summing the biomass estimates to the plot level and then multiplying by 0.001 to convert kg to Mg and then multiplying that value by 10 to scale from 0.1 ha to 1 ha as follows:
+
+```{r scaling, eval= FALSE}
+# group the data by your factor of interest, here we show how the data are summed in Figure 3.
+x %>%
+  group_by(subplot_id, disturbance_severity, treatment) %>%
+  summarize(biomass_plot = sum(biomass)) -> y
+
+# Above, y$biomass is in units of kg per 0.1 ha. We want to convert to Mg per ha
+y$biomass_mg_ha <- y$biomass_plot * 0.001 * 10
+
 ```
 
