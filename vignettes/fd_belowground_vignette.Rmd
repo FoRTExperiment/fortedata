@@ -25,12 +25,11 @@ Soil respiration (R~s~) globally contributes more than half of total temperate f
 
 ## Data Availability
 
-
 ```{r observations, fig.asp = 0.6, fig.width=6, echo = FALSE, message=FALSE, warning=FALSE}
 no_of_records.df <- fd_observations()
-
 no_of_records <- subset(no_of_records.df, table == "fd_soil_respiration")
 
+sr <- fd_soil_respiration()
 
 ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer(year), fill= no_of_obs)) +
   ggplot2::geom_tile(ggplot2::aes(fill = no_of_obs), color = "black") +
@@ -42,20 +41,15 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
   ggplot2::theme(legend.position = "none")+
   ggplot2::ylab("Year")+
   ggplot2::xlab("Month")+
-  ggplot2::ggtitle(paste("Figure 1: No. of observations currently available \nin each remote sensing function as of:", Sys.Date()))+
+  ggplot2::ggtitle(paste("Figure 1: No. of observations currently available \nin soil respiration dataset as of:", Sys.Date()))+
   ggplot2::facet_grid(table ~ .,  space = "free")+
   ggplot2::theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
     color="black", fill="white", size= 0.5, linetype="solid"))
 
 ```
 
-
 ## Belowground Measurements
-The `fd_belowground()` script within `fortedata` currently includes one function:
-
-
-`fd_soil_respiration()` returns a single dataset of 2780 observations each of soil CO2 efflux (μmol CO~2~ m^-2^ s^-1^) as well as soil micrometeorological measurements: soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) for the year 2019 (Figs. 3, 4; Table S5).
-
+The `fd_soil_respiration()` function returns a single dataset of `r nrow(sr)` observations each of soil CO2 efflux (μmol CO~2~ m^-2^ s^-1^) as well as soil micrometeorological measurements: soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) (Figs. 3, 4; Table S5).
 
 ```{r fd_soil_respiration}
 fortedata::fd_soil_respiration()
@@ -63,8 +57,7 @@ fortedata::fd_soil_respiration()
 
 ## Soil CO~2~ Efflux
 
-The soil CO~2~ efflux values in this data set represent bulk soil respiration (R~s~) and were measured at 160 soil collars 11 times between July 2018 (pre-disturbance) and November 2019 (post-disturbance). Each of the 32 subplots contained five 10 cm diameter PVC collars that were installed 4 cm deep, leaving 1 cm in height above the soil surface. Collars were spatially paired with litter traps and root in-growth cores with 1 collar located at subplot center and 4 collars 8m away in each cardinal direction. In situ point Rs measurements (umol CO~2~ m^-2^ s^-1^) were made following protocols from Curtis et al. 2005 using a LI-6400 portable gas analyzer with 10 cm diameter soil CO~2~ closed chamber cuvette (LI-COR Inc, Lincoln, NE, USA). During each of the 11 total measurement efforts, two efflux values were recorded and averaged at each collar over 90 second intervals. To account for diurnal fluctuations in Rs, starting replicate and plot were randomized for each round of measurements. Recent precipitation events were documented and measurements were not taken with 24 hrs following heavy precipitation.
-  
+The soil CO~2~ efflux values in this data set represent bulk soil respiration (R~s~) and were measured at 160 soil collars on `r length(unique(sr$date))` days between `r format(min(sr$date, na.rm = TRUE), format = "%B %Y")` (pre-disturbance) and `r format(max(sr$date, na.rm = TRUE), format = "%B %Y")` (post-disturbance). Each of the 32 subplots contained five 10 cm diameter PVC collars that were installed 4 cm deep, leaving 1 cm in height above the soil surface. Collars were spatially paired with litter traps and root in-growth cores with 1 collar located at subplot center and 4 collars 8m away in each cardinal direction. In situ point Rs measurements (umol CO~2~ m^-2^ s^-1^) were made following protocols from Curtis et al. 2005 using a LI-6400 portable gas analyzer with 10 cm diameter soil CO~2~ closed chamber cuvette (LI-COR Inc, Lincoln, NE, USA). During each of the 11 total measurement efforts, two efflux values were recorded and averaged at each collar over 90 second intervals. To account for diurnal fluctuations in Rs, starting replicate and plot were randomized for each round of measurements. Recent precipitation events were documented and measurements were not taken with 24 hrs following heavy precipitation.
 
 ```{r soil_r, fig.width = 6, fig.asp = 0.7, fig.align = "center", echo = FALSE, warning = FALSE, messages = FALSE}
 x <- data.frame(fd_soil_respiration())
@@ -78,7 +71,6 @@ df <- data.frame(fortedata::fd_plot_metadata())
 # # First we want to concatenate our replicate, plot and subplot data to make a subplot_id column 
 df$subplot_id <- paste(df$replicate, 0, df$plot, df$subplot, sep = "")
 df$subplot_id <- as.factor(df$subplot_id)
-
 
 # Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
 df %>%
@@ -110,7 +102,6 @@ facet.labs <- c("B" = "Bottom-Up", "T" = "Top-Down")
 
 ggplot2::ggplot(y, aes(y = soil_co2_efflux, x = date, color = disturbance_severity,
                        fill = disturbance_severity))+
-  #geom_line(alpha = 0.8)+
   geom_point(shape = 21, color = "black", alpha = 0.3)+
   xlab("Disturbance Severity")+
   ylab(bquote('Soil '*~CO[2]~ "efflux ["*mu~'mol' ~CO[2]~ m^-2~s^-1*']')) +
@@ -121,7 +112,7 @@ ggplot2::ggplot(y, aes(y = soil_co2_efflux, x = date, color = disturbance_severi
                     name = "Disturbance Severity",
                     labels = c("0%", "45%", "65%", "85%"))+
   theme(legend.position = "bottom")+
-  ggplot2::ggtitle(expression('Figure 1: Soil '*~CO[2]~'efflux ['*mu~'mol' ~CO[2]~ m^-2~s^-1*'] by replicate, by year'))+
+  ggtitle(expression('Figure 1: Soil '*~CO[2]~'efflux ['*mu~'mol' ~CO[2]~ m^-2~s^-1*'] by replicate, by year'))+
   geom_smooth(method = "loess", formula = y ~ x, se = FALSE, show.legend = FALSE, size = 1.5)+
   facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs)) 
 
@@ -170,7 +161,7 @@ ggplot2::ggplot(y, aes(y = vwc, x = date, color = disturbance_severity,
                     name = "Disturbance Severity",
                     labels = c("0%", "45%", "65%", "85%"))+
   theme(legend.position = "bottom")+
-  ggplot2::ggtitle(paste(expression('Figure 3:  Growing Season Soil Moisture [%]\n by replicate, by year')))+
+  ggtitle(paste(expression('Figure 3:  Growing Season Soil Moisture [%]\n by replicate, by year')))+
   geom_smooth(method = "loess", formula = y ~ x, se = FALSE, show.legend = FALSE, size = 1.5)+
   facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs)) 
 
@@ -191,6 +182,3 @@ Raich, J. W and W. H. Schlesinger. 1992. “The global carbon dioxide flux in so
 Schlesinger Willam H. and Jeffrey A. Andrews. 2000. “Soil respiration and the global carbon cycle”. Biogeochemistry. 48: 7-20. 
 
 Sommerfeld, Andreas, Cornelius Senf, Brian Buma, Anthony W. D’Amato, Tiphaine Després, Ignacio Díaz-Hormazábal, Shawn Fraver, et al. 2018. “Patterns and Drivers of Recent Disturbances across the Temperate Forest Biome.” Nature Communications 9 (1). https://doi.org/10.1038/s41467-018-06788-9.
-
-
-
