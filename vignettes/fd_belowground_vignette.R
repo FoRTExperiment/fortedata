@@ -9,9 +9,9 @@ knitr::opts_chunk$set(
 
 ## ----observations, fig.asp = 0.6, fig.width=6, echo = FALSE, message=FALSE, warning=FALSE----
 no_of_records.df <- fd_observations()
-
 no_of_records <- subset(no_of_records.df, table == "fd_soil_respiration")
 
+sr <- fd_soil_respiration()
 
 ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer(year), fill= no_of_obs)) +
   ggplot2::geom_tile(ggplot2::aes(fill = no_of_obs), color = "black") +
@@ -23,7 +23,7 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
   ggplot2::theme(legend.position = "none")+
   ggplot2::ylab("Year")+
   ggplot2::xlab("Month")+
-  ggplot2::ggtitle(paste("Figure 1: No. of observations currently available \nin each remote sensing function as of:", Sys.Date()))+
+  ggplot2::ggtitle(paste("Figure 1: No. of observations currently available \nin soil respiration dataset as of:", Sys.Date()))+
   ggplot2::facet_grid(table ~ .,  space = "free")+
   ggplot2::theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
     color="black", fill="white", size= 0.5, linetype="solid"))
@@ -44,7 +44,6 @@ df <- data.frame(fortedata::fd_plot_metadata())
 # # First we want to concatenate our replicate, plot and subplot data to make a subplot_id column 
 df$subplot_id <- paste(df$replicate, 0, df$plot, df$subplot, sep = "")
 df$subplot_id <- as.factor(df$subplot_id)
-
 
 # Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
 df %>%
@@ -76,7 +75,6 @@ facet.labs <- c("B" = "Bottom-Up", "T" = "Top-Down")
 
 ggplot2::ggplot(y, aes(y = soil_co2_efflux, x = date, color = disturbance_severity,
                        fill = disturbance_severity))+
-  #geom_line(alpha = 0.8)+
   geom_point(shape = 21, color = "black", alpha = 0.3)+
   xlab("Disturbance Severity")+
   ylab(bquote('Soil '*~CO[2]~ "efflux ["*mu~'mol' ~CO[2]~ m^-2~s^-1*']')) +
@@ -87,7 +85,7 @@ ggplot2::ggplot(y, aes(y = soil_co2_efflux, x = date, color = disturbance_severi
                     name = "Disturbance Severity",
                     labels = c("0%", "45%", "65%", "85%"))+
   theme(legend.position = "bottom")+
-  ggplot2::ggtitle(expression('Figure 1: Soil '*~CO[2]~'efflux ['*mu~'mol' ~CO[2]~ m^-2~s^-1*'] by replicate, by year'))+
+  ggtitle(expression('Figure 1: Soil '*~CO[2]~'efflux ['*mu~'mol' ~CO[2]~ m^-2~s^-1*'] by replicate, by year'))+
   geom_smooth(method = "loess", formula = y ~ x, se = FALSE, show.legend = FALSE, size = 1.5)+
   facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs)) 
 
@@ -124,7 +122,7 @@ ggplot2::ggplot(y, aes(y = vwc, x = date, color = disturbance_severity,
                     name = "Disturbance Severity",
                     labels = c("0%", "45%", "65%", "85%"))+
   theme(legend.position = "bottom")+
-  ggplot2::ggtitle(paste(expression('Figure 3:  Growing Season Soil Moisture [%]\n by replicate, by year')))+
+  ggtitle(paste(expression('Figure 3:  Growing Season Soil Moisture [%]\n by replicate, by year')))+
   geom_smooth(method = "loess", formula = y ~ x, se = FALSE, show.legend = FALSE, size = 1.5)+
   facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs)) 
 

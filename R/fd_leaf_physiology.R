@@ -27,10 +27,20 @@ fd_leaf_spectrometry <- function() {
   leaf_spec <- leaf_spec[c("subplot_id", "replicate", "plot", "subplot", "date", "tree_id", "leaf_id", "species", "index", "index_value", "id")]
 
   leaf_spec
+
+
+  # Data creation and authorship information
+  contact_person <- "Lisa Haber"
+  citation <- "ESSD"
+
+  # data conditions
+  data_conditions(leaf_spec, published = FALSE, contact_person, citation)
 }
 
 
 #' Leaf photosynthesis measurements.
+#'
+#' This data set includes measures of leaf-level photosynthesis etc. from LiCor 6400 data taken during the growing season.
 #'
 #' @note Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
@@ -72,4 +82,12 @@ fd_photosynthesis <- function() {
   first_cols <- c("subplot_id", "replicate", "plot", "subplot", "timestamp")
   other_cols <- setdiff(names(leaf_photo), first_cols)
   leaf_photo[c(first_cols, other_cols)]
+
+
+  # Data creation and authorship information
+  contact_person <- "Lisa Haber"
+  citation <- "ESSD"
+
+  # data conditions
+  data_conditions(leaf_photo, published = FALSE, contact_person, citation)
 }

@@ -1,7 +1,9 @@
 #  Belowground data
 
 
-#' Soil respiration (soil to atmosphere CO2 efflux) table.
+#' Soil respiration (soil to atmosphere CO2 efflux) table
+#'
+#' These data include soil CO2 efflux in units of micromoles per m^2 s^-1 as well as soil temperature in C, and soil water content as a percentage. See `fd_belowground_vignette` for further information.
 #'
 #' @note Measurements taken by Kayla Mathes and Carly Rodriguez
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
@@ -44,4 +46,12 @@ fd_soil_respiration <- function() {
   flux <- flux[c("subplot_id", "replicate", "plot", "subplot", "date", "timestamp", "nested_subplot",  "run", "soil_co2_efflux", "soil_temp", "vwc")]
 
   weak_as_tibble(flux)
+
+  # Data creation and authorship information
+  contact_person <- "Kayla Mathes"
+  citation <- "ESSD"
+
+  # data conditions
+  data_conditions(flux, published = FALSE, contact_person, citation)
+
 }

@@ -24,7 +24,7 @@ fd_observations <- function() {
 
   #####################
   # CEPTOMETER!
-  a <- fd_ceptometer()
+  a <- suppressMessages(suppressWarnings(fd_ceptometer()))
 
   # this makes the year and month column
   # this makes the year and month column
@@ -42,7 +42,7 @@ fd_observations <- function() {
 
   #####################
   # SOIL RESPIRATION!
-  a <- fd_soil_respiration()
+  a <- suppressWarnings(fd_soil_respiration())
 
   # this makes the year and month column
   a$month <- as.numeric(format(as.Date(a$date), "%m"))
@@ -60,7 +60,7 @@ fd_observations <- function() {
 
   #####################
   # LEAF SPECTROMETRY!
-  b <- fd_leaf_spectrometry()
+  b <- suppressMessages(suppressWarnings(fd_leaf_spectrometry()))
 
   # this makes the year and month column
   # this makes the year and month column
@@ -77,7 +77,7 @@ fd_observations <- function() {
 
   #####################
   # PHOTOSYNTHESIS
-  a <- fd_photosynthesis()
+  a <- suppressMessages(suppressWarnings(fd_photosynthesis()))
 
   # this makes the year and month column
   # this makes the year and month column
@@ -94,7 +94,7 @@ fd_observations <- function() {
 
   #####################
   # hemi camera
-  a <- fd_hemi_camera()
+  a <- suppressMessages(suppressWarnings(fd_hemi_camera()))
 
   # this makes the year and month column
   a$month <- as.numeric(format(as.Date(a$date), "%m"))
@@ -117,7 +117,7 @@ fd_observations <- function() {
 
   #####################
   # pcl lidar data
-  a <- fd_canopy_structure()
+  a <- suppressMessages(suppressWarnings(fd_canopy_structure()))
 
   # this makes the year and month column
   a$date <- as.Date(paste(a$year, 7, 1, sep = "-"), "%Y-%m-%d") # this line is added b/c the data set does not have a date column, but rather just a year column. All data are gathered in July.
@@ -135,7 +135,7 @@ fd_observations <- function() {
 
   #####################
   # forest inventory
-  a <- fd_inventory()
+  a <- suppressMessages(suppressWarnings(fd_inventory()))
 
   # this makes the year and month column
   a$month <- as.numeric(format(as.Date(a$date), "%m"))
@@ -152,7 +152,7 @@ fd_observations <- function() {
 
   #####################
   # litter
-  a <- fd_litter()
+  a <- suppressMessages(suppressWarnings(fd_litter()))
 
   a$date <- as.Date("2018-11-15")
   # this makes the year and month column

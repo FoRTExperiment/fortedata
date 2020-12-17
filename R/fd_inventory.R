@@ -35,7 +35,7 @@ fd_inventory <- function() {
   weak_as_tibble(inv)
 
   # data conditions
-  #data_conditions(x, published = FALSE, contact_person, citation)
+  data_conditions(inv, published = FALSE, contact_person, citation)
 }
 
 #' Basic statistics generated from the raw inventory data.
@@ -76,6 +76,8 @@ fd_inventory_summary <- function() {
 
   #ba$Stocking <- stocking$DBH_cm
   weak_as_tibble(merge(ba, stocking))
+
+
 }
 
 

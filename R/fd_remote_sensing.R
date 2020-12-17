@@ -57,6 +57,14 @@ fd_hemi_camera <- function() {
                "ndvi", "gap_fraction", "openness", "lai_cam", "clumping_index")]
 
   weak_as_tibble(cam)
+
+
+  # Data creation and authorship information
+  contact_person <- "Jeff Atkins"
+  citation <- "ESSD"
+
+  # data conditions
+  data_conditions(cam, published = FALSE, contact_person, citation)
 }
 
 #' Summary data for hemispherical camera data.
@@ -142,6 +150,14 @@ fd_canopy_structure <- function() {
   cst <- cst[c(1, 54, 55, 56, 2, 3:53 )]
 
   weak_as_tibble(cst)
+
+  # Data creation and authorship information
+  contact_person <- "Jeff Atkins"
+  citation <- "ESSD"
+
+  # data conditions
+  data_conditions(cst, published = FALSE, contact_person, citation)
+
 }
 
 #' Summary data for canopy structural data including canopy complexity and leaf area

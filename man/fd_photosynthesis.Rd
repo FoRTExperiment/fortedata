@@ -10,7 +10,7 @@ fd_photosynthesis()
 A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
-Leaf photosynthesis measurements.
+This data set includes measures of leaf-level photosynthesis etc. from LiCor 6400 data taken during the growing season.
 }
 \note{
 Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer
