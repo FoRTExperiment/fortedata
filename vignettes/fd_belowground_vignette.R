@@ -85,7 +85,7 @@ ggplot2::ggplot(y, aes(y = soil_co2_efflux, x = date, color = disturbance_severi
                     name = "Disturbance Severity",
                     labels = c("0%", "45%", "65%", "85%"))+
   theme(legend.position = "bottom")+
-  ggtitle(expression('Figure 1: Soil '*~CO[2]~'efflux ['*mu~'mol' ~CO[2]~ m^-2~s^-1*'] by replicate, by year'))+
+  ggtitle(expression('Figure 2: Soil '*~CO[2]~'efflux ['*mu~'mol' ~CO[2]~ m^-2~s^-1*'] by replicate, by year'))+
   geom_smooth(method = "loess", formula = y ~ x, se = FALSE, show.legend = FALSE, size = 1.5)+
   facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs)) 
 
@@ -105,7 +105,7 @@ ggplot2::ggplot(y, aes(y = soil_temp, x = date, color = disturbance_severity,
                     name = "Disturbance Severity",
                     labels = c("0%", "45%", "65%", "85%"))+
   theme(legend.position = "bottom")+
-  ggplot2::ggtitle(paste('Figure 2: Growing Season Soil Temperature [C]\n by replicate, by year'))+
+  ggplot2::ggtitle(paste('Figure 3: Growing Season Soil Temperature [C]\n by replicate, by year'))+
   geom_smooth(method = "loess", formula = y ~ x, se = FALSE, show.legend = FALSE, size = 1.5)+
   facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs)) 
 
@@ -122,7 +122,7 @@ ggplot2::ggplot(y, aes(y = vwc, x = date, color = disturbance_severity,
                     name = "Disturbance Severity",
                     labels = c("0%", "45%", "65%", "85%"))+
   theme(legend.position = "bottom")+
-  ggtitle(paste(expression('Figure 3:  Growing Season Soil Moisture [%]\n by replicate, by year')))+
+  ggtitle(paste(expression('Figure 4:  Growing Season Soil Moisture [%]\n by replicate, by year')))+
   geom_smooth(method = "loess", formula = y ~ x, se = FALSE, show.legend = FALSE, size = 1.5)+
   facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs)) 
 

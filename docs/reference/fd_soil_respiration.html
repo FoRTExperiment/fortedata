@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Soil respiration (soil to atmosphere CO2 efflux) table. — fd_soil_respiration • fortedata</title>
+<title>Soil respiration (soil to atmosphere CO2 efflux) table — fd_soil_respiration • fortedata</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Soil respiration (soil to atmosphere CO2 efflux) table. — fd_soil_respiration" />
-<meta property="og:description" content="Soil respiration (soil to atmosphere CO2 efflux) table." />
+<meta property="og:title" content="Soil respiration (soil to atmosphere CO2 efflux) table — fd_soil_respiration" />
+<meta property="og:description" content="These data include soil CO2 efflux in units of micromoles per m^2 s^-1 as well as soil temperature in C, and soil water content as a percentage. See fd_belowground_vignette for further information." />
 
 
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -124,7 +124,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/FoRTExperiment/fortedata/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -141,13 +141,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Soil respiration (soil to atmosphere CO2 efflux) table.</h1>
+    <h1>Soil respiration (soil to atmosphere CO2 efflux) table</h1>
     <small class="dont-index">Source: <a href='https://github.com/FoRTExperiment/fortedata/blob/master/R/fd_belowground.R'><code>R/fd_belowground.R</code></a></small>
     <div class="hidden name"><code>fd_soil_respiration.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Soil respiration (soil to atmosphere CO2 efflux) table.</p>
+    <p>These data include soil CO2 efflux in units of micromoles per m^2 s^-1 as well as soil temperature in C, and soil water content as a percentage. See <code>fd_belowground_vignette</code> for further information.</p>
     </div>
 
     <pre class="usage"><span class='fu'>fd_soil_respiration</span><span class='op'>(</span><span class='op'>)</span></pre>
@@ -162,21 +162,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>fd_soil_respiration</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3,908 x 11</span><span>
-#&gt;    subplot_id replicate  plot subplot date       timestamp          
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span>             
-#&gt; </span><span style='color: #555555;'> 1</span><span> A03E       A             3 E       2019-05-15 2019-05-15 </span><span style='color: #555555;'>12:53:00</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> A03E       A             3 E       2019-05-15 2019-05-15 </span><span style='color: #555555;'>12:55:00</span><span>
-#&gt; </span><span style='color: #555555;'> 3</span><span> A03E       A             3 E       2019-05-15 2019-05-15 </span><span style='color: #555555;'>12:57:00</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span> A03E       A             3 E       2019-05-15 2019-05-15 </span><span style='color: #555555;'>12:58:00</span><span>
-#&gt; </span><span style='color: #555555;'> 5</span><span> A03E       A             3 E       2019-05-15 2019-05-15 </span><span style='color: #555555;'>13:01:00</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> A03E       A             3 E       2019-05-15 2019-05-15 </span><span style='color: #555555;'>13:02:00</span><span>
-#&gt; </span><span style='color: #555555;'> 7</span><span> A03E       A             3 E       2019-05-15 2019-05-15 </span><span style='color: #555555;'>13:04:00</span><span>
-#&gt; </span><span style='color: #555555;'> 8</span><span> A03E       A             3 E       2019-05-15 2019-05-15 </span><span style='color: #555555;'>13:05:00</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span> A03E       A             3 E       2019-05-15 2019-05-15 </span><span style='color: #555555;'>13:07:00</span><span>
-#&gt; </span><span style='color: #555555;'>10</span><span> A03E       A             3 E       2019-05-15 2019-05-15 </span><span style='color: #555555;'>13:09:00</span><span>
-#&gt; </span><span style='color: #555555;'># ... with 3,898 more rows, and 5 more variables: nested_subplot </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   run </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, soil_co2_efflux </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, soil_temp </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, vwc </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: These data are unpublished. Please contact Kayla Mathes to ask about using</span></div><div class='output co'>#&gt; <span class='message'>Data citation: ESSD</span></div><div class='output co'>#&gt; <span class='message'>Contact person: Kayla Mathes</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

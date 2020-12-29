@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -83,7 +83,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/FoRTExperiment/fortedata/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -97,13 +97,13 @@
 
       
 
-      </header><script src="fd_inventory_vignette_files/header-attrs-2.3/header-attrs.js"></script><script src="fd_inventory_vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="fd_inventory_vignette_files/header-attrs-2.6/header-attrs.js"></script><script src="fd_inventory_vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>fortedata: Forest Inventory Data</h1>
                         <h4 class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-12-15</h4>
+            <h4 class="date">2020-12-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_inventory_vignette.Rmd"><code>vignettes/fd_inventory_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>fd_inventory_vignette.Rmd</code></div>
@@ -128,7 +128,7 @@
 <div id="data-availability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-availability" class="anchor"></a>Data Availability</h2>
-<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current inventory observations available as of 2020-12-15 are detailed in Figure 1. Remeasurement is slated to occur in the summer of 2022.</p>
+<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current inventory observations available as of 2020-12-29 are detailed in Figure 1. Remeasurement is slated to occur in the summer of 2022.</p>
 <p><img src="fd_inventory_vignette_files/figure-html/observations-1.png" width="576"></p>
 </div>
 <div id="forest-inventory-data" class="section level2">
@@ -141,21 +141,10 @@
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fd_inventory.html">fd_inventory</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">## # A tibble: 3,165 x 11</span>
-<span class="co">##    subplot_id replicate  plot subplot date         tag species dbh_cm</span>
-<span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;date&gt;     &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt;</span>
-<span class="co">##  1 A01E       A             1 E       2018-07-12  2772 POGR4     36.2</span>
-<span class="co">##  2 A01E       A             1 E       2018-07-12  2773 POGR4     41.6</span>
-<span class="co">##  3 A01E       A             1 E       2018-07-12  2774 FAGR      10.8</span>
-<span class="co">##  4 A01E       A             1 E       2018-07-12  2775 FAGR      26.2</span>
-<span class="co">##  5 A01E       A             1 E       2018-07-12  2776 FAGR      19.5</span>
-<span class="co">##  6 A01E       A             1 E       2018-07-12  2777 POGR4     26.5</span>
-<span class="co">##  7 A01E       A             1 E       2018-07-12  2778 ACSA3     16  </span>
-<span class="co">##  8 A01E       A             1 E       2018-07-12  2779 ACSA3      9.8</span>
-<span class="co">##  9 A01E       A             1 E       2018-07-12  2780 FAGR       9.7</span>
-<span class="co">## 10 A01E       A             1 E       2018-07-12  2781 QURU      42.6</span>
-<span class="co">## # ... with 3,155 more rows, and 3 more variables: health_status &lt;chr&gt;,</span>
-<span class="co">## #   canopy_status &lt;chr&gt;, notes &lt;chr&gt;</span></code></pre></div>
+<span class="co">## Warning in data_conditions(inv, published = FALSE, contact_person, citation):</span>
+<span class="co">## These data are unpublished. Please contact Jeff Atkins to ask about using</span>
+<span class="co">## Data citation: ESSD</span>
+<span class="co">## Contact person: Jeff Atkins</span></code></pre></div>
 <p><img src="fd_inventory_vignette_files/figure-html/table_inventory-1.png" width="672"></p>
 <p>###Species Abbreviations for Figure 2: ACPE - <em>Acer pensylvanicum</em>; ACRU - <em>Acer rubrum</em>; ACSA3 - <em>Acer saccharum</em>; AMELA - <em>Amelanchier Medik.</em>; BEAL2 - <em>Betula alleghaniensis</em>; BEPA - <em>Betula papyrifera</em>; FAGR - <em>Fagus grandifolia</em>; PIRE - <em>Pinus resinosa</em>; PIST - <em>Pinus strobus</em>; POGR4 - <em>Populus grandidentata</em>; POTR - <em>Populus tremuloides</em>; QURU - <em>Quercus rubra</em>; TSCA - <em>Tsuga canadensis</em>. Abbreviations are from the <a href="http://plants.usda.gov/dl_all_html">USDA PLANTS list</a>.</p>
 </div>

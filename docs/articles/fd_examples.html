@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -83,7 +83,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/FoRTExperiment/fortedata/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -97,13 +97,13 @@
 
       
 
-      </header><script src="fd_examples_files/header-attrs-2.3/header-attrs.js"></script><script src="fd_examples_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="fd_examples_files/header-attrs-2.6/header-attrs.js"></script><script src="fd_examples_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>fortedata: Working with the data</h1>
                         <h4 class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-12-15</h4>
+            <h4 class="date">2020-12-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_examples.Rmd"><code>vignettes/fd_examples.Rmd</code></a></small>
       <div class="hidden name"><code>fd_examples.Rmd</code></div>
@@ -199,6 +199,10 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># First we import the camera data</span>
 <span class="va">cam</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fd_hemi_camera.html">fd_hemi_camera</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">## Warning in data_conditions(cam, published = FALSE, contact_person, citation):</span>
+<span class="co">## These data are unpublished. Please contact Jeff Atkins to ask about using</span>
+<span class="co">## Data citation: ESSD</span>
+<span class="co">## Contact person: Jeff Atkins</span>
 
 <span class="co"># Then we merge with the metadata from above</span>
 <span class="va">cam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">cam</span>, <span class="va">dis.meta.data</span><span class="op">)</span>

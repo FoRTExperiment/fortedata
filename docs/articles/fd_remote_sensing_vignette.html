@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -83,7 +83,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/FoRTExperiment/fortedata/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -97,13 +97,13 @@
 
       
 
-      </header><script src="fd_remote_sensing_vignette_files/header-attrs-2.3/header-attrs.js"></script><script src="fd_remote_sensing_vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="fd_remote_sensing_vignette_files/header-attrs-2.6/header-attrs.js"></script><script src="fd_remote_sensing_vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>fortedata: Remote Sensing Data</h1>
                         <h4 class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-12-15</h4>
+            <h4 class="date">2020-12-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_remote_sensing_vignette.Rmd"><code>vignettes/fd_remote_sensing_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>fd_remote_sensing_vignette.Rmd</code></div>
@@ -131,7 +131,7 @@
 <div id="data-availability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-availability" class="anchor"></a>Data Availability</h2>
-<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current number of remote sensing data observations available as of 2020-12-15 are detailed in Figure 1.</p>
+<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current number of remote sensing data observations available as of 2020-12-29 are detailed in Figure 1.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">no_of_records.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fd_observations.html">fd_observations</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -163,6 +163,14 @@
 <p><code><a href="../reference/fd_canopy_structure.html">fd_canopy_structure()</a></code> contains canopy structural trait metrics (Fahey et al. 2019) derived from 2-D terrestrial lidar data. These data were collected with a user-mounted, portable canopy LiDAR (PCL) system equipped with an upward facing, pulsed‐laser operating at 2000 Hz (Riegl LD90 3100 VHS; Riegl USA Inc., Orlando, Florida, USA). The PCL generates continuous LiDAR returns from a “slice” of the canopy as it is walked along a measured transect. For this study, we used 40 m transects at cardinal directions–north-to-south, east-to-west–through subplot center for a total of 80 m of transect length per subplot. This mirrors the approach of Atkins et al. (2018) and Hardiman et al. (2013) and is sufficient to account for spatial variability of forest structure (Hardiman et al. 2019). A more detailed description of the development and implementation of this terrestrial laser scanning system is available in Parker et al. (2004) and Hardiman et al. ( 2011). We derived canopy structural metrics using the <code>forestr</code> package (Atkins et al. 2018a, b) in R 3.5 (R Core Team, 2018). Data here are provided at the transect level, but should be averaged to make a plot mean.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/fd_canopy_structure_summary.html">fd_canopy_structure_summary</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## Warning in data_conditions(cst, published = FALSE, contact_person, citation):</span>
+<span class="co">## These data are unpublished. Please contact Jeff Atkins to ask about using</span>
+<span class="co">## Data citation: ESSD</span>
+<span class="co">## Contact person: Jeff Atkins</span>
+<span class="co">## Warning in data_conditions(cst, published = FALSE, contact_person, citation):</span>
+<span class="co">## These data are unpublished. Please contact Jeff Atkins to ask about using</span>
+<span class="co">## Data citation: ESSD</span>
+<span class="co">## Contact person: Jeff Atkins</span>
 <span class="co">##    replicate year  rugosity rugosity_sd rugosity_n rugosity_se vai_mean</span>
 <span class="co">## 1          A 2018 29.608559   10.497869        129   0.9242858 6.796692</span>
 <span class="co">## 2          A 2019 29.735343    9.800674        139   0.8312823 5.996452</span>
@@ -189,6 +197,10 @@
 <span class="co">## 10   1.0623365        121  0.09657604</span>
 <span class="co">## 11   0.8463590         78  0.09583129</span>
 <span class="co">## 12   1.4835040         91  0.15551347</span></code></pre></div>
+<pre><code>## Warning in data_conditions(cst, published = FALSE, contact_person, citation):
+## These data are unpublished. Please contact Jeff Atkins to ask about using
+## Data citation: ESSD
+## Contact person: Jeff Atkins</code></pre>
 <p><img src="fd_remote_sensing_vignette_files/figure-html/rug-1.png" width="576"></p>
 </div>
 <div id="hemispherical-camera-imagery" class="section level3">
@@ -201,30 +213,23 @@
 <div class="figure">
 <img src="https://user-images.githubusercontent.com/8354517/87785843-e83ea500-c806-11ea-8218-d04d0f6d3a1d.jpg" style="width:50.0%" alt=""><p class="caption">REU student Evan Paris taking images of the canopy using the NDVI camera</p>
 </div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fd_hemi_camera.html">fd_hemi_camera</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">## # A tibble: 1,189 x 11</span>
-<span class="co">##    subplot_id replicate  plot subplot nested_subplot date        ndvi</span>
-<span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;            &lt;int&gt; &lt;date&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 A01E       A             1 E                    0 2018-07-23 0.796</span>
-<span class="co">##  2 A01E       A             1 E                    1 2018-07-23 0.827</span>
-<span class="co">##  3 A01E       A             1 E                    3 2018-07-23 0.739</span>
-<span class="co">##  4 A01E       A             1 E                    5 2018-07-23 0.847</span>
-<span class="co">##  5 A01E       A             1 E                    7 2018-07-23 0.822</span>
-<span class="co">##  6 A01W       A             1 W                    0 2018-07-23 0.792</span>
-<span class="co">##  7 A01W       A             1 W                    1 2018-07-23 0.862</span>
-<span class="co">##  8 A01W       A             1 W                    3 2018-07-23 0.861</span>
-<span class="co">##  9 A01W       A             1 W                    5 2018-07-23 0.783</span>
-<span class="co">## 10 A01W       A             1 W                    7 2018-07-23 0.786</span>
-<span class="co">## # ... with 1,179 more rows, and 4 more variables: gap_fraction &lt;dbl&gt;,</span>
-<span class="co">## #   openness &lt;dbl&gt;, lai_cam &lt;dbl&gt;, clumping_index &lt;dbl&gt;</span></code></pre></div>
+<span class="co">## Warning in data_conditions(cam, published = FALSE, contact_person, citation):</span>
+<span class="co">## These data are unpublished. Please contact Jeff Atkins to ask about using</span>
+<span class="co">## Data citation: ESSD</span>
+<span class="co">## Contact person: Jeff Atkins</span></code></pre></div>
+<pre><code>## Warning in data_conditions(cam, published = FALSE, contact_person, citation):
+## These data are unpublished. Please contact Jeff Atkins to ask about using
+## Data citation: ESSD
+## Contact person: Jeff Atkins</code></pre>
 <p><img src="fd_remote_sensing_vignette_files/figure-html/cam-1.png" width="576"></p>
 </div>
 <div id="light-interception" class="section level3">
 <h3 class="hasAnchor">
 <a href="#light-interception" class="anchor"></a>Light Interception</h3>
 <p>Light data–as <em>fpar</em>, the fraction of photosynthetically available radiation absorbed by the canopy–was acquired using a Decagon LP-80 handheld ceptometer (Decagon Devices; Pullman, Washington). <em>fpar</em> is the ratio of PAR above the canopy, to that measured below. <em>fpar</em> is assumed to be the difference between the two values. Below-canopy PAR measurements for each plot were taken along north-south and east-west transects (similar to PCL data above), with measurements taken every 1 to 3 m for a total of 30 - 60 measurements then averaged to make a subplot level mean of below-canopy PAR. Above-canopy PAR measurements were taken in open areas to ensure no interference from the canopy.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fd_ceptometer.html">fd_ceptometer</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">## # A tibble: 48 x 9</span>
 <span class="co">##    subplot_id replicate  plot subplot timestamp           a_par b_par fapar</span>
