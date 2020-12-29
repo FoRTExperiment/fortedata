@@ -195,8 +195,27 @@ make_table(md, "fd_nested_subplots")
 **Figure 2:** Number of available records as of `Sys.Date()` for time-series datasets including light availability from fd_ceptometer(),  camera derived LAI from fd_hemi_camera, leaf-level vegetation spectra indices from fd_spectrometry, photosynthesis and stomatal conductance from fd_photosynthesis, and soil CO2 efflux from fd_soil_respiration. 
 
 ### Number of Observations
-```{r no_of_obs, fig.width = 8, fig.height = 8}
+```{r no_of_obs, fig.width = 8, fig.height = 10}
 no_of_records <- fd_observations()
+
+no_of_records$data_record <- factor(no_of_records$table, 
+                                    levels = c("fd_soil_respiration",
+                                               "fd_leaf_spectrometry",
+                                               "fd_photosynthesis",
+                                               "fd_hemi_camera",
+                                               "fd_ceptometer",
+                                               "fd_canopy_structure",
+                                               "fd_inventory",
+                                               "fd_litter"),
+                                    labels = c("Soil Respiration",
+                                               "Leaf Spec",
+                                               "Hemi Camera",
+                                               "Photosynthesis",
+                                               "Light",
+                                               "Canopy Structure",
+                                               "Forest Inv",
+                                               "Litter"))
+
 # Heatmap
 #x11(width = 10, height = 8)
 ggplot(no_of_records, aes(x = as.factor(month), y = as.integer(year), fill= no_of_obs)) +
@@ -211,7 +230,7 @@ ggplot(no_of_records, aes(x = as.factor(month), y = as.integer(year), fill= no_o
   ylab("Year")+
   xlab("Month")+
   ggtitle(paste("No. of observations currently availble \nin each function as of:", Sys.Date()))+
-  facet_grid(table ~ .,  space = "free")+
+  facet_grid(data_record ~ .,  space = "free")+
   theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
     color="black", fill="white", size= 0.5, linetype="solid"))
 
@@ -329,7 +348,7 @@ df %>%
   geom_jitter(aes(color = replicate), alpha = 0.2) +
   geom_violin(aes(color = replicate), fill = NA, size = 1) + 
   scale_color_manual(values = pal) + theme_bw() + 
-  ylab("Litter Fall (g)")+
+  ylab("Leaf Mass (g)")+
   xlab("Replicate")+
    theme(legend.position = "none")
   
