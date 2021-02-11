@@ -55,7 +55,7 @@ The `fd_aboveground_wood()` script within `fortedata` currently includes the fol
 
 * `fd_subcanopy()` returns a single dataset of [number or records] diameter at breast height (DBH; mm) measurements of a subsample of trees 1-8 cm DBH from all 32 subplots of the FoRTE experiment. 
 
-* `fd_seedling_sapling()` returns a single dataset of basal diameter (cm), current height (cm), and previous year's height (cm) from a subsample of trees <1 cm DBH or <1.3m height from all 32 subplots of the FoRTE experiment. 
+* `fd_seedling_sapling()` returns a single dataset of basal diameter (cm), current height (cm), and height (cm) from a subsample of trees < 1 cm DBH or < 1.3m height from all 32 subplots of the FoRTE experiment. 
 
 * `fd_subcanopy_density()` returns a single dataset of subcanopy (1-8cm DBH) stem density within one quarter (0.025 ha) of all 32 subplots in the FoRTE experiment. Stem density survey were conducted during the 2019 field season.
 

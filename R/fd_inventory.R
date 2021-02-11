@@ -103,3 +103,44 @@ fd_mortality <- function() {
   weak_as_tibble(kill)
 }
 
+
+
+
+#' Dendroband readings for canopy trees
+#'
+#' A data set including measurements taken from dendrobands, which give fine scale readings with a precision of 0.01 inch, allowing for
+#' quantifying small, incremental growth not possible with DBH tapes.
+#'
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.#'
+#' @export
+#' @author Grigri
+#' @examples
+#' fd_dendro()
+fd_dendro <- function() {
+
+  # Data Creation and Authorship Information
+  contact_person <- "Max Grigri [grigrims@vcu.edu], Jeff Atkins [jwatkins6@vcu.edu]"
+  citation <- "Grigri, M. S., Atkins, J. W., Vogel, C., Bond-Lamberty, B., & Gough, C. M. (2020). Aboveground Wood Production Is Sustained in the First Growing Season after Phloem-Disrupting Disturbance. Forests, 11(12), 1306."
+
+  # read in data
+  df <- read_csv_file("fd_dendroband.csv")
+
+  # restructure
+  df$date <- as.Date(df$date, format = "%m/%d/%Y")
+  df$tag <- as.integer(df$tag)
+
+  # rename if issue
+  names(df)[names(df) == "subplot"] <- "subplot_id"
+  names(df)[names(df) == "bands_in"] <- "band_in"
+
+  # add plot associated metadata
+  df <- split_subplot_id(df)
+
+  # reorganize and sort
+  df <- df[c("subplot_id", "replicate", "plot", "subplot","date","tag", "species", "band_in", "notes")]
+
+  weak_as_tibble(df)
+
+  # data conditions
+  data_conditions(df, published = TRUE, contact_person, citation)
+}
