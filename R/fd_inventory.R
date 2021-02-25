@@ -133,11 +133,13 @@ fd_dendro <- function() {
   names(df)[names(df) == "subplot"] <- "subplot_id"
   names(df)[names(df) == "bands_in"] <- "band_in"
 
+  # change the str of band_in
+  df$band_in <- as.numeric(df$band_in)
   # add plot associated metadata
   df <- split_subplot_id(df)
 
   # reorganize and sort
-  df <- df[c("subplot_id", "replicate", "plot", "subplot","date","tag", "species", "band_in", "notes")]
+  df <- df[c("subplot_id", "replicate", "plot", "subplot","date", "tag", "species", "band_in", "notes")]
 
   weak_as_tibble(df)
 

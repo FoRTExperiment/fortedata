@@ -227,7 +227,15 @@ fd_canopy_structure_summary <- function() {
 #'
 #' Ceptometer derived light interception data
 #'
-#' @details data on light interception, as faPAR or the fraction of absorbed photosynthetically available radiation, based on the difference between above and below canopy PAR as measured by a Decagon LP-80 handheld ceptometer. Units of `a_par`, above canopy PAR, and `b_par`, below canopy PAR, are in units of micromoles per square meter per second while `fapar` and `lai_cept`, leaf area index derived from light data, are ratio-based, unitless data.
+#' @details data on light interception, as faPAR or the fraction of absorbed photosynthetically
+#' available radiation, based on the difference between above and below canopy PAR as measured by
+#' a Decagon LP-80 handheld ceptometer. Units of `a_par`, above canopy PAR, and `b_par`, below canopy PAR,
+#' are in units of micromoles per square meter per second while `fapar` and `lai_cept`, leaf area index derived
+#' from light data, are ratio-based, unitless data. Entries where the `notes` column has entries may refer to original values
+#' where the `a_par` value was replaced with data from the nearby UMBS AmeriFlux tower PAR sensor due to ceptometer instrument
+#' issues with securing clear sky PAR readings. Tower PAR readings were synced in time and then adjusted with the calibration
+#' equation A_par = 1.15x - 187.827, where x = the Tower PAR reading. This is an empirically derived equation from several calibration
+#' readings found in the supplemental section of Atkins et al. (In Prep)--to be updated when submitted.
 #'
 #' @note Data were collected by Jeff W. Atkins and Brandon Alveshare using
 #' a Decagon LP-80 Handheld Ceptometer
@@ -255,15 +263,19 @@ fd_ceptometer <- function() {
   # Remove erroneous entires
   cept$Annotation <- gsub("2019", "", cept$Annotation)
 
+  # Remove erroneous entires
+  cept$Annotation <- gsub("2020", "", cept$Annotation)
+
   # Create the subplot_id column now that it's clean
   cept$subplot_id <- cept$Annotation
   cept <- split_subplot_id(cept)
+
 
   # faPAR
   cept$fapar <- (1 - (cept$b_par / cept$a_par))
 
   # Reorder columns, dropping ones we don't need
-  cept <- cept[c("subplot_id", "replicate", "plot", "subplot", "timestamp", "a_par", "b_par", "fapar", "lai_cept")]
+  cept <- cept[c("subplot_id", "replicate", "plot", "subplot", "timestamp", "a_par", "b_par", "fapar", "lai_cept", "notes")]
 
   weak_as_tibble(cept)
 }
