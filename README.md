@@ -29,6 +29,10 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 
 **Updates**
 
+* `fd_ceptometer` now includes 2020 PAR data with an additional correction for some data based on calibration with the UMBS AmeriFlux sensor (see function documentation)
+
+* `fd_dendro` has been added to the package and includes dendrometer data from 2019 and 2020.
+
 * `fd_leaf_spectrometry` now includes 2018, 2019, and 2020 data, as well as corrected leaf_id and tree_id data columns. Additionally, the original filename has been retained in the data set as id (2020-12-14)
 
 * `fd_canopy_structure()` now includes 2020 lidar-derived canopy structural trait data.  (2020-12-09)
