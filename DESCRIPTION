@@ -24,6 +24,7 @@ Suggests:
     rmarkdown,
     tidyverse,
     viridis,
+    stats,
     udunits2
 Encoding: UTF-8
 LazyData: true
