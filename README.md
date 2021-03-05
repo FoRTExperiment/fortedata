@@ -28,8 +28,9 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 ### `fortedata` 1.0.2 Updates and Future Data Availability
 
 **Updates**
+* `fd_cwd` function added that includes coarse woody debris data from a 2019 survey of FoRTE plots.
 
-* `fd_ceptometer` now includes 2020 PAR data with an additional correction for some data based on calibration with the UMBS AmeriFlux sensor (see function documentation)
+* `fd_ceptometer` now includes 2020 PAR data with an additional correction for some data based on calibration with the UMBS AmeriFlux sensor (see function documentation and additionally an in preperation manuscript, a preprint of which to be added upon submission)
 
 * `fd_dendro` has been added to the package and includes dendrometer data from 2019 and 2020.
 
@@ -41,9 +42,7 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 
 **Future Data Availability**
 
-* Light interception data (see `fd_ceptometer()`) for 2020 is being calibrated with the adjacent UMBS AmeriFlux tower PAR data (US-UMb tower ID). 
-
-* 3-D lidar structural data has been held up further by COVID-19. Access to computing resources to process said data have been greatly encumbered. Not likely complete until spring 2021.
+* 3-D lidar structural data has been held up further by COVID-19. Access to computing resources to process said data have been greatly encumbered. Not likely complete until Summer 2021.
 
 * Processing of 2019 and 2020 photosynthesis data (see `fd_photosynthesis()` for 2018) is underway and will hopefully be done by the end of 2020. 
 
