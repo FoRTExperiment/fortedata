@@ -45,6 +45,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -56,9 +58,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,12 +87,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -95,7 +97,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preperation, and Management</a>
     </li>
     <li>
       <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
@@ -162,25 +170,25 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>fd_plots</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 16 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 16 x 5</span><span>
 #&gt;    replicate  plot latitude_plot longitude_plot plot_area_m2
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> A             1          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'> 2</span><span> A             2          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'> 3</span><span> A             3          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'> 4</span><span> A             4          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'> 5</span><span> B             1          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'> 6</span><span> B             2          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'> 7</span><span> B             3          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'> 8</span><span> B             4          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'> 9</span><span> C             1          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'>10</span><span> C             2          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'>11</span><span> C             3          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'>12</span><span> C             4          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'>13</span><span> D             1          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'>14</span><span> D             2          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'>15</span><span> D             3          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
-#&gt; </span><span style='color: #555555;'>16</span><span> D             4          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000</div></span></pre>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> A             1          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> A             2          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> A             3          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> A             4          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> B             1          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> B             2          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> B             3          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> B             4          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> C             1          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> C             2          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> C             3          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> C             4          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> D             1          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> D             2          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'>15</span><span> D             3          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000
+#&gt; </span><span style='color: #BCBCBC;'>16</span><span> D             4          45.6          -</span><span style='color: #BB0000;'>84.7</span><span>         </span><span style='text-decoration: underline;'>5</span><span>000</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -192,11 +200,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p><p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -204,6 +212,8 @@
 
   
 
+
+  
 
   </body>
 </html>

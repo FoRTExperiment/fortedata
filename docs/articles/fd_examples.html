@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,12 +40,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -54,7 +50,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preperation, and Management</a>
     </li>
     <li>
       <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
@@ -82,7 +84,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/FoRTExperiment/fortedata/">
+  <a href="https://github.com/FoRTExperiment/fortedata/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -97,15 +99,15 @@
 
       
 
-      </header><script src="fd_examples_files/header-attrs-2.6/header-attrs.js"></script><script src="fd_examples_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="fd_examples_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>fortedata: Working with the data</h1>
-                        <h4 class="author">Jeff Atkins</h4>
+                        <h4 data-toc-skip class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-12-29</h4>
+            <h4 data-toc-skip class="date">2021-03-11</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_examples.Rmd"><code>vignettes/fd_examples.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_examples.Rmd" class="external-link"><code>vignettes/fd_examples.Rmd</code></a></small>
       <div class="hidden name"><code>fd_examples.Rmd</code></div>
 
     </div>
@@ -130,11 +132,11 @@
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">fortedata</span><span class="fu">::</span><span class="fu"><a href="../reference/fd_plot_metadata.html">fd_plot_metadata</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># now we converte the tibble to a data frame</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
 <p>If we look at the structure of the disturbance metadata with <code>str</code> we can see that the metadata includes plot information for all plot hierarchies within the FoRTE design, including replicate, plot, subplot, and nested subplot.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># let's look at the structure of the data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
 <span class="co">## 'data.frame':    336 obs. of  10 variables:</span>
 <span class="co">##  $ replicate           : chr  "A" "A" "A" "A" ...</span>
 <span class="co">##  $ plot                : int  1 1 2 2 3 3 4 4 1 1 ...</span>
@@ -149,19 +151,19 @@
 <p>For our example analysis we want to isolate the <code>subplot_id</code> level metadata to match with our camera data.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># First we want to concatenate our replicate, plot and subplot data to make a subplot_id column </span>
-<span class="va">df</span><span class="op">$</span><span class="va">subplot_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">replicate</span>, <span class="fl">0</span>, <span class="va">df</span><span class="op">$</span><span class="va">plot</span>, <span class="va">df</span><span class="op">$</span><span class="va">subplot</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
-<span class="va">df</span><span class="op">$</span><span class="va">subplot_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">subplot_id</span><span class="op">)</span>
+<span class="va">df</span><span class="op">$</span><span class="va">subplot_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">replicate</span>, <span class="fl">0</span>, <span class="va">df</span><span class="op">$</span><span class="va">plot</span>, <span class="va">df</span><span class="op">$</span><span class="va">subplot</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
+<span class="va">df</span><span class="op">$</span><span class="va">subplot_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">subplot_id</span><span class="op">)</span>
 
 <span class="co"># Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.</span>
 <span class="va">df</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="va">subplot_id</span>, <span class="va">disturbance_severity</span>, <span class="va">treatment</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">distinct</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">dis.meta.data</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">dis.meta.data</span>
 
 <span class="co"># this filters the metadata down to the subplot_id level</span>
-<span class="va">dis.meta.data</span> <span class="op">&lt;-</span> <span class="va">dis.meta.data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">32</span><span class="op">)</span>, <span class="op">]</span>
+<span class="va">dis.meta.data</span> <span class="op">&lt;-</span> <span class="va">dis.meta.data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">32</span><span class="op">)</span>, <span class="op">]</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">dis.meta.data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">dis.meta.data</span><span class="op">)</span>
 <span class="co">##    subplot_id disturbance_severity treatment</span>
 <span class="co">## 1        A01E                   85         B</span>
 <span class="co">## 2        A01W                   85         T</span>
@@ -205,15 +207,15 @@
 <span class="co">## Contact person: Jeff Atkins</span>
 
 <span class="co"># Then we merge with the metadata from above</span>
-<span class="va">cam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">cam</span>, <span class="va">dis.meta.data</span><span class="op">)</span>
+<span class="va">cam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">cam</span>, <span class="va">dis.meta.data</span><span class="op">)</span>
 
 <span class="co"># For this analysis we want to code both disturbance severity and treatment as factors</span>
-<span class="va">cam</span><span class="op">$</span><span class="va">disturbance_severity</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">cam</span><span class="op">$</span><span class="va">disturbance_severity</span><span class="op">)</span>
-<span class="va">cam</span><span class="op">$</span><span class="va">treatment</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">cam</span><span class="op">$</span><span class="va">treatment</span><span class="op">)</span></code></pre></div>
+<span class="va">cam</span><span class="op">$</span><span class="va">disturbance_severity</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">cam</span><span class="op">$</span><span class="va">disturbance_severity</span><span class="op">)</span>
+<span class="va">cam</span><span class="op">$</span><span class="va">treatment</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">cam</span><span class="op">$</span><span class="va">treatment</span><span class="op">)</span></code></pre></div>
 <p>Now we to analyze the data for differences. First, let’s plot our data to see what we are dealing with. We want to look differences from pre- to post-disturbance by both disturbance severity and treatment. First, we will make a new column by extracting the year from the <code>date</code> column then we will do a facetted density plot to look at distributions.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># making year column</span>
-<span class="va">cam</span><span class="op">$</span><span class="va">year</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">cam</span><span class="op">$</span><span class="va">date</span><span class="op">)</span>, <span class="st">"%Y"</span><span class="op">)</span>
+<span class="va">cam</span><span class="op">$</span><span class="va">year</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">cam</span><span class="op">$</span><span class="va">date</span><span class="op">)</span>, <span class="st">"%Y"</span><span class="op">)</span>
 <span class="co"># let's look at distribution by year, by disturbance severity and treatment</span>
 <span class="fu">ggplot</span><span class="op">(</span><span class="va">cam</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">lai_cam</span>, fill <span class="op">=</span> <span class="va">disturbance_severity</span> <span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu">geom_density</span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
@@ -227,22 +229,22 @@
 
 <span class="co"># let's make a function to print the palette</span>
 <span class="va">print.palette</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-  <span class="va">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="va">old</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="va">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="va">old</span><span class="op">)</span><span class="op">)</span>
 
-  <span class="fu"><a href="https://rdrr.io/r/graphics/image.html">image</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span>, col <span class="op">=</span> <span class="va">x</span>,
+  <span class="fu"><a href="https://rdrr.io/r/graphics/image.html" class="external-link">image</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span>, col <span class="op">=</span> <span class="va">x</span>,
         ylab <span class="op">=</span> <span class="st">""</span>, xaxt <span class="op">=</span> <span class="st">"n"</span>, yaxt <span class="op">=</span> <span class="st">"n"</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span>
 
-  <span class="fu"><a href="https://rdrr.io/r/graphics/rect.html">rect</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.9</span>, <span class="va">n</span> <span class="op">+</span> <span class="fl">1</span>, <span class="fl">1.1</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0.8</span><span class="op">)</span>, border <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="op">(</span><span class="va">n</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span>, <span class="fl">1</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"name"</span><span class="op">)</span>, cex <span class="op">=</span> <span class="fl">1</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/graphics/rect.html" class="external-link">rect</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.9</span>, <span class="va">n</span> <span class="op">+</span> <span class="fl">1</span>, <span class="fl">1.1</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0.8</span><span class="op">)</span>, border <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="op">(</span><span class="va">n</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span>, <span class="fl">1</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"name"</span><span class="op">)</span>, cex <span class="op">=</span> <span class="fl">1</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="fu">print.palette</span><span class="op">(</span><span class="va">forte_pal</span><span class="op">)</span></code></pre></div>
 <p><img src="fd_examples_files/figure-html/colors-1.png" width="576" style="display: block; margin: auto;"> We can then use the colors from <code>forte_colors</code> and create a cleaner plot with a few extra lines of code.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># first let's make some new, more informative labels for our facets</span>
-<span class="va">facet.labs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B"</span> <span class="op">=</span> <span class="st">"Bottom-Up"</span>, <span class="st">"T"</span> <span class="op">=</span> <span class="st">"Top-Down"</span><span class="op">)</span>
+<span class="va">facet.labs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B"</span> <span class="op">=</span> <span class="st">"Bottom-Up"</span>, <span class="st">"T"</span> <span class="op">=</span> <span class="st">"Top-Down"</span><span class="op">)</span>
 
 <span class="co"># let's look at distribution by year, by disturbance severity and treatment</span>
 <span class="fu">ggplot</span><span class="op">(</span><span class="va">cam</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">lai_cam</span>, fill <span class="op">=</span> <span class="va">disturbance_severity</span> <span class="op">)</span><span class="op">)</span><span class="op">+</span>
@@ -250,7 +252,7 @@
   <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu">scale_fill_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">forte_pal</span>,
                     name <span class="op">=</span> <span class="st">"Disturbance Severity"</span>,
-                    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0%"</span>, <span class="st">"45%"</span>, <span class="st">"65%"</span>, <span class="st">"85%"</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+                    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0%"</span>, <span class="st">"45%"</span>, <span class="st">"65%"</span>, <span class="st">"85%"</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu">xlab</span><span class="op">(</span><span class="st">"Leaf Area Index"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu">ylab</span><span class="op">(</span><span class="st">"Density"</span><span class="op">)</span><span class="op">+</span>
@@ -270,11 +272,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p></p>
+<p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
@@ -282,6 +286,8 @@
 
   
 
+
+  
 
   </body>
 </html>

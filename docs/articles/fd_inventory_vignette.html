@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,12 +40,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -54,7 +50,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preperation, and Management</a>
     </li>
     <li>
       <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
@@ -82,7 +84,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/FoRTExperiment/fortedata/">
+  <a href="https://github.com/FoRTExperiment/fortedata/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -97,15 +99,15 @@
 
       
 
-      </header><script src="fd_inventory_vignette_files/header-attrs-2.6/header-attrs.js"></script><script src="fd_inventory_vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="fd_inventory_vignette_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>fortedata: Forest Inventory Data</h1>
-                        <h4 class="author">Jeff Atkins</h4>
+                        <h4 data-toc-skip class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-12-29</h4>
+            <h4 data-toc-skip class="date">2021-03-11</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_inventory_vignette.Rmd"><code>vignettes/fd_inventory_vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_inventory_vignette.Rmd" class="external-link"><code>vignettes/fd_inventory_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>fd_inventory_vignette.Rmd</code></div>
 
     </div>
@@ -128,7 +130,7 @@
 <div id="data-availability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-availability" class="anchor"></a>Data Availability</h2>
-<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current inventory observations available as of 2020-12-29 are detailed in Figure 1. Remeasurement is slated to occur in the summer of 2022.</p>
+<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current inventory observations available as of 2021-03-11 are detailed in Figure 1. Remeasurement is slated to occur in the summer of 2022.</p>
 <p><img src="fd_inventory_vignette_files/figure-html/observations-1.png" width="576"></p>
 </div>
 <div id="forest-inventory-data" class="section level2">
@@ -146,7 +148,7 @@
 <span class="co">## Data citation: ESSD</span>
 <span class="co">## Contact person: Jeff Atkins</span></code></pre></div>
 <p><img src="fd_inventory_vignette_files/figure-html/table_inventory-1.png" width="672"></p>
-<p>###Species Abbreviations for Figure 2: ACPE - <em>Acer pensylvanicum</em>; ACRU - <em>Acer rubrum</em>; ACSA3 - <em>Acer saccharum</em>; AMELA - <em>Amelanchier Medik.</em>; BEAL2 - <em>Betula alleghaniensis</em>; BEPA - <em>Betula papyrifera</em>; FAGR - <em>Fagus grandifolia</em>; PIRE - <em>Pinus resinosa</em>; PIST - <em>Pinus strobus</em>; POGR4 - <em>Populus grandidentata</em>; POTR - <em>Populus tremuloides</em>; QURU - <em>Quercus rubra</em>; TSCA - <em>Tsuga canadensis</em>. Abbreviations are from the <a href="http://plants.usda.gov/dl_all_html">USDA PLANTS list</a>.</p>
+<p>###Species Abbreviations for Figure 2: ACPE - <em>Acer pensylvanicum</em>; ACRU - <em>Acer rubrum</em>; ACSA3 - <em>Acer saccharum</em>; AMELA - <em>Amelanchier Medik.</em>; BEAL2 - <em>Betula alleghaniensis</em>; BEPA - <em>Betula papyrifera</em>; FAGR - <em>Fagus grandifolia</em>; PIRE - <em>Pinus resinosa</em>; PIST - <em>Pinus strobus</em>; POGR4 - <em>Populus grandidentata</em>; POTR - <em>Populus tremuloides</em>; QURU - <em>Quercus rubra</em>; TSCA - <em>Tsuga canadensis</em>. Abbreviations are from the <a href="http://plants.usda.gov/dl_all_html" class="external-link">USDA PLANTS list</a>.</p>
 </div>
 <div id="inventory-data" class="section level2">
 <h2 class="hasAnchor">
@@ -158,7 +160,7 @@
 <code class="sourceCode R"><span class="co"># group the data by your factor of interest, here we show how the data are summed in Figure 3.</span>
 <span class="va">x</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">subplot_id</span>, <span class="va">disturbance_severity</span>, <span class="va">treatment</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">summarize</span><span class="op">(</span>biomass_plot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">biomass</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">y</span>
+  <span class="fu">summarize</span><span class="op">(</span>biomass_plot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">biomass</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">y</span>
 
 <span class="co"># Above, y$biomass is in units of kg per 0.1 ha. We want to convert to Mg per ha</span>
 <span class="va">y</span><span class="op">$</span><span class="va">biomass_mg_ha</span> <span class="op">&lt;-</span> <span class="va">y</span><span class="op">$</span><span class="va">biomass_plot</span> <span class="op">*</span> <span class="fl">0.001</span> <span class="op">*</span> <span class="fl">10</span></code></pre></div>
@@ -176,11 +178,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p></p>
+<p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
@@ -188,6 +192,8 @@
 
   
 
+
+  
 
   </body>
 </html>

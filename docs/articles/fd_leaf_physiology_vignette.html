@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,12 +40,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -54,7 +50,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preperation, and Management</a>
     </li>
     <li>
       <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
@@ -82,7 +84,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/FoRTExperiment/fortedata/">
+  <a href="https://github.com/FoRTExperiment/fortedata/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -97,15 +99,15 @@
 
       
 
-      </header><script src="fd_leaf_physiology_vignette_files/header-attrs-2.6/header-attrs.js"></script><script src="fd_leaf_physiology_vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="fd_leaf_physiology_vignette_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>fortedata: Ecophysiology Data</h1>
-                        <h4 class="author">Lisa Haber and Jeff Atkins</h4>
+                        <h4 data-toc-skip class="author">Lisa Haber and Jeff Atkins</h4>
             
-            <h4 class="date">2020-12-29</h4>
+            <h4 data-toc-skip class="date">2021-03-11</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_leaf_physiology_vignette.Rmd"><code>vignettes/fd_leaf_physiology_vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_leaf_physiology_vignette.Rmd" class="external-link"><code>vignettes/fd_leaf_physiology_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>fd_leaf_physiology_vignette.Rmd</code></div>
 
     </div>
@@ -115,7 +117,7 @@
 <div id="ecophysiology-background-and-introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ecophysiology-background-and-introduction" class="anchor"></a>Ecophysiology Background and Introduction</h2>
-<p>Multiple types of ecophysiological data are collected annually during the growing season within FoRTE in order to capture the dynamic response of leaf functional traits to disturbance. We focus on two distinct strata within the forest: subcanopy and canopy. Within each stratum, we track changing leaf physiology year to year in a subset of surviving (i.e. ungirdled) trees through repeated measurements of leaves from the same branches on those trees each year. Within the canopy stratum, where access to light is generally high, leaves of surviving trees may adjust physiologically to loss of neighboring crown leaf area through increased access to other resources such as nitrogen and water (Nave et al., 2011). Within the subcanopy stratum, the ability of surviving trees to compensate for lost canopy leaf area becomes increasingly important to stabilizing C cycling as disturbance severity rises (Fahey et al., 2016; Stuart-Haëntjens et al., 2015). See [the FoRTE Proposal Narrative] (<a href="https://fortexperiment.github.io/fortedata/articles/fd_forte_proposal_vignette.html" class="uri">https://fortexperiment.github.io/fortedata/articles/fd_forte_proposal_vignette.html</a>) for further details.</p>
+<p>Multiple types of ecophysiological data are collected annually during the growing season within FoRTE in order to capture the dynamic response of leaf functional traits to disturbance. We focus on two distinct strata within the forest: subcanopy and canopy. Within each stratum, we track changing leaf physiology year to year in a subset of surviving (i.e. ungirdled) trees through repeated measurements of leaves from the same branches on those trees each year. Within the canopy stratum, where access to light is generally high, leaves of surviving trees may adjust physiologically to loss of neighboring crown leaf area through increased access to other resources such as nitrogen and water (Nave et al., 2011). Within the subcanopy stratum, the ability of surviving trees to compensate for lost canopy leaf area becomes increasingly important to stabilizing C cycling as disturbance severity rises (Fahey et al., 2016; Stuart-Haëntjens et al., 2015). See [the FoRTE Proposal Narrative] (<a href="https://fortexperiment.github.io/fortedata/articles/fd_forte_proposal_vignette.html" class="external-link uri">https://fortexperiment.github.io/fortedata/articles/fd_forte_proposal_vignette.html</a>) for further details.</p>
 </div>
 <div id="leaf-physiology-functions" class="section level2">
 <h2 class="hasAnchor">
@@ -129,7 +131,7 @@
 <div id="data-availability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-availability" class="anchor"></a>Data Availability</h2>
-<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current number of leaf physiology data observations available as of 2020-12-29 are detailed in Figure 1.</p>
+<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current number of leaf physiology data observations available as of 2021-03-11 are detailed in Figure 1.</p>
 <p><img src="fd_leaf_physiology_vignette_files/figure-html/observations-1.png" width="576"></p>
 </div>
 <div id="ecophysiology-methods" class="section level2">
@@ -151,7 +153,7 @@
 <img src="https://user-images.githubusercontent.com/8354517/101810611-feffd400-3ae6-11eb-98c7-1c6fe28c7d8b.png" style="width:50.0%" alt=""><p class="caption">FoRTE team members Lisa Haber and Alley Barry collecting canopy leaf physiology measurements using the UMBS Zero Emissions Canopy Access Vehicle, or “Zeke.”</p>
 </div>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/fd_photosynthesis.html">fd_photosynthesis</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/fd_photosynthesis.html">fd_photosynthesis</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## Warning in data_conditions(leaf_photo, published = FALSE, contact_person, :</span>
 <span class="co">## These data are unpublished. Please contact Lisa Haber to ask about using</span>
 <span class="co">## Data citation: ESSD</span>
@@ -227,10 +229,10 @@
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
-<p><a href="https://doi.org/10.1016/j.foreco.2016.06.001">Fahey, R. T., Stuart-Haëntjens, E. J., Gough, C. M., de La Cruz, A., Stockton, E., Vogel, C. S., &amp; Curtis, P. S. (2016). Evaluating forest subcanopy response to moderate severity disturbance and contribution to ecosystem-level productivity and resilience. Forest Ecology and Management. https://doi.org/10.1016/j.foreco.2016.06.001</a></p>
-<p><a href="https://doi.org/10.1029/2011JG001758">Nave, L. E., Gough, C. M., Maurer, K. D., Bohrer, G., Hardiman, B. S., le Moine, J., Munoz, A. B., Nadelhoffer, K. J., Sparks, J. P., Strahm, B. D., Vogel, C. S., &amp; Curtis, P. S. (2011). Disturbance and the resilience of coupled carbon and nitrogen cycling in a north temperate forest. Journal of Geophysical Research: Biogeosciences. https://doi.org/10.1029/2011JG001758</a></p>
-<p><a href="https://doi.org/10.1890/14-1810.1">Stuart-Haëntjens, E. J., Curtis, P. S., Fahey, R. T., Vogel, C. S., &amp; Gough, C. M. (2015). Net primary production of a temperate deciduous forest exhibits a threshold response to increasing disturbance severity. Ecology, 96(9), 2478–2487. https://doi.org/10.1890/14-1810.1</a></p>
-<p><a href="https://doi.org/10.1038/s41598-017-01260-y">Yang, H., Yang, X., Heskel, M., Sun, S., &amp; Tang, J. (2017). Seasonal variations of leaf and canopy properties tracked by ground-based NDVI imagery in a temperate forest. Scientific Reports, 7(1). https://doi.org/10.1038/s41598-017-01260-y</a></p>
+<p><a href="https://doi.org/10.1016/j.foreco.2016.06.001" class="external-link">Fahey, R. T., Stuart-Haëntjens, E. J., Gough, C. M., de La Cruz, A., Stockton, E., Vogel, C. S., &amp; Curtis, P. S. (2016). Evaluating forest subcanopy response to moderate severity disturbance and contribution to ecosystem-level productivity and resilience. Forest Ecology and Management. https://doi.org/10.1016/j.foreco.2016.06.001</a></p>
+<p><a href="https://doi.org/10.1029/2011JG001758" class="external-link">Nave, L. E., Gough, C. M., Maurer, K. D., Bohrer, G., Hardiman, B. S., le Moine, J., Munoz, A. B., Nadelhoffer, K. J., Sparks, J. P., Strahm, B. D., Vogel, C. S., &amp; Curtis, P. S. (2011). Disturbance and the resilience of coupled carbon and nitrogen cycling in a north temperate forest. Journal of Geophysical Research: Biogeosciences. https://doi.org/10.1029/2011JG001758</a></p>
+<p><a href="https://doi.org/10.1890/14-1810.1" class="external-link">Stuart-Haëntjens, E. J., Curtis, P. S., Fahey, R. T., Vogel, C. S., &amp; Gough, C. M. (2015). Net primary production of a temperate deciduous forest exhibits a threshold response to increasing disturbance severity. Ecology, 96(9), 2478–2487. https://doi.org/10.1890/14-1810.1</a></p>
+<p><a href="https://doi.org/10.1038/s41598-017-01260-y" class="external-link">Yang, H., Yang, X., Heskel, M., Sun, S., &amp; Tang, J. (2017). Seasonal variations of leaf and canopy properties tracked by ground-based NDVI imagery in a temperate forest. Scientific Reports, 7(1). https://doi.org/10.1038/s41598-017-01260-y</a></p>
 </div>
   </div>
 
@@ -245,11 +247,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p></p>
+<p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
@@ -257,6 +261,8 @@
 
   
 
+
+  
 
   </body>
 </html>
