@@ -69,8 +69,9 @@ fd_cwd <- function() {
   # format date
   cwd$date <- as.Date(cwd$date, format = "%m/%d/%Y")
 
-  # remove weirdness in tag number
+  # remove weirdness in tag number and change to integer
   cwd$tag_number[cwd$tag_number == "na"] <- NA
+  cwd$tag_number <- as.integer(cwd$tag_number)
 
   # Reorder columns, dropping unneeded ones
   cwd <- cwd[c("subplot_id", "replicate", "plot", "subplot", "date", "width_end1_cm", "width_mid_cm", "width_end2_cm",
