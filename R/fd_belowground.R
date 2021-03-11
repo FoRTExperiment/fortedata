@@ -39,11 +39,20 @@ fd_soil_respiration <- function() {
   # fix any missing/error lowercase
   flux$soil_temp <- suppressWarnings(as.numeric(flux$soil_temp))
 
+  # fixes character/integer problem
+  flux$run <- as.integer(flux$run)
+  flux$soil_co2_efflux <- as.numeric(flux$soil_co2_efflux)
+  flux$vwc <- as.numeric(flux$vwc)
+
   # this removes these weird lines.
   flux <- flux[!is.na(flux$soil_temp), ]
 
+  # orders by date
+  flux[order(flux$date),]
+
   # Reorder columns, dropping ones we don't need
   flux <- flux[c("subplot_id", "replicate", "plot", "subplot", "date", "timestamp", "nested_subplot",  "run", "soil_co2_efflux", "soil_temp", "vwc")]
+
 
   weak_as_tibble(flux)
 
