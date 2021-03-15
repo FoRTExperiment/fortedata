@@ -1,5 +1,5 @@
 ---
-title: "fortedata: Data Collection, Preperation, and Management"
+title: "fortedata: Data Collection, Preparation, and Management"
 author: "FoRTE Team"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -94,7 +94,7 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 ```
 
 ## Overview
-At the core of FoRTE is the collection of heterogeneous data, from many different instruments, requiring multiple different approaches, to measure different environmental variables. Below we outline the collection and preparation procedures for all data products in `fortdata`. 
+At the core of FoRTE is the collection of heterogeneous data, from many different instruments, requiring multiple different approaches, to measure different environmental variables. Below we outline the collection and preparation procedures for all data products in `fortedata`. 
 
 For each data product listed there are a minimum of two sections:
 
