@@ -94,19 +94,19 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 ```
 
 ## Overview
-At the core of FoRTE is the collection of heterogeneous data, from many different instruments, requiring multiple different approaches, to measure different environmental variables. Below we outline the collection and preparation procedures for all data products in `fortdata`. 
+At the core of FoRTE is the collection of heterogeneous data, from many different instruments, requiring multiple different approaches, to measure different environmental variables. Below we outline the collection and preparation procedures for all data products in `fortedata`. 
 
-For each data product listed there are a minimum of two sections:
+For each data product listed includes a  *Data Preparation* section that includes:
 
-1) *Field or Laboratory Methods* - how data are collected
-2) *Data Preparation* - the process needed to move from raw data to package-ready data
+1) the location of raw data in Google Drive
+2) the format and strcuture of the raw data
+3) any pre-processing of data
+4) an outline of the process needed to move from raw data to package-ready data
 
 ## Canopy Structural Traits/Terrestrial Lidar
 
-### Field Methods
-We derived canopy structural trait metrics (Fahey et al. 2019) from 2-D terrestrial lidar data collected with a user-mounted, portable canopy lidar (PCL) system equipped with an upward facing, Riegl 3100VHS near‐infrared pulsed‐laser operating at 2000 Hz (Riegl LD90 3100 VHS; Riegl USA Inc., Orlando, Florida, USA). The PCL generates continuous LiDAR returns from a “slice” of the canopy as it is walked along a measured transect. For this study, we used 40 m transects at cardinal directions--north-to-south,  east-to-west--through subplot center for a total of 80 m of transect length per subplot. This mirrors the approach of Atkins et al. (2018) and Haridman et al. (2013) and is sufficient to account for spatial variability of forest structure (Hardiman et al. 2019).  A more detailed description of the development and implementation of this terrestrial laser scanning system is available in Parker et al. (2004) and Hardiman et al. ( 2011).  We derived canopy structural metrics using the forestr package (Atkins et al. 2018a, b) in R 3.5 (R Core Team, 2018). forestr produces a suite of canopy structural traits metrics that describe canopy area/density, openness, height, complexity, and arrangement (Atkins et al. (2018a). 
-
 ### Data Preparation
+CST data are located in the `/data/lidar` on Google Drive. 
 The raw data  from the PCL instrument is in the form of a two column .csv file containing raw distance from instrument values (i.e. lidar pulse returns) and intensity values for each measured transect. These data are processed externally using forestr in R, with the output for each transect containing several .csv files: 1) a two row .csv containing a head of CST metrics and a second row containing values for those metrics; 2) an adjusted leaf area/vegetation area hit grid matrix; 3) a three column, x, z, VAI file; 4) summary matrix file containing x, z, and column specific values (NEED TO ADJUST); and 5) a hit grid plot of VAI.
 
 The first of these files, the two row CST metrics file(s) for each transect are collated into one file where each row represents each transect--the source `canopy_structural_traits.csv` file in `/inst/extdata/` from which `fd_canopy_structure` draws.
