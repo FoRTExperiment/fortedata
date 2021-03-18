@@ -39,7 +39,7 @@ x %>%
   mutate(date = ifelse(year == 2018, NA, date)) -> x
 
 # replacing the fucked up dbh class
-x$baseD_cm[x$baseD_cm == "0-1"] <- "0-1 cm"
+x$baseD_cm[x$baseD_cm == "0-1"]  <- "0-1 cm"
 x$baseD_cm[x$baseD_cm == "2-Jan"] <- "1-2 cm"
 x$baseD_cm[x$baseD_cm == "3-Feb"] <- "2-3 cm"
 
