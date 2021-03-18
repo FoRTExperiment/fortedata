@@ -1,5 +1,5 @@
 ---
-title: "fortedata: Data Collection, Preperation, and Management"
+title: "fortedata: Data Collection, Preparation, and Management"
 author: "FoRTE Team"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -119,6 +119,34 @@ The first of these files, the two row CST metrics file(s) for each transect are 
   str(cst)
 ```
 
-  
+#General Data Format and Preparation
 
+This section summarizes general formatting and preparation guidelines for all data
+shared and uploaded to fortedata. 
+
+## Naming files and folders
+
+  1. Names should be lowercase with "_" separating words.
+  2. File Type: CSV (Comma delimited)
+  3. Filenames: "data_type_year.csv" (i.e. "canopy_dendroband_2019.csv")
+  4. Folder Names: "data_type" (i.e. "canopy_dendroband")
+  5. README.txt file included in every folder (see README.txt file structure)
+  5. Each year should be 1 data file (but does this make sense for instrument data?)
+  
+## General File Structure and Format
+  
+  1. Each row is one observation
+  2. Column names should:
+      + Be lowercase with "_" separating words 
+      + Include units if quantitative (i.e. "DBH_cm"; Flux units excluded)
+      + Be added to `forte_table_metadata.csv` (if not already listed)
+  3. Required columns:
+      + subplot_id -- replicate ("A-") plot ("-01-") subplot ("-E") (i.e "A01E");                               **SHOULD NOT** include separate replicate, plot, and subplot columns
+      + date -- Date of data collection (YYYY-MM-DD)
+        
+```{r metadata, echo = TRUE}
+# call forte_table_metadata
+  fd_metadata()
+
+```
 
