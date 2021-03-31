@@ -103,7 +103,7 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 
 #' The FoRTE color palette
 #'
-#' A FoRTE specific color palette used for color-classificaiton of disturbance severity
+#' A FoRTE specific color palette used for color-classification of disturbance severity
 #' treatments. 0% = "#000000", 45% = "#009E73", 65% = "#0072B2", and 85% = "#D55E00".
 #'
 #' Per the example below, `forte_colors()` can be used to define a custom palette that
@@ -119,8 +119,17 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 
 
 forte_colors <- function() {
-  pal <- c("#000000", "#009E73", "#0072B2", "#D55E00")
-  pal <- structure(pal, class = "palette", name = 'forte')
+  # list of disturbance severities
+  disturbance_severity <- c(0, 45, 65, 85)
+
+  # list of hex codes
+  pal <-  c("#000000", "#009E73", "#0072B2", "#D55E00")
+
+  # name it
+  names(pal) <- disturbance_severity
+
+  return(pal)
+
 }
 
 
