@@ -17,23 +17,17 @@ fd_seedling_sapling <- function() {
   ss_alltime <- rbind(ss_2019, ss_2020)
 
   # convert species codes to USDA taxon codes
-  # find unique values
-  unique(ss_alltime$species)
-
-  # replace
   ss_alltime$species[ss_alltime$species == "POGR"] <- "POGR4"
   ss_alltime$species[ss_alltime$species == "ACSA"] <- "ACSA3"
   ss_alltime$species[ss_alltime$species == "BEAL"] <- "BEAL2"
   ss_alltime$species[ss_alltime$species == "AMEL"] <- "AMELA"
   ss_alltime$species[ss_alltime$species == "POTR"] <- "POTR5"
 
-  #reformat date class
+  # reformat date column
   ss_alltime$date <- as.Date(ss_alltime$date, "%Y-%m-%d")
 
   # Data creation and authorship information
   contact_person <- "Maxim S. Grigri"
   citation <- "ESSD"
-
-  # data conditions
   data_conditions(ss_alltime, published = TRUE, contact_person, citation)
 }
