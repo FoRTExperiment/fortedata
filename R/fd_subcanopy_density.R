@@ -4,9 +4,10 @@
 # and counting the total number of stems 1-8cm DBH identified to the species level.
 # These data can be used to scale subcanopy subsample measurements.
 
-#' @note Data were collected by multiple Gough Lab team members
+#' Subcanopy density data
 #'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
+#' @note Data were collected by multiple Gough Lab team members
 #' @export
 #' @examples
 #' fd_subcanopy_density()

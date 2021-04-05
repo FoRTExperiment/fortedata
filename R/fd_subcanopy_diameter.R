@@ -2,12 +2,13 @@
 
 # These data were collected using digital calipers at ~1.3m bole height. Data were collected bi-weekly in the 2019 field season with end of season diameter in November 2019. In subsequent years, data are collected twice annually, once during the growing season and once in November. All stems in this size class within the 2m^2 vegetation sampling plots were sampled for DBH. When less than 2 stems of this size class were present in the sampling areas, the two closest stems to vegetation plot center were selected resulting in a minimum of 8 diameter samples per subplot
 
-#' @note Data were collected by multiple Gough Lab team members
+#' Subcanopy diameter data
 #'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
+#' @note Data were collected by multiple Gough Lab team members
 #' @export
 #' @examples
-#' fd_subcanopy()
+#' fd_subcanopy_diameter()
 fd_subcanopy_diameter <- function() {
   sc_2019 <- read_csv_file("fd_subcanopy_diameter_2019.csv")
   sc_2020 <- read_csv_file("fd_subcanopy_diameter_2020.csv")
@@ -35,5 +36,4 @@ fd_subcanopy_diameter <- function() {
 
   # data conditions
   data_conditions(sc_alltime, published = TRUE, contact_person, citation)
-
 }

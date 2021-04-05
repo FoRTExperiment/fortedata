@@ -2,9 +2,10 @@
 
 # These data were collected using digital calipers to measure basal diameter of all seedling and saplings >1cm DBH or >1.3m height within 1/4 of each vegatation sampling area (1m^2). Basal diameter of each sampled stem was binned into 1cm categories (i.e. 0-1cm, 1-2cm, etc). Two height measurements for each sampled stem was measured with a ruler or meter stick: 1) height of previous year budscar, 2) total height. Measurements were collected twice in 2019 (June and August), and once in August 2020.
 
-#' @note Data were collected by Maxim S. Grigri
+#' Seedling and sapling data
 #'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
+#' @note Data were collected by Maxim S. Grigri
 #' @export
 #' @examples
 #' fd_seedling_sapling()
