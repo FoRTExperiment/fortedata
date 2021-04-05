@@ -99,7 +99,7 @@ At the core of FoRTE is the collection of heterogeneous data, from many differen
 For each data product listed includes a  *Data Preparation* section that includes:
 
 1) the location of raw data in Google Drive
-2) the format and strcuture of the raw data
+2) the format and structure of the raw data
 3) any pre-processing of data
 4) an outline of the process needed to move from raw data to package-ready data
 
