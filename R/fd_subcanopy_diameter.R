@@ -17,10 +17,6 @@ fd_subcanopy_diameter <- function() {
   sc_alltime <- rbind(sc_2019, sc_2020)
 
   # convert species codes to USDA taxon codes
-  # find unique values
-  unique(sc_alltime$species)
-
-  # replace
   sc_alltime$species[sc_alltime$species == "POGR"] <- "POGR4"
   sc_alltime$species[sc_alltime$species == "ACSA"] <- "ACSA3"
   sc_alltime$species[sc_alltime$species == "BEAL"] <- "BEAL2"
@@ -33,7 +29,5 @@ fd_subcanopy_diameter <- function() {
   # Data creation and authorship information
   contact_person <- "Maxim S. Grigri"
   citation <- "ESSD"
-
-  # data conditions
   data_conditions(sc_alltime, published = TRUE, contact_person, citation)
 }

@@ -120,7 +120,7 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 
 forte_colors <- function() {
   pal <- c("#000000", "#009E73", "#0072B2", "#D55E00")
-  pal <- structure(pal, class = "palette", name = 'forte')
+  structure(pal, class = "palette", name = 'forte')
 }
 
 
@@ -167,7 +167,6 @@ calc_biomass <- function(){
   # The allometries
   allo.df <- read_csv_file("fd_biomass_allometries.csv") #this has the same equations AmeriFlux uses
   df <- fortedata::fd_inventory()
-
 
   # merge the two
   stem <- merge(df, allo.df)

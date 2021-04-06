@@ -18,10 +18,6 @@
 #' fd_inventory()
 fd_inventory <- function() {
 
-  # Data Creation and Authorship Information
-  contact_person <- "Jeff Atkins"
-  citation <- "ESSD"
-
   inv <- read_csv_file("forte_inventory.csv")
   inv$date <- as.Date(inv$date, format = "%m/%d/%Y")
 
@@ -30,11 +26,12 @@ fd_inventory <- function() {
   # Currently there's a bad entry in the table. Nuke it. Temporary
   inv$dbh_cm <- as.numeric(inv$dbh_cm)  # temporary, until we fix row 791
 
-  inv <- inv[c("subplot_id", "replicate", "plot", "subplot","date","tag", "species", "dbh_cm", "health_status", "canopy_status", "notes")]
+  inv <- inv[c("subplot_id", "replicate", "plot", "subplot", "date", "tag",
+               "species", "dbh_cm", "health_status", "canopy_status", "notes")]
 
-  weak_as_tibble(inv)
-
-  # data conditions
+  # Data creation and authorship information
+  contact_person <- "Jeff Atkins"
+  citation <- "ESSD"
   data_conditions(inv, published = FALSE, contact_person, citation)
 }
 
@@ -76,8 +73,6 @@ fd_inventory_summary <- function() {
 
   #ba$Stocking <- stocking$DBH_cm
   weak_as_tibble(merge(ba, stocking))
-
-
 }
 
 
@@ -118,10 +113,6 @@ fd_mortality <- function() {
 #' fd_dendro()
 fd_dendro <- function() {
 
-  # Data Creation and Authorship Information
-  contact_person <- "Max Grigri [grigrims@vcu.edu], Jeff Atkins [jwatkins6@vcu.edu]"
-  citation <- "Grigri, M. S., Atkins, J. W., Vogel, C., Bond-Lamberty, B., & Gough, C. M. (2020). Aboveground Wood Production Is Sustained in the First Growing Season after Phloem-Disrupting Disturbance. Forests, 11(12), 1306."
-
   # read in data
   df <- read_csv_file("fd_dendroband.csv")
 
@@ -141,8 +132,8 @@ fd_dendro <- function() {
   # reorganize and sort
   df <- df[c("subplot_id", "replicate", "plot", "subplot","date", "tag", "species", "band_in", "notes")]
 
-  weak_as_tibble(df)
-
-  # data conditions
+  # Data creation and authorship information
+  contact_person <- "Max Grigri [grigrims@vcu.edu], Jeff Atkins [jwatkins6@vcu.edu]"
+  citation <- "Grigri, M. S., Atkins, J. W., Vogel, C., Bond-Lamberty, B., & Gough, C. M. (2020). Aboveground Wood Production Is Sustained in the First Growing Season after Phloem-Disrupting Disturbance. Forests, 11(12), 1306."
   data_conditions(df, published = TRUE, contact_person, citation)
 }

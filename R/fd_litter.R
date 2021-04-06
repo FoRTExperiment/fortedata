@@ -29,12 +29,9 @@ fd_litter <- function() {
   litter <- litter[c("subplot_id", "replicate", "plot", "subplot", "year", "fraction", "species", "bagtare_g", "bagmass_g")]
   weak_as_tibble(litter)
 
-
   # Data creation and authorship information
   contact_person <- "Jeff Atkins"
   citation <- "ESSD"
-
-  # data conditions
   data_conditions(litter, published = FALSE, contact_person, citation)
 }
 
@@ -78,11 +75,8 @@ fd_cwd <- function() {
                "length_m", "decay_class", "tag_number", "initials")]
   weak_as_tibble(cwd)
 
-
   # Data creation and authorship information
   contact_person <- "Jeff Atkins"
   citation <- "ESSD"
-
-  # data conditions
   data_conditions(cwd, published = FALSE, contact_person, citation)
 }

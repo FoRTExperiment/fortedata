@@ -31,7 +31,5 @@ fd_subcanopy_density <- function () {
   # Data creation and authorship information
   contact_person <- "Maxim S. Grigri"
   citation <- "ESSD"
-
-  # data conditions
   data_conditions(sc_density, published = TRUE, contact_person, citation)
 }

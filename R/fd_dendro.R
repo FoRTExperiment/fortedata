@@ -25,7 +25,5 @@ fd_dendro <- function() {
   # Data creation and authorship information
   contact_person <- "Maxim S. Grigri"
   citation <- "ESSD"
-
-  # data conditions
   data_conditions(dendro, published = TRUE, contact_person, citation)
 }
