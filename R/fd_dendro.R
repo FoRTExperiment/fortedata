@@ -12,10 +12,6 @@
 fd_dendro <- function() {
   dendro <- read_csv_file("fd_dendroband.csv")
 
-  # convert species codes to USDA taxon codes
-  # find unique values
-  unique(dendro$species)
-
   # replace
   dendro$species[dendro$species == "POGR"] <- "POGR4"
   dendro$species[dendro$species == "ACSA"] <- "ACSA3"

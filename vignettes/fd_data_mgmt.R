@@ -68,7 +68,7 @@ split_subplot_id <- function(df) {
 data_conditions <- function(x, published = FALSE, contact_person, citation) {
 
   if(!published) {
-    warning("These data are unpublished. Please contact ", contact_person, " to ask about using")
+    message("These data are unpublished. Please contact ", contact_person, " to ask about using")
   }
 
   message("Data citation: ", citation)
@@ -85,6 +85,6 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 #set random seed
   cst <- read_csv_file("canopy_structural_traits.csv")
 
-  # show the top of 
+  # show the top of
   str(cst)
 
