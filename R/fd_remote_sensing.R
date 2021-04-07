@@ -62,8 +62,6 @@ fd_hemi_camera <- function() {
   # Data creation and authorship information
   contact_person <- "Jeff Atkins"
   citation <- "ESSD"
-
-  # data conditions
   data_conditions(cam, published = FALSE, contact_person, citation)
 }
 
@@ -154,10 +152,7 @@ fd_canopy_structure <- function() {
   # Data creation and authorship information
   contact_person <- "Jeff Atkins"
   citation <- "ESSD"
-
-  # data conditions
   data_conditions(cst, published = FALSE, contact_person, citation)
-
 }
 
 #' Summary data for canopy structural data including canopy complexity and leaf area
@@ -279,7 +274,3 @@ fd_ceptometer <- function() {
 
   weak_as_tibble(cept)
 }
-
-
-
-

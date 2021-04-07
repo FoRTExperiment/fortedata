@@ -4,7 +4,7 @@ author: "FoRTE Team"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{fortedata: Data Collection, Preperation, and Management}
+  %\VignetteIndexEntry{fortedata: Data Collection, Preparation, and Management}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -27,7 +27,6 @@ read_csv_file <- function(...) {
   )
 }
 
-
 # weak_tibble - use tibble() if available but fall back to
 # data.frame() if necessary
 # not a user-facing function; document via roxygen?
@@ -49,11 +48,10 @@ weak_as_tibble <- function(..., .force_df = FALSE) {
   }
 }
 
-
 #' Data tables' metadata.
 fd_metadata <- function(table = NULL) {
   md <- read_csv_file("forte_table_metadata.csv")
-
+  
   if (!is.null(table)) {
     md <- md[md$table == table,]
     if (nrow(md) < 1) {
@@ -74,19 +72,17 @@ split_subplot_id <- function(df) {
 }
 
 
-
-
 data_conditions <- function(x, published = FALSE, contact_person, citation) {
-
+  
   if(!published) {
     warning("These data are unpublished. Please contact ", contact_person, " to ask about using")
   }
-
+  
   message("Data citation: ", citation)
   message("Contact person: ", contact_person)
-
+  
   # add the above information to `x` as attributes...
-
+  
   invisible(x)
 }
 
@@ -113,10 +109,10 @@ The first of these files, the two row CST metrics file(s) for each transect are 
 
 ```{r cst, echo = TRUE}
 #set random seed
-  cst <- read_csv_file("canopy_structural_traits.csv")
+cst <- read_csv_file("canopy_structural_traits.csv")
 
-  # show the top of 
-  str(cst)
+# show the top of 
+str(cst)
 ```
 
 #General Data Format and Preparation
@@ -126,27 +122,25 @@ shared and uploaded to fortedata.
 
 ## Naming files and folders
 
-  1. Names should be lowercase with "_" separating words.
-  2. File Type: CSV (Comma delimited)
-  3. Filenames: "data_type_year.csv" (i.e. "canopy_dendroband_2019.csv")
-  4. Folder Names: "data_type" (i.e. "canopy_dendroband")
-  5. README.txt file included in every folder (see README.txt file structure)
-  5. Each year should be 1 data file (but does this make sense for instrument data?)
-  
+1. Names should be lowercase with "_" separating words.
+2. File Type: CSV (Comma delimited)
+3. Filenames: "data_type_year.csv" (i.e. "canopy_dendroband_2019.csv")
+4. Folder Names: "data_type" (i.e. "canopy_dendroband")
+5. README.txt file included in every folder (see README.txt file structure)
+5. Each year should be 1 data file (but does this make sense for instrument data?)
+
 ## General File Structure and Format
-  
-  1. Each row is one observation
-  2. Column names should:
-      + Be lowercase with "_" separating words 
-      + Include units if quantitative (i.e. "DBH_cm"; Flux units excluded)
-      + Be added to `forte_table_metadata.csv` (if not already listed)
-  3. Required columns:
-      + subplot_id -- replicate ("A-") plot ("-01-") subplot ("-E") (i.e "A01E");                               **SHOULD NOT** include separate replicate, plot, and subplot columns
-      + date -- Date of data collection (YYYY-MM-DD)
-        
+
+1. Each row is one observation
+2. Column names should:
++ Be lowercase with "_" separating words 
++ Include units if quantitative (i.e. "DBH_cm"; Flux units excluded)
++ Be added to `forte_table_metadata.csv` (if not already listed)
+3. Required columns:
++ subplot_id -- replicate ("A-") plot ("-01-") subplot ("-E") (i.e "A01E");                               **SHOULD NOT** include separate replicate, plot, and subplot columns
++ date -- Date of data collection (YYYY-MM-DD)
+
 ```{r metadata, echo = TRUE}
 # call forte_table_metadata
-  fd_metadata()
-
+fd_metadata()
 ```
-

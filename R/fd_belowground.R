@@ -28,7 +28,7 @@ fd_soil_respiration <- function() {
   # Make subplotID column
   flux$subplot_id <- paste0(flux$Rep_ID, "0", flux$Plot_ID, flux$Subplot)
 
-    # Timestamp
+  # Timestamp
   flux$timestamp <- as.POSIXct(flux$dateTime, format = "%m/%d/%Y %H:%M", tz = "America/Detroit")
 
   # Retaining date
@@ -53,14 +53,8 @@ fd_soil_respiration <- function() {
   # Reorder columns, dropping ones we don't need
   flux <- flux[c("subplot_id", "replicate", "plot", "subplot", "date", "timestamp", "nested_subplot",  "run", "soil_co2_efflux", "soil_temp", "vwc")]
 
-
-  weak_as_tibble(flux)
-
   # Data creation and authorship information
   contact_person <- "Kayla Mathes"
   citation <- "ESSD"
-
-  # data conditions
   data_conditions(flux, published = FALSE, contact_person, citation)
-
 }

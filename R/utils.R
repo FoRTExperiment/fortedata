@@ -86,7 +86,7 @@ split_subplot_id <- function(df) {
 data_conditions <- function(x, published = FALSE, contact_person, citation) {
 
   if(!published) {
-    warning("These data are unpublished. Please contact ", contact_person, " to ask about using")
+    message("These data are unpublished. Please contact ", contact_person, " to ask about using")
   }
 
   message("Data citation: ", citation)
@@ -129,7 +129,6 @@ forte_colors <- function() {
   names(pal) <- disturbance_severity
 
   return(pal)
-
 }
 
 
@@ -176,7 +175,6 @@ calc_biomass <- function(){
   # The allometries
   allo.df <- read_csv_file("fd_biomass_allometries.csv") #this has the same equations AmeriFlux uses
   df <- fortedata::fd_inventory()
-
 
   # merge the two
   stem <- merge(df, allo.df)

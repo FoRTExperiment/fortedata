@@ -16,7 +16,6 @@ read_csv_file <- function(...) {
   )
 }
 
-
 # weak_tibble - use tibble() if available but fall back to
 # data.frame() if necessary
 # not a user-facing function; document via roxygen?
@@ -38,11 +37,10 @@ weak_as_tibble <- function(..., .force_df = FALSE) {
   }
 }
 
-
 #' Data tables' metadata.
 fd_metadata <- function(table = NULL) {
   md <- read_csv_file("forte_table_metadata.csv")
-
+  
   if (!is.null(table)) {
     md <- md[md$table == table,]
     if (nrow(md) < 1) {
@@ -63,19 +61,17 @@ split_subplot_id <- function(df) {
 }
 
 
-
-
 data_conditions <- function(x, published = FALSE, contact_person, citation) {
-
+  
   if(!published) {
     warning("These data are unpublished. Please contact ", contact_person, " to ask about using")
   }
-
+  
   message("Data citation: ", citation)
   message("Contact person: ", contact_person)
-
+  
   # add the above information to `x` as attributes...
-
+  
   invisible(x)
 }
 
@@ -83,8 +79,12 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 
 ## ----cst, echo = TRUE---------------------------------------------------------
 #set random seed
-  cst <- read_csv_file("canopy_structural_traits.csv")
+cst <- read_csv_file("canopy_structural_traits.csv")
 
-  # show the top of 
-  str(cst)
+# show the top of 
+str(cst)
+
+## ----metadata, echo = TRUE----------------------------------------------------
+# call forte_table_metadata
+fd_metadata()
 
