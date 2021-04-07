@@ -49,7 +49,7 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
 
 ## Aboveground Wood Functions
 
-The `fd_aboveground_wood()` script within `fortedata` currently includes the following functions
+The `fd_inventory()` script within `fortedata` currently includes the following functions
 
 * `fd_dendro()` returns a single dataset of [number of records] dendrometer band measurements (in) at ~1.3m stem height collected by hand from a subsample of trees >= 8cm DBH from all 32 subpots of the FoRTE experiment. [potentially add more description here?]
 
