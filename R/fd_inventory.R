@@ -130,6 +130,9 @@ fd_dendro <- function() {
   names(df)[names(df) == "subplot"] <- "subplot_id"
   names(df)[names(df) == "bands_in"] <- "band_in"
 
+  #sort by tag
+  df <- df[order(df$tag , df$date),]
+
   # change the str of band_in
   df$band_in <- as.numeric(df$band_in)
   # add plot associated metadata
