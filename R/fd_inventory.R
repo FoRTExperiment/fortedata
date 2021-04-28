@@ -130,7 +130,7 @@ fd_dendro <- function() {
   names(df)[names(df) == "subplot"] <- "subplot_id"
   names(df)[names(df) == "bands_in"] <- "band_in"
 
-  #sort by tag
+  # sort by tag
   df <- df[order(df$tag , df$date),]
 
   # change the str of band_in
@@ -150,7 +150,7 @@ fd_dendro <- function() {
 
 # Subcanopy (1-8cm DBH) diameter measurements
 
-# These data were collected using digital calipers at ~1.3m bole height. Data were collected bi-weekly in the 2019 field season with end of season diameter in November 2019. In subsequent years, data are collected twice annually, once during the growing season and once in November. All stems in this size class within the 2m^2 vegetation sampling plots were sampled for DBH. When less than 2 stems of this size class were present in the sampling areas, the two closest stems to vegetation plot center were selected resulting in a minimum of 8 diameter samples per subplot
+# These data were collected using digital calipers at ~1.3m bole height. Data were collected bi-weekly in the 2019 field season with end of season diameter in November 2019. In subsequent years, data are collected twice annually, once during the growing season and once in November. All stems in this size class within the 2m^2 vegetation sampling plots were sampled for DBH. When less than 2 stems of this size class were present in the sampling areas, the two closest stems to vegetation plot center were selected resulting in a minimum of 8 diameter samples per subplot.
 
 #' Subcanopy diameter data
 #'
