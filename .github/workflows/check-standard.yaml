@@ -28,7 +28,6 @@ jobs:
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
-      _R_CHECK_FORCE_SUGGESTS_: false
       RSPM: ${{ matrix.config.rspm }}
 
     steps:
@@ -64,8 +63,16 @@ jobs:
           sudo -s eval "$sysreqs"
 
       - name: Install dependencies
+        if: matrix.config.r != 'devel'
         run: |
           remotes::install_deps(dependencies = TRUE)
+          remotes::install_cran("rcmdcheck")
+        shell: Rscript {0}
+
+      - name: Install dependencies (devel)
+        if: matrix.config.r == 'devel'
+        run: |
+          remotes::install_deps(dependencies = NA)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
