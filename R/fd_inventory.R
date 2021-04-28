@@ -210,7 +210,7 @@ fd_subcanopy_density <- function () {
   sc_density$species[sc_density$species == "AMEL"] <- "AMELA"
   sc_density$species[sc_density$species == "POTR"] <- "POTR5"
 
-  #reformat date class
+  # reformat date class
   sc_density$date <- as.Date(sc_density$date, "%Y-%m-%d")
 
   # Data creation and authorship information
