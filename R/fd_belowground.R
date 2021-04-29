@@ -3,7 +3,8 @@
 
 #' Soil respiration (soil to atmosphere CO2 efflux) table
 #'
-#' These data include soil CO2 efflux in units of micromoles per m^2 s^-1 as well as soil temperature in C, and soil water content as a percentage. See `fd_belowground_vignette` for further information.
+#' These data include soil CO2 efflux in units of micromoles per m^2 s^-1 as well as
+#' soil temperature in C, and soil water content as a percentage. See `fd_belowground_vignette` for further information.
 #'
 #' @note Measurements taken by Kayla Mathes and Carly Rodriguez
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
