@@ -253,3 +253,41 @@ fd_seedling_sapling <- function() {
   citation <- "ESSD"
   data_conditions(ss_alltime, published = TRUE, contact_person, citation)
 }
+
+# Double canopy dendroband data
+
+# These data are dendrometer band measurements from a second dendrometer band placed 50 cm above
+# the original band on a sub sample of trees. These were fixed to trees in July 2019.
+# These data can be used to assess statistical differences in diameter growth at two stem heights on both
+# stem-girdled and uninjured trees in the forte experiment
+
+#' Seedling and sapling data
+#'
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
+#' @note Data were collected by Maxim S. Grigri
+#' @export
+#' @examples
+#' fd_double_dendro()
+fd_double_dendro <- function() {
+  dd_2019 <- read_csv_file("fd_double_dendroband_2019.csv")
+  dd_2020 <- read_csv_file("fd_double_dendroband_2020.csv")
+
+  # bind years into one df
+  dd_alltime <- rbind(dd_2019, dd_2020)
+
+  # convert species codes to USDA taxon codes
+  dd_alltime$species[dd_alltime$species == "POGR"] <- "POGR4"
+  dd_alltime$species[dd_alltime$species == "ACSA"] <- "ACSA3"
+  dd_alltime$species[dd_alltime$species == "BEAL"] <- "BEAL2"
+  dd_alltime$species[dd_alltime$species == "AMEL"] <- "AMELA"
+  dd_alltime$species[dd_alltime$species == "POTR"] <- "POTR5"
+
+  # reformat date column
+  dd_alltime$date <- as.Date(dd_alltime$date, "%Y-%m-%d")
+
+
+  # Data creation and authorship information
+  contact_person <- "Maxim S. Grigri"
+  citation <- "ESSD"
+  data_conditions(dd_alltime, published = TRUE, contact_person, citation)
+}
