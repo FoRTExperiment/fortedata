@@ -62,6 +62,8 @@ The `fd_inventory()` script within `fortedata` currently includes the following 
 
 * `fd_subcanopy_density()` returns a single dataset of subcanopy (1-8cm DBH) stem density within one quarter (0.025 ha) of all 32 subplots in the FoRTE experiment. Stem density survey were conducted during the 2019 field season.
 
+* `fd_double_dendro()` returns a single dataset of dendrometer band measurements (in) at ~1.3m stem height and ~1.8m stem height on a subsample of trees >= 8cm DBH.
+
 ## Aboveground Wood Methods 
 
 ### Upper Canopy Dendrometer Bands 
@@ -74,7 +76,11 @@ A subsample of 280 subcanopy stems were randomly selected across all 32 subplots
 
 ### Seedling and Sapling Base Diameter and Height
 
-To complete the assessment of aboveground wood response to disturbance, all seedling sapling stems within one randomly selected quarter of each 2m^2 vegetation nested subplots [see fortedata: Experimental Design and Tretment] were identified to the species level and measured for basal diameter using digital calipers, current height, and height from the previous season via branch scars. Data were collected in June 2019, August 2019, and July 2020. Growth increments and ANPPw can be derived using suite of methods described in Grigri et al. (2020).
+To complete the assessment of aboveground wood response to disturbance, all seedling sapling stems within one randomly selected quarter of each 2m^2 vegetation nested subplots [see fortedata: Experimental Design and Tretment] were identified to the species level and measured for basal diameter using digital calipers, current height, and height from the previous season via branch scars. Data were collected in June 2019, August 2019, and July 2020. Growth increments and ANPPw can be derived using a suite of methods described in Grigri et al. (2020).
+
+### Upper Canopy Double Dendrometer Bands
+
+A subsample (n = 40) of the dendrometer banded upper canopy stems stratified by species and experimental treatment (girdled/ungirdled) were affixed with a second (upper) dendrometer band at ~1.8m stem height in July 2019. Upper dendrometer bands were installed with high tension and allowed one week to settle before intial measurements were recorded.
 
 ## References 
 
