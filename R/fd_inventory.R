@@ -285,6 +285,9 @@ fd_double_dendro <- function() {
   # reformat date column
   dd_alltime$date <- as.Date(dd_alltime$date, "%Y-%m-%d")
 
+  # change the str of band_in_bottom & band_in_top
+  dd_alltime$band_in_bottom <- as.numeric(dd_alltime$band_in_bottom)
+  dd_alltime$band_in_top <- as.numeric(dd_alltime$band_in_top)
 
   # Data creation and authorship information
   contact_person <- "Maxim S. Grigri"
