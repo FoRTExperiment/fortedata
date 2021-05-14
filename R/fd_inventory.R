@@ -135,11 +135,15 @@ fd_dendro <- function() {
 
   # change the str of band_in
   df$band_in <- as.numeric(df$band_in)
+
+  # create a band_cm column by converting inches to cm
+  df$band_cm <- df$band_in*2.54
+
   # add plot associated metadata
   df <- split_subplot_id(df)
 
-  # reorganize and sort
-  df <- df[c("subplot_id", "replicate", "plot", "subplot","date", "tag", "species", "band_in", "notes")]
+  # reorganize and drop band_in for band_cm
+  df <- df[c("subplot_id", "replicate", "plot", "subplot","date", "tag", "species", "band_cm", "notes")]
 
   # Data creation and authorship information
   contact_person <- "Maxim S. Grigri [grigrims@vcu.edu], Jeff Atkins [jwatkins6@vcu.edu]"
@@ -261,7 +265,7 @@ fd_seedling_sapling <- function() {
 # These data can be used to assess statistical differences in diameter growth at two stem heights on both
 # stem-girdled and uninjured trees in the forte experiment
 
-#' Seedling and sapling data
+#' Double dendrometer band data
 #'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @note Data were collected by Maxim S. Grigri
@@ -288,6 +292,13 @@ fd_double_dendro <- function() {
   # change the str of band_in_bottom & band_in_top
   dd_alltime$band_in_bottom <- as.numeric(dd_alltime$band_in_bottom)
   dd_alltime$band_in_top <- as.numeric(dd_alltime$band_in_top)
+
+  # create band_cm columns for both by converting to cm's
+  dd_alltime$band_cm_bottom <- dd_alltime$band_in_bottom*2.54
+  dd_alltime$band_cm_top <- dd_alltime$band_in_top*2.54
+
+  # drop the band_in columns
+  dd_alltime <- dd_alltime[c("tag", "species", "band_cm_bottom","band_cm_top", "date", "notes")]
 
   # Data creation and authorship information
   contact_person <- "Maxim S. Grigri"
