@@ -135,11 +135,15 @@ fd_dendro <- function() {
 
   # change the str of band_in
   df$band_in <- as.numeric(df$band_in)
+
+  # create a band_cm column by converting inches to cm
+  df$band_cm <- df$band_in*2.54
+
   # add plot associated metadata
   df <- split_subplot_id(df)
 
-  # reorganize and sort
-  df <- df[c("subplot_id", "replicate", "plot", "subplot","date", "tag", "species", "band_in", "notes")]
+  # reorganize and drop band_in for band_cm
+  df <- df[c("subplot_id", "replicate", "plot", "subplot","date", "tag", "species", "band_cm", "notes")]
 
   # Data creation and authorship information
   contact_person <- "Maxim S. Grigri [grigrims@vcu.edu], Jeff Atkins [jwatkins6@vcu.edu]"
@@ -252,4 +256,52 @@ fd_seedling_sapling <- function() {
   contact_person <- "Maxim S. Grigri"
   citation <- "ESSD"
   data_conditions(ss_alltime, published = TRUE, contact_person, citation)
+}
+
+# Double canopy dendroband data
+
+# These data are dendrometer band measurements from a second dendrometer band placed 50 cm above
+# the original band on a sub sample of trees. These were fixed to trees in July 2019.
+# These data can be used to assess statistical differences in diameter growth at two stem heights on both
+# stem-girdled and uninjured trees in the forte experiment
+
+#' Double dendrometer band data
+#'
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
+#' @note Data were collected by Maxim S. Grigri
+#' @export
+#' @examples
+#' fd_double_dendro()
+fd_double_dendro <- function() {
+  dd_2019 <- read_csv_file("fd_double_dendroband_2019.csv")
+  dd_2020 <- read_csv_file("fd_double_dendroband_2020.csv")
+
+  # bind years into one df
+  dd_alltime <- rbind(dd_2019, dd_2020)
+
+  # convert species codes to USDA taxon codes
+  dd_alltime$species[dd_alltime$species == "POGR"] <- "POGR4"
+  dd_alltime$species[dd_alltime$species == "ACSA"] <- "ACSA3"
+  dd_alltime$species[dd_alltime$species == "BEAL"] <- "BEAL2"
+  dd_alltime$species[dd_alltime$species == "AMEL"] <- "AMELA"
+  dd_alltime$species[dd_alltime$species == "POTR"] <- "POTR5"
+
+  # reformat date column
+  dd_alltime$date <- as.Date(dd_alltime$date, "%Y-%m-%d")
+
+  # change the str of band_in_bottom & band_in_top
+  dd_alltime$band_in_bottom <- as.numeric(dd_alltime$band_in_bottom)
+  dd_alltime$band_in_top <- as.numeric(dd_alltime$band_in_top)
+
+  # create band_cm columns for both by converting to cm's
+  dd_alltime$band_cm_bottom <- dd_alltime$band_in_bottom*2.54
+  dd_alltime$band_cm_top <- dd_alltime$band_in_top*2.54
+
+  # drop the band_in columns
+  dd_alltime <- dd_alltime[c("tag", "species", "band_cm_bottom","band_cm_top", "date", "notes")]
+
+  # Data creation and authorship information
+  contact_person <- "Maxim S. Grigri"
+  citation <- "ESSD"
+  data_conditions(dd_alltime, published = TRUE, contact_person, citation)
 }

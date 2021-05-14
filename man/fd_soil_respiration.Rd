@@ -10,7 +10,8 @@ fd_soil_respiration()
 A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
-These data include soil CO2 efflux in units of micromoles per m^2 s^-1 as well as soil temperature in C, and soil water content as a percentage. See \code{fd_belowground_vignette} for further information.
+These data include soil CO2 efflux in units of micromoles per m^2 s^-1 as well as
+soil temperature in C, and soil water content as a percentage. See \code{fd_belowground_vignette} for further information.
 }
 \note{
 Measurements taken by Kayla Mathes and Carly Rodriguez
