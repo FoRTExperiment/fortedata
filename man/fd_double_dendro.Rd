@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_inventory.R
 \name{fd_double_dendro}
 \alias{fd_double_dendro}
-\title{Seedling and sapling data}
+\title{Double dendrometer band data}
 \usage{
 fd_double_dendro()
 }
@@ -10,7 +10,7 @@ fd_double_dendro()
 A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
-Seedling and sapling data
+Double dendrometer band data
 }
 \note{
 Data were collected by Maxim S. Grigri
