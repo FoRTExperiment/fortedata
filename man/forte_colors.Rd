@@ -11,7 +11,7 @@ forte_colors()
 A vector of colors.
 }
 \description{
-A FoRTE specific color palette used for color-classificaiton of disturbance severity
+A FoRTE specific color palette used for color-classification of disturbance severity
 treatments. 0\% = "#000000", 45\% = "#009E73", 65\% = "#0072B2", and 85\% = "#D55E00".
 }
 \details{
