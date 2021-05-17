@@ -56,7 +56,7 @@
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
     </li>
     <li>
-      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preperation, and Management</a>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
     </li>
     <li>
       <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
@@ -105,7 +105,7 @@
       <h1 data-toc-skip>fortedata: Ecophysiology Data</h1>
                         <h4 data-toc-skip class="author">Lisa Haber and Jeff Atkins</h4>
             
-            <h4 data-toc-skip class="date">2021-03-11</h4>
+            <h4 data-toc-skip class="date">2021-05-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_leaf_physiology_vignette.Rmd" class="external-link"><code>vignettes/fd_leaf_physiology_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>fd_leaf_physiology_vignette.Rmd</code></div>
@@ -131,7 +131,7 @@
 <div id="data-availability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-availability" class="anchor"></a>Data Availability</h2>
-<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current number of leaf physiology data observations available as of 2021-03-11 are detailed in Figure 1.</p>
+<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current number of leaf physiology data observations available as of 2021-05-16 are detailed in Figure 1.</p>
 <p><img src="fd_leaf_physiology_vignette_files/figure-html/observations-1.png" width="576"></p>
 </div>
 <div id="ecophysiology-methods" class="section level2">
@@ -154,7 +154,6 @@
 </div>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/fd_photosynthesis.html">fd_photosynthesis</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## Warning in data_conditions(leaf_photo, published = FALSE, contact_person, :</span>
 <span class="co">## These data are unpublished. Please contact Lisa Haber to ask about using</span>
 <span class="co">## Data citation: ESSD</span>
 <span class="co">## Contact person: Lisa Haber</span>
@@ -193,8 +192,7 @@
 <span class="co">## 4 15:07:05 in NE #2784;        A01E         A       E</span>
 <span class="co">## 5 15:07:05 in NE #2784;        A01E         A       E</span>
 <span class="co">## 6       15:10:53 in NE;        A01E         A       E</span></code></pre></div>
-<pre><code>## Warning in data_conditions(leaf_photo, published = FALSE, contact_person, :
-## These data are unpublished. Please contact Lisa Haber to ask about using
+<pre><code>## These data are unpublished. Please contact Lisa Haber to ask about using
 ## Data citation: ESSD
 ## Contact person: Lisa Haber</code></pre>
 <p><img src="fd_leaf_physiology_vignette_files/figure-html/photo-1.png" width="576" style="display: block; margin: auto;"></p>
@@ -208,14 +206,10 @@
 </div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fd_leaf_spectrometry.html">fd_leaf_spectrometry</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">## Warning in fd_leaf_spectrometry(): NAs introduced by coercion</span>
-<span class="co">## Warning in data_conditions(leaf_spec, published = FALSE, contact_person, : These</span>
-<span class="co">## data are unpublished. Please contact Lisa Haber to ask about using</span>
+<span class="co">## These data are unpublished. Please contact Lisa Haber to ask about using</span>
 <span class="co">## Data citation: ESSD</span>
 <span class="co">## Contact person: Lisa Haber</span></code></pre></div>
-<pre><code>## Warning in fd_leaf_spectrometry(): NAs introduced by coercion
-## Warning in data_conditions(leaf_spec, published = FALSE, contact_person, : These
-## data are unpublished. Please contact Lisa Haber to ask about using
+<pre><code>## These data are unpublished. Please contact Lisa Haber to ask about using
 ## Data citation: ESSD
 ## Contact person: Lisa Haber</code></pre>
 <p><img src="fd_leaf_physiology_vignette_files/figure-html/ndvi-plot-1.png" width="576" style="display: block; margin: auto;"></p>

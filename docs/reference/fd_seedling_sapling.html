@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Subplots table. — fd_subplots • fortedata</title>
+<title>Seedling and sapling data — fd_seedling_sapling • fortedata</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Subplots table. — fd_subplots" />
-<meta property="og:description" content="Subplots table." />
+<meta property="og:title" content="Seedling and sapling data — fd_seedling_sapling" />
+<meta property="og:description" content="Seedling and sapling data" />
 
 
 
@@ -149,42 +149,28 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Subplots table.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/FoRTExperiment/fortedata/blob/master/R/fd_plots.R'><code>R/fd_plots.R</code></a></small>
-    <div class="hidden name"><code>fd_subplots.Rd</code></div>
+    <h1>Seedling and sapling data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/FoRTExperiment/fortedata/blob/master/R/fd_inventory.R'><code>R/fd_inventory.R</code></a></small>
+    <div class="hidden name"><code>fd_seedling_sapling.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Subplots table.</p>
+    <p>Seedling and sapling data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fd_subplots</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>fd_seedling_sapling</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>data.frame</code> or <code>tibble</code>. Call <code><a href='fd_metadata.html'>fd_metadata</a></code> for field metadata.</p>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Measurements by Gough Lab at the University of Michigan Biological Station.</p>
+    <p>Data were collected by Maxim S. Grigri</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fd_subplots</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 32 x 8</span><span>
-#&gt;    replicate  plot subplot latitude_subplot longitude_subplot subplot_area_m2
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> A             1 E                   45.6             -</span><span style='color: #BB0000;'>84.7</span><span>            </span><span style='text-decoration: underline;'>1</span><span>000
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> A             1 W                   45.6             -</span><span style='color: #BB0000;'>84.7</span><span>            </span><span style='text-decoration: underline;'>1</span><span>000
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> A             2 E                   45.6             -</span><span style='color: #BB0000;'>84.7</span><span>            </span><span style='text-decoration: underline;'>1</span><span>000
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> A             2 W                   45.6             -</span><span style='color: #BB0000;'>84.7</span><span>            </span><span style='text-decoration: underline;'>1</span><span>000
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> A             3 E                   45.6             -</span><span style='color: #BB0000;'>84.7</span><span>            </span><span style='text-decoration: underline;'>1</span><span>000
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> A             3 W                   45.6             -</span><span style='color: #BB0000;'>84.7</span><span>            </span><span style='text-decoration: underline;'>1</span><span>000
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> A             4 E                   45.6             -</span><span style='color: #BB0000;'>84.7</span><span>            </span><span style='text-decoration: underline;'>1</span><span>000
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> A             4 W                   45.6             -</span><span style='color: #BB0000;'>84.7</span><span>            </span><span style='text-decoration: underline;'>1</span><span>000
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> B             1 E                   45.6             -</span><span style='color: #BB0000;'>84.7</span><span>            </span><span style='text-decoration: underline;'>1</span><span>000
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> B             1 W                   45.6             -</span><span style='color: #BB0000;'>84.7</span><span>            </span><span style='text-decoration: underline;'>1</span><span>000
-#&gt; </span><span style='color: #949494;'># ... with 22 more rows, and 2 more variables: disturbance_severity &lt;int&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   treatment &lt;chr&gt;</span><span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fd_seedling_sapling</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Data citation: ESSD</span></div><div class='output co'>#&gt; <span class='message'>Contact person: Maxim S. Grigri</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

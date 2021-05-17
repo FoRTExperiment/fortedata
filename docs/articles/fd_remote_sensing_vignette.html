@@ -56,7 +56,7 @@
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
     </li>
     <li>
-      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preperation, and Management</a>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
     </li>
     <li>
       <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
@@ -105,7 +105,7 @@
       <h1 data-toc-skip>fortedata: Remote Sensing Data</h1>
                         <h4 data-toc-skip class="author">Jeff Atkins</h4>
             
-            <h4 data-toc-skip class="date">2021-03-11</h4>
+            <h4 data-toc-skip class="date">2021-05-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_remote_sensing_vignette.Rmd" class="external-link"><code>vignettes/fd_remote_sensing_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>fd_remote_sensing_vignette.Rmd</code></div>
@@ -133,7 +133,7 @@
 <div id="data-availability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-availability" class="anchor"></a>Data Availability</h2>
-<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current number of remote sensing data observations available as of 2021-03-11 are detailed in Figure 1.</p>
+<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current number of remote sensing data observations available as of 2021-05-16 are detailed in Figure 1.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">no_of_records.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fd_observations.html">fd_observations</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -165,11 +165,9 @@
 <p><code><a href="../reference/fd_canopy_structure.html">fd_canopy_structure()</a></code> contains canopy structural trait metrics (Fahey et al. 2019) derived from 2-D terrestrial lidar data. These data were collected with a user-mounted, portable canopy LiDAR (PCL) system equipped with an upward facing, pulsed‐laser operating at 2000 Hz (Riegl LD90 3100 VHS; Riegl USA Inc., Orlando, Florida, USA). The PCL generates continuous LiDAR returns from a “slice” of the canopy as it is walked along a measured transect. For this study, we used 40 m transects at cardinal directions–north-to-south, east-to-west–through subplot center for a total of 80 m of transect length per subplot. This mirrors the approach of Atkins et al. (2018) and Hardiman et al. (2013) and is sufficient to account for spatial variability of forest structure (Hardiman et al. 2019). A more detailed description of the development and implementation of this terrestrial laser scanning system is available in Parker et al. (2004) and Hardiman et al. ( 2011). We derived canopy structural metrics using the <code>forestr</code> package (Atkins et al. 2018a, b) in R 3.5 (R Core Team, 2018). Data here are provided at the transect level, but should be averaged to make a plot mean.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/fd_canopy_structure_summary.html">fd_canopy_structure_summary</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## Warning in data_conditions(cst, published = FALSE, contact_person, citation):</span>
 <span class="co">## These data are unpublished. Please contact Jeff Atkins to ask about using</span>
 <span class="co">## Data citation: ESSD</span>
 <span class="co">## Contact person: Jeff Atkins</span>
-<span class="co">## Warning in data_conditions(cst, published = FALSE, contact_person, citation):</span>
 <span class="co">## These data are unpublished. Please contact Jeff Atkins to ask about using</span>
 <span class="co">## Data citation: ESSD</span>
 <span class="co">## Contact person: Jeff Atkins</span>
@@ -199,8 +197,7 @@
 <span class="co">## 10   1.0623365        121  0.09657604</span>
 <span class="co">## 11   0.8463590         78  0.09583129</span>
 <span class="co">## 12   1.4835040         91  0.15551347</span></code></pre></div>
-<pre><code>## Warning in data_conditions(cst, published = FALSE, contact_person, citation):
-## These data are unpublished. Please contact Jeff Atkins to ask about using
+<pre><code>## These data are unpublished. Please contact Jeff Atkins to ask about using
 ## Data citation: ESSD
 ## Contact person: Jeff Atkins</code></pre>
 <p><img src="fd_remote_sensing_vignette_files/figure-html/rug-1.png" width="576"></p>
@@ -217,12 +214,10 @@
 </div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fd_hemi_camera.html">fd_hemi_camera</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">## Warning in data_conditions(cam, published = FALSE, contact_person, citation):</span>
 <span class="co">## These data are unpublished. Please contact Jeff Atkins to ask about using</span>
 <span class="co">## Data citation: ESSD</span>
 <span class="co">## Contact person: Jeff Atkins</span></code></pre></div>
-<pre><code>## Warning in data_conditions(cam, published = FALSE, contact_person, citation):
-## These data are unpublished. Please contact Jeff Atkins to ask about using
+<pre><code>## These data are unpublished. Please contact Jeff Atkins to ask about using
 ## Data citation: ESSD
 ## Contact person: Jeff Atkins</code></pre>
 <p><img src="fd_remote_sensing_vignette_files/figure-html/cam-1.png" width="576"></p>

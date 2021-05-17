@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>fortedata: Data Collection, Preperation, and Management • fortedata</title>
+<title>fortedata: Data Collection, Preparation, and Management • fortedata</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="fortedata: Data Collection, Preperation, and Management">
+<script src="../pkgdown.js"></script><meta property="og:title" content="fortedata: Data Collection, Preparation, and Management">
 <meta property="og:description" content="fortedata">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -56,7 +56,7 @@
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
     </li>
     <li>
-      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preperation, and Management</a>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
     </li>
     <li>
       <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
@@ -102,10 +102,10 @@
       </header><script src="fd_data_mgmt_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>fortedata: Data Collection, Preperation, and Management</h1>
+      <h1 data-toc-skip>fortedata: Data Collection, Preparation, and Management</h1>
                         <h4 data-toc-skip class="author">FoRTE Team</h4>
             
-            <h4 data-toc-skip class="date">2021-03-11</h4>
+            <h4 data-toc-skip class="date">2021-05-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_data_mgmt.Rmd" class="external-link"><code>vignettes/fd_data_mgmt.Rmd</code></a></small>
       <div class="hidden name"><code>fd_data_mgmt.Rmd</code></div>
@@ -117,35 +117,30 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
-<p>At the core of FoRTE is the collection of heterogeneous data, from many different instruments, requiring multiple different approaches, to measure different environmental variables. Below we outline the collection and preparation procedures for all data products in <code>fortdata</code>.</p>
-<p>For each data product listed there are a minimum of two sections:</p>
+<p>At the core of FoRTE is the collection of heterogeneous data, from many different instruments, requiring multiple different approaches, to measure different environmental variables. Below we outline the collection and preparation procedures for all data products in <code>fortedata</code>.</p>
+<p>For each data product listed includes a <em>Data Preparation</em> section that includes:</p>
 <ol style="list-style-type: decimal">
-<li>
-<em>Field or Laboratory Methods</em> - how data are collected</li>
-<li>
-<em>Data Preparation</em> - the process needed to move from raw data to package-ready data</li>
+<li>the location of raw data in Google Drive</li>
+<li>the format and structure of the raw data</li>
+<li>any pre-processing of data</li>
+<li>an outline of the process needed to move from raw data to package-ready data</li>
 </ol>
 </div>
 <div id="canopy-structural-traitsterrestrial-lidar" class="section level2">
 <h2 class="hasAnchor">
 <a href="#canopy-structural-traitsterrestrial-lidar" class="anchor"></a>Canopy Structural Traits/Terrestrial Lidar</h2>
-<div id="field-methods" class="section level3">
-<h3 class="hasAnchor">
-<a href="#field-methods" class="anchor"></a>Field Methods</h3>
-<p>We derived canopy structural trait metrics (Fahey et al. 2019) from 2-D terrestrial lidar data collected with a user-mounted, portable canopy lidar (PCL) system equipped with an upward facing, Riegl 3100VHS near‐infrared pulsed‐laser operating at 2000 Hz (Riegl LD90 3100 VHS; Riegl USA Inc., Orlando, Florida, USA). The PCL generates continuous LiDAR returns from a “slice” of the canopy as it is walked along a measured transect. For this study, we used 40 m transects at cardinal directions–north-to-south, east-to-west–through subplot center for a total of 80 m of transect length per subplot. This mirrors the approach of Atkins et al. (2018) and Haridman et al. (2013) and is sufficient to account for spatial variability of forest structure (Hardiman et al. 2019). A more detailed description of the development and implementation of this terrestrial laser scanning system is available in Parker et al. (2004) and Hardiman et al. ( 2011). We derived canopy structural metrics using the forestr package (Atkins et al. 2018a, b) in R 3.5 (R Core Team, 2018). forestr produces a suite of canopy structural traits metrics that describe canopy area/density, openness, height, complexity, and arrangement (Atkins et al. (2018a).</p>
-</div>
 <div id="data-preparation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#data-preparation" class="anchor"></a>Data Preparation</h3>
-<p>The raw data from the PCL instrument is in the form of a two column .csv file containing raw distance from instrument values (i.e. lidar pulse returns) and intensity values for each measured transect. These data are processed externally using forestr in R, with the output for each transect containing several .csv files: 1) a two row .csv containing a head of CST metrics and a second row containing values for those metrics; 2) an adjusted leaf area/vegetation area hit grid matrix; 3) a three column, x, z, VAI file; 4) summary matrix file containing x, z, and column specific values (NEED TO ADJUST); and 5) a hit grid plot of VAI.</p>
+<p>CST data are located in the <code>/data/lidar</code> on Google Drive. The raw data from the PCL instrument is in the form of a two column .csv file containing raw distance from instrument values (i.e. lidar pulse returns) and intensity values for each measured transect. These data are processed externally using forestr in R, with the output for each transect containing several .csv files: 1) a two row .csv containing a head of CST metrics and a second row containing values for those metrics; 2) an adjusted leaf area/vegetation area hit grid matrix; 3) a three column, x, z, VAI file; 4) summary matrix file containing x, z, and column specific values (NEED TO ADJUST); and 5) a hit grid plot of VAI.</p>
 <p>The first of these files, the two row CST metrics file(s) for each transect are collated into one file where each row represents each transect–the source <code>canopy_structural_traits.csv</code> file in <code>/inst/extdata/</code> from which <code>fd_canopy_structure</code> draws.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#set random seed</span>
-  <span class="va">cst</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_csv_file.html">read_csv_file</a></span><span class="op">(</span><span class="st">"canopy_structural_traits.csv"</span><span class="op">)</span>
+<span class="va">cst</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_csv_file.html">read_csv_file</a></span><span class="op">(</span><span class="st">"canopy_structural_traits.csv"</span><span class="op">)</span>
 
-  <span class="co"># show the top of </span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">cst</span><span class="op">)</span>
-<span class="co">## tibble [195 x 53] (S3: tbl_df/tbl/data.frame)</span>
+<span class="co"># show the top of </span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">cst</span><span class="op">)</span>
+<span class="co">## tibble[,53] [195 x 53] (S3: tbl_df/tbl/data.frame)</span>
 <span class="co">##  $ subplot_id        : chr [1:195] "C01E" "C01E" "C01W" "C01W" ...</span>
 <span class="co">##  $ year              : int [1:195] 2019 2019 2019 2019 2019 2019 2019 2019 2019 2019 ...</span>
 <span class="co">##  $ mean.height.mean  : num [1:195] 9.75 10.3 9.57 8.05 9.61 ...</span>
@@ -199,7 +194,58 @@
 <span class="co">##  $ p50               : num [1:195] 6.67 6.84 6.2 3.28 5.53 ...</span>
 <span class="co">##  $ p75               : num [1:195] 10.3 11.21 11.46 9.59 8.06 ...</span>
 <span class="co">##  $ p90               : num [1:195] 12.5 14.2 14.8 12.2 19.9 ...</span></code></pre></div>
+<p>#General Data Format and Preparation</p>
+<p>This section summarizes general formatting and preparation guidelines for all data shared and uploaded to fortedata.</p>
 </div>
+</div>
+<div id="naming-files-and-folders" class="section level2">
+<h2 class="hasAnchor">
+<a href="#naming-files-and-folders" class="anchor"></a>Naming files and folders</h2>
+<ol style="list-style-type: decimal">
+<li>Names should be lowercase with "_" separating words.</li>
+<li>File Type: CSV (Comma delimited)</li>
+<li>Filenames: “data_type_year.csv” (i.e. “canopy_dendroband_2019.csv”)</li>
+<li>Folder Names: “data_type” (i.e. “canopy_dendroband”)</li>
+<li>README.txt file included in every folder (see README.txt file structure)</li>
+<li>Each year should be 1 data file (but does this make sense for instrument data?)</li>
+</ol>
+</div>
+<div id="general-file-structure-and-format" class="section level2">
+<h2 class="hasAnchor">
+<a href="#general-file-structure-and-format" class="anchor"></a>General File Structure and Format</h2>
+<ol style="list-style-type: decimal">
+<li>Each row is one observation</li>
+<li>Column names should:</li>
+</ol>
+<ul>
+<li>Be lowercase with "_" separating words</li>
+<li>Include units if quantitative (i.e. “DBH_cm”; Flux units excluded)</li>
+<li>Be added to <code>forte_table_metadata.csv</code> (if not already listed)</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Required columns:</li>
+</ol>
+<ul>
+<li>subplot_id – replicate (“A-”) plot (“-01-”) subplot (“-E”) (i.e “A01E”); <strong>SHOULD NOT</strong> include separate replicate, plot, and subplot columns</li>
+<li>date – Date of data collection (YYYY-MM-DD)</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># call forte_table_metadata</span>
+<span class="fu"><a href="../reference/fd_metadata.html">fd_metadata</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">## # A tibble: 240 x 5</span>
+<span class="co">##    table     field     description                                  class  units</span>
+<span class="co">##    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;                                        &lt;chr&gt;  &lt;chr&gt;</span>
+<span class="co">##  1 fd_inven~ subplot_~ &lt;NA&gt;                                         chara~ &lt;NA&gt; </span>
+<span class="co">##  2 fd_inven~ tag       Tree tag ID number                           integ~ &lt;NA&gt; </span>
+<span class="co">##  3 fd_inven~ species   Species code from the USDA Plants Database   chara~ &lt;NA&gt; </span>
+<span class="co">##  4 fd_inven~ dbh_cm    Bole diameter at 1.37 m                      numer~ cm   </span>
+<span class="co">##  5 fd_inven~ health_s~ Live (L), moribund (M), or dead (D)          chara~ &lt;NA&gt; </span>
+<span class="co">##  6 fd_inven~ canopy_s~ Overstory dominant (OD), overstory submissi~ chara~ &lt;NA&gt; </span>
+<span class="co">##  7 fd_inven~ date      Date of measurement                          date   &lt;NA&gt; </span>
+<span class="co">##  8 fd_inven~ notes     &lt;NA&gt;                                         chara~ &lt;NA&gt; </span>
+<span class="co">##  9 fd_inven~ replicate (from plots table)                           chara~ &lt;NA&gt; </span>
+<span class="co">## 10 fd_inven~ plot      (from plots table)                           integ~ &lt;NA&gt; </span>
+<span class="co">## # ... with 230 more rows</span></code></pre></div>
 </div>
   </div>
 

@@ -56,7 +56,7 @@
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
     </li>
     <li>
-      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preperation, and Management</a>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
     </li>
     <li>
       <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
@@ -105,7 +105,7 @@
       <h1 data-toc-skip>fortedata: Belowground Data</h1>
                         <h4 data-toc-skip class="author">Jeff Atkins and Kayla Mathes</h4>
             
-            <h4 data-toc-skip class="date">2021-03-11</h4>
+            <h4 data-toc-skip class="date">2021-05-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_belowground_vignette.Rmd" class="external-link"><code>vignettes/fd_belowground_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>fd_belowground_vignette.Rmd</code></div>
@@ -127,10 +127,9 @@
 <div id="belowground-measurements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#belowground-measurements" class="anchor"></a>Belowground Measurements</h2>
-<p>The <code><a href="../reference/fd_soil_respiration.html">fd_soil_respiration()</a></code> function returns a single dataset of 3908 observations each of soil CO2 efflux (μmol CO<sub>2</sub> m<sup>-2</sup> s<sup>-1</sup>) as well as soil micrometeorological measurements: soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) (Figs. 3, 4; Table S5).</p>
+<p>The <code><a href="../reference/fd_soil_respiration.html">fd_soil_respiration()</a></code> function returns a single dataset of 4711 observations each of soil CO2 efflux (μmol CO<sub>2</sub> m<sup>-2</sup> s<sup>-1</sup>) as well as soil micrometeorological measurements: soil temperature (°C; integrated from 0 to 7 cm depth), and volumetric water content (%) (Figs. 3, 4; Table S5).</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fortedata</span><span class="fu">::</span><span class="fu"><a href="../reference/fd_soil_respiration.html">fd_soil_respiration</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">## Warning in data_conditions(flux, published = FALSE, contact_person, citation):</span>
 <span class="co">## These data are unpublished. Please contact Kayla Mathes to ask about using</span>
 <span class="co">## Data citation: ESSD</span>
 <span class="co">## Contact person: Kayla Mathes</span></code></pre></div>
@@ -138,8 +137,9 @@
 <div id="soil-co2-efflux" class="section level2">
 <h2 class="hasAnchor">
 <a href="#soil-co2-efflux" class="anchor"></a>Soil CO<sub>2</sub> Efflux</h2>
-<p>The soil CO<sub>2</sub> efflux values in this data set represent bulk soil respiration (R<sub>s</sub>) and were measured at 160 soil collars on 36 days between May 2019 (pre-disturbance) and August 2020 (post-disturbance). Each of the 32 subplots contained five 10 cm diameter PVC collars that were installed 4 cm deep, leaving 1 cm in height above the soil surface. Collars were spatially paired with litter traps and root in-growth cores with 1 collar located at subplot center and 4 collars 8m away in each cardinal direction. In situ point Rs measurements (umol CO<sub>2</sub> m<sup>-2</sup> s<sup>-1</sup>) were made following protocols from Curtis et al. 2005 using a LI-6400 portable gas analyzer with 10 cm diameter soil CO<sub>2</sub> closed chamber cuvette (LI-COR Inc, Lincoln, NE, USA). During each of the 11 total measurement efforts, two efflux values were recorded and averaged at each collar over 90 second intervals. To account for diurnal fluctuations in Rs, starting replicate and plot were randomized for each round of measurements. Recent precipitation events were documented and measurements were not taken with 24 hrs following heavy precipitation.</p>
-<pre><code>## Data citation: ESSD
+<p>The soil CO<sub>2</sub> efflux values in this data set represent bulk soil respiration (R<sub>s</sub>) and were measured at 160 soil collars on 43 days between July 2018 (pre-disturbance) and August 2020 (post-disturbance). Each of the 32 subplots contained five 10 cm diameter PVC collars that were installed 4 cm deep, leaving 1 cm in height above the soil surface. Collars were spatially paired with litter traps and root in-growth cores with 1 collar located at subplot center and 4 collars 8m away in each cardinal direction. In situ point Rs measurements (umol CO<sub>2</sub> m<sup>-2</sup> s<sup>-1</sup>) were made following protocols from Curtis et al. 2005 using a LI-6400 portable gas analyzer with 10 cm diameter soil CO<sub>2</sub> closed chamber cuvette (LI-COR Inc, Lincoln, NE, USA). During each of the 11 total measurement efforts, two efflux values were recorded and averaged at each collar over 90 second intervals. To account for diurnal fluctuations in Rs, starting replicate and plot were randomized for each round of measurements. Recent precipitation events were documented and measurements were not taken with 24 hrs following heavy precipitation.</p>
+<pre><code>## These data are unpublished. Please contact Kayla Mathes to ask about using
+## Data citation: ESSD
 ## Contact person: Kayla Mathes</code></pre>
 <p><img src="fd_belowground_vignette_files/figure-html/soil_r-1.png" width="576" style="display: block; margin: auto;"></p>
 <div class="figure">
