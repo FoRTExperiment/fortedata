@@ -177,7 +177,7 @@ fd_observations <- function() {
   a$year <- as.numeric(format(as.Date(a$date), "%Y"))
 
   # count it up
-  a.tally <- aggregate(band_in ~ month + year, data = a, FUN = length)
+  a.tally <- aggregate(band_cm ~ month + year, data = a, FUN = length)
   names(a.tally)[3] <- "no_of_obs"
 
   # make time composite
