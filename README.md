@@ -5,12 +5,12 @@
 
 ### Overview
 
-*fortedata* is an R package that provides functions for accessing and interpreting data associated with FoRTE: Forest Resilience Threshold Experimen--a modeling and manipulative field experiment that tests the effects of disturbance severity and disturbance type on carbon cycling dynamics in a temperate forest. Package data consists of measurements of carbon pools and fluxes and ancillary measurements to help analyse and users analyse and interpret carbon cycling over time.  
+*fortedata* is an R package that provides functions for accessing and interpreting data associated with FoRTE: Forest Resilience Threshold Experiment--a modeling and manipulative field experiment that tests the effects of disturbance severity and disturbance type on carbon cycling dynamics in a temperate forest. Package data consists of measurements of carbon pools and fluxes and ancillary measurements to help users analyze and interpret carbon cycling over time.  
 
 
 ### Getting Started
 
-We recommend that users begin with either package [vignettes](https://fortexperiment.github.io/fortedata/articles/index.html) that provide detailed examples of package funcitons and potential use cases, or with package [documentation](https://fortexperiment.github.io/fortedata/reference/index.html).  
+We recommend that users begin with either package [vignettes](https://fortexperiment.github.io/fortedata/articles/index.html) that provide detailed examples of package functions and potential use cases, or with package [documentation](https://fortexperiment.github.io/fortedata/reference/index.html).  
 
 
 ### Installation
@@ -23,6 +23,30 @@ if (!require("devtools")) {
 }
 devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_vignettes = FALSE)
 ```
+
+
+### `fortedata` 1.0.2 Updates and Future Data Availability
+
+**Updates**
+* `fd_cwd` function added that includes coarse woody debris data from a 2019 survey of FoRTE plots.
+
+* `fd_ceptometer` now includes 2020 PAR data with an additional correction for some data based on calibration with the UMBS AmeriFlux sensor (see function documentation and additionally an in preperation manuscript, a preprint of which to be added upon submission)
+
+* `fd_dendro` has been added to the package and includes dendrometer data from 2019 and 2020.
+
+* `fd_leaf_spectrometry` now includes 2018, 2019, and 2020 data, as well as corrected leaf_id and tree_id data columns. Additionally, the original filename has been retained in the data set as id (2020-12-14)
+
+* `fd_canopy_structure()` now includes 2020 lidar-derived canopy structural trait data.  (2020-12-09)
+
+* `fd_soil_respiration()` now includes 2020 soil CO_2_ efflux, soil temperature, and soil water content data.  (2020-12-09)
+
+**Future Data Availability**
+
+* 3-D lidar structural data has been held up further by COVID-19. Access to computing resources to process said data have been greatly encumbered. Not likely complete until Summer 2021.
+
+* Processing of 2019 and 2020 photosynthesis data (see `fd_photosynthesis()` for 2018) is underway and will hopefully be done by the end of 2020. 
+
+* Additional future data to include are canopy dendroband data for 2019 and 2020, coarse woody debris surveys from 2019 and 2020, and small veg plot survey counts. Please email Jeff with any concerns or questions (jwatkins6vcu.edu) 
 
 ### The FoRTE Team
 
@@ -38,6 +62,6 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 
 * REU Students: Evan Paris, Carly Rodriguez
 
-* Reserach Collaborators: Elizabeth Agee, Brandon Alveshare, Kyla M. Dahlin, Robert T. Fahey, Aaron G. Kamoske, Jason Tallant
+* Research Collaborators: Elizabeth Agee, Brandon Alveshare, Kyla M. Dahlin, Robert T. Fahey, Aaron G. Kamoske, Jason Tallant
 
 

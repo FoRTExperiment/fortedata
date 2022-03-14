@@ -1,13 +1,16 @@
-pandoc: 2.9.2.1
-pkgdown: 1.5.1
-pkgdown_sha: ~
+pandoc: 2.11.2
+pkgdown: 1.6.1.9000
+pkgdown_sha: 3e607f03a54c0edc40e33c299c4dc621e6548f63
 articles:
+  fd_aboveground_vignette: fd_aboveground_vignette.html
   fd_belowground_vignette: fd_belowground_vignette.html
+  fd_data_mgmt: fd_data_mgmt.html
+  fd_examples: fd_examples.html
   fd_experimental_design: fd_experimental_design.html
   fd_forte_proposal_vignette: fd_forte_proposal_vignette.html
   fd_inventory_vignette: fd_inventory_vignette.html
   fd_leaf_physiology_vignette: fd_leaf_physiology_vignette.html
   fd_litter_vignette: fd_litter_vignette.html
   fd_remote_sensing_vignette: fd_remote_sensing_vignette.html
-last_built: 2020-07-17T16:29Z
+last_built: 2021-05-17T02:13Z
 

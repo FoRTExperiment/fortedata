@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_remote_sensing.R
 \name{fd_canopy_structure}
 \alias{fd_canopy_structure}
-\title{Canopy structural traits from 2D canopy LiDAR.}
+\title{Canopy Structural Trait Data}
 \usage{
 fd_canopy_structure()
 }
@@ -11,11 +11,16 @@ A \code{data.frame} or \code{tibble} of hemispherical camera data.
 Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
-Canopy structural traits from 2D canopy LiDAR.
+Canopy structural traits from 2D portable canopy lidar
+}
+\details{
+These data were collected using a Riegl VHS3100FLP upward facing pulsed-laser system. Lidar point cloud data were converted to canopy structural trait data using \code{forestr} version 1.0.1
+
+See \code{fd_remote_sensing_vignette} for more details.
 }
 \note{
-Data were collected by Jeff W. Atkins and Brandon Alveshare using an upward facing, portable canopy lidar unit.
-The Canopy structural traits were derived using the
+Data were collected by Jeff W. Atkins (2018, 2019, 2020) and Brandon Alveshare (2019)
+
 \code{forestr} 1.0.1 package from 2D portable canopy lidar
 }
 \examples{

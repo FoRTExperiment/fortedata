@@ -7,21 +7,10 @@
 fd_nested_subplots()
 }
 \value{
-A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
+A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
 Nested subplots table.
-}
-\details{
-The columns are as follows:
-\itemize{
-\item \code{Subplot} (character): Subplot code. Subplots are nested within plots:
-one in the eastern part, one in the western.
-\item \code{Nested_subplot} (integer): Nested subplot code. Nested subplots are nested subplots,
-which are in turn are within plots:
-one in the eastern part, one in the western.
-\item \code{Nested_subplot_area_m2} (double): Area of the nested subplot, in square meters.
-}
 }
 \examples{
 fd_nested_subplots()

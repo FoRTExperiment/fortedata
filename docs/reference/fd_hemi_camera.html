@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hemispherical camera data. — fd_hemi_camera • fortedata</title>
+<title>Hemispherical Camera Imagery — fd_hemi_camera • fortedata</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="Hemispherical camera data. — fd_hemi_camera" />
-<meta property="og:description" content="Hemispherical camera data." />
+<meta property="og:title" content="Hemispherical Camera Imagery — fd_hemi_camera" />
+<meta property="og:description" content="fd_hemi_camera provides a data set of hemispherical canopy imagery." />
+
+
 
 
 
@@ -56,9 +58,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,19 +80,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -95,7 +97,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
+    </li>
+    <li>
+      <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
     </li>
     <li>
       <a href="../articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
@@ -107,7 +118,7 @@
       <a href="../articles/fd_inventory_vignette.html">fortedata: Forest Inventory Data</a>
     </li>
     <li>
-      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophsyiology Data</a>
+      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophysiology Data</a>
     </li>
     <li>
       <a href="../articles/fd_litter_vignette.html">fortedata: Litter Data</a>
@@ -119,7 +130,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/FoRTExperiment/fortedata/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -133,50 +149,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Hemispherical camera data.</h1>
-    
+    <h1>Hemispherical Camera Imagery</h1>
+    <small class="dont-index">Source: <a href='https://github.com/FoRTExperiment/fortedata/blob/master/R/fd_remote_sensing.R'><code>R/fd_remote_sensing.R</code></a></small>
     <div class="hidden name"><code>fd_hemi_camera.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Hemispherical camera data.</p>
+    <p><code>fd_hemi_camera</code> provides a data set of hemispherical canopy imagery.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fd_hemi_camera</span>()</pre>
+    <pre class="usage"><span class='fu'>fd_hemi_camera</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>data.frame</code> or <code>tibble</code>. Call <code><a href='fd_metadata.html'>fd_metadata</a></code> for field metadata.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Hemispherical imagery is collected using a 24 Megapixel Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a 180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared channel, which allows direct calculation of plant greenness as the normalized difference vegetation index (NDVI). See <code>fd_remote_sensing_vignette</code> for more details.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Data were collected by Jeff W. Atkins and Evan Pari using a 24 Megapixel
-Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
-180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
-channel, which allows direct calculation of NDVI.</p>
+    <p>Data were collected by Jeff W. Atkins (2018, 2019, 2020) and Evan Paris (2019)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fd_hemi_camera</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>We detected these problematic arguments:</span>
-#&gt; <span class='warning'>* `needs_dots`</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
-#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1,189 x 11</span><span>
-#&gt;    subplot_id replicate  plot subplot nested_subplot date        ndvi
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> A01E       A             1 E                    0 2018-07-23 0.796
-#&gt; </span><span style='color: #555555;'> 2</span><span> A01E       A             1 E                    1 2018-07-23 0.827
-#&gt; </span><span style='color: #555555;'> 3</span><span> A01E       A             1 E                    3 2018-07-23 0.739
-#&gt; </span><span style='color: #555555;'> 4</span><span> A01E       A             1 E                    5 2018-07-23 0.847
-#&gt; </span><span style='color: #555555;'> 5</span><span> A01E       A             1 E                    7 2018-07-23 0.822
-#&gt; </span><span style='color: #555555;'> 6</span><span> A01W       A             1 W                    0 2018-07-23 0.792
-#&gt; </span><span style='color: #555555;'> 7</span><span> A01W       A             1 W                    1 2018-07-23 0.862
-#&gt; </span><span style='color: #555555;'> 8</span><span> A01W       A             1 W                    3 2018-07-23 0.861
-#&gt; </span><span style='color: #555555;'> 9</span><span> A01W       A             1 W                    5 2018-07-23 0.783
-#&gt; </span><span style='color: #555555;'>10</span><span> A01W       A             1 W                    7 2018-07-23 0.786
-#&gt; </span><span style='color: #555555;'># ... with 1,179 more rows, and 4 more variables: gap_fraction </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   openness </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, lai_cam </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, clumping_index </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fd_hemi_camera</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>These data are unpublished. Please contact Jeff Atkins to ask about using</span></div><div class='output co'>#&gt; <span class='message'>Data citation: ESSD</span></div><div class='output co'>#&gt; <span class='message'>Contact person: Jeff Atkins</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -188,11 +185,11 @@ channel, which allows direct calculation of NDVI.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p><p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -200,6 +197,8 @@ channel, which allows direct calculation of NDVI.</p>
 
   
 
+
+  
 
   </body>
 </html>

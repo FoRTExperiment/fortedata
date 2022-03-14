@@ -7,23 +7,10 @@
 fd_subplots()
 }
 \value{
-A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
+A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
 Subplots table.
-}
-\details{
-The columns are as follows:
-\itemize{
-\item \code{Replicate} (character): Replicate code. Each replicate contains
-multiple plots with different disturbance treatments.
-\item \code{Plot} (integer): Plot ID number. Plots are nested within replicates.
-\item \code{Subplot} (character): Subplot code. Subplots are nested within plots:
-one in the eastern part, one in the western.
-\item \code{Longitude_subplot}, \code{Latitude_subplot} (double): Subplot coordinates, in decimal
-degrees.
-\item \code{Plot_area_m2} (double): Area of the subplot, in square meters.
-}
 }
 \examples{
 fd_subplots()

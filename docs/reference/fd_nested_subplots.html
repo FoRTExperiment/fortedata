@@ -45,6 +45,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -56,9 +58,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,19 +80,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -95,7 +97,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
+    </li>
+    <li>
+      <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
     </li>
     <li>
       <a href="../articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
@@ -107,7 +118,7 @@
       <a href="../articles/fd_inventory_vignette.html">fortedata: Forest Inventory Data</a>
     </li>
     <li>
-      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophsyiology Data</a>
+      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophysiology Data</a>
     </li>
     <li>
       <a href="../articles/fd_litter_vignette.html">fortedata: Litter Data</a>
@@ -119,7 +130,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/FoRTExperiment/fortedata/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -134,7 +150,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Nested subplots table.</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/FoRTExperiment/fortedata/blob/master/R/fd_plots.R'><code>R/fd_plots.R</code></a></small>
     <div class="hidden name"><code>fd_nested_subplots.Rd</code></div>
     </div>
 
@@ -142,45 +158,32 @@
     <p>Nested subplots table.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fd_nested_subplots</span>()</pre>
+    <pre class="usage"><span class='fu'>fd_nested_subplots</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>data.frame</code> or <code>tibble</code>. See "Details" for column descriptions.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>A <code>data.frame</code> or <code>tibble</code>. Call <code><a href='fd_metadata.html'>fd_metadata</a></code> for field metadata.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>The columns are as follows:</p><ul>
-<li><p><code>Subplot</code> (character): Subplot code. Subplots are nested within plots:
-one in the eastern part, one in the western.</p></li>
-<li><p><code>Nested_subplot</code> (integer): Nested subplot code. Nested subplots are nested subplots,
-which are in turn are within plots:
-one in the eastern part, one in the western.</p></li>
-<li><p><code>Nested_subplot_area_m2</code> (double): Area of the nested subplot, in square meters.</p></li>
-</ul>
-
+    <p>Measurements by Gough Lab at the University of Michigan Biological Station.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fd_nested_subplots</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>We detected these problematic arguments:</span>
-#&gt; <span class='warning'>* `needs_dots`</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
-#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 288 x 5</span><span>
+    <pre class="examples"><div class='input'><span class='fu'>fd_nested_subplots</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 288 x 5</span><span>
 #&gt;    replicate  plot subplot nested_subplot nested_subplot_area_m2
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> A             1 E                    1                      1
-#&gt; </span><span style='color: #555555;'> 2</span><span> A             1 E                    2                      1
-#&gt; </span><span style='color: #555555;'> 3</span><span> A             1 E                    3                      1
-#&gt; </span><span style='color: #555555;'> 4</span><span> A             1 E                    4                      1
-#&gt; </span><span style='color: #555555;'> 5</span><span> A             1 E                    5                      1
-#&gt; </span><span style='color: #555555;'> 6</span><span> A             1 E                    6                      1
-#&gt; </span><span style='color: #555555;'> 7</span><span> A             1 E                    7                      1
-#&gt; </span><span style='color: #555555;'> 8</span><span> A             1 E                    8                      1
-#&gt; </span><span style='color: #555555;'> 9</span><span> A             1 E                    9                      1
-#&gt; </span><span style='color: #555555;'>10</span><span> A             2 E                    1                      1
-#&gt; </span><span style='color: #555555;'># ... with 278 more rows</span><span></div></span></pre>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>                  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> A             1 E                    1                      1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> A             1 E                    2                      1
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> A             1 E                    3                      1
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> A             1 E                    4                      1
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> A             1 E                    5                      1
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> A             1 E                    6                      1
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> A             1 E                    7                      1
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> A             1 E                    8                      1
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> A             1 E                    9                      1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> A             2 E                    1                      1
+#&gt; </span><span style='color: #949494;'># ... with 278 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -192,11 +195,11 @@ one in the eastern part, one in the western.</p></li>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p><p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -204,6 +207,8 @@ one in the eastern part, one in the western.</p></li>
 
   
 
+
+  
 
   </body>
 </html>

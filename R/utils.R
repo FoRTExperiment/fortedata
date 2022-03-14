@@ -13,6 +13,8 @@ read_csv_file <- function(...) {
   weak_as_tibble(
     read.csv(
       system.file("extdata", ..., package = "fortedata", mustWork = TRUE),
+      # Empty strings, and ONLY empty strings, should be interpreted as missing values.
+      na.strings = "",
       stringsAsFactors = FALSE
     )
   )
@@ -44,13 +46,16 @@ weak_as_tibble <- function(..., .force_df = FALSE) {
 #' Data tables' metadata.
 #'
 #' @param table Name of table to return, character, optional
-#' @return A `data.frame` or `tibble` holding field metadata.
+#' @return A `data.frame` or `tibble` holding data table metadata.
 #' @export
 fd_metadata <- function(table = NULL) {
   md <- read_csv_file("forte_table_metadata.csv")
 
-  if(!is.null(table) && table %in% md$Table) {
-    md <- md[md$Table == table,]
+  if (!is.null(table)) {
+    md <- md[md$table == table,]
+    if (nrow(md) < 1) {
+      stop("Table ", table, " is not present in metadata.")
+    }
   }
   weak_as_tibble(md)
 }
@@ -81,7 +86,7 @@ split_subplot_id <- function(df) {
 data_conditions <- function(x, published = FALSE, contact_person, citation) {
 
   if(!published) {
-    warning("These data are unpublished. Please contact ", contact_person, " to ask about using")
+    message("These data are unpublished. Please contact ", contact_person, " to ask about using")
   }
 
   message("Data citation: ", citation)
@@ -96,44 +101,46 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 
 #' FoRTE color palette
 
-#' The FoRTE color palettte
+#' The FoRTE color palette
 #'
-#' These are a handful of color palettes pulled from photographs of US National Parks.
-#' @return A vector of colours.
+#' A FoRTE specific color palette used for color-classification of disturbance severity
+#' treatments. 0% = "#000000", 45% = "#009E73", 65% = "#0072B2", and 85% = "#D55E00".
+#'
+#' Per the example below, `forte_colors()` can be used to define a custom palette that
+#' can then be used for plotting with other commands such as `scale_fill_manual()`, etc.
+#' @return A vector of colors.
 #' @export
-#' @keywords colors
+#' @keywords colors palette
 #' @examples
 #'
-#' pal <- forte_colors()
-forte_colors <- function() {
-  pal <- c("#000000", "#009E73", "#0072B2", "#D55E00")
-  pal <- structure(pal, class = "palette", name = 'forte')
-}
-
-
-
-#' @export
-#' @importFrom graphics rect par image text
-#' @importFrom grDevices rgb
-print.palette <- function(x, ...) {
-  n <- length(x)
-  old <- par(mar = c(0.5, 0.5, 0.5, 0.5))
-  on.exit(par(old))
-
-  image(1:n, 1, as.matrix(1:n), col = x,
-        ylab = "", xaxt = "n", yaxt = "n", bty = "n")
-
-  rect(0, 0.9, n + 1, 1.1, col = rgb(1, 1, 1, 0.8), border = NA)
-  text((n + 1) / 2, 1, labels = attr(x, "name"), cex = 1, family = "serif")
-}
-
-#' Calculate biomass from DBH data in fd_inventory()
+#'  forte.pal <- forte_colors()
 #'
-#' calc_biomass() uses biomass equations from fd_table_biomass_allometries.csv.
+
+
+
+forte_colors <- function() {
+  # list of disturbance severities
+  disturbance_severity <- c(0, 45, 65, 85)
+
+  # list of hex codes
+  pal <-  c("#000000", "#009E73", "#0072B2", "#D55E00")
+
+  # name it
+  names(pal) <- disturbance_severity
+
+  return(pal)
+}
+
+
+
+#' Calculate biomass from DBH data in `fd_inventory()`
+#'
+#' `calc_biomass()` uses biomass equations from `fd_table_biomass_allometries.csv`.
 #' Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
 #' sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint.
+#' See `fd_inventory_vignette` for further information.
 #'
-#' Studies used to augment Cooper’s raw data for a species are denoted by superscripts.
+#' Studies used to augment Cooper’s raw data for a species are denoted below.
 #'
 #' Species	a	b	DBH range (cm)
 #' Acer rubrum a	0.0312	2.7780	1 – 40
@@ -157,79 +164,80 @@ print.palette <- function(x, ...) {
 #' h Diameter at 15 cm height.
 #'
 #'
-#' @return A data frame of biomass at the individual level build from fd_inventory
+#' @return A `data.frame` or `tibble` of tree biomass calculated
+#' using allometries (listed in ?calc_biomass().
+#' Call \code{\link{fd_metadata}} for field metadata.
+#'
 #' @export
 #' @examples
 #' fortedata::calc_biomass()
-
 calc_biomass <- function(){
-# The allometries
-allo.df <- read_csv_file("fd_biomass_allometries.csv") #this has the same equations AmeriFlux uses
-df <- fortedata::fd_inventory()
-
-
-# merge the two
-stem <- merge(df, allo.df)
-
-#calculates biomass in units of kg
-stem$biomass <- stem$a_biomass * stem$dbh^stem$b_biomass
-stem <- weak_as_tibble(stem)
-}
-
-#' Function that brings in all plot metadata for assignment
-#'
-#' @return gives the plot info
-#' @export
-#' @examples
-#' fortedata::plot_metadata()
-
-plot_metadata <- function(){
   # The allometries
-  dat <- read_csv_file("forte_plot_metadata.csv") #this has the same equations AmeriFlux uses
+  allo.df <- read_csv_file("fd_biomass_allometries.csv") #this has the same equations AmeriFlux uses
+  df <- fortedata::fd_inventory()
 
-  dat<- weak_as_tibble(dat)
+  # merge the two
+  stem <- merge(df, allo.df)
+
+  #calculates biomass in units of kg
+  stem$biomass <- stem$a_biomass * stem$dbh^stem$b_biomass
+  stem <- weak_as_tibble(stem)
+}
+
+#' Metadata for the experimental field plots
+#'
+#' These data include `latitude` and `longitude` of each plot as well as eperimental assignments inluding `disturbance_severity` and `treatment`.
+#'
+#' @return A A `data.frame` or `tibble` with the experimental treatments by UMBS plot.
+#' @export
+#' @examples
+#' fd_plot_metadata()
+fd_plot_metadata <- function(){
+  dat <- read_csv_file("forte_plot_metadata.csv")
+
+  weak_as_tibble(dat)
 }
 
 
-#' Function that returns LAI values at the plot scale
+#' LAI values at the subplot scale from littertrap data
 #'
-#' LAI is calculated using the equation SLA * mass, where SLA is specific leaf area. Species and site specific values
-#' are in fd_sla.csv
+#' LAI is calculated using the equation SLA * mass, where SLA is specific leaf area and
+#' mass is leaf litter mass from `fd_litter()`. Species and site specific values are
+#' in `fd_sla.csv`. Also, see `fd_litter_vignette` for further explanation,
+#' including references, calculation, and possible use cases.
 #'
-#' @return A data frame of leaf area fro SLA * mass at the plot scale
+#'
+#' @return A data frame of leaf area by year, at the subplot scale.
 #' @export
 #' @examples
-#' fortedata::calc_lai()
+#' calc_lai()
 calc_lai <- function() {
 
-  # importlitter mass
-  leaf <- fd_litter()
+  # litter mass
+  leafs <- fd_litter()
 
-  # bring in the specific leaf area
-  sla <- read_csv_file("fd_sla.csv") #this has the same equations AmeriFlux uses
+  # subsetting leaves
+  leaf <- subset(leafs, leafs$fraction == "leaf")
+
+  # specific leaf area
+  sla <- read_csv_file("fd_sla.csv") # this has the same equations AmeriFlux uses
 
   # calculate mass of leaves only
   leaf$leafmass_g <- leaf$bagmass_g - leaf$bagtare_g
 
-  # Add SLA to the leaf tibble
+  # Add SLA to the leaf tibble and calculate leaf area totals
   leaf <- merge(leaf, sla)
-
-  # calculate leaf area totals
   leaf$leaf_area <- leaf$leafmass_g * leaf$sla
 
-  # make plot lai by species
+  # aggregate by species
   lai <- stats::aggregate(leaf_area ~ subplot_id + year, data = leaf, FUN = sum)
-
-
-  # adds in plot area
-  plot_area <- 1000  #plot area in m^2 (is 0.1 ha)
-
-  # calculates LAI
+  plot_area <- 1000  # m^2 (= 0.1 ha)
   lai$lai <- lai$leaf_area / plot_area
 
   lai <- split_subplot_id(lai)
-  # reorders columns
+
+  # reorder columns
   lai <- lai[c("subplot_id", "replicate", "plot", "subplot", "year", "lai")]
 
-  lai <- weak_as_tibble(lai)
+  weak_as_tibble(lai)
 }

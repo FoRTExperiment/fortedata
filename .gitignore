@@ -40,4 +40,6 @@ rsconnect/
 .DS_Store
 doc
 Meta
-docs
+
+# Cleaning script for data prep
+R/fd_cleaning_data.R

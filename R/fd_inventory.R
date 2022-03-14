@@ -1,20 +1,22 @@
 # Inventory data
 
 
-#' Raw inventory table.
+#' Forest Inventory Data
 #'
-#' @note Data were collected by Gough Lab team members Autym Shafer, Catherine McGuigan, and Alexandra Barry
-#' using a Haglof Postex Inventory Unit.
+#' @details Forest inventory data for the 32 FoRTE subplots.
+#' Includes diameter-at-breast-height (DBH) measurements in units
+#' of cm as well as information on health (i.e. see
+#' `health_status` column where D = dead, M = moribund, and L = live) and canopy status (i.e. see `canopy_status` where OD = overstory dominant, UN = understory, OS = overstory submissive, SA = sapling,  and NA is a blank or missing record) and `species`, not species are identified using the USDA Taxon system (e.g. FAGR is Fagus grandfolia, QURU is Quercus rubra, etc.). The `tag` column is the tree tag number. These data were originally collected in 2018, pre-disturbance. For stem-girdled tree information, i.e. which trees were targeted for mortality, see `fd_mortatlity()`. Remeasure for dbh is planned for 2022.
 #'
-#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.#'
+#' @note Data were collected by Gough Lab team members Autym Shafer,
+#' Catherine McGuigan, and Alexandra Barry in 2018
+#' using a Haglof Postex Inventory Unit with PD II Caliper
+#'
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @export
 #' @examples
 #' fd_inventory()
 fd_inventory <- function() {
-
-  # Data Creation and Authorship Information
-  contact_person <- "Jeff Atkins"
-  citation <- "ESSD"
 
   inv <- read_csv_file("forte_inventory.csv")
   inv$date <- as.Date(inv$date, format = "%m/%d/%Y")
@@ -24,12 +26,13 @@ fd_inventory <- function() {
   # Currently there's a bad entry in the table. Nuke it. Temporary
   inv$dbh_cm <- as.numeric(inv$dbh_cm)  # temporary, until we fix row 791
 
-  inv <- inv[c("subplot_id", "replicate", "plot", "subplot","date","tag", "species", "dbh_cm", "health_status", "canopy_status", "notes")]
+  inv <- inv[c("subplot_id", "replicate", "plot", "subplot", "date", "tag",
+               "species", "dbh_cm", "health_status", "canopy_status", "notes")]
 
-  weak_as_tibble(inv)
-
-  # data conditions
-  #data_conditions(x, published = FALSE, contact_person, citation)
+  # Data creation and authorship information
+  contact_person <- "Jeff Atkins"
+  citation <- "ESSD"
+  data_conditions(inv, published = FALSE, contact_person, citation)
 }
 
 #' Basic statistics generated from the raw inventory data.
@@ -74,7 +77,9 @@ fd_inventory_summary <- function() {
 
 
 
-#' Mortality Assignments for Girdling 2018
+#' Mortality Assignments for 2018 Stem Girdling
+#'
+#' A data set similar to `fd_inventory` but includes the column `fate` which has a value of either "kill" or "live" with "kill" indicating the tree was stem girdled.
 #'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.#'
 #' @export
@@ -91,4 +96,212 @@ fd_mortality <- function() {
   kill <- kill[c("subplot_id", "replicate", "plot", "subplot","tag", "species", "dbh_cm", "health_status", "canopy_status", "fate", "notes")]
 
   weak_as_tibble(kill)
+}
+
+#' Dendroband readings for canopy trees
+#'
+#' A data set including measurements taken from dendrobands, which give fine scale readings with a precision of 0.01 inch, allowing for
+#' quantifying small, incremental growth not possible with DBH tapes. These data were collected using custom made steel band dendrometer bands fixed to a subsample of trees at ~1.3 height. Custom ruler stickers were used to measure the incremental circumference changes in inches. Dendrometer bands were fixed to ~ 700 trees in the summer of 2018. Measurements began in November 2018 with weekly measurements over the 2019 growing season and annual or bi-annual measurements in subsequent years.
+#'
+#'
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
+#' @note Data were collected by multiple Gough Lab team members
+#' @export
+#' @author Maxim S Grigri
+#' @examples
+#' fd_dendro()
+fd_dendro <- function() {
+
+  # read in data
+  df <- read_csv_file("fd_dendroband.csv")
+
+  # replace
+  df$species[df$species == "POGR"] <- "POGR4"
+  df$species[df$species == "ACSA"] <- "ACSA3"
+  df$species[df$species == "BEAL"] <- "BEAL2"
+  df$species[df$species == "AMEL"] <- "AMELA"
+  df$species[df$species == "POTR"] <- "POTR5"
+
+  # restructure
+  df$date <- as.Date(df$date, format = "%m/%d/%Y")
+  df$tag <- as.integer(df$tag)
+
+  # rename if issue
+  names(df)[names(df) == "subplot"] <- "subplot_id"
+  names(df)[names(df) == "bands_in"] <- "band_in"
+
+  # sort by tag
+  df <- df[order(df$tag , df$date),]
+
+  # change the str of band_in
+  df$band_in <- as.numeric(df$band_in)
+
+  # create a band_cm column by converting inches to cm
+  df$band_cm <- df$band_in*2.54
+
+  # add plot associated metadata
+  df <- split_subplot_id(df)
+
+  # reorganize and drop band_in for band_cm
+  df <- df[c("subplot_id", "replicate", "plot", "subplot","date", "tag", "species", "band_cm", "notes")]
+
+  # Data creation and authorship information
+  contact_person <- "Maxim S. Grigri [grigrims@vcu.edu], Jeff Atkins [jwatkins6@vcu.edu]"
+  citation <- "Grigri, M. S., Atkins, J. W., Vogel, C., Bond-Lamberty, B., & Gough, C. M. (2020). Aboveground Wood Production Is Sustained in the First Growing Season after Phloem-Disrupting Disturbance. Forests, 11(12), 1306."
+  data_conditions(df, published = TRUE, contact_person, citation)
+}
+
+
+# Subcanopy (1-8cm DBH) diameter measurements
+
+# These data were collected using digital calipers at ~1.3m bole height. Data were collected bi-weekly in the 2019 field season with end of season diameter in November 2019. In subsequent years, data are collected twice annually, once during the growing season and once in November. All stems in this size class within the 2m^2 vegetation sampling plots were sampled for DBH. When less than 2 stems of this size class were present in the sampling areas, the two closest stems to vegetation plot center were selected resulting in a minimum of 8 diameter samples per subplot.
+
+#' Subcanopy diameter data
+#'
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
+#' @note Data were collected by multiple Gough Lab team members
+#' @export
+#' @examples
+#' fd_subcanopy_diameter()
+fd_subcanopy_diameter <- function() {
+  sc_2019 <- read_csv_file("fd_subcanopy_diameter_2019.csv")
+  sc_2020 <- read_csv_file("fd_subcanopy_diameter_2020.csv")
+
+  # bind years into one df
+  sc_alltime <- rbind(sc_2019, sc_2020)
+
+  # convert species codes to USDA taxon codes
+  sc_alltime$species[sc_alltime$species == "POGR"] <- "POGR4"
+  sc_alltime$species[sc_alltime$species == "ACSA"] <- "ACSA3"
+  sc_alltime$species[sc_alltime$species == "BEAL"] <- "BEAL2"
+  sc_alltime$species[sc_alltime$species == "AMEL"] <- "AMELA"
+  sc_alltime$species[sc_alltime$species == "POTR"] <- "POTR5"
+
+  #reformat date class
+  sc_alltime$date <- as.Date(sc_alltime$date, "%Y-%m-%d")
+
+  # Data creation and authorship information
+  contact_person <- "Maxim S. Grigri"
+  citation <- "ESSD"
+  data_conditions(sc_alltime, published = TRUE, contact_person, citation)
+}
+
+
+# Subcanopy (1-8cm DBH) diameter stem density
+
+# These data were collected by randomly selecting 1/4 of each experimental subplot (250m^2)
+# and counting the total number of stems 1-8cm DBH identified to the species level.
+# These data can be used to scale subcanopy subsample measurements.
+
+#' Subcanopy density data
+#'
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
+#' @note Data were collected by multiple Gough Lab team members
+#' @export
+#' @examples
+#' fd_subcanopy_density()
+fd_subcanopy_density <- function () {
+  sc_density <- read_csv_file("fd_subcanopy_stem_count_2019.csv")
+
+  # convert species codes to USDA taxon codes
+  # find unique values
+  unique(sc_density$species)
+
+  # replace
+  sc_density$species[sc_density$species == "POGR"] <- "POGR4"
+  sc_density$species[sc_density$species == "ACSA"] <- "ACSA3"
+  sc_density$species[sc_density$species == "BEAL"] <- "BEAL2"
+  sc_density$species[sc_density$species == "AMEL"] <- "AMELA"
+  sc_density$species[sc_density$species == "POTR"] <- "POTR5"
+
+  # reformat date class
+  sc_density$date <- as.Date(sc_density$date, "%Y-%m-%d")
+
+  # Data creation and authorship information
+  contact_person <- "Maxim S. Grigri"
+  citation <- "ESSD"
+  data_conditions(sc_density, published = TRUE, contact_person, citation)
+}
+
+
+# Seedling and sapling (>1cm DBH or >1.3m height) basal diameter and height measurements
+
+# These data were collected using digital calipers to measure basal diameter of all seedling and saplings >1cm DBH or >1.3m height within 1/4 of each vegatation sampling area (1m^2). Basal diameter of each sampled stem was binned into 1cm categories (i.e. 0-1cm, 1-2cm, etc). Two height measurements for each sampled stem was measured with a ruler or meter stick: 1) height of previous year budscar, 2) total height. Measurements were collected twice in 2019 (June and August), and once in August 2020.
+
+#' Seedling and sapling data
+#'
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
+#' @note Data were collected by Maxim S. Grigri
+#' @export
+#' @examples
+#' fd_seedling_sapling()
+fd_seedling_sapling <- function() {
+  ss_2019 <- read_csv_file("fd_seedling_sapling_2019.csv")
+  ss_2020 <- read_csv_file("fd_seedling_sapling_2020.csv")
+
+  # bind years into one df
+  ss_alltime <- rbind(ss_2019, ss_2020)
+
+  # convert species codes to USDA taxon codes
+  ss_alltime$species[ss_alltime$species == "POGR"] <- "POGR4"
+  ss_alltime$species[ss_alltime$species == "ACSA"] <- "ACSA3"
+  ss_alltime$species[ss_alltime$species == "BEAL"] <- "BEAL2"
+  ss_alltime$species[ss_alltime$species == "AMEL"] <- "AMELA"
+  ss_alltime$species[ss_alltime$species == "POTR"] <- "POTR5"
+
+  # reformat date column
+  ss_alltime$date <- as.Date(ss_alltime$date, "%Y-%m-%d")
+
+  # Data creation and authorship information
+  contact_person <- "Maxim S. Grigri"
+  citation <- "ESSD"
+  data_conditions(ss_alltime, published = TRUE, contact_person, citation)
+}
+
+# Double canopy dendroband data
+
+# These data are dendrometer band measurements from a second dendrometer band placed 50 cm above
+# the original band on a sub sample of trees. These were fixed to trees in July 2019.
+# These data can be used to assess statistical differences in diameter growth at two stem heights on both
+# stem-girdled and uninjured trees in the forte experiment
+
+#' Double dendrometer band data
+#'
+#' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
+#' @note Data were collected by Maxim S. Grigri
+#' @export
+#' @examples
+#' fd_double_dendro()
+fd_double_dendro <- function() {
+  dd_2019 <- read_csv_file("fd_double_dendroband_2019.csv")
+  dd_2020 <- read_csv_file("fd_double_dendroband_2020.csv")
+
+  # bind years into one df
+  dd_alltime <- rbind(dd_2019, dd_2020)
+
+  # convert species codes to USDA taxon codes
+  dd_alltime$species[dd_alltime$species == "POGR"] <- "POGR4"
+  dd_alltime$species[dd_alltime$species == "ACSA"] <- "ACSA3"
+  dd_alltime$species[dd_alltime$species == "BEAL"] <- "BEAL2"
+  dd_alltime$species[dd_alltime$species == "AMEL"] <- "AMELA"
+  dd_alltime$species[dd_alltime$species == "POTR"] <- "POTR5"
+
+  # reformat date column
+  dd_alltime$date <- as.Date(dd_alltime$date, "%Y-%m-%d")
+
+  # change the str of band_in_bottom & band_in_top
+  dd_alltime$band_in_bottom <- as.numeric(dd_alltime$band_in_bottom)
+  dd_alltime$band_in_top <- as.numeric(dd_alltime$band_in_top)
+
+  # create band_cm columns for both by converting to cm's
+  dd_alltime$band_cm_bottom <- dd_alltime$band_in_bottom*2.54
+  dd_alltime$band_cm_top <- dd_alltime$band_in_top*2.54
+
+  # drop the band_in columns
+  dd_alltime <- dd_alltime[c("tag", "species", "band_cm_bottom","band_cm_top", "date", "notes")]
+
+  # Data creation and authorship information
+  contact_person <- "Maxim S. Grigri"
+  citation <- "ESSD"
+  data_conditions(dd_alltime, published = TRUE, contact_person, citation)
 }

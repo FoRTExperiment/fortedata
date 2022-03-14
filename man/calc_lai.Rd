@@ -2,17 +2,19 @@
 % Please edit documentation in R/utils.R
 \name{calc_lai}
 \alias{calc_lai}
-\title{Function that returns LAI values at the plot scale}
+\title{LAI values at the subplot scale from littertrap data}
 \usage{
 calc_lai()
 }
 \value{
-A data frame of leaf area fro SLA * mass at the plot scale
+A data frame of leaf area by year, at the subplot scale.
 }
 \description{
-LAI is calculated using the equation SLA * mass, where SLA is specific leaf area. Species and site specific values
-are in fd_sla.csv
+LAI is calculated using the equation SLA * mass, where SLA is specific leaf area and
+mass is leaf litter mass from \code{fd_litter()}. Species and site specific values are
+in \code{fd_sla.csv}. Also, see \code{fd_litter_vignette} for further explanation,
+including references, calculation, and possible use cases.
 }
 \examples{
-fortedata::calc_lai()
+calc_lai()
 }

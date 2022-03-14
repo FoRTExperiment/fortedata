@@ -1,0 +1,146 @@
+---
+title: "fortedata: Data Collection, Preparation, and Management"
+author: "FoRTE Team"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fortedata: Data Collection, Preparation, and Management}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  require(fortedata)
+)
+
+# include utils.R functions that are not exported from fortedata
+read_csv_file <- function(...) {
+  weak_as_tibble(
+    read.csv(
+      system.file("extdata", ..., package = "fortedata", mustWork = TRUE),
+      # Empty strings, and ONLY empty strings, should be interpreted as missing values.
+      na.strings = "",
+      stringsAsFactors = FALSE
+    )
+  )
+}
+
+# weak_tibble - use tibble() if available but fall back to
+# data.frame() if necessary
+# not a user-facing function; document via roxygen?
+weak_tibble <- function(..., .force_df = FALSE) {
+  no_tibble <- !suppressWarnings(requireNamespace("tibble", quietly = TRUE))
+  out <- data.frame(..., stringsAsFactors = FALSE)
+  if (!(.force_df || no_tibble)) out <- weak_as_tibble(out)
+  out
+}
+
+# weak_as_tibble - use as_tibble() if available but fall back to
+# as.data.frame() if necessary
+weak_as_tibble <- function(..., .force_df = FALSE) {
+  no_tibble <- !suppressWarnings(requireNamespace("tibble", quietly = TRUE))
+  if (.force_df || no_tibble) {
+    as.data.frame(..., stringsAsFactors = FALSE)
+  } else {
+    tibble::as_tibble(...)
+  }
+}
+
+#' Data tables' metadata.
+fd_metadata <- function(table = NULL) {
+  md <- read_csv_file("forte_table_metadata.csv")
+  
+  if (!is.null(table)) {
+    md <- md[md$table == table,]
+    if (nrow(md) < 1) {
+      stop("Table ", table, " is not present in metadata.")
+    }
+  }
+  weak_as_tibble(md)
+}
+
+
+#' Split the SubplotID column into more useful individual columns
+split_subplot_id <- function(df) {
+  stopifnot("subplot_id" %in% names(df))
+  df$replicate <- substr(df$subplot_id, 1, 1)
+  df$plot <- as.integer(substr(df$subplot_id, 3, 3))
+  df$subplot <- substr(df$subplot_id, 4, 4)
+  df
+}
+
+
+data_conditions <- function(x, published = FALSE, contact_person, citation) {
+  
+  if(!published) {
+    warning("These data are unpublished. Please contact ", contact_person, " to ask about using")
+  }
+  
+  message("Data citation: ", citation)
+  message("Contact person: ", contact_person)
+  
+  # add the above information to `x` as attributes...
+  
+  invisible(x)
+}
+
+
+```
+
+## Overview
+At the core of FoRTE is the collection of heterogeneous data, from many different instruments, requiring multiple different approaches, to measure different environmental variables. Below we outline the collection and preparation procedures for all data products in `fortedata`. 
+
+For each data product listed includes a  *Data Preparation* section that includes:
+
+1) the location of raw data in Google Drive
+2) the format and structure of the raw data
+3) any pre-processing of data
+4) an outline of the process needed to move from raw data to package-ready data
+
+## Canopy Structural Traits/Terrestrial Lidar
+
+### Data Preparation
+CST data are located in the `/data/lidar` on Google Drive. 
+The raw data  from the PCL instrument is in the form of a two column .csv file containing raw distance from instrument values (i.e. lidar pulse returns) and intensity values for each measured transect. These data are processed externally using forestr in R, with the output for each transect containing several .csv files: 1) a two row .csv containing a head of CST metrics and a second row containing values for those metrics; 2) an adjusted leaf area/vegetation area hit grid matrix; 3) a three column, x, z, VAI file; 4) summary matrix file containing x, z, and column specific values (NEED TO ADJUST); and 5) a hit grid plot of VAI.
+
+The first of these files, the two row CST metrics file(s) for each transect are collated into one file where each row represents each transect--the source `canopy_structural_traits.csv` file in `/inst/extdata/` from which `fd_canopy_structure` draws.
+
+```{r cst, echo = TRUE}
+#set random seed
+cst <- read_csv_file("canopy_structural_traits.csv")
+
+# show the top of 
+str(cst)
+```
+
+#General Data Format and Preparation
+
+This section summarizes general formatting and preparation guidelines for all data
+shared and uploaded to fortedata. 
+
+## Naming files and folders
+
+1. Names should be lowercase with "_" separating words.
+2. File Type: CSV (Comma delimited)
+3. Filenames: "data_type_year.csv" (i.e. "canopy_dendroband_2019.csv")
+4. Folder Names: "data_type" (i.e. "canopy_dendroband")
+5. README.txt file included in every folder (see README.txt file structure)
+5. Each year should be 1 data file (but does this make sense for instrument data?)
+
+## General File Structure and Format
+
+1. Each row is one observation
+2. Column names should:
++ Be lowercase with "_" separating words 
++ Include units if quantitative (i.e. "DBH_cm"; Flux units excluded)
++ Be added to `forte_table_metadata.csv` (if not already listed)
+3. Required columns:
++ subplot_id -- replicate ("A-") plot ("-01-") subplot ("-E") (i.e "A01E");                               **SHOULD NOT** include separate replicate, plot, and subplot columns
++ date -- Date of data collection (YYYY-MM-DD)
+
+```{r metadata, echo = TRUE}
+# call forte_table_metadata
+fd_metadata()
+```

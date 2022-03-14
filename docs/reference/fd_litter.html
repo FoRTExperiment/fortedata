@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Litter trap data. — fd_litter • fortedata</title>
+<title>Litter mass data from litter trap collections — fd_litter • fortedata</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="Litter trap data. — fd_litter" />
-<meta property="og:description" content="Litter trap data." />
+<meta property="og:title" content="Litter mass data from litter trap collections — fd_litter" />
+<meta property="og:description" content="These data include leaf litter mass sorted by species as well as fine wood debris (fwd column) in grams collected annually every ~November from the litter traps located in each FoRTE  subplot. The fraction column informs the user is each row is either leaves which are broken down by species in the species column; misc which are small, unidentifiable leaf fragements or organic material; or fwd, for fine woody debris which are small twigs and sticks. For 2018-2020, there are four litter traps in each subplot. Each littertrap is circular (1.82 m circumference, 0.29 m radius, 0.26 m^2 area).See fd_experimental_design_vignette for more information. Within the dataset, the bagtare_g column is the mass of the measuring bag or tare and bagmass_g is the total mass of bag + sample." />
+
+
 
 
 
@@ -56,9 +58,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,19 +80,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -95,7 +97,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
+    </li>
+    <li>
+      <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
     </li>
     <li>
       <a href="../articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
@@ -107,7 +118,7 @@
       <a href="../articles/fd_inventory_vignette.html">fortedata: Forest Inventory Data</a>
     </li>
     <li>
-      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophsyiology Data</a>
+      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophysiology Data</a>
     </li>
     <li>
       <a href="../articles/fd_litter_vignette.html">fortedata: Litter Data</a>
@@ -119,7 +130,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/FoRTExperiment/fortedata/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -133,16 +149,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Litter trap data.</h1>
-    
+    <h1>Litter mass data from litter trap collections</h1>
+    <small class="dont-index">Source: <a href='https://github.com/FoRTExperiment/fortedata/blob/master/R/fd_litter.R'><code>R/fd_litter.R</code></a></small>
     <div class="hidden name"><code>fd_litter.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Litter trap data.</p>
+    <p>These data include leaf litter mass sorted by species as well as fine wood debris (<code>fwd</code> column) in grams collected annually every ~November from the litter traps located in each FoRTE  subplot. The <code>fraction</code> column informs the user is each row is either leaves which are broken down by species in the <code>species</code> column; misc which are small, unidentifiable leaf fragements or organic material; or fwd, for fine woody debris which are small twigs and sticks. For 2018-2020, there are four litter traps in each subplot. Each littertrap is circular (1.82 m circumference, 0.29 m radius, 0.26 m^2 area).See <code>fd_experimental_design_vignette</code> for more information. Within the dataset, the <code>bagtare_g</code> column is the mass of the measuring bag or tare and <code>bagmass_g</code> is the total mass of bag + sample.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fd_litter</span>()</pre>
+    <pre class="usage"><span class='fu'>fd_litter</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -153,26 +169,8 @@
     <p>Data were collected by multiple Gough Lab team members</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fd_litter</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>We detected these problematic arguments:</span>
-#&gt; <span class='warning'>* `needs_dots`</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
-#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 340 x 8</span><span>
-#&gt;    subplot_id replicate  plot subplot  year species bagtare_g bagmass_g
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> A04E       A             4 E        </span><span style='text-decoration: underline;'>2</span><span>018 QURU          7.2      13.9
-#&gt; </span><span style='color: #555555;'> 2</span><span> A04E       A             4 E        </span><span style='text-decoration: underline;'>2</span><span>018 BEPA          7.1       7.1
-#&gt; </span><span style='color: #555555;'> 3</span><span> A04E       A             4 E        </span><span style='text-decoration: underline;'>2</span><span>018 MISC          7.2      20.6
-#&gt; </span><span style='color: #555555;'> 4</span><span> A04E       A             4 E        </span><span style='text-decoration: underline;'>2</span><span>018 CWD           7.2      20  
-#&gt; </span><span style='color: #555555;'> 5</span><span> A02W       A             2 W        </span><span style='text-decoration: underline;'>2</span><span>018 FAGR         22.5      42.8
-#&gt; </span><span style='color: #555555;'> 6</span><span> A02W       A             2 W        </span><span style='text-decoration: underline;'>2</span><span>018 POGR          6.9       9.1
-#&gt; </span><span style='color: #555555;'> 7</span><span> A02W       A             2 W        </span><span style='text-decoration: underline;'>2</span><span>018 ACSA         22.5     106. 
-#&gt; </span><span style='color: #555555;'> 8</span><span> A02W       A             2 W        </span><span style='text-decoration: underline;'>2</span><span>018 POGR         22.5     112. 
-#&gt; </span><span style='color: #555555;'> 9</span><span> A02W       A             2 W        </span><span style='text-decoration: underline;'>2</span><span>018 QURU          6.9       8.5
-#&gt; </span><span style='color: #555555;'>10</span><span> A02W       A             2 W        </span><span style='text-decoration: underline;'>2</span><span>018 BEPA          6.9       7.1
-#&gt; </span><span style='color: #555555;'># ... with 330 more rows</span><span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fd_litter</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>These data are unpublished. Please contact Jeff Atkins to ask about using</span></div><div class='output co'>#&gt; <span class='message'>Data citation: ESSD</span></div><div class='output co'>#&gt; <span class='message'>Contact person: Jeff Atkins</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -184,11 +182,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p><p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -196,6 +194,8 @@
 
   
 
+
+  
 
   </body>
 </html>

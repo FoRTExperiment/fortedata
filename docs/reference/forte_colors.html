@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>FoRTE color palette
-The FoRTE color palettte — forte_colors • fortedata</title>
+The FoRTE color palette — forte_colors • fortedata</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,11 @@ The FoRTE color palettte — forte_colors • fortedata</title>
 
 
 <meta property="og:title" content="FoRTE color palette
-The FoRTE color palettte — forte_colors" />
-<meta property="og:description" content="These are a handful of color palettes pulled from photographs of US National Parks." />
+The FoRTE color palette — forte_colors" />
+<meta property="og:description" content="A FoRTE specific color palette used for color-classification of disturbance severity
+treatments. 0% = &quot;#000000&quot;, 45% = &quot;#009E73&quot;, 65% = &quot;#0072B2&quot;, and 85% = &quot;#D55E00&quot;." />
+
+
 
 
 
@@ -58,9 +61,15 @@ The FoRTE color palettte — forte_colors" />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -74,19 +83,13 @@ The FoRTE color palettte — forte_colors" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -97,7 +100,16 @@ The FoRTE color palettte — forte_colors" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
+    </li>
+    <li>
+      <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
     </li>
     <li>
       <a href="../articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
@@ -109,7 +121,7 @@ The FoRTE color palettte — forte_colors" />
       <a href="../articles/fd_inventory_vignette.html">fortedata: Forest Inventory Data</a>
     </li>
     <li>
-      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophsyiology Data</a>
+      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophysiology Data</a>
     </li>
     <li>
       <a href="../articles/fd_litter_vignette.html">fortedata: Litter Data</a>
@@ -121,7 +133,12 @@ The FoRTE color palettte — forte_colors" />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/FoRTExperiment/fortedata/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -136,25 +153,32 @@ The FoRTE color palettte — forte_colors" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>FoRTE color palette
-The FoRTE color palettte</h1>
-    
+The FoRTE color palette</h1>
+    <small class="dont-index">Source: <a href='https://github.com/FoRTExperiment/fortedata/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
     <div class="hidden name"><code>forte_colors.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>These are a handful of color palettes pulled from photographs of US National Parks.</p>
+    <p>A FoRTE specific color palette used for color-classification of disturbance severity
+treatments. 0% = "#000000", 45% = "#009E73", 65% = "#0072B2", and 85% = "#D55E00".</p>
     </div>
 
-    <pre class="usage"><span class='fu'>forte_colors</span>()</pre>
+    <pre class="usage"><span class='fu'>forte_colors</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector of colours.</p>
+    <p>A vector of colors.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Per the example below, <code>forte_colors()</code> can be used to define a custom palette that
+can then be used for plotting with other commands such as <code>scale_fill_manual()</code>, etc.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>pal</span> <span class='kw'>&lt;-</span> <span class='fu'>forte_colors</span>()</div></pre>
+ <span class='va'>forte.pal</span> <span class='op'>&lt;-</span> <span class='fu'>forte_colors</span><span class='op'>(</span><span class='op'>)</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -166,11 +190,11 @@ The FoRTE color palettte</h1>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p><p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -178,6 +202,8 @@ The FoRTE color palettte</h1>
 
   
 
+
+  
 
   </body>
 </html>

@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -54,7 +50,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
+    </li>
+    <li>
+      <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
     </li>
     <li>
       <a href="../articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
@@ -66,7 +71,7 @@
       <a href="../articles/fd_inventory_vignette.html">fortedata: Forest Inventory Data</a>
     </li>
     <li>
-      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophsyiology Data</a>
+      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophysiology Data</a>
     </li>
     <li>
       <a href="../articles/fd_litter_vignette.html">fortedata: Litter Data</a>
@@ -77,7 +82,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/FoRTExperiment/fortedata/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -87,67 +99,70 @@
 
       
 
-      </header><script src="fd_inventory_vignette_files/header-attrs-2.3/header-attrs.js"></script><script src="fd_inventory_vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="fd_inventory_vignette_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>fortedata: Forest Inventory Data</h1>
-                        <h4 class="author">Jeff Atkins</h4>
+                        <h4 data-toc-skip class="author">Jeff Atkins</h4>
             
-            <h4 class="date">2020-07-17</h4>
+            <h4 data-toc-skip class="date">2021-05-16</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/FoRTExperiment/fortedata/blob/master/vignettes/fd_inventory_vignette.Rmd" class="external-link"><code>vignettes/fd_inventory_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>fd_inventory_vignette.Rmd</code></div>
 
     </div>
 
     
     
+<div id="forest-inventory-background-and-introduction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#forest-inventory-background-and-introduction" class="anchor"></a>Forest Inventory Background and Introduction</h2>
+<p>Each tree in FoRTE’s 32 subplots above 8 cm in diameter-at-breast-height (DBH) is tagged, measured, and monitored over time. These data are compiled in the <code>fd_inventory</code> data set, described in detail below. In short, these data are traditional forest inventory data. They include:</p>
+<ul>
+<li><p>Tree DBH in cm (<code>dbh_cm</code>) measured as the average of two caliper measurements taken with a Haglof Postex PDII Inventory Unit and Caliper Set. Initial measurements were taken in 2018, with intention of remeasurement at 4 to 5 year intervals with the first remeasurmennt slated for 2022. This time interval is chosen based on previous experience at the University of Michigan Biological Station. Given the slow tree growth rates at the station’s latitude, a 4 to 5 year measurement interval insures that growth will outpace measurment error.</p></li>
+<li><p>Canopy status (<code>canopy_status</code>) is recorded in this dataset where OD = overstory dominant, UN = understory, OS = overstory submissive, SA = sapling, and NA is a blank or missing record.</p></li>
+<li><p>Tree health status (<code>health_status</code>) where D = dead, M = moribund, and L = live</p></li>
+<li><p>Species (<code>species</code>) using the USDA Taxon system (e.g. FAGR is Fagus grandfolia, QURU is Quercus rubra, etc.).</p></li>
+<li><p>Tree individual identifier (<code>tag</code>) as the 4 digit tree tag number.</p></li>
+</ul>
+<p>These data were originally collected in 2018, pre-disturbance. For stem-girdled tree information, i.e. which trees were targeted for mortality, see <code>fd_mortatlity()</code>.</p>
+</div>
+<div id="data-availability" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-availability" class="anchor"></a>Data Availability</h2>
+<p><code>fortedata</code> is an evolving, open-science data package with data updated in near-real time. The current inventory observations available as of 2021-05-16 are detailed in Figure 1. Remeasurement is slated to occur in the summer of 2022.</p>
+<p><img src="fd_inventory_vignette_files/figure-html/observations-1.png" width="576"></p>
+</div>
 <div id="forest-inventory-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#forest-inventory-data" class="anchor"></a>Forest Inventory Data</h2>
 <p>The <code><a href="../reference/fd_inventory.html">fd_inventory()</a></code> script within <code>fortedata</code> currently includes one function:</p>
 <ul>
 <li>
-<code><a href="../reference/fd_inventory.html">fd_inventory()</a></code> returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), latitude, longitude, and biomass for each measured stem, as well as information on vitality and canopy position . There are 3165 observations in the dataset, all measured in 2018.</li>
+<code><a href="../reference/fd_inventory.html">fd_inventory()</a></code> returns a single dataset of the forest inventory data, including diameter-at-breast height (DBH), latitude, longitude, and biomass for each measured stem, as well as information on vitality and canopy position. There are 3165 observations in the dataset, all measured in 2018.</li>
 </ul>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="../reference/fd_inventory.html">fd_inventory</a></span>()
-<span class="co">## Warning: `...` is not empty.</span>
-<span class="co">## </span>
-<span class="co">## We detected these problematic arguments:</span>
-<span class="co">## * `needs_dots`</span>
-<span class="co">## </span>
-<span class="co">## These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">## Did you misspecify an argument?</span>
-<span class="co">## # A tibble: 3,165 x 11</span>
-<span class="co">##    subplot_id replicate  plot subplot date         tag species dbh_cm</span>
-<span class="co">##    &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;date&gt;     &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt;</span>
-<span class="co">##  1 A01E       A             1 E       2018-07-12  2772 POGR4     36.2</span>
-<span class="co">##  2 A01E       A             1 E       2018-07-12  2773 POGR4     41.6</span>
-<span class="co">##  3 A01E       A             1 E       2018-07-12  2774 FAGR      10.8</span>
-<span class="co">##  4 A01E       A             1 E       2018-07-12  2775 FAGR      26.2</span>
-<span class="co">##  5 A01E       A             1 E       2018-07-12  2776 FAGR      19.5</span>
-<span class="co">##  6 A01E       A             1 E       2018-07-12  2777 POGR4     26.5</span>
-<span class="co">##  7 A01E       A             1 E       2018-07-12  2778 ACSA3     16  </span>
-<span class="co">##  8 A01E       A             1 E       2018-07-12  2779 ACSA3      9.8</span>
-<span class="co">##  9 A01E       A             1 E       2018-07-12  2780 FAGR       9.7</span>
-<span class="co">## 10 A01E       A             1 E       2018-07-12  2781 QURU      42.6</span>
-<span class="co">## # ... with 3,155 more rows, and 3 more variables: health_status &lt;chr&gt;,</span>
-<span class="co">## #   canopy_status &lt;chr&gt;, notes &lt;chr&gt;</span></pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/fd_inventory.html">fd_inventory</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">## These data are unpublished. Please contact Jeff Atkins to ask about using</span>
+<span class="co">## Data citation: ESSD</span>
+<span class="co">## Contact person: Jeff Atkins</span></code></pre></div>
+<p><img src="fd_inventory_vignette_files/figure-html/table_inventory-1.png" width="672"></p>
+<p>###Species Abbreviations for Figure 2: ACPE - <em>Acer pensylvanicum</em>; ACRU - <em>Acer rubrum</em>; ACSA3 - <em>Acer saccharum</em>; AMELA - <em>Amelanchier Medik.</em>; BEAL2 - <em>Betula alleghaniensis</em>; BEPA - <em>Betula papyrifera</em>; FAGR - <em>Fagus grandifolia</em>; PIRE - <em>Pinus resinosa</em>; PIST - <em>Pinus strobus</em>; POGR4 - <em>Populus grandidentata</em>; POTR - <em>Populus tremuloides</em>; QURU - <em>Quercus rubra</em>; TSCA - <em>Tsuga canadensis</em>. Abbreviations are from the <a href="http://plants.usda.gov/dl_all_html" class="external-link">USDA PLANTS list</a>.</p>
 </div>
 <div id="inventory-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#inventory-data" class="anchor"></a>Inventory Data</h2>
-<p>Biomass can be calculated from <code><a href="../reference/fd_inventory.html">fd_inventory()</a></code> directly, without assignment, by using the function <code><a href="../reference/calc_biomass.html">calc_biomass()</a></code> as such using site/regionally specific allometries (details need to be added.)</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># import the biomass data</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">fortedata</span><span class="kw ns">::</span><span class="fu"><a href="../reference/calc_biomass.html">calc_biomass</a></span>()
-
-<span class="co"># return density plot of replicate biomass</span>
-<span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">df</span>, <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">biomass</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">replicate</span>)))+
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span>(<span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.4</span>)+
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">legend.position</span> <span class="kw">=</span> <span class="st">"none"</span>)+
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span>(<span class="no">.</span>~<span class="no">replicate</span>)
-<span class="co">## Warning: Removed 2 rows containing non-finite values (stat_density).</span></pre></body></html></div>
+<p>Biomass can be calculated from <code><a href="../reference/fd_inventory.html">fd_inventory()</a></code> by using the function <code><a href="../reference/calc_biomass.html">calc_biomass()</a></code>.</p>
 <p><img src="fd_inventory_vignette_files/figure-html/biomass-1.png" width="720" style="display: block; margin: auto;"></p>
+<p>In figure 3 we show above-ground woody biomass at the plot level. This can be done by summing the biomass estimates to the plot level and then multiplying by 0.001 to convert kg to Mg and then multiplying that value by 10 to scale from 0.1 ha to 1 ha as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># group the data by your factor of interest, here we show how the data are summed in Figure 3.</span>
+<span class="va">x</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">subplot_id</span>, <span class="va">disturbance_severity</span>, <span class="va">treatment</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarize</span><span class="op">(</span>biomass_plot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">biomass</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">y</span>
+
+<span class="co"># Above, y$biomass is in units of kg per 0.1 ha. We want to convert to Mg per ha</span>
+<span class="va">y</span><span class="op">$</span><span class="va">biomass_mg_ha</span> <span class="op">&lt;-</span> <span class="va">y</span><span class="op">$</span><span class="va">biomass_plot</span> <span class="op">*</span> <span class="fl">0.001</span> <span class="op">*</span> <span class="fl">10</span></code></pre></div>
 </div>
   </div>
 
@@ -162,11 +177,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p></p>
+<p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
@@ -174,6 +191,8 @@
 
   
 
+
+  
 
   </body>
 </html>

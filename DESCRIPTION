@@ -1,23 +1,31 @@
 Package: fortedata
 Title: Data from the Forest Resilience and Threshold Experiment
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c(person("Jeff", "Atkins", email = "jwatkins6@vcu.edu", role = c("aut", "cre")),
           person("Ben", "Bond-Lamberty", role = "aut"),
           person("Kalyn", "Dorheim", rol = "aut"),
           person("Stephanie", "Pennington", role = "aut"),
           person("Alexey", "Shiklomanov", role = "aut")
           )
-Description: This package includes data from 2018 and 2019 from the FoRTE project at UMBS. This description is incomplete.
+Description: Data and analysis scripts from the Forest Resilience Threshold Experiment (FoRTE). FoRTE
+    is a manipulative ecosystem experiment testing the effects of varying disturbance severity levels on
+    ecosystem strcuture, funciton, and resistance, reslience, and recovery. In 2019, over 3750 trees 
+    were experimentally stem-girdled and the subsequent effects on carbon, water, and nutrient cycling processes 
+    have been monitored. This package includes associated data and analysis to support this project.
 Depends:
     R (>= 3.5.0)
 License: file LICENSE
+BugReports: https://github.com/FoRTExperiment/fortedata/issues
 Suggests: 
     testthat,
     tibble,
     knitr,
     ggplot2,
     rmarkdown,
-    viridis
+    tidyverse,
+    viridis,
+    stats,
+    udunits2
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1

@@ -12,47 +12,256 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  require(fortedata)
+  require(fortedata),
+  require(ggplot2),
+  require(viridis),
+  require(tidyverse)
 )
+
 ```
 
-## Remote Sensing Data
+## Remote Sensing Background and Introduction
+Multiple remote sensing technologies are being employed in FoRTE to collect data with the goal of creating a record of forest canopy structural and spectral change. These data are collected coincident with other data as outlined below (see Remote Sensing Methods). Canopy structure affects ecosystem functioning through altering light transmission/interception, subsequently affecting ecosystem functioning (e.g. productivity and the acquisition/use-efficiency of resources). See [the FoRTE Proposal Narrative] (https://fortexperiment.github.io/fortedata/articles/fd_forte_proposal_vignette.html) for further details. 
+
+Below we outline the remote sensing oriented data and functions included in `fortedata`.
+
+## Remote Sensing Functions
+
 The `fd_remote_sensing()` script within `fortedata` currently includes the following functions:
 
-* `fd_hemi_camera()` returns a single dataset that includes derived estimates of leaf area index, gap fraction, clumping index, and NDVI (normalized difference vegetation index) from terrestrial, upward-facing hemispherical photos looking into the forest canopy taken 1 meter above-ground (Table S9). The data package includes 1028 observations of each variable from 2018 and 2019.
+* `fd_hemi_camera()` returns a single data set that includes derived estimates of leaf area index, gap fraction, clumping index, and NDVI (normalized difference vegetation index) from terrestrial, upward-facing hemispherical photos looking into the forest canopy taken 1 meter above-ground (Table S9 in ESSD manuscript, Atkins et al. 2020).
 
-* `fd_canopy_structure()` returns a single dataset that includes estimates of canopy structural traits such as height, area/density, openness, complexity, and arrangement derived from terrestrial lidar and processed using  forestr version 1.0.1 (Atkins et al. 2018) in R Version 3.6.2 (R Core Team, 2020). The package includes 62 observations for each metric (28 canopy structural metrics are included in forestr v1.0.1 that estimate canopy structural traits such as area/density, openness, arrangement, heterogeneity, and layering (Atkins et al. 2018; Fahey et al. 2019)) from 2018. 
+* `fd_canopy_structure()` returns a single data set that includes 28 structural metrics estimating canopy structural traits such as height, area/density, openness, complexity, and arrangement. Data were processed using  `forestr` version 1.0.1 (Atkins et al. 2018) in R Version 3.6.2.
 
-* `fd_ceptometer()` returns a single dataset that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI_cept)--each derived from a handheld ceptometer (LP-80; Decagon Devices). The package includes 32 observations of each variable from 2019 and 16 from 2018. 
+* `fd_ceptometer()` returns a single data set that includes estimates of the fraction of photosynthetically available radiation (faPAR) absorbed by the canopy as well as leaf area index (LAI_cept)--each derived from a handheld ceptometer (LP-80; Decagon Devices) (Table S11 in Atkins et al. 2020).
 
 
-## Hemispherical Camera Imagery
+## Data Availability
+
+`fortedata` is an evolving, open-science data package with data updated in near-real time. The current number of remote sensing data observations available as of `r Sys.Date()` are detailed in Figure 1.
+```{r observations, fig.height=4, fig.width=6, message=FALSE, warning=FALSE}
+no_of_records.df <- fd_observations()
+
+no_of_records <- subset(no_of_records.df, table == 'fd_canopy_structure' | table == 'fd_hemi_camera')
+
+
+ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer(year), fill= no_of_obs)) +
+  ggplot2::geom_tile(ggplot2::aes(fill = no_of_obs), color = "black") +
+  ggplot2::geom_text(ggplot2::aes(label = no_of_obs), color = "white") +
+  ggplot2::coord_equal()+
+  ggplot2::scale_fill_gradient(low = "#450d54", high = "#450d54", na.value = 'white')+
+  ggplot2::scale_y_reverse()+
+  ggplot2::theme_minimal()+
+  ggplot2::theme(legend.position = "none")+
+  ggplot2::ylab("Year")+
+  ggplot2::xlab("Month")+
+  ggplot2::ggtitle(paste("Figure 1: No. of observations currently available \nin each remote sensing function as of:", Sys.Date()))+
+  ggplot2::facet_grid(table ~ .,  space = "free")+
+  ggplot2::theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
+    color="black", fill="white", size= 0.5, linetype="solid"))
+
+```
+
+## Remote Sensing Methods
+
+### Canopy Structural Traits (CSTs) from Terrestrial LiDAR
+
+`fd_canopy_structure()` contains canopy structural trait metrics (Fahey et al. 2019) derived from 2-D terrestrial lidar data. These data were collected with a user-mounted, portable canopy LiDAR (PCL) system equipped with an upward facing, pulsed‐laser operating at 2000 Hz (Riegl LD90 3100 VHS; Riegl USA Inc., Orlando, Florida, USA). The PCL generates continuous LiDAR returns from a “slice” of the canopy as it is walked along a measured transect. For this study, we used 40 m transects at cardinal directions--north-to-south,  east-to-west--through subplot center for a total of 80 m of transect length per subplot. This mirrors the approach of Atkins et al. (2018) and Hardiman et al. (2013) and is sufficient to account for spatial variability of forest structure (Hardiman et al. 2019).  A more detailed description of the development and implementation of this terrestrial laser scanning system is available in Parker et al. (2004) and Hardiman et al. ( 2011).  We derived canopy structural metrics using the `forestr` package (Atkins et al. 2018a, b) in R 3.5 (R Core Team, 2018). Data here are provided at the transect level, but should be averaged to make a plot mean.
+
+
+```{r fd_canopy_structure}
+data.frame(fd_canopy_structure_summary())
+```
+
+```{r rug, fig.width = 6, fig.asp = 1, echo = FALSE}
+x <- fd_canopy_structure()
+
+
+# bring in metadata via the plot_metadata() function
+df <- fortedata::fd_plot_metadata()
+
+# now we convert the tibble to a data frame
+df <- data.frame(df)
+
+# First we want to concatenate our replicate, plot and subplot data to make a subplot_id column 
+df$subplot_id <- paste(df$replicate, 0, df$plot, df$subplot, sep = "")
+df$subplot_id <- as.factor(df$subplot_id)
+
+# Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
+df %>%
+  select(subplot_id, disturbance_severity, treatment) %>%
+  distinct() %>%
+  data.frame() -> dis.meta.data
+
+# this filters the metadata down to the subplot_id level
+dis.meta.data <- dis.meta.data[c(1:32), ]
+
+# Then we merge with the metadata from above
+x <- merge(x, dis.meta.data)
+
+# For this analysis we want to code both disturbance severity and treatment as factors
+x$disturbance_severity <- as.factor(x$disturbance_severity)
+x$treatment <- as.factor(x$treatment)
+
+# forte color palette
+forte_pal <- forte_colors()
+
+# first let's make some new, more informative labels for our facets
+facet.labs <- c("B" = "Bottom-Up", "T" = "Top-Down")
+
+ggplot2::ggplot(x, aes(y = rugosity, x = disturbance_severity, fill = disturbance_severity))+
+  geom_boxplot(color = "black")+
+  geom_jitter(position = position_jitter(0.2), shape = 21, alpha = 0.3)+
+  xlab("Disturbance Severity")+
+  ylab("Canopy Rugosity [m]")+
+  theme_minimal()+
+  scale_color_manual(values = forte_pal, guide = FALSE)+
+  scale_fill_manual(values = forte_pal,
+                    name = "Disturbance Severity",
+                    labels = c("0%", "45%", "65%", "85%"))+
+  theme(legend.position = "bottom")+
+  ggplot2::ggtitle(paste("Figure 2:  Canopy rugosity, a measure of canopy structural \n complexity by replicate, by year"))+
+  facet_grid(year ~ treatment, labeller = labeller(treatment = facet.labs)) 
+
+```
+
+### Hemispherical Camera Imagery
+
+Below-canopy, hemispherical images  were taken using a 24 Megapixel DSLR camera (Regent Instruments; Quebec, QU, Canda) with a 180° hemispherical lens during peak leaf-out (~July). The camera was facing-upwards, into the canopy and was mounted on a self-leveling tripod with the lens at 1 m from the ground. Leaf area index (LAI~CAM~) was estimated using WinSCANOPY (Regent Instruments). Images were taken at all nested subplots (see `fd_experimental_design_vignette`). 
   
-  Below-canopy, hemispherical images  were taken using a 24 Megapixel DSLR camera (Regent Instruments; Quebec, QU, Canda) with a 180° hemispherical lens during peak leaf-out (~July). The camera was facing-upwards, into the canopy and was mounted on a self-leveling tripod with the lens at 1 m from the ground. Leaf area index (LAI~CAM~) was estimated using WinSCANOPY (Regent Instruments).
-  
-  ![REU student Evan Paris taking images of the canopy using the NDVI camera](https://user-images.githubusercontent.com/8354517/87785843-e83ea500-c806-11ea-8218-d04d0f6d3a1d.jpg){width=45%} 
-  ![Sample NDVI image](https://user-images.githubusercontent.com/8354517/87794606-dd8b0c80-c814-11ea-982a-5b3ee7920d86.jpg){width=45%}
 
+![Sample NDVI image](https://user-images.githubusercontent.com/8354517/87794606-dd8b0c80-c814-11ea-982a-5b3ee7920d86.jpg){width=40%}
+  
+![REU student Evan Paris taking images of the canopy using the NDVI camera](https://user-images.githubusercontent.com/8354517/87785843-e83ea500-c806-11ea-8218-d04d0f6d3a1d.jpg){width=50%}
+    
 ```{r fd_hemi_camera}
 fd_hemi_camera()
 ```
 
-## Canopy Structural Traits (CSTs)
+```{r cam, fig.width = 6, fig.asp = .65, echo = FALSE}
+x <- fd_hemi_camera()
 
-  We derived canopy structural trait metrics (Fahey et al. 2019) from 2-D terrestrial lidar data collected with a user-mounted, portable canopy lidar (PCL) system equipped with an upward facing, Riegl 3100VHS near‐infrared pulsed‐laser operating at 2000 Hz (Riegl LD90 3100 VHS; Riegl USA Inc., Orlando, Florida, USA). The PCL generates continuous LiDAR returns from a “slice” of the canopy as it is walked along a measured transect. For this study, we used 40 m transects at cardinal directions--north-to-south,  east-to-west--through subplot center for a total of 80 m of transect length per subplot. This mirrors the approach of Atkins et al. (2018) and Haridman et al. (2013) and is sufficient to account for spatial variability of forest structure (Hardiman et al. 2019).  A more detailed description of the development and implementation of this terrestrial laser scanning system is available in Parker et al. (2004) and Hardiman et al. (2011).  We derived canopy structural metrics using the forestr package (Atkins et al. 2018a, b) in R 3.5 (R Core Team, 2018). forestr produces a suite of canopy structural traits metrics that describe canopy area/density, openness, height, complexity, and arrangement (Atkins et al. (2018a). 
-  
+# bring in metadata via the plot_metadata() function
+df <- fortedata::fd_plot_metadata()
 
-```{r fd_canopy_structure}
-fd_canopy_structure()
+# now we convert the tibble to a data frame
+df <- data.frame(df)
+
+# First we want to concatenate our replicate, plot and subplot data to make a subplot_id column 
+df$subplot_id <- paste(df$replicate, 0, df$plot, df$subplot, sep = "")
+df$subplot_id <- as.factor(df$subplot_id)
+
+# Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
+df %>%
+  select(subplot_id, disturbance_severity, treatment) %>%
+  distinct() %>%
+  data.frame() -> dis.meta.data
+
+# this filters the metadata down to the subplot_id level
+dis.meta.data <- dis.meta.data[c(1:32), ]
+
+# Then we merge with the metadata from above
+x <- merge(x, dis.meta.data)
+
+# For this analysis we want to code both disturbance severity and treatment as factors
+x$disturbance_severity <- as.factor(x$disturbance_severity)
+x$treatment <- as.factor(x$treatment)
+
+# forte color palette
+forte_pal <- forte_colors()
+
+# first let's make some new, more informative labels for our facets
+facet.labs <- c("B" = "Bottom-Up", "T" = "Top-Down")
+
+# let's look at distribution by year, by disturbance severity and treatment
+ggplot(x, aes(y = lai_cam, x = disturbance_severity, fill = disturbance_severity))+
+  geom_boxplot(color = "black")+
+  geom_jitter(position = position_jitter(0.2), shape = 21, alpha = 0.3)+
+  xlab("Disturbance Severity")+
+  ylab("Leaf Area Index")+
+  theme_minimal()+
+  scale_color_manual(values = forte_pal, guide = FALSE)+
+  scale_fill_manual(values = forte_pal,
+                    name = "Disturbance Severity",
+                    labels = c("0%", "45%", "65%", "85%"))+
+  theme(legend.position = "bottom")+
+  ggplot2::ggtitle(paste("Figure 3:  Camera LAI by replicate, by year"))+
+  facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs))
+
 ```
 
-## Light Interception and Availbility
+### Light Interception
 
-  Light data--as *fpar*, the fraction of photosynthetically availble radiation absorbed by the canopy--was acquired using a Decagon LP-80 handheld ceptometer (Decagon Devices; Pullman, Washington). *fpar* is the ratio of PAR above the canopy, to that measured below. *fpar* is assumed to be the difference between the two values. Below-canopy PAR measurements for each plot were taken along north-south and east-west transects (simlar to PCL data above), with measurements taken every 1 to 3 m for a total of 30 - 60 measurements then averaged to make a subplot level mean of below-canopy PAR. Above-canopy PAR measuremnets were taken in open areas to ensure no interference from the canopy. 
-  
+Light data--as *fpar*, the fraction of photosynthetically available radiation absorbed by the canopy--was acquired using a Decagon LP-80 handheld ceptometer (Decagon Devices; Pullman, Washington). *fpar* is the ratio of PAR above the canopy, to that measured below. *fpar* is assumed to be the difference between the two values. Below-canopy PAR measurements for each plot were taken along north-south and east-west transects (similar to PCL data above), with measurements taken every 1 to 3 m for a total of 30 - 60 measurements then averaged to make a subplot level mean of below-canopy PAR. Above-canopy PAR measurements were taken in open areas to ensure no interference from the canopy. 
 
-  
-  
 ```{r fd_ceptometer}
 fd_ceptometer()
 ```
+
+
+```{r light, fig.width = 6, fig.asp = .65, echo = FALSE}
+x <- fd_ceptometer()
+
+# bring in metadata via the plot_metadata() function
+df <- fortedata::fd_plot_metadata()
+
+# now we converte the tibble to a data frame
+df <- data.frame(df)
+
+# First we want to concatenate our replicate, plot and subplot data to make a subplot_id column 
+df$subplot_id <- paste(df$replicate, 0, df$plot, df$subplot, sep = "")
+df$subplot_id <- as.factor(df$subplot_id)
+
+# Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
+df %>%
+  select(subplot_id, disturbance_severity, treatment) %>%
+  distinct() %>%
+  data.frame() -> dis.meta.data
+
+# this filters the metadata down to the subplot_id level
+dis.meta.data <- dis.meta.data[c(1:32), ]
+
+# Then we merge with the metadata from above
+x <- merge(x, dis.meta.data)
+
+# For this analysis we want to code both disturbance severity and treatment as factors
+x$disturbance_severity <- as.factor(x$disturbance_severity)
+x$treatment <- as.factor(x$treatment)
+
+# forte color palette
+forte_pal <- forte_colors()
+
+# first let's make some new, more informative labels for our facets
+facet.labs <- c("B" = "Bottom-Up", "T" = "Top-Down")
+
+# let's look at distribution by year, by disturbance severity and treatment
+ggplot(x, aes(y = fapar, x = disturbance_severity, fill = disturbance_severity))+
+  geom_boxplot(color = "black")+
+  geom_jitter(position = position_jitter(0.2), shape = 21, alpha = 0.3)+
+  xlab("Disturbance Severity")+
+  ylab("faPAR")+
+  theme_minimal()+
+  scale_color_manual(values = forte_pal, guide = FALSE)+
+  scale_fill_manual(values = forte_pal,
+                    name = "Disturbance Severity",
+                    labels = c("0%", "45%", "65%", "85%"))+
+  theme(legend.position = "bottom")+
+  ggplot2::ggtitle(paste("Figure 4:  faPAR by replicate, by year"))+
+  facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs))
+
+```
+
+## References
+[Atkins, J. W., Bohrer, G., Fahey, R. T., Hardiman, B. S., Morin, T. H., Stovall, A. E., ... & Gough, C. M. (2018). Quantifying vegetation and canopy structural complexity from terrestrial LiDAR data using the forestr r package. Methods in Ecology and Evolution, 9(10), 2057-2066.](https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/2041-210X.13061)
+
+[Atkins, J. W., Fahey, R. T., Hardiman, B. S., & Gough, C. M. (2018). Forest canopy structural complexity and light absorption relationships at the subcontinental scale. Journal of Geophysical Research: Biogeosciences, 123(4), 1387-1405.](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1002/2017JG004256)
+ 
+[Atkins, J. W., Agee, E., Barry, A., Dahlin, K. M., Dorheim, K., Grigri, M. S., ... & McGuigan, C. (2020). The fortedata R package: open-science datasets from a manipulative experiment testing forest resilience. Earth System Science Data Discussions, 1-18.](https://essd.copernicus.org/preprints/essd-2020-112/essd-2020-112.pdf)
+
+[Hardiman, B. S., Bohrer, G., Gough, C. M., Vogel, C. S., & Curtis, P. S. (2011). The role of canopy structural complexity in wood net primary production of a maturing northern deciduous forest. Ecology, 92(9), 1818-1827.](https://esajournals.onlinelibrary.wiley.com/doi/pdf/10.1890/10-2192.1?casa_token=MQZpgQKa6ewAAAAA:DSJJvB1zmKSdyDGGjQzVdvBfobmyYlp1uOl2oa9fn8mvetH1-z2fgqdnyD5EJxPjRPqUHOx4Jn1c-Q)
+
+[Hardiman, B. S., Gough, C. M., Halperin, A., Hofmeister, K. L., Nave, L. E., Bohrer, G., & Curtis, P. S. (2013). Maintaining high rates of carbon storage in old forests: A mechanism linking canopy structure to forest function. Forest Ecology and Management, 298, 111-119.](https://www.sciencedirect.com/science/article/pii/S0378112713001254?casa_token=FSJdcOIwwIgAAAAA:0u-usQHRIsHQipxdgFRnkLpDLpjvoV2yMueSmilbJq0nvXOp9Vmx6RFcpVxtFJxKN-pxqjEl)
+
+[Hardiman, B. S., LaRue, E. A., Atkins, J. W., Fahey, R. T., Wagner, F. W., & Gough, C. M. (2018). Spatial variation in canopy structure across forest landscapes. Forests, 9(8), 474.](https://www.mdpi.com/1999-4907/9/8/474/htm)
+
+[Parker, G. G., Harding, D. J., & Berger, M. L. (2004). A portable LIDAR system for rapid determination of forest canopy structure. Journal of Applied Ecology, 41(4), 755-767.](https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/j.0021-8901.2004.00925.x)

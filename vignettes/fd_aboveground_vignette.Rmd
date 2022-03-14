@@ -1,0 +1,100 @@
+---
+title: "fortedata: Aboveground Wood Data"
+author: "Maxim S. Grigri and Jeff Atkins"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fortedata: Aboveground Wood Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  require(fortedata),
+  require(ggplot2),
+  require(tidyverse),
+  require(viridis)
+)
+```
+
+## Aboveground Wood Background and Introduction
+
+Carbon (C) storage in wood is an essential C sink that is increasingly impacted by a broadening range of disturbance types and severities in North America (Amiro et al. 2010; Atkins et al. 2019; Hicke et al. 2012). The FoRTE experiment offers a unique opportunity to evaluate the immediate changes in aboveground wood production after disturbance that may have long-term implications for ecosystem C cycling dynamics. As girdled tree wood production declines, ungirlded trees across canopy strata are likely to benefit from newly liberated resources (Flower et al. 2013; Stuart-Haëntjens et al. 2015; Williams et al. 2016), however the timing and magnitude of these changes are not well understood. The ability of surviving trees to compensate for declines in girdled tree wood production is paramount to ecosystem C cycling stability after disturbance. Further, the continued monitoring of wood production after disturbance across canopy strata will provide an understanding of the long-term mechanisms that support functional stability or decline across a range of disturbance types and severities.
+
+All canopy strata in the FoRTE experiment were sampled for either diameter at breast height (DBH) or basal diameter and height on an annual or sub-annual timescale. Canopy strata are described as follows: upper canopy (≥8cm DBH), subcanopy (1-8cm DBH), and seedling/sapling (<1cm DBH or <1.3m height). 
+
+## Data Availability
+
+```{r observations, fig.height=8, fig.width=6, echo = FALSE, message=FALSE, warning=FALSE}
+no_of_records.df <- fd_observations()
+
+no_of_records <- subset(no_of_records.df, table == "fd_dendro" | table == "fd_subcanopy_diameter" | 
+                          table == "fd_subcanopy_density" | table == "fd_seedling_sapling")
+
+ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer(year), fill= no_of_obs)) +
+  ggplot2::geom_tile(ggplot2::aes(fill = no_of_obs), color = "black") +
+  ggplot2::geom_text(ggplot2::aes(label = no_of_obs), color = "white") +
+  ggplot2::coord_equal()+
+  ggplot2::scale_fill_gradient(low = "#450d54", high = "#450d54", na.value = 'white')+
+  ggplot2::scale_y_reverse()+
+  ggplot2::theme_minimal()+
+  ggplot2::theme(legend.position = "none")+
+  ggplot2::ylab("Year")+
+  ggplot2::xlab("Month")+
+  ggplot2::ggtitle(paste("Figure 1: No. of observations currently available \nin aboveground wood dataset as of:", Sys.Date()))+
+  ggplot2::facet_grid(table ~ .,  space = "free")+
+  ggplot2::theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
+    color="black", fill="white", size= 0.5, linetype="solid"))
+
+```
+
+## Aboveground Wood Functions
+
+The `fd_inventory()` script within `fortedata` currently includes the following functions
+
+* `fd_dendro()` returns a single dataset of dendrometer band measurements (cm) at ~1.3m stem height collected by hand from a subsample of trees >= 8cm DBH from all 32 subpots of the FoRTE experiment. 
+
+* `fd_subcanopy_diameter()` returns a single dataset of diameter at breast height (DBH; mm) measurements of a subsample of trees 1-8 cm DBH from all 32 subplots of the FoRTE experiment. 
+
+* `fd_seedling_sapling()` returns a single dataset of basal diameter (cm), current height (cm), and height (cm) from a subsample of trees < 1 cm DBH or < 1.3m height from all 32 subplots of the FoRTE experiment. 
+
+* `fd_subcanopy_density()` returns a single dataset of subcanopy (1-8cm DBH) stem density within one quarter (0.025 ha) of all 32 subplots in the FoRTE experiment. Stem density survey were conducted during the 2019 field season.
+
+* `fd_double_dendro()` returns a single dataset of dendrometer band measurements (cm) at ~1.3m stem height and ~1.8m stem height on a subsample of trees >= 8cm DBH.
+
+## Aboveground Wood Methods 
+
+### Upper Canopy Dendrometer Bands 
+
+In the summer of 2018, a subsample of 666 upper canopy stems  stratified by species, diameter size class and experimental treatment (girdled/ungirdled) were outfitted with custom made stainless steel dendrometer bands at ~1.3m height across all 32 subplots. Custom ruler stickers on the dendrometer bands measured incremental changes in stem circumference (cm). DBH and initial dendrometer band measurements were recorded in November 2018 with subsequent observations in April 2019, weekly from May to August 2019, November 2019, July 2020, and Novemeber 2020. Growth increments, relative growth rates, and aboveground wood net primary production (ANPPw) can be derived using a suite of methods described in Grigri et al. (2020).
+
+### Subcanopy Diameter and Stem Density
+
+A subsample of 280 subcanopy stems were randomly selected across all 32 subplots. For each subplot, all subcanopy stems within each 2m^2 vegetation nested subplot [see fortedata: Experimental Design and Tretment] were identified to the species level and sampled for DBH (mm) using digital calipers. If no subcanopy stems were present in a nested subplot, the two closest stems to the nested subplot were selected to ensure a minimum of eight stems per subplot. Observations began in May 2019 and continued bi-weekly through August 2019 with subsequent observations in November 2019, July 2020, and November 2020. Additionally, subcanopy stem density surveys were conducted during the 2019 field season in one randomly selected quarter of each subplot (0.025 ha). Growth increments, relative growth rates, and ANPPw can be derived using a suite of methods described in Grigri et al. (2020).
+
+### Seedling and Sapling Base Diameter and Height
+
+To complete the assessment of aboveground wood response to disturbance, all seedling sapling stems within one randomly selected quarter of each 2m^2 vegetation nested subplots [see fortedata: Experimental Design and Tretment] were identified to the species level and measured for basal diameter using digital calipers, current height, and height from the previous season via branch scars. Data were collected in June 2019, August 2019, and July 2020. Growth increments and ANPPw can be derived using a suite of methods described in Grigri et al. (2020).
+
+### Upper Canopy Double Dendrometer Bands
+
+A subsample (n = 40) of the dendrometer banded upper canopy stems stratified by species and experimental treatment (girdled/ungirdled) were affixed with a second (upper) dendrometer band at ~1.8m stem height in July 2019. Upper dendrometer bands were installed with high tension and allowed one week to settle before intial measurements were recorded.
+
+## References 
+
+Amiro, B. D., Barr, A. G., Barr, J. G., Black, T. A., Bracho, R., Brown, M., Chen, J., Clark, K. L., Davis, K. J., Desai, A. R., Dore, S., Engel, V., Fuentes, J. D., Goldstein, A. H., Goulden, M. L., Kolb, T. E., Lavigne, M. B., Law, B. E., Margolis, H. A., … Xiao, J. (2010). Ecosystem carbon dioxide fluxes after disturbance in forests of North America. Journal of Geophysical Research: Biogeosciences, 115(G4). https://doi.org/10.1029/2010JG001390
+
+Atkins, J. W., Bond-Lamberty, B., Fahey, R. T., Hardiman, B. S., Haber, L., Stuart-Haëntjens, E., LaRue, E., McNeil, B., Orwig, D. A., Stovall, A. E. S., Tallant, J., Walter, J. A., & Gough, C. M. (2019). Multidimensional Structural Characterization is Required to Detect and Differentiate Among Moderate Disturbance Agents. https://doi.org/10.20944/preprints201911.0082.v1
+
+Grigri, M. S., Atkins, J. W., Vogel, C., Bond-Lamberty, B., & Gough, C. M. (2020). Aboveground Wood Production Is Sustained in the First Growing Season after Phloem-Disrupting Disturbance. Forests, 11(12), 1306. https://doi.org/10.3390/f11121306
+
+Hicke, J. A., Allen, C. D., Desai, A. R., Dietze, M. C., Hall, R. J., Ted Hogg, E. H., Kashian, D. M., Moore, D., Raffa, K. F., Sturrock, R. N., & Vogelmann, J. (2012). Effects of biotic disturbances on forest carbon cycling in the United States and Canada. Global Change Biology, 18(1), 7–34. https://doi.org/10.1111/j.1365-2486.2011.02543.x
+
+Flower, C. E., Knight, K. S., & Gonzalez-Meler, M. A. (2013). Impacts of the emerald ash borer (Agrilus planipennis Fairmaire) induced ash (Fraxinus spp.) mortality on forest carbon cycling and successional dynamics in the eastern United States. Biological Invasions, 15(4), 931–944. https://doi.org/10.1007/s10530-012-0341-7
+
+Williams, C. A., Gu, H., MacLean, R., Masek, J. G., & Collatz, G. J. (2016). Disturbance and the carbon balance of US forests: A quantitative review of impacts from harvests, fires, insects, and droughts. Global and Planetary Change, 143, 66–80. https://doi.org/10.1016/j.gloplacha.2016.06.002
+
+Stuart-Haëntjens, E. J., Curtis, P. S., Fahey, R. T., Vogel, C. S., & Gough, C. M. (2015). Net primary production of a temperate deciduous forest exhibits a threshold response to increasing disturbance severity. Ecology, 96(9), 2478–2487. https://doi.org/10.1890/14-1810.1
+

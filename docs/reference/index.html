@@ -44,6 +44,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -55,9 +57,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -71,19 +79,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -94,7 +96,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
+    </li>
+    <li>
+      <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
     </li>
     <li>
       <a href="../articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
@@ -106,7 +117,7 @@
       <a href="../articles/fd_inventory_vignette.html">fortedata: Forest Inventory Data</a>
     </li>
     <li>
-      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophsyiology Data</a>
+      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophysiology Data</a>
     </li>
     <li>
       <a href="../articles/fd_litter_vignette.html">fortedata: Litter Data</a>
@@ -118,7 +129,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/FoRTExperiment/fortedata/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -160,25 +176,25 @@
         <td>
           <p><code><a href="calc_biomass.html">calc_biomass()</a></code> </p>
         </td>
-        <td><p>Calculate biomass from DBH data in fd_inventory()</p></td>
+        <td><p>Calculate biomass from DBH data in <code>fd_inventory()</code></p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="calc_lai.html">calc_lai()</a></code> </p>
         </td>
-        <td><p>Function that returns LAI values at the plot scale</p></td>
+        <td><p>LAI values at the subplot scale from littertrap data</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="fd_canopy_structure.html">fd_canopy_structure()</a></code> </p>
         </td>
-        <td><p>Canopy structural traits from 2D canopy LiDAR.</p></td>
+        <td><p>Canopy Structural Trait Data</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="fd_canopy_structure_summary.html">fd_canopy_structure_summary()</a></code> </p>
         </td>
-        <td><p>Summary data for canopy structural data</p></td>
+        <td><p>Summary data for canopy structural data including canopy complexity and leaf area</p></td>
       </tr><tr>
         
         <td>
@@ -188,9 +204,27 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="fd_cwd.html">fd_cwd()</a></code> </p>
+        </td>
+        <td><p>Coarse wood debris survey data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fd_dendro.html">fd_dendro()</a></code> </p>
+        </td>
+        <td><p>Dendroband readings for canopy trees</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fd_double_dendro.html">fd_double_dendro()</a></code> </p>
+        </td>
+        <td><p>Double dendrometer band data</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="fd_hemi_camera.html">fd_hemi_camera()</a></code> </p>
         </td>
-        <td><p>Hemispherical camera data.</p></td>
+        <td><p>Hemispherical Camera Imagery</p></td>
       </tr><tr>
         
         <td>
@@ -202,7 +236,7 @@
         <td>
           <p><code><a href="fd_inventory.html">fd_inventory()</a></code> </p>
         </td>
-        <td><p>Raw inventory table.</p></td>
+        <td><p>Forest Inventory Data</p></td>
       </tr><tr>
         
         <td>
@@ -214,13 +248,13 @@
         <td>
           <p><code><a href="fd_leaf_spectrometry.html">fd_leaf_spectrometry()</a></code> </p>
         </td>
-        <td><p>Leaf spectrometry data</p></td>
+        <td><p>Leaf spectrometery data</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="fd_litter.html">fd_litter()</a></code> </p>
         </td>
-        <td><p>Litter trap data.</p></td>
+        <td><p>Litter mass data from litter trap collections</p></td>
       </tr><tr>
         
         <td>
@@ -238,7 +272,7 @@
         <td>
           <p><code><a href="fd_mortality.html">fd_mortality()</a></code> </p>
         </td>
-        <td><p>Mortality Assignments for Girdling 2018</p></td>
+        <td><p>Mortality Assignments for 2018 Stem Girdling</p></td>
       </tr><tr>
         
         <td>
@@ -266,15 +300,39 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="fd_plot_metadata.html">fd_plot_metadata()</a></code> </p>
+        </td>
+        <td><p>Metadata for the experimental field plots</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="fd_publications.html">fd_publications()</a></code> </p>
         </td>
         <td><p>Return a list of all FoRTE related publications.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="fd_seedling_sapling.html">fd_seedling_sapling()</a></code> </p>
+        </td>
+        <td><p>Seedling and sapling data</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="fd_soil_respiration.html">fd_soil_respiration()</a></code> </p>
         </td>
-        <td><p>Soil respiration (soil to atmosphere CO2 efflux) table.</p></td>
+        <td><p>Soil respiration (soil to atmosphere CO2 efflux) table</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fd_subcanopy_density.html">fd_subcanopy_density()</a></code> </p>
+        </td>
+        <td><p>Subcanopy density data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fd_subcanopy_diameter.html">fd_subcanopy_diameter()</a></code> </p>
+        </td>
+        <td><p>Subcanopy diameter data</p></td>
       </tr><tr>
         
         <td>
@@ -293,13 +351,7 @@
           <p><code><a href="forte_colors.html">forte_colors()</a></code> </p>
         </td>
         <td><p>FoRTE color palette
-The FoRTE color palettte</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_metadata.html">plot_metadata()</a></code> </p>
-        </td>
-        <td><p>Function that brings in all plot metadata for assignment</p></td>
+The FoRTE color palette</p></td>
       </tr>
     </tbody>
     </table>
@@ -315,11 +367,11 @@ The FoRTE color palettte</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p><p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -327,6 +379,8 @@ The FoRTE color palettte</p></td>
 
   
 
+
+  
 
   </body>
 </html>

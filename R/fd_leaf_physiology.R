@@ -1,7 +1,9 @@
 # Leaf physiology data
 
 
-#' Leaf spectrometry data
+#' Leaf spectrometery data
+#'
+#' These data were collected from repeated measures with a CI 710 Leaf Spectrometer from CID instruments on leaves in  canopy trees in FoRTE plots. Each individual tree can be identified by the `tree_id` and each leaf is id'ed as `leaf_id`. These data include several vegetation indices `index` derived from the instrument hyperspectral data. The data value for each index is in the `index_value` column and are unitless. Further information is availble in the `fd_ecophysiology_vignette`.
 #'
 #' @note Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
@@ -9,36 +11,31 @@
 #' @examples
 #' fd_leaf_spectrometry()
 fd_leaf_spectrometry <- function() {
-  leaf_spec <- read_csv_file("fd_leaf_spectral_indices.csv")
+  leaf_spec <- read_csv_file("fd_leaf_spec.csv")
 
-  # Change column name
-  names(leaf_spec)[names(leaf_spec) == "calculation"] <- "index"
-  names(leaf_spec)[names(leaf_spec) == "value"] <- "index_value"
-  names(leaf_spec)[names(leaf_spec) == "v1"] <- "filepath"
-
-  # Adjust column data
-  leaf_spec$index <- gsub("[^[:alnum:]]", "", leaf_spec$index)
-  leaf_spec$tree_id <- as.character(substr(leaf_spec$filepath, 11, 15))
-  leaf_spec$species <- as.character(substr(leaf_spec$filepath, 6, 9))
-  leaf_spec$date <- as.character(substr(leaf_spec$filepath, 17, 24))
-  leaf_spec$date <- as.Date(as.character(leaf_spec$date), format = "%m%d%Y")
-  leaf_spec <- leaf_spec[grepl('([A-Za-z])', leaf_spec$index_value), ]
+  # adjust data set
+  leaf_spec$date <- as.Date(leaf_spec$date)
+  #leaf_spec <-leaf_spec[grepl('([A-Za-z])', leaf_spec$index_value), ]    # if I comment this out, it works
   leaf_spec <- leaf_spec[!grepl('\\.$', leaf_spec$index_value), ]
   leaf_spec$index_value <- iconv(leaf_spec$index_value, from = "latin1", to = "ASCII", "")
-  leaf_spec$index_value <- as.numeric(as.character(leaf_spec$index_value))
+  leaf_spec$index_value <- as.numeric(leaf_spec$index_value)
 
-  # Extract the SubplotID
-  leaf_spec$subplot_id <- substr(leaf_spec$filepath, 1, 4)
+  # split subplot_id
   leaf_spec <- split_subplot_id(leaf_spec)
 
   # Reorder columns, dropping unneeded FilePath
-  leaf_spec <- leaf_spec[c("subplot_id", "replicate", "plot", "subplot", "date", "tree_id", "species", "index", "index_value")]
+  leaf_spec <- leaf_spec[c("subplot_id", "replicate", "plot", "subplot", "date", "tree_id", "leaf_id", "species", "index", "index_value", "id")]
 
-  leaf_spec
+  # Data creation and authorship information
+  contact_person <- "Lisa Haber"
+  citation <- "ESSD"
+  data_conditions(leaf_spec, published = FALSE, contact_person, citation)
 }
 
 
 #' Leaf photosynthesis measurements.
+#'
+#' This data set includes measures of leaf-level photosynthesis etc. from LiCor 6400 data taken during the growing season.
 #'
 #' @note Data were collected by Lisa Haber, Laura Hickey, Alexandra Barry, and Autym Shafer
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
@@ -80,4 +77,9 @@ fd_photosynthesis <- function() {
   first_cols <- c("subplot_id", "replicate", "plot", "subplot", "timestamp")
   other_cols <- setdiff(names(leaf_photo), first_cols)
   leaf_photo[c(first_cols, other_cols)]
+
+  # Data creation and authorship information
+  contact_person <- "Lisa Haber"
+  citation <- "ESSD"
+  data_conditions(leaf_photo, published = FALSE, contact_person, citation)
 }

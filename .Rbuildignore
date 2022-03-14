@@ -12,3 +12,4 @@ coverage.R
 ^docs$
 ^pkgdown$
 ^LICENSE\.md$
+^beta$

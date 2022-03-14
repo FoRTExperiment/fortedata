@@ -42,7 +42,10 @@
 <meta property="og:title" content="Calculate biomass from DBH data in fd_inventory() — calc_biomass" />
 <meta property="og:description" content="calc_biomass() uses biomass equations from fd_table_biomass_allometries.csv.
 Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
-sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint." />
+sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint.
+See fd_inventory_vignette for further information." />
+
+
 
 
 
@@ -58,9 +61,15 @@ sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flu
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -74,19 +83,13 @@ sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flu
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -97,7 +100,16 @@ sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flu
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
+    </li>
+    <li>
+      <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
     </li>
     <li>
       <a href="../articles/fd_experimental_design.html">fortedata: Experimental Design and Treatment</a>
@@ -109,7 +121,7 @@ sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flu
       <a href="../articles/fd_inventory_vignette.html">fortedata: Forest Inventory Data</a>
     </li>
     <li>
-      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophsyiology Data</a>
+      <a href="../articles/fd_leaf_physiology_vignette.html">fortedata: Ecophysiology Data</a>
     </li>
     <li>
       <a href="../articles/fd_litter_vignette.html">fortedata: Litter Data</a>
@@ -121,7 +133,12 @@ sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flu
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/FoRTExperiment/fortedata/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -135,26 +152,29 @@ sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flu
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate biomass from DBH data in fd_inventory()</h1>
-    
+    <h1>Calculate biomass from DBH data in <code>fd_inventory()</code></h1>
+    <small class="dont-index">Source: <a href='https://github.com/FoRTExperiment/fortedata/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
     <div class="hidden name"><code>calc_biomass.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>calc_biomass() uses biomass equations from fd_table_biomass_allometries.csv.
+    <p><code>calc_biomass()</code> uses biomass equations from <code>fd_table_biomass_allometries.csv</code>.
 Parameters a and b and diameter at breast height (DBH, cm) range for the aboveground biomass
-sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint.</p>
+sans leaves equation Mass = a * DBH^b for tree species occurring in the UMBS-Flux footprint.
+See <code>fd_inventory_vignette</code> for further information.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>calc_biomass</span>()</pre>
+    <pre class="usage"><span class='fu'>calc_biomass</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame of biomass at the individual level build from fd_inventory</p>
+    <p>A <code>data.frame</code> or <code>tibble</code> of tree biomass calculated
+using allometries (listed in ?calc_biomass().
+Call <code><a href='fd_metadata.html'>fd_metadata</a></code> for field metadata.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Studies used to augment Cooper’s raw data for a species are denoted by superscripts.</p>
+    <p>Studies used to augment Cooper’s raw data for a species are denoted below.</p>
 <p>Species	a	b	DBH range (cm)
 Acer rubrum a	0.0312	2.7780	1 – 40
 Acer saccharum b	0.1693	2.3436	3 – 66
@@ -176,7 +196,8 @@ g Hocker and Early, 1983, Perala and Alban, 1994, Wiant et al., 1977.
 h Diameter at 15 cm height.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>fortedata</span><span class='kw ns'>::</span><span class='fu'>calc_biomass</span>()</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fortedata</span><span class='fu'>::</span><span class='fu'>calc_biomass</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>These data are unpublished. Please contact Jeff Atkins to ask about using</span></div><div class='output co'>#&gt; <span class='message'>Data citation: ESSD</span></div><div class='output co'>#&gt; <span class='message'>Contact person: Jeff Atkins</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -188,11 +209,11 @@ h Diameter at 15 cm height.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p><p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -200,6 +221,8 @@ h Diameter at 15 cm height.</p>
 
   
 
+
+  
 
   </body>
 </html>

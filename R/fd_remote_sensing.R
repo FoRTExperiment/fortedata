@@ -1,15 +1,20 @@
 # Remote sensing data
 
 
-#' Hemispherical camera data.
+#' Hemispherical Camera Imagery
 #'
-#' @note Data were collected by Jeff W. Atkins and Evan Pari using a 24 Megapixel
-#' Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a
-#' 180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared
-#' channel, which allows direct calculation of NDVI.
+#' \code{fd_hemi_camera} provides a data set of hemispherical canopy imagery.
+#'
+#' @details Hemispherical imagery is collected using a 24 Megapixel Sony 6000 DSLR Compact 2571 camera (Regent Instruments; Quebec, QU, Canada) with a 180° hemispherical lens. The blue channel of the camera is replaced with a near-infrared channel, which allows direct calculation of plant greenness as the normalized difference vegetation index (NDVI). See `fd_remote_sensing_vignette` for more details.
+#'
+#'
+#'
+#' @note Data were collected by Jeff W. Atkins (2018, 2019, 2020) and Evan Paris (2019)
+#'
 #' @return A `data.frame` or `tibble`. Call \code{\link{fd_metadata}} for field metadata.
 #' @importFrom stats na.omit
 #' @export
+#'
 #' @examples
 #' fd_hemi_camera()
 fd_hemi_camera <- function() {
@@ -49,9 +54,15 @@ fd_hemi_camera <- function() {
 
   # Reorder columns, dropping ones we don't need
   cam <- cam[c("subplot_id", "replicate", "plot", "subplot", "nested_subplot", "date",
-        "ndvi", "gap_fraction", "openness", "lai_cam", "clumping_index")]
+               "ndvi", "gap_fraction", "openness", "lai_cam", "clumping_index")]
 
   weak_as_tibble(cam)
+
+
+  # Data creation and authorship information
+  contact_person <- "Jeff Atkins"
+  citation <- "ESSD"
+  data_conditions(cam, published = FALSE, contact_person, citation)
 }
 
 #' Summary data for hemispherical camera data.
@@ -109,11 +120,16 @@ fd_hemi_camera_summary <- function() {
 
 
 
-#' Canopy structural traits from 2D canopy LiDAR.
+#' Canopy Structural Trait Data
 #'
+#' Canopy structural traits from 2D portable canopy lidar
 #'
-#' @note Data were collected by Jeff W. Atkins and Brandon Alveshare using an upward facing, portable canopy lidar unit.
-#' The Canopy structural traits were derived using the
+#' @details These data were collected using a Riegl VHS3100FLP upward facing pulsed-laser system. Lidar point cloud data were converted to canopy structural trait data using `forestr` version 1.0.1
+#'
+#' See `fd_remote_sensing_vignette` for more details.
+#'
+#' @note Data were collected by Jeff W. Atkins (2018, 2019, 2020) and Brandon Alveshare (2019)
+#'
 #' \code{forestr} 1.0.1 package from 2D portable canopy lidar
 #' @return A `data.frame` or `tibble` of hemispherical camera data.
 #' Call \code{\link{fd_metadata}} for field metadata.
@@ -132,9 +148,16 @@ fd_canopy_structure <- function() {
   cst <- cst[c(1, 54, 55, 56, 2, 3:53 )]
 
   weak_as_tibble(cst)
+
+  # Data creation and authorship information
+  contact_person <- "Jeff Atkins"
+  citation <- "ESSD"
+  data_conditions(cst, published = FALSE, contact_person, citation)
 }
 
-#' Summary data for canopy structural data
+#' Summary data for canopy structural data including canopy complexity and leaf area
+#'
+#' by replicate by year for 2018 to 2020
 #'
 #' @details The columns are as follows:
 #' - `replicate` (character): Replicate code, extracted from `subplot_id`.
@@ -151,7 +174,9 @@ fd_canopy_structure <- function() {
 #' - `vai_mean_se` (numeric): se of leaf area index
 #'
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
-#' @note For now this is pretty basic.
+#' @note This summary reports only canopy structural complexity (as canopy rugosity)
+#' and leaf area (as VAI, or vegetation area index--akin to PAI or LAI).
+#'
 #' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @export
 #' @importFrom stats aggregate sd na.omit
@@ -163,9 +188,9 @@ fd_canopy_structure_summary <- function() {
   csc <- merge(fd_canopy_structure(), subplots)
 
   # Calculate rugosity means and SD
-  r_c <- aggregate(rugosity ~ replicate , data = csc, FUN = mean)
-  r_c.sd <- aggregate(rugosity ~ replicate , data = csc, FUN = sd)
-  r_c.n <- aggregate(rugosity ~ replicate, data = csc, FUN = length)
+  r_c <- aggregate(rugosity ~ replicate + year, data = csc, FUN = mean)
+  r_c.sd <- aggregate(rugosity ~ replicate + year , data = csc, FUN = sd)
+  r_c.n <- aggregate(rugosity ~ replicate + year, data = csc, FUN = length)
 
   # Merge and munge
   names(r_c.sd)[names(r_c.sd) == "rugosity"] <- "rugosity_sd"
@@ -177,9 +202,9 @@ fd_canopy_structure_summary <- function() {
   r_c$rugosity_se <- r_c$rugosity_sd / sqrt(r_c$rugosity_n)  # based on the SD /sqrt(n)
 
   # VAI means and SD
-  vai <- aggregate(vai_mean ~ replicate , data = csc, FUN = mean)
-  vai_sd <- aggregate(vai_mean ~ replicate , data = csc, FUN = sd)
-  vai_n <- aggregate(vai_mean ~ replicate, data = csc, FUN = length)
+  vai <- aggregate(vai_mean ~ replicate + year , data = csc, FUN = mean)
+  vai_sd <- aggregate(vai_mean ~ replicate + year , data = csc, FUN = sd)
+  vai_n <- aggregate(vai_mean ~ replicate + year, data = csc, FUN = length)
 
   # Merge and munge
   names(vai_sd)[names(vai_sd) == "vai_mean"] <- "vai_mean_sd"
@@ -194,6 +219,18 @@ fd_canopy_structure_summary <- function() {
 }
 
 #' Ceptometer data.
+#'
+#' Ceptometer derived light interception data
+#'
+#' @details data on light interception, as faPAR or the fraction of absorbed photosynthetically
+#' available radiation, based on the difference between above and below canopy PAR as measured by
+#' a Decagon LP-80 handheld ceptometer. Units of `a_par`, above canopy PAR, and `b_par`, below canopy PAR,
+#' are in units of micromoles per square meter per second while `fapar` and `lai_cept`, leaf area index derived
+#' from light data, are ratio-based, unitless data. Entries where the `notes` column has entries may refer to original values
+#' where the `a_par` value was replaced with data from the nearby UMBS AmeriFlux tower PAR sensor due to ceptometer instrument
+#' issues with securing clear sky PAR readings. Tower PAR readings were synced in time and then adjusted with the calibration
+#' equation A_par = 1.15x - 187.827, where x = the Tower PAR reading. This is an empirically derived equation from several calibration
+#' readings found in the supplemental section of Atkins et al. (In Prep)--to be updated when submitted.
 #'
 #' @note Data were collected by Jeff W. Atkins and Brandon Alveshare using
 #' a Decagon LP-80 Handheld Ceptometer
@@ -221,19 +258,19 @@ fd_ceptometer <- function() {
   # Remove erroneous entires
   cept$Annotation <- gsub("2019", "", cept$Annotation)
 
+  # Remove erroneous entires
+  cept$Annotation <- gsub("2020", "", cept$Annotation)
+
   # Create the subplot_id column now that it's clean
   cept$subplot_id <- cept$Annotation
   cept <- split_subplot_id(cept)
 
+
   # faPAR
-  cept$fapar <- cept$b_par / cept$a_par
+  cept$fapar <- (1 - (cept$b_par / cept$a_par))
 
   # Reorder columns, dropping ones we don't need
-  cept <- cept[c("subplot_id", "replicate", "plot", "subplot", "timestamp", "a_par", "b_par", "fapar", "lai_cept")]
+  cept <- cept[c("subplot_id", "replicate", "plot", "subplot", "timestamp", "a_par", "b_par", "fapar", "lai_cept", "notes")]
 
   weak_as_tibble(cept)
 }
-
-
-
-

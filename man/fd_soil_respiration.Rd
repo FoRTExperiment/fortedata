@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_belowground.R
 \name{fd_soil_respiration}
 \alias{fd_soil_respiration}
-\title{Soil respiration (soil to atmosphere CO2 efflux) table.}
+\title{Soil respiration (soil to atmosphere CO2 efflux) table}
 \usage{
 fd_soil_respiration()
 }
@@ -10,7 +10,8 @@ fd_soil_respiration()
 A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
-Soil respiration (soil to atmosphere CO2 efflux) table.
+These data include soil CO2 efflux in units of micromoles per m^2 s^-1 as well as
+soil temperature in C, and soil water content as a percentage. See \code{fd_belowground_vignette} for further information.
 }
 \note{
 Measurements taken by Kayla Mathes and Carly Rodriguez
