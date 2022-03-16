@@ -14,8 +14,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata),
   require(ggplot2),
-  require(tidyverse),
-  require(viridis)
+  require(viridis),
+  require(magrittr),
+  require(dplyr)
 )
 ```
 

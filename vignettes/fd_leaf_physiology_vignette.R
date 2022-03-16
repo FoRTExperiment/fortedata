@@ -3,7 +3,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata),
   require(ggplot2),
-  require(tidyverse)
+   require(magrittr),
+  require(dplyr)
 )
 
 ## ----observations, fig.height=4, fig.width=6, echo = FALSE, message=FALSE, warning=FALSE----
