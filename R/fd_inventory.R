@@ -294,8 +294,8 @@ fd_double_dendro <- function() {
   dd_alltime$band_in_top <- as.numeric(dd_alltime$band_in_top)
 
   # create band_cm columns for both by converting to cm's
-  dd_alltime$band_cm_bottom <- dd_alltime$band_in_bottom*2.54
-  dd_alltime$band_cm_top <- dd_alltime$band_in_top*2.54
+  dd_alltime$band_cm_bottom <- dd_alltime$band_in_bottom * 2.54
+  dd_alltime$band_cm_top <- dd_alltime$band_in_top * 2.54
 
   # drop the band_in columns
   dd_alltime <- dd_alltime[c("tag", "species", "band_cm_bottom","band_cm_top", "date", "notes")]
