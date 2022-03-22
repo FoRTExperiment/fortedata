@@ -1,5 +1,6 @@
 # fortedata: An open-data package for the R programming Language
 
+![](https://github.com/FoRTExperiment/fortedata/actions/workflows/test-coverage.yaml/badge.svg)
 ![](https://user-images.githubusercontent.com/8354517/87047244-3da40200-c1c8-11ea-91fd-61104ad0f4f8.PNG)
 
 
@@ -28,7 +29,9 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 ### `fortedata` 1.0.2 Updates and Future Data Availability
 
 **Updates**
-* `fd_cwd` function added that includes coarse woody debris data from a 2019 survey of FoRTE plots.
+*  `fd_double_dendro` and `fd_dendro` functions have been added that provide data from dendrometer bands
+
+* `fd_cwd` function added that includes coarse woody debris data from a 2019 survey of FoRTE plots
 
 * `fd_ceptometer` now includes 2020 PAR data with an additional correction for some data based on calibration with the UMBS AmeriFlux sensor (see function documentation and additionally an in preperation manuscript, a preprint of which to be added upon submission)
 
