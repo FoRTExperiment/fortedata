@@ -1,6 +1,8 @@
 # fortedata: An open-data package for the R programming Language
 
 ![](https://github.com/FoRTExperiment/fortedata/actions/workflows/test-coverage.yaml/badge.svg)
+![](https://github.com/FoRTExperiment/fortedata/actions/workflows/check-standard.yaml/badge.svg)
+
 ### 
 ![](https://user-images.githubusercontent.com/8354517/87047244-3da40200-c1c8-11ea-91fd-61104ad0f4f8.PNG)
 
