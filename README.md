@@ -65,3 +65,10 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 * Research Collaborators: Elizabeth Agee, Brandon Alveshare, Kyla M. Dahlin, Robert T. Fahey, Aaron G. Kamoske, Jason Tallant
 
 
+### STATUS BADGE 
+
+
+![](https://github.com/FoRTExperiment/fortedata/actions/workflows/test-coverage.yaml/badge.svg)
+
+
+
