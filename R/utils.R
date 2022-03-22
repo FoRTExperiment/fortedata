@@ -115,9 +115,6 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 #'
 #'  forte.pal <- forte_colors()
 #'
-
-
-
 forte_colors <- function() {
   # list of disturbance severities
   disturbance_severity <- c(0, 45, 65, 85)
