@@ -62,7 +62,7 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 
 * Postdoctoral Researchers: Jeff W. Atkins, Alexey Shiklomanov  
 
-* Graduate Students:  Maxim S. Grigri, Lisa T. Haber, Kayla Mathes
+* Graduate Students:  Maxim S. Grigri, Lisa T. Haber, Kayla Mathes, Cameron Clay
 
 * Undergraduate Students: Alexandra Barry, Laura J. Hickey, Catherine McGuigan, Autym Shafer
 
