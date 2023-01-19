@@ -44,7 +44,7 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
   ggplot2::xlab("Month")+
   ggplot2::ggtitle(paste("Figure 1: No. litter obs. by species as of:", Sys.Date()))+
   ggplot2::facet_grid(table ~ .,  space = "free")+
-  ggplot2::theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
+  ggplot2::theme(strip.text.y = ggplot2::element_text(size = 9), strip.background = ggplot2::element_rect(
     color="black", fill="white", size= 0.5, linetype="solid"))
 
 ```
@@ -74,8 +74,8 @@ df$subplot_id <- as.factor(df$subplot_id)
 
 # Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
 df %>%
-  select(subplot_id, disturbance_severity, treatment) %>%
-  distinct() %>%
+  dplyr::select(subplot_id, disturbance_severity, treatment) %>%
+  dplyr::distinct() %>%
   data.frame() -> dis.meta.data
 
 # this filters the metadata down to the subplot_id level
