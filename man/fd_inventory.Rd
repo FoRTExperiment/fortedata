@@ -2,11 +2,7 @@
 % Please edit documentation in R/fd_inventory.R
 \name{fd_inventory}
 \alias{fd_inventory}
-\title{Forest inventory data for the 32 FoRTE subplots. Includes diameter-at-breast-height
-(DBH) measurements in units of cm as well as information on health (i.e. see
-\code{health_status} column where D = dead, M = moribund, and L = live) and canopy status
-(i.e. see \code{canopy_status} where OD = overstory dominant, UN = understory,
-OS = overstory submissive, SA = sapling,  and NA is a blank or missing record)}
+\title{Forest Inventory Data}
 \usage{
 fd_inventory()
 }
@@ -14,18 +10,18 @@ fd_inventory()
 A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.
 }
 \description{
-Forest inventory data for the 32 FoRTE subplots. Includes diameter-at-breast-height
-(DBH) measurements in units of cm as well as information on health (i.e. see
-\code{health_status} column where D = dead, M = moribund, and L = live) and canopy status
-(i.e. see \code{canopy_status} where OD = overstory dominant, UN = understory,
-OS = overstory submissive, SA = sapling,  and NA is a blank or missing record)
+Forest Inventory Data
+}
+\details{
+Forest inventory data for the 32 FoRTE subplots.
+Includes diameter-at-breast-height (DBH) measurements in units
+of cm as well as information on health (i.e. see
+\code{health_status} column where D = dead, M = moribund, and L = live) and canopy status (i.e. see \code{canopy_status} where OD = overstory dominant, UN = understory, OS = overstory submissive, SA = sapling,  and NA is a blank or missing record) and \code{species}, not species are identified using the USDA Taxon system (e.g. FAGR is Fagus grandfolia, QURU is Quercus rubra, etc.). The \code{tag} column is the tree tag number. These data were originally collected in 2018, pre-disturbance. For stem-girdled tree information, i.e. which trees were targeted for mortality, see \code{fd_mortatlity()}. Remeasure for dbh is planned for 2022.
 }
 \note{
 Data were collected by Gough Lab team members Autym Shafer,
 Catherine McGuigan, and Alexandra Barry in 2018
-using a Haglof Postex Inventory Unit with DPII Caliper
-Where 'species' column is '????" indicates unknown plant id to be corrected
-in future work.
+using a Haglof Postex Inventory Unit with PD II Caliper
 }
 \examples{
 fd_inventory()

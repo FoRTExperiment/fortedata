@@ -10,7 +10,7 @@ fd_plot_metadata()
 A A \code{data.frame} or \code{tibble} with the experimental treatments by UMBS plot.
 }
 \description{
-Metadata for the experimental field plots
+These data include \code{latitude} and \code{longitude} of each plot as well as eperimental assignments inluding \code{disturbance_severity} and \code{treatment}.
 }
 \examples{
 fd_plot_metadata()

@@ -4,7 +4,8 @@ knitr::opts_chunk$set(
   require(fortedata),
   require(ggplot2),
   require(viridis),
-  require(tidyverse)
+  require(magrittr),
+  require(dplyr)
 )
 
 
@@ -134,6 +135,7 @@ ggplot(x, aes(y = lai_cam, x = disturbance_severity, fill = disturbance_severity
                     name = "Disturbance Severity",
                     labels = c("0%", "45%", "65%", "85%"))+
   theme(legend.position = "bottom")+
+  ggplot2::ggtitle(paste("Figure 3:  Camera LAI by replicate, by year"))+
   facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs))
 
 
@@ -187,6 +189,7 @@ ggplot(x, aes(y = fapar, x = disturbance_severity, fill = disturbance_severity))
                     name = "Disturbance Severity",
                     labels = c("0%", "45%", "65%", "85%"))+
   theme(legend.position = "bottom")+
+  ggplot2::ggtitle(paste("Figure 4:  faPAR by replicate, by year"))+
   facet_grid(. ~ treatment, labeller = labeller(treatment = facet.labs))
 
 

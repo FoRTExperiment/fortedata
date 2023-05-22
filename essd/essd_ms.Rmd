@@ -3,8 +3,8 @@ title: "The fortedata R package: open-science datasets from a manipulative exper
 author: "FoRTE Project Team"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
-  html_document: default
   word_document: default
+  html_document: default
 ---
 
 .
@@ -168,15 +168,24 @@ md <- read.csv(mdf, stringsAsFactors = FALSE)
 
 **Table S1.** Plots table. The `fd_plots()` function is an internal  function that contains plot level metadata.
 ```{r table_plots}
+# options(knitr.kable.NA = "")
+# make_table <- function(metadata, table_name) {
+#   metadata %>%
+#     filter(table == table_name) %>%
+#     select(-table, -notes) %>%
+# #    arrange(Field) %>%
+#     kableExtra::kable(format = "markdown")
+# }
+
 options(knitr.kable.NA = "")
 make_table <- function(metadata, table_name) {
-  metadata %>% 
+  metadata %>%
     filter(table == table_name) %>%
-    select(-table, -notes) %>% 
-#    arrange(Field) %>% 
+    select(-table,) %>%
+#    arrange(Field) %>%
     kableExtra::kable(format = "markdown")
 }
-make_table(md, "fd_plots")
+# make_table(md, "fd_plots")
 ```
 
 ### Subplots table
@@ -195,8 +204,27 @@ make_table(md, "fd_nested_subplots")
 **Figure 2:** Number of available records as of `Sys.Date()` for time-series datasets including light availability from fd_ceptometer(),  camera derived LAI from fd_hemi_camera, leaf-level vegetation spectra indices from fd_spectrometry, photosynthesis and stomatal conductance from fd_photosynthesis, and soil CO2 efflux from fd_soil_respiration. 
 
 ### Number of Observations
-```{r no_of_obs, fig.width = 8, fig.height = 8}
+```{r no_of_obs, fig.width = 8, fig.height = 10}
 no_of_records <- fd_observations()
+
+no_of_records$data_record <- factor(no_of_records$table, 
+                                    levels = c("fd_soil_respiration",
+                                               "fd_leaf_spectrometry",
+                                               "fd_photosynthesis",
+                                               "fd_hemi_camera",
+                                               "fd_ceptometer",
+                                               "fd_canopy_structure",
+                                               "fd_inventory",
+                                               "fd_litter"),
+                                    labels = c("Soil Respiration",
+                                               "Leaf Spec",
+                                               "Hemi Camera",
+                                               "Photosynthesis",
+                                               "Light",
+                                               "Canopy Structure",
+                                               "Forest Inv",
+                                               "Litter"))
+
 # Heatmap
 #x11(width = 10, height = 8)
 ggplot(no_of_records, aes(x = as.factor(month), y = as.integer(year), fill= no_of_obs)) +
@@ -211,7 +239,7 @@ ggplot(no_of_records, aes(x = as.factor(month), y = as.integer(year), fill= no_o
   ylab("Year")+
   xlab("Month")+
   ggtitle(paste("No. of observations currently availble \nin each function as of:", Sys.Date()))+
-  facet_grid(table ~ .,  space = "free")+
+  facet_grid(data_record ~ .,  space = "free")+
   theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
     color="black", fill="white", size= 0.5, linetype="solid"))
 
@@ -268,6 +296,11 @@ ggplot(inv, aes(x = species, y = dbh_cm, fill = species)) +
   )
 ```
 
+**Table S5.** Inventory dataset. `fd_plot_metadata` is an external function that returns plot and subplot level disturbance and treatment assignments. 
+```{r disturbance}
+make_table(md, "fd_plot_metadata")
+
+```
 **Figure 3:** Diameter-at-breast height (DBH) distributions for each species, grouped by replicate. The bounds of each box in the boxplot represents the 25th percentile at the lower bound, and the 75th percentile at the upper, and the horizontal line is the median. Lines extending from the lower and upper bounds represent values that are 1.5 times the interquartile range for the minimum and maximum values, respectively, while black circles indicate outliers. Above each box plot, n is the number of observations.
 
 ### Soil respiration
@@ -329,7 +362,7 @@ df %>%
   geom_jitter(aes(color = replicate), alpha = 0.2) +
   geom_violin(aes(color = replicate), fill = NA, size = 1) + 
   scale_color_manual(values = pal) + theme_bw() + 
-  ylab("Litter Fall (g)")+
+  ylab("Leaf Mass (g)")+
   xlab("Replicate")+
    theme(legend.position = "none")
   

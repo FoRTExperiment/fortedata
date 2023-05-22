@@ -2,7 +2,7 @@
 % Please edit documentation in R/fd_inventory.R
 \name{fd_mortality}
 \alias{fd_mortality}
-\title{Mortality Assignments for Girdling 2018}
+\title{Mortality Assignments for 2018 Stem Girdling}
 \usage{
 fd_mortality()
 }
@@ -10,7 +10,7 @@ fd_mortality()
 A \code{data.frame} or \code{tibble}. Call \code{\link{fd_metadata}} for field metadata.#'
 }
 \description{
-Mortality Assignments for Girdling 2018
+A data set similar to \code{fd_inventory} but includes the column \code{fate} which has a value of either "kill" or "live" with "kill" indicating the tree was stem girdled.
 }
 \examples{
 fd_mortality()

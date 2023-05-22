@@ -40,7 +40,9 @@
 
 
 <meta property="og:title" content="Metadata for the experimental field plots — fd_plot_metadata" />
-<meta property="og:description" content="Metadata for the experimental field plots" />
+<meta property="og:description" content="These data include latitude and longitude of each plot as well as eperimental assignments inluding disturbance_severity and treatment." />
+
+
 
 
 
@@ -56,9 +58,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,19 +80,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -95,7 +97,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
     </li>
     <li>
       <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
@@ -122,7 +130,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/FoRTExperiment/fortedata/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -137,12 +150,12 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Metadata for the experimental field plots</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/FoRTExperiment/fortedata/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
     <div class="hidden name"><code>fd_plot_metadata.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Metadata for the experimental field plots</p>
+    <p>These data include <code>latitude</code> and <code>longitude</code> of each plot as well as eperimental assignments inluding <code>disturbance_severity</code> and <code>treatment</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>fd_plot_metadata</span><span class='op'>(</span><span class='op'>)</span></pre>
@@ -154,21 +167,21 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>fd_plot_metadata</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 336 x 10</span><span>
-#&gt;    replicate  plot subplot latitude longitude disturbance_sev~ treatment
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'> 1</span><span> A             1 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>               85 B        
-#&gt; </span><span style='color: #555555;'> 2</span><span> A             1 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>               85 T        
-#&gt; </span><span style='color: #555555;'> 3</span><span> A             2 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>               45 T        
-#&gt; </span><span style='color: #555555;'> 4</span><span> A             2 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>               45 B        
-#&gt; </span><span style='color: #555555;'> 5</span><span> A             3 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>               65 B        
-#&gt; </span><span style='color: #555555;'> 6</span><span> A             3 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>               65 T        
-#&gt; </span><span style='color: #555555;'> 7</span><span> A             4 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                0 B        
-#&gt; </span><span style='color: #555555;'> 8</span><span> A             4 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                0 T        
-#&gt; </span><span style='color: #555555;'> 9</span><span> B             1 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                0 B        
-#&gt; </span><span style='color: #555555;'>10</span><span> B             1 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                0 T        
-#&gt; </span><span style='color: #555555;'># ... with 326 more rows, and 3 more variables: plot_type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, nsp_id </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   area </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div></span></pre>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 336 x 10</span><span>
+#&gt;    replicate  plot subplot latitude longitude disturbance_severity treatment
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>                </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> A             1 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                   85 B        
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> A             1 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                   85 T        
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> A             2 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                   45 T        
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> A             2 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                   45 B        
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> A             3 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                   65 B        
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> A             3 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                   65 T        
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> A             4 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                    0 B        
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> A             4 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                    0 T        
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> B             1 E           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                    0 B        
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> B             1 W           45.6     -</span><span style='color: #BB0000;'>84.7</span><span>                    0 T        
+#&gt; </span><span style='color: #949494;'># ... with 326 more rows, and 3 more variables: plot_type &lt;chr&gt;, nsp_id &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   area &lt;int&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -180,11 +193,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p><p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -192,6 +205,8 @@
 
   
 
+
+  
 
   </body>
 </html>

@@ -3,7 +3,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata),
   require(ggplot2),
-  require(tidyverse)
+   require(magrittr),
+  require(dplyr)
 )
 
 ## ----observations, fig.height=4, fig.width=6, echo = FALSE, message=FALSE, warning=FALSE----
@@ -124,6 +125,8 @@ facet.labs <- c("B" = "Bottom-Up", "T" = "Top-Down")
 # filter by index, select only NDVI observations
  x %>%
   filter(index == "NDVI" & index_value > 0.2) -> y
+ 
+ y$year <- format(as.Date(y$date),"%Y")
 
 ggplot2::ggplot(y, aes(y = index_value, x = disturbance_severity, fill = disturbance_severity))+
   geom_boxplot(color = "black")+
@@ -136,6 +139,7 @@ ggplot2::ggplot(y, aes(y = index_value, x = disturbance_severity, fill = disturb
                     name = "Disturbance Severity",
                     labels = c("0%", "45%", "65%", "85%"))+
   theme(legend.position = "bottom")+
-  ggplot2::ggtitle(paste("Figure 3:  2018 Canopy NDVI")) 
+  ggplot2::ggtitle(paste("Figure 3:  2018 and 2020 Canopy Leaf NDVI"))+
+  facet_grid(.~year)
 
 

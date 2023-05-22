@@ -1,10 +1,10 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata)
 )
 
-## ----distrubance-assignment, echo = TRUE, results = 'hide'---------------
+## ----distrubance-assignment, echo = TRUE, results = 'hide'--------------------
 #set random seed
 set.seed(9925)
 

@@ -1,5 +1,9 @@
 # fortedata: An open-data package for the R programming Language
 
+![](https://github.com/FoRTExperiment/fortedata/actions/workflows/test-coverage.yaml/badge.svg)
+![](https://github.com/FoRTExperiment/fortedata/actions/workflows/check-standard.yaml/badge.svg)
+
+### 
 ![](https://user-images.githubusercontent.com/8354517/87047244-3da40200-c1c8-11ea-91fd-61104ad0f4f8.PNG)
 
 
@@ -28,8 +32,15 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 ### `fortedata` 1.0.2 Updates and Future Data Availability
 
 **Updates**
+*  `fd_double_dendro` and `fd_dendro` functions have been added that provide data from dendrometer bands
 
-* `fd_leaf_spectrometry` now includes 2018 and 2020 data, as well as corrected leaf_id and tree_id data columns. Additionally, the original filename has been retained in the data set as id (2020-12-12)
+* `fd_cwd` function added that includes coarse woody debris data from a 2019 survey of FoRTE plots
+
+* `fd_ceptometer` now includes 2020 PAR data with an additional correction for some data based on calibration with the UMBS AmeriFlux sensor (see function documentation and additionally an in preperation manuscript, a preprint of which to be added upon submission)
+
+* `fd_dendro` has been added to the package and includes dendrometer data from 2019 and 2020.
+
+* `fd_leaf_spectrometry` now includes 2018, 2019, and 2020 data, as well as corrected leaf_id and tree_id data columns. Additionally, the original filename has been retained in the data set as id (2020-12-14)
 
 * `fd_canopy_structure()` now includes 2020 lidar-derived canopy structural trait data.  (2020-12-09)
 
@@ -37,11 +48,11 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 
 **Future Data Availability**
 
-* Leaf spectral data (see `fd_leaf_spectrometry`) for 2019 are on deck. Currently, there are issues with matching tree identification field codes to the data set.
+* 3-D lidar structural data has been held up further by COVID-19. Access to computing resources to process said data have been greatly encumbered. Not likely complete until Summer 2021.
 
-* Light interception data (see `fd_ceptometer()`) for 2020 is being calibrated with the adjacent UMBS AmeriFlux tower PAR data (US-UMb tower ID). 
+* Processing of 2019 and 2020 photosynthesis data (see `fd_photosynthesis()` for 2018) is underway and will hopefully be done by the end of 2020. 
 
-* 3-D lidar structural data has been held up further by COVID-19. Access to computing resources to process said data have been greatly encumbered.
+* Additional future data to include are canopy dendroband data for 2019 and 2020, coarse woody debris surveys from 2019 and 2020, and small veg plot survey counts. Please email Jeff with any concerns or questions (jwatkins6vcu.edu) 
 
 ### The FoRTE Team
 
@@ -51,7 +62,7 @@ devtools::install_github("FoRTExperiment/fortedata", dependencies = TRUE, build_
 
 * Postdoctoral Researchers: Jeff W. Atkins, Alexey Shiklomanov  
 
-* Graduate Students:  Maxim S. Grigri, Lisa T. Haber, Kayla Mathes
+* Graduate Students:  Maxim S. Grigri, Lisa T. Haber, Kayla Mathes, Cameron Clay
 
 * Undergraduate Students: Alexandra Barry, Laura J. Hickey, Catherine McGuigan, Autym Shafer
 

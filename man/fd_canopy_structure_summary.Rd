@@ -2,8 +2,7 @@
 % Please edit documentation in R/fd_remote_sensing.R
 \name{fd_canopy_structure_summary}
 \alias{fd_canopy_structure_summary}
-\title{Summary data for canopy structural data including canopy complexity and leaf area
-by replicate by year for 2018 to 2020}
+\title{Summary data for canopy structural data including canopy complexity and leaf area}
 \usage{
 fd_canopy_structure_summary()
 }
@@ -11,7 +10,6 @@ fd_canopy_structure_summary()
 A \code{data.frame} or \code{tibble}. See "Details" for column descriptions.
 }
 \description{
-Summary data for canopy structural data including canopy complexity and leaf area
 by replicate by year for 2018 to 2020
 }
 \details{
@@ -34,6 +32,7 @@ The columns are as follows:
 \note{
 This summary reports only canopy structural complexity (as canopy rugosity)
 and leaf area (as VAI, or vegetation area index--akin to PAI or LAI).
+Data note: plot B02 missing in 2018, D04E missing in 2019 (3 total missing plots).
 }
 \examples{
 fd_canopy_structure_summary()

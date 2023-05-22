@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Leaf spectrometry data — fd_leaf_spectrometry • fortedata</title>
+<title>Leaf spectrometery data — fd_leaf_spectrometry • fortedata</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="Leaf spectrometry data — fd_leaf_spectrometry" />
-<meta property="og:description" content="Leaf spectrometry data" />
+<meta property="og:title" content="Leaf spectrometery data — fd_leaf_spectrometry" />
+<meta property="og:description" content="These data were collected from repeated measures with a CI 710 Leaf Spectrometer from CID instruments on leaves in  canopy trees in FoRTE plots. Each individual tree can be identified by the tree_id and each leaf is id'ed as leaf_id. These data include several vegetation indices index derived from the instrument hyperspectral data. The data value for each index is in the index_value column and are unitless. Further information is availble in the fd_ecophysiology_vignette." />
+
+
 
 
 
@@ -56,9 +58,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,19 +80,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fortedata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -95,7 +97,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/fd_aboveground_vignette.html">fortedata: Aboveground Wood Data</a>
+    </li>
+    <li>
       <a href="../articles/fd_belowground_vignette.html">fortedata: Belowground Data</a>
+    </li>
+    <li>
+      <a href="../articles/fd_data_mgmt.html">fortedata: Data Collection, Preparation, and Management</a>
     </li>
     <li>
       <a href="../articles/fd_examples.html">fortedata: Working with the data</a>
@@ -122,7 +130,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/FoRTExperiment/fortedata/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -136,13 +149,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Leaf spectrometry data</h1>
-    
+    <h1>Leaf spectrometery data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/FoRTExperiment/fortedata/blob/master/R/fd_leaf_physiology.R'><code>R/fd_leaf_physiology.R</code></a></small>
     <div class="hidden name"><code>fd_leaf_spectrometry.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Leaf spectrometry data</p>
+    <p>These data were collected from repeated measures with a CI 710 Leaf Spectrometer from CID instruments on leaves in  canopy trees in FoRTE plots. Each individual tree can be identified by the <code>tree_id</code> and each leaf is id'ed as <code>leaf_id</code>. These data include several vegetation indices <code>index</code> derived from the instrument hyperspectral data. The data value for each index is in the <code>index_value</code> column and are unitless. Further information is availble in the <code>fd_ecophysiology_vignette</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>fd_leaf_spectrometry</span><span class='op'>(</span><span class='op'>)</span></pre>
@@ -157,20 +170,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>fd_leaf_spectrometry</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 7,221 x 9</span><span>
-#&gt;    subplot_id replicate  plot subplot date       tree_id species index
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> D01E       D             1 E       2018-07-22 CAN01   ACRU    ARI1 
-#&gt; </span><span style='color: #555555;'> 2</span><span> D01E       D             1 E       2018-07-22 CAN01   ACRU    ARI2 
-#&gt; </span><span style='color: #555555;'> 3</span><span> D01E       D             1 E       2018-07-22 CAN01   ACRU    CRI1 
-#&gt; </span><span style='color: #555555;'> 4</span><span> D01E       D             1 E       2018-07-22 CAN01   ACRU    CRI2 
-#&gt; </span><span style='color: #555555;'> 5</span><span> D01E       D             1 E       2018-07-22 CAN01   ACRU    SIPI 
-#&gt; </span><span style='color: #555555;'> 6</span><span> D01E       D             1 E       2018-07-22 CAN01   ACRU    FRI  
-#&gt; </span><span style='color: #555555;'> 7</span><span> D01E       D             1 E       2018-07-22 CAN01   ACRU    CNDVI
-#&gt; </span><span style='color: #555555;'> 8</span><span> D01E       D             1 E       2018-07-22 CAN01   ACRU    Ctr1 
-#&gt; </span><span style='color: #555555;'> 9</span><span> D01E       D             1 E       2018-07-22 CAN01   ACRU    Ctr2 
-#&gt; </span><span style='color: #555555;'>10</span><span> D01E       D             1 E       2018-07-22 CAN01   ACRU    G    
-#&gt; </span><span style='color: #555555;'># ... with 7,211 more rows, and 1 more variable: index_value </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+</div><div class='output co'>#&gt; <span class='message'>These data are unpublished. Please contact Lisa Haber to ask about using</span></div><div class='output co'>#&gt; <span class='message'>Data citation: ESSD</span></div><div class='output co'>#&gt; <span class='message'>Contact person: Lisa Haber</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -182,11 +182,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p>
+  <p><p>Developed by Jeff Atkins, Ben Bond-Lamberty, Kalyn Dorheim, Stephanie Pennington, Alexey Shiklomanov.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -194,6 +194,8 @@
 
   
 
+
+  
 
   </body>
 </html>
