@@ -92,44 +92,21 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 ## Overview
 At the core of FoRTE is the collection of heterogeneous data, from many different instruments, requiring multiple different approaches, to measure different environmental variables. Below we outline the collection and preparation procedures for all data products in `fortedata`. 
 
-For each data product listed includes a  *Data Preparation* section that includes:
-
-1) the location of raw data in Google Drive
-2) the format and structure of the raw data
-3) any pre-processing of data
-4) an outline of the process needed to move from raw data to package-ready data
-
-## Canopy Structural Traits/Terrestrial Lidar
-
-### Data Preparation
-CST data are located in the `/data/lidar` on Google Drive. 
-The raw data  from the PCL instrument is in the form of a two column .csv file containing raw distance from instrument values (i.e. lidar pulse returns) and intensity values for each measured transect. These data are processed externally using forestr in R, with the output for each transect containing several .csv files: 1) a two row .csv containing a head of CST metrics and a second row containing values for those metrics; 2) an adjusted leaf area/vegetation area hit grid matrix; 3) a three column, x, z, VAI file; 4) summary matrix file containing x, z, and column specific values (NEED TO ADJUST); and 5) a hit grid plot of VAI.
-
-The first of these files, the two row CST metrics file(s) for each transect are collated into one file where each row represents each transect--the source `canopy_structural_traits.csv` file in `/inst/extdata/` from which `fd_canopy_structure` draws.
-
-```{r cst, echo = TRUE}
-#set random seed
-cst <- read_csv_file("canopy_structural_traits.csv")
-
-# show the top of 
-str(cst)
-```
-
-#General Data Format and Preparation
+## General Data Format and Preparation
 
 This section summarizes general formatting and preparation guidelines for all data
-shared and uploaded to fortedata. 
+shared and uploaded to `fortedata`. 
 
-## Naming files and folders
+### Naming files and folders
 
-1. Names should be lowercase with "_" separating words.
+1. Names should be lowercase with "_" separating words
 2. File Type: CSV (Comma delimited)
 3. Filenames: "data_type_year.csv" (i.e. "canopy_dendroband_2019.csv")
 4. Folder Names: "data_type" (i.e. "canopy_dendroband")
 5. README.txt file included in every folder (see README.txt file structure)
-5. Each year should be 1 data file (but does this make sense for instrument data?)
+5. Generally, each year should be 1 data file (but does this make sense for instrument data?)
 
-## General File Structure and Format
+### General File Structure and Format
 
 1. Each row is one observation
 2. Column names should:
@@ -137,10 +114,73 @@ shared and uploaded to fortedata.
 + Include units if quantitative (i.e. "DBH_cm"; Flux units excluded)
 + Be added to `forte_table_metadata.csv` (if not already listed)
 3. Required columns:
-+ subplot_id -- replicate ("A-") plot ("-01-") subplot ("-E") (i.e "A01E");                               **SHOULD NOT** include separate replicate, plot, and subplot columns
++ subplot_id -- replicate ("A-") plot ("-01-") subplot ("-E") (i.e "A01E"); 
+**SHOULD NOT** include separate replicate, plot, and subplot columns
 + date -- Date of data collection (YYYY-MM-DD)
 
 ```{r metadata, echo = TRUE}
 # call forte_table_metadata
 fd_metadata()
 ```
+
+### General Data Entry Notes
+
+1. Each row is one observation (this is important, hence the repetition) 
+2. Missing data entries should be left blank. Avoid use of "NA" or "-9999"
+3. All character strings should be lowercase, with the explicit exception of the USDA Species Codes included in the forest inventory data set (i.e. `fd_inventory()`)
+4. No entries should include non-alphanumeric characters, so please avoid spaces, punctuation, and all symbols (e.g., "#", "&", "*")
+5. Dates follow a YYYY-MM-DD format
+
+## Data Preparation By Data Product Specifics
+
+For each data product within `fortedata`, there are specific steps to be followed moving from raw data to package ready data as outlined in the *Data Preparation* section for each product below. that includes:
+
+1. the location of raw data in Google Drive
+2. the format and structure of the raw data
+3. any pre-processing of data
+4. an outline of the process needed to move from raw data to package-ready data
+
+### Canopy Structural Traits (CST)/Terrestrial Lidar (TLS) Data 
+
++ Raw CST data are located in the `/data/lidar` folder on Google Drive. 
+
+The raw, source data  from the PCL instrument is in the form of a two column .csv file containing raw distance from instrument values (i.e. lidar pulse returns) and intensity values for each measured transect. These data are processed externally using the R package `forestr`, with the output for each transect containing several .csv files: 1) a two row .csv containing a head of CST metrics and a second row containing values for those metrics; 2) an adjusted leaf area/vegetation area hit grid matrix; 3) a three column, x, z, VAI file; 4) summary matrix file containing x, z, and column specific values (NEED TO ADJUST); and 5) a hit grid plot of VAI.
+
+The first of these files, the two row CST metrics file(s) for each transect are collated into one file where each row represents each transect--the source `canopy_structural_traits.csv` file in `/inst/extdata/` from which `fd_canopy_structure()` draws.
+
+```{r cst, echo = TRUE}
+# Import data into the workspace. This is the source of fd_canopy_structure()
+cst <- read_csv_file("canopy_structural_traits.csv")
+
+# First 10 of 56 columns imported from fd_canopy_structure()
+str(cst, list.len = 10)
+```
+
+
+### Coarse Woody Debris (CWD)
+
++ Raw CWD data are located in the `XXXX` folder on Google Drive.
+
+### Forest Inventory
+
++ Raw forest inventory data are located in the `/data/....` folder on Google Drive.
+
+Forest inventory data is accessed using the `fortedata` function `fd_inventory()` which draws from the `forte_inventory.csv` file in `/inst/extdata/`. 
+
+
+```{r inv, echo = TRUE}
+# Import data into the workspace. This is the source of fd_inventory()
+inv <- read_csv_file("forte_inventory.csv")
+
+# First 10 of 11 columns 
+str(inv, list.len = 10)
+```
+
+
+### Leaf physiology
+
+### Leaf spectrometry
+
+### Leaf morphology
+
+

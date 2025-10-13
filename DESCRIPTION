@@ -22,12 +22,13 @@ Suggests:
     knitr,
     ggplot2,
     rmarkdown,
-    tidyverse,
     viridis,
     stats,
+    magrittr,
+    dplyr,
     udunits2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

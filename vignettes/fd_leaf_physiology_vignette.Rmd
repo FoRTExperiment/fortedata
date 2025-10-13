@@ -14,7 +14,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata),
   require(ggplot2),
-  require(tidyverse)
+  require(magrittr),
+  require(dplyr)
 )
 ```
 
@@ -94,8 +95,8 @@ df$subplot_id <- as.factor(df$subplot_id)
 
 # Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
 df %>%
-  select(subplot_id, disturbance_severity, treatment) %>%
-  distinct() %>%
+  dplyr::select(subplot_id, disturbance_severity, treatment) %>%
+  dplyr::distinct() %>%
   data.frame() -> dis.meta.data
 
 # this filters the metadata down to the subplot_id level
@@ -158,8 +159,8 @@ df$subplot_id <- as.factor(df$subplot_id)
 
 # Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
 df %>%
-  select(subplot_id, disturbance_severity, treatment) %>%
-  distinct() %>%
+  dplyr::select(subplot_id, disturbance_severity, treatment) %>%
+  dplyr::distinct() %>%
   data.frame() -> dis.meta.data
 
 # this filters the metadata down to the subplot_id level

@@ -15,7 +15,8 @@ knitr::opts_chunk$set(
   require(fortedata),
   require(ggplot2),
   require(viridis),
-  require(tidyverse)
+  require(magrittr),
+  require(dplyr)
 )
 ```
 ## Forest Inventory Background and Introduction
@@ -153,8 +154,8 @@ df$subplot_id <- as.factor(df$subplot_id)
 
 # Now that we have our data in the form for this analysis, let's filter our metadata to the subplot level.
 df %>%
-  select(subplot_id, disturbance_severity, treatment) %>%
-  distinct() %>%
+  dplyr::select(subplot_id, disturbance_severity, treatment) %>%
+  dplyr::distinct() %>%
   data.frame() -> dis.meta.data
 
 # this filters the metadata down to the subplot_id level
@@ -202,7 +203,7 @@ In figure 3 we show above-ground woody biomass at the plot level. This can be do
 ```{r scaling, eval= FALSE}
 # group the data by your factor of interest, here we show how the data are summed in Figure 3.
 x %>%
-  group_by(subplot_id, disturbance_severity, treatment) %>%
+  dplyr::group_by(subplot_id, disturbance_severity, treatment) %>%
   summarize(biomass_plot = sum(biomass)) -> y
 
 # Above, y$biomass is in units of kg per 0.1 ha. We want to convert to Mg per ha
