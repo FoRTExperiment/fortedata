@@ -176,6 +176,7 @@ fd_canopy_structure <- function() {
 #' @return A `data.frame` or `tibble`. See "Details" for column descriptions.
 #' @note This summary reports only canopy structural complexity (as canopy rugosity)
 #' and leaf area (as VAI, or vegetation area index--akin to PAI or LAI).
+#' Data note: plot B02 missing in 2018, D04E missing in 2019 (3 total missing plots).
 #'
 #' @author Measurements by Jeff Atkins at the University of Michigan Biological Station.
 #' @export

@@ -3,14 +3,17 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   require(fortedata),
   require(ggplot2),
-  require(tidyverse),
-  require(viridis)
+  require(viridis),
+  require(magrittr),
+  require(dplyr)
 )
 
-## ----observations, fig.asp = 0.6, fig.width=6, echo = FALSE, message=FALSE, warning=FALSE----
+## ----observations, fig.height=8, fig.width=6, echo = FALSE, message=FALSE, warning=FALSE----
 no_of_records.df <- fd_observations()
-no_of_records <- subset(no_of_records.df, table == "fd_soil_respiration")
-sr <- fd_soil_respiration()
+
+no_of_records <- subset(no_of_records.df, table == "fd_dendro" | table == "fd_subcanopy_diameter" | 
+                          table == "fd_subcanopy_density" | table == "fd_seedling_sapling")
+
 ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer(year), fill= no_of_obs)) +
   ggplot2::geom_tile(ggplot2::aes(fill = no_of_obs), color = "black") +
   ggplot2::geom_text(ggplot2::aes(label = no_of_obs), color = "white") +
@@ -21,8 +24,9 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
   ggplot2::theme(legend.position = "none")+
   ggplot2::ylab("Year")+
   ggplot2::xlab("Month")+
-  ggplot2::ggtitle(paste("Figure 1: No. of observations currently available \nin soil respiration dataset as of:", Sys.Date()))+
+  ggplot2::ggtitle(paste("Figure 1: No. of observations currently available \nin aboveground wood dataset as of:", Sys.Date()))+
   ggplot2::facet_grid(table ~ .,  space = "free")+
   ggplot2::theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
     color="black", fill="white", size= 0.5, linetype="solid"))
+
 

@@ -32,6 +32,7 @@ The columns are as follows:
 \note{
 This summary reports only canopy structural complexity (as canopy rugosity)
 and leaf area (as VAI, or vegetation area index--akin to PAI or LAI).
+Data note: plot B02 missing in 2018, D04E missing in 2019 (3 total missing plots).
 }
 \examples{
 fd_canopy_structure_summary()

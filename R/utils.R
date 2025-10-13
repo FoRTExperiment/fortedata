@@ -115,9 +115,6 @@ data_conditions <- function(x, published = FALSE, contact_person, citation) {
 #'
 #'  forte.pal <- forte_colors()
 #'
-
-
-
 forte_colors <- function() {
   # list of disturbance severities
   disturbance_severity <- c(0, 45, 65, 85)
@@ -177,7 +174,8 @@ calc_biomass <- function(){
   df <- fortedata::fd_inventory()
 
   # merge the two
-  stem <- merge(df, allo.df)
+  #stem <- merge(df, allo.df)
+  stem <- merge(df, allo.df, all.x = TRUE)
 
   #calculates biomass in units of kg
   stem$biomass <- stem$a_biomass * stem$dbh^stem$b_biomass

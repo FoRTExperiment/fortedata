@@ -15,7 +15,11 @@ knitr::opts_chunk$set(
   require(fortedata),
   require(ggplot2),
   require(viridis),
+<<<<<<< HEAD
   require(magrittr),
+=======
+   require(magrittr),
+>>>>>>> 35aec8de476b33311f789ac602db0036d3348810
   require(dplyr)
 )
 ```
@@ -44,7 +48,7 @@ ggplot2::ggplot(no_of_records, ggplot2::aes(x = as.factor(month), y = as.integer
   ggplot2::xlab("Month")+
   ggplot2::ggtitle(paste("Figure 1: No. litter obs. by species as of:", Sys.Date()))+
   ggplot2::facet_grid(table ~ .,  space = "free")+
-  ggplot2::theme(strip.text.y = element_text(size = 9), strip.background = element_rect(
+  ggplot2::theme(strip.text.y = ggplot2::element_text(size = 9), strip.background = ggplot2::element_rect(
     color="black", fill="white", size= 0.5, linetype="solid"))
 
 ```

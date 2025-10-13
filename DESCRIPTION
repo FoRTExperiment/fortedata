@@ -3,6 +3,7 @@ Title: Data from the Forest Resilience and Threshold Experiment
 Version: 1.0.2
 Authors@R: c(person("Jeff", "Atkins", email = "jwatkins6@vcu.edu", role = c("aut", "cre")),
           person("Ben", "Bond-Lamberty", role = "aut"),
+          person("Cameron", "Clay", role = "aut"),
           person("Kalyn", "Dorheim", rol = "aut"),
           person("Stephanie", "Pennington", role = "aut"),
           person("Alexey", "Shiklomanov", role = "aut")
@@ -22,6 +23,11 @@ Suggests:
     knitr,
     ggplot2,
     rmarkdown,
+<<<<<<< HEAD
+=======
+    dplyr,
+    magrittr,
+>>>>>>> 35aec8de476b33311f789ac602db0036d3348810
     viridis,
     stats,
     magrittr,
@@ -29,6 +35,10 @@ Suggests:
     udunits2
 Encoding: UTF-8
 LazyData: true
+<<<<<<< HEAD
 RoxygenNote: 7.1.2
+=======
+RoxygenNote: 7.2.3
+>>>>>>> 35aec8de476b33311f789ac602db0036d3348810
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

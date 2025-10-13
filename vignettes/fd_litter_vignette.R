@@ -4,7 +4,8 @@ knitr::opts_chunk$set(
   require(fortedata),
   require(ggplot2),
   require(viridis),
-  require(tidyverse)
+   require(magrittr),
+  require(dplyr)
 )
 
 ## ----observations, fig.height=4, fig.width=6, echo = FALSE, message=FALSE, warning=FALSE, fig.align="center"----
