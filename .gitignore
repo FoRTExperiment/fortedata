@@ -43,3 +43,9 @@ Meta
 
 # Cleaning script for data prep
 R/fd_cleaning_data.R
+
+
+# pkgdown output
+docs/
+
+
