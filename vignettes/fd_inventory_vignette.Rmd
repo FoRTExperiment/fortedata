@@ -16,12 +16,8 @@ knitr::opts_chunk$set(
   require(ggplot2),
   require(viridis),
   require(magrittr),
-<<<<<<< HEAD
-  require(dplyr)
-)
-=======
   require(dplyr))
->>>>>>> 35aec8de476b33311f789ac602db0036d3348810
+
 ```
 ## Forest Inventory Background and Introduction
 

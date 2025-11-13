@@ -23,22 +23,13 @@ Suggests:
     knitr,
     ggplot2,
     rmarkdown,
-<<<<<<< HEAD
-=======
     dplyr,
     magrittr,
->>>>>>> 35aec8de476b33311f789ac602db0036d3348810
     viridis,
     stats,
-    magrittr,
-    dplyr,
     udunits2
 Encoding: UTF-8
 LazyData: true
-<<<<<<< HEAD
-RoxygenNote: 7.1.2
-=======
-RoxygenNote: 7.2.3
->>>>>>> 35aec8de476b33311f789ac602db0036d3348810
+RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

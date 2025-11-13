@@ -15,11 +15,7 @@ knitr::opts_chunk$set(
   require(fortedata),
   require(ggplot2),
   require(viridis),
-<<<<<<< HEAD
   require(magrittr),
-=======
-   require(magrittr),
->>>>>>> 35aec8de476b33311f789ac602db0036d3348810
   require(dplyr)
 )
 ```
