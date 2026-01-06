@@ -75,8 +75,7 @@ test_that("Metadata CSV file", {
       data_class <- paste0(tolower(class(dat[[f]])), collapse = " ")
 
       # helper message in case an error is thrown
-      msg <- paste0("data class miss match in ", tab, " column ", f )
-
+      msg <- paste0("data class miss match in ", tab, " column ", f)
       expect_true(grepl(x = data_class, pattern = meta_dc), info = msg)
 
     }
