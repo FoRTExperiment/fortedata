@@ -139,13 +139,13 @@ fd_hemi_camera_summary <- function() {
 fd_canopy_structure <- function() {
   cst <- read_csv_file("canopy_structural_traits.csv")
 
-  #
+
   cst <- split_subplot_id(cst)
 
   names(cst) <- gsub(x = names(cst), pattern = "\\.", replacement = "_")
 
-  # Reorder columns
-  cst <- cst[c(1, 54, 55, 56, 2, 3:53 )]
+  # Drop extra column
+  cst <- cst[ , which(names(cst) != "X")]
 
   weak_as_tibble(cst)
 

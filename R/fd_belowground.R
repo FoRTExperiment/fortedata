@@ -20,7 +20,6 @@ fd_soil_respiration <- function() {
   names(flux)[names(flux) == "soilCO2Efflux"] <- "soil_co2_efflux"
   names(flux)[names(flux) == "soilTemp"] <- "soil_temp"
   names(flux)[names(flux) == "VWC"] <- "vwc"
-  #names(flux)[names(flux) == "date"] <- "Date"
 
   # fix lower case values
   flux$Rep_ID <- toupper(flux$Rep_ID)
@@ -41,9 +40,12 @@ fd_soil_respiration <- function() {
   flux$soil_temp <- suppressWarnings(as.numeric(flux$soil_temp))
 
   # fixes character/integer problem
-  flux$run <- as.integer(flux$run)
-  flux$soil_co2_efflux <- as.numeric(flux$soil_co2_efflux)
-  flux$vwc <- as.numeric(flux$vwc)
+  suppressWarnings({
+    # suppress warnings related to NAs.
+    flux$run <- as.integer(flux$run)
+    flux$soil_co2_efflux <- as.numeric(flux$soil_co2_efflux)
+    flux$vwc <- as.numeric(flux$vwc)
+  })
 
   # this removes these weird lines.
   flux <- flux[!is.na(flux$soil_temp), ]
