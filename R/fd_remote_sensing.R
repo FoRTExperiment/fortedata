@@ -145,7 +145,7 @@ fd_canopy_structure <- function() {
   names(cst) <- gsub(x = names(cst), pattern = "\\.", replacement = "_")
 
   # Drop extra column
-  cst <- cst[ , which(names(cst) != "X")]
+  cst <- cst[ , names(cst) != "X"]
 
   weak_as_tibble(cst)
 
