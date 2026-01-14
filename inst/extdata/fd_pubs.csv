@@ -1,10 +1,50 @@
 entry,pub_year,title,journal,doi
-Atkins et al. 2019,2019,Multidimensional Structural Characterization is Required to Detect and Differentiate Among Moderate Disturbance Agentsn of Multidimensional Structural Characterization to Detect and Describe Moderate Forest Disturbance,PrePrint,10.20944/preprints201911.0082.v1
-Atkins et al. 2020,2020,Application of Multidimensional Structural Characterization to Detect and Describe Moderate Forest Disturbance,Ecosphere,10.1002/ecs2.3156
-Shikomanov et al. 2020,2020,Structure and parameter uncertainty in centennial projections of forest community structure and carbon cycling,Global Change Biology,10.1111/gcb.15164
-Grigri et al. 2020,2020,Aboveground Wood Production Is Sustained in the First Growing Season after Phloem-Disrupting Disturbance,Forests,10.3390/f11121306
+Woelmer et al. 2021,2021,Ten simple rules for training yourself in an emerging field,PLoS Comput. Biol.,10.1371/journal.pcbi.1009440
+Walter et al. 2021,2021,Vegetation structural complexity and biodiversity in the Great Smoky Mountains,Ecosphere,10.1002/ecs2.3390
+Teets et al. 2022,2022,Coupling of tree growth and photosynthetic carbon uptake across six north American forests,J. Geophys. Res. Biogeosci.,10.1029/2021jg006690
+Shiklomanov et al. 2021,2021,Cutting out the middleman: calibrating and validating a dynamic vegetation model (ED2-PROSPECT5) using remotely sensed surface reflectance,Geosci. Model Dev.,10.5194/gmd-14-2603-2021
+Ordway et al. 2021,2021,Leveraging the NEON Airborne Observation Platform for socio‐environmental systems research,Ecosphere,10.1002/ecs2.3640
+Niu et al. 2021,2021,Warming homogenizes apparent temperature sensitivity of ecosystem respiration,Sci. Adv.,10.1126/sciadv.abc7358
+Niedermaier et al. 2022,2022,Structural complexity and primary production resistance are coupled in a temperate forest,Front. For. Glob. Chang.,10.3389/ffgc.2022.941851
+Migliavacca et al. 2021,2021,The three major axes of terrestrial ecosystem function,Nature,10.1038/s41586-021-03939-9
+LaRue et al. 2021,2021,The evolution of macrosystems biology,Front. Ecol. Environ.,10.1002/fee.2288
+Kuramae et al. 2019,2019,Wood decay characteristics and interspecific interactions control bacterial community succession in Populus grandidentata (bigtooth Aspen),Front. Microbiol.,10.3389/fmicb.2019.00979
+Kneeshaw et al. 2022,2022,Editorial: North temperate and boreal forest disturbances: The challenges of growing in the north,Front. For. Glob. Chang.,10.3389/ffgc.2022.956953
+Johnston et al. 2021,2021,Temperature thresholds of ecosystem respiration at a global scale,Nat. Ecol. Evol.,10.1038/s41559-021-01398-z
+Jian et al. 2020,2020,Collar properties and measurement time confer minimal bias overall on annual soil respiration estimates in a global database,J. Geophys. Res. Biogeosci.,10.1029/2020jg006066
+Hickey et al. 2022,2022,Mechanistically-grounded pathways connect remotely sensed canopy structure to soil respiration,Sci. Total Environ.,10.1016/j.scitotenv.2022.158267
+Hickey et al. 2019,2019,Contrasting development of canopy structure and primary production in planted and naturally regenerated red pine forests,Forests,10.3390/f10070566
+Halbritter et al. 2020,2020,The handbook for standardized field and laboratory measurements in terrestrial climate change experiments and observational studies (ClimEx),Methods Ecol. Evol.,10.1111/2041-210x.13331
+Haber et al. 2020,2020,"Forest structure, diversity, and primary production in relation to disturbance severity",Ecol. Evol.,10.1002/ece3.6209
+Gough et al. 2022,2022,Inferring the effects of partial defoliation on the carbon cycle from forest structure: challenges and opportunities,Environ. Res. Lett.,10.1088/1748-9326/ac46e9
+Gough et al. 2021,2021,Disturbance-accelerated succession increases the production of a temperate forest,Ecol. Appl.,10.1002/eap.2417
+Gough et al. 2022,2022,Disturbance has variable effects on the structural complexity of a temperate forest landscape,Ecol. Indic.,10.1016/j.ecolind.2022.109004
+Gough et al. 2020,2020,Forest structural complexity and biomass predict first-year carbon cycling responses to disturbance,Ecosystems,10.1007/s10021-020-00544-1
+Gough et al. 2021,2021,Forest carbon sequestration increases following a large‐scale manipulation of moderate severity disturbance,Bull. Ecol. Soc. Am.,10.1002/bes2.1923
+Fahey et al. 2022,2022,An experimental approach for crown to whole-canopy defoliation in forests,Can. J. For. Res.,10.1139/cjfr-2020-0527
+Ely et al. 2021,2021,A reporting format for leaf-level gas exchange data and metadata,Ecol. Inform.,10.1016/j.ecoinf.2021.101232
+Dwivedi et al. 2022,2022,"Biogeosciences perspectives on Integrated, coordinated, open, Networked (ICON) science",Earth Space Sci.,10.1029/2021EA002119
+Clippard et al. 2022,2022,Decadal forest soil respiration following stem girdling,Trees (Berl. West),10.1007/s00468-022-02340-x
+Clay et al. 2022,2022,Fire after clear-cut harvesting minimally affects the recovery of ecosystem carbon pools and fluxes in a Great Lakes forest,For. Ecol. Manage.,10.1016/j.foreco.2022.120301
+Chu et al. 2021,2021,Representativeness of Eddy-Covariance flux footprints for areas surrounding AmeriFlux sites,Agric. For. Meteorol.,10.1016/j.agrformet.2021.108350
+Bond-Lamberty et al. 2021,2021,A reporting format for field measurements of soil respiration,Ecol. Inform.,10.1016/j.ecoinf.2021.101280
+Atkins et al. 2022,2022,Power law scaling relationships link canopy structural complexity and height across forest types,Funct. Ecol.,10.1111/1365-2435.13983
+Atkins et al. 2020,2020,"Mapping temperate forest phenology using tower, UAV, and ground-based sensors",Drones,10.3390/drones4030056
+Atkins et al. 2020,2020,Application of multidimensional structural characterization to detect and describe moderate forest disturbance,Ecosphere,10.1002/ecs2.3156
+Atkins et al. 2021,2021,The fortedata R package: open-science datasets from a manipulative experiment testing forest resilience,Earth Syst. Sci. Data,10.5194/essd-13-943-2021
+Agee et al. 2021,2021,Root lateral interactions drive water uptake patterns under water limitation,Adv. Water Resour.,10.1016/j.advwatres.2021.103896
+Alveshere et al. 2025,2025,Hemlock woolly adelgid infestation influences canopy structural complexity and its relationship with primary production in a temperate mixed forest,For. Ecol. Manage.,10.1016/j.foreco.2025.122698
+Haber et al. 2023,2023,Dynamic subcanopy leaf traits drive resistance of net primary production across a disturbance severity gradient,Front. For. Glob. Chang.,10.3389/ffgc.2023.1150209
+Atkins et al. 2023,2023,Effects of forest structural and compositional change on forest microclimates across a gradient of disturbance severity,Agric. For. Meteorol.,10.1016/j.agrformet.2023.109566
+Castillo et al. 2023,2023,Fungal Community Succession of Populus grandidentata (Bigtooth Aspen) during Wood Decomposition,Forests,10.3390/f14102086
+Stuart-Haëntjens et al. 2023,2023,"Beech bark disease does not reduce the long-term wood production of two forests contrasting in age, productivity, and structure",For. Ecol. Manage.,10.1016/j.foreco.2023.121382
+Gough et al. 2024,2024,Disturbance theory for ecosystem ecologists: A primer,Ecol. Evol.,10.1002/ece3.11403
+Mathes et al. 2023,2023,Sustained three-year declines in forest soil respiration are proportional to disturbance severity,Ecosystems,10.1007/s10021-023-00863-z
+Gough et al. 2025,2025,Resist!: Sustaining forest carbon sequestration and wood production after insect disturbance,Front. Ecol. Environ.,10.1002/fee.2861
+Haber et al. 2025,2025,"Simulating biotic disturbance responses in forests requires a balance of model performance, complexity, and accessibility",Ecol. Modell.,10.1016/j.ecolmodel.2025.111033
+Bond-Lamberty et al. 2020,2020,COSORE: A community database for continuous soil respiration and other soil-atmosphere greenhouse gas flux data,Glob. Chang. Biol.,10.1111/gcb.15353
 Mathes et al. 2021,2021,A multidimensional stability framework enhances interpretation and comparison of carbon cycling response to disturbance,Ecosphere,10.1002/ecs2.3800
-Atkins et al. 2021,2021,The fortedata R package: open-science datasets from a manipulative experiment testing forest resilience,Earth System Science Data,10.5194/essd-13-943-2021
-Gough et al. 2021,2021,Forest Structural Complexity and Biomass Predict First-Year Carbon Cycling Responses to Disturbance,Ecosystems,10.1007/s10021-020-00544-1
-Dorheim et al. 2022,2022,"Climate drives modeled forest carbon cycling resistance and resilience in the Upper Great Lakes Region, USA",Journal of Geophysical Research: Biogeosciences,10.1029/2021JG006587
-Atkins et al. 2022,2022,Open-Source tools in R for forestry and forest ecology,Forest Ecology and Management,10.1016/j.foreco.2021.119813
+Shiklomanov et al. 2020,2020,Structure and parameter uncertainty in centennial projections of forest community structure and carbon cycling,Glob. Chang. Biol.,10.1111/gcb.15164
+Dorheim et al. 2022,2022,"Climate Drives Modeled Forest Carbon Cycling Resistance and Resilience in the Upper Great Lakes Region, USA",J Geophys Res Biogeosci,10.1029/2021JG006587
+Gough et al. 2018,2018,"Forest aging, disturbance and the carbon cycle",New Phytol.,10.1111/nph.15227
+Grigri et al. 2020,2020,Aboveground Wood Production Is Sustained in the First Growing Season after Phloem-Disrupting Disturbance,For. Trees Livelihoods,10.3390/f11121306
