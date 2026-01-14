@@ -55,9 +55,5 @@ fd_soil_respiration <- function() {
 
   # Reorder columns, dropping ones we don't need
   flux <- flux[c("subplot_id", "replicate", "plot", "subplot", "date", "timestamp", "nested_subplot",  "run", "soil_co2_efflux", "soil_temp", "vwc")]
-
-  # Data creation and authorship information
-  contact_person <- "Kayla Mathes"
-  citation <- "ESSD"
-  data_conditions(flux, published = FALSE, contact_person, citation)
+  return(flux)
 }

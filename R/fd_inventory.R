@@ -28,11 +28,8 @@ fd_inventory <- function() {
 
   inv <- inv[c("subplot_id", "replicate", "plot", "subplot", "date", "tag",
                "species", "dbh_cm", "health_status", "canopy_status", "notes")]
+  return(inv)
 
-  # Data creation and authorship information
-  contact_person <- "Jeff Atkins"
-  citation <- "ESSD"
-  data_conditions(inv, published = FALSE, contact_person, citation)
 }
 
 #' Basic statistics generated from the raw inventory data.
@@ -144,11 +141,8 @@ fd_dendro <- function() {
 
   # reorganize and drop band_in for band_cm
   df <- df[c("subplot_id", "replicate", "plot", "subplot","date", "tag", "species", "band_cm", "notes")]
+  return(df)
 
-  # Data creation and authorship information
-  contact_person <- "Maxim S. Grigri [grigrims@vcu.edu], Jeff Atkins [jwatkins6@vcu.edu]"
-  citation <- "Grigri, M. S., Atkins, J. W., Vogel, C., Bond-Lamberty, B., & Gough, C. M. (2020). Aboveground Wood Production Is Sustained in the First Growing Season after Phloem-Disrupting Disturbance. Forests, 11(12), 1306."
-  data_conditions(df, published = TRUE, contact_person, citation)
 }
 
 
@@ -179,11 +173,8 @@ fd_subcanopy_diameter <- function() {
 
   #reformat date class
   sc_alltime$date <- as.Date(sc_alltime$date, "%Y-%m-%d")
+  return(sc_alltime)
 
-  # Data creation and authorship information
-  contact_person <- "Maxim S. Grigri"
-  citation <- "ESSD"
-  data_conditions(sc_alltime, published = TRUE, contact_person, citation)
 }
 
 
@@ -216,11 +207,8 @@ fd_subcanopy_density <- function () {
 
   # reformat date class
   sc_density$date <- as.Date(sc_density$date, "%Y-%m-%d")
+  return(sc_density)
 
-  # Data creation and authorship information
-  contact_person <- "Maxim S. Grigri"
-  citation <- "ESSD"
-  data_conditions(sc_density, published = TRUE, contact_person, citation)
 }
 
 
@@ -251,11 +239,8 @@ fd_seedling_sapling <- function() {
 
   # reformat date column
   ss_alltime$date <- as.Date(ss_alltime$date, "%Y-%m-%d")
+  return(ss_alltime)
 
-  # Data creation and authorship information
-  contact_person <- "Maxim S. Grigri"
-  citation <- "ESSD"
-  data_conditions(ss_alltime, published = TRUE, contact_person, citation)
 }
 
 # Double canopy dendroband data
@@ -299,9 +284,6 @@ fd_double_dendro <- function() {
 
   # drop the band_in columns
   dd_alltime <- dd_alltime[c("tag", "species", "band_cm_bottom","band_cm_top", "date", "notes")]
+  return(dd_alltime)
 
-  # Data creation and authorship information
-  contact_person <- "Maxim S. Grigri"
-  citation <- "ESSD"
-  data_conditions(dd_alltime, published = TRUE, contact_person, citation)
 }

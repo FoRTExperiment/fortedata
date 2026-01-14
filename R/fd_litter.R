@@ -36,11 +36,7 @@ fd_litter <- function() {
   # Reorder columns, dropping unneeded ones
   litter <- litter[c("subplot_id", "replicate", "plot", "subplot", "year", "fraction", "species", "bagtare_g", "bagmass_g")]
   weak_as_tibble(litter)
-
-  # Data creation and authorship information
-  contact_person <- "Jeff Atkins"
-  citation <- "ESSD"
-  data_conditions(litter, published = FALSE, contact_person, citation)
+  return(litter)
 }
 
 
@@ -87,7 +83,5 @@ fd_cwd <- function() {
   weak_as_tibble(cwd)
 
   # Data creation and authorship information
-  contact_person <- "Jeff Atkins"
-  citation <- "ESSD"
-  data_conditions(cwd, published = FALSE, contact_person, citation)
+  return(cwd)
 }
