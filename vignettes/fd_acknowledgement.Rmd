@@ -1,0 +1,36 @@
+---
+title: "fortedata: Acknowledgements"
+author: "FoRTE Team"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fortedata: Acknowledgements}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE}
+library(fortedata)
+library(knitr)
+library(kableExtra)
+```
+
+The FoRTE Project has been made possible by many contributors over the years. We are incredibly thankful to everyone who contributed to FoRTE research and fortedata through field and lab work, making the dataset contained within fortedata possible. Here is a comprehensive list of all FoRTE collaborators and contributors over the years. 
+
+```{r, echo = FALSE}
+fd_contributors() %>% 
+  dplyr::select(-notes) %>% 
+      kableExtra::kable(format = "markdown")
+```
+
+
+
+
