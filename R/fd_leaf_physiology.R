@@ -26,10 +26,7 @@ fd_leaf_spectrometry <- function() {
   # Reorder columns, dropping unneeded FilePath
   leaf_spec <- leaf_spec[c("subplot_id", "replicate", "plot", "subplot", "date", "tree_id", "leaf_id", "species", "index", "index_value", "id")]
 
-  # Data creation and authorship information
-  contact_person <- "Lisa Haber"
-  citation <- "ESSD"
-  data_conditions(leaf_spec, published = FALSE, contact_person, citation)
+  return(leaf_spec)
 }
 
 
@@ -78,8 +75,6 @@ fd_photosynthesis <- function() {
   other_cols <- setdiff(names(leaf_photo), first_cols)
   leaf_photo[c(first_cols, other_cols)]
 
-  # Data creation and authorship information
-  contact_person <- "Lisa Haber"
-  citation <- "ESSD"
-  data_conditions(leaf_photo, published = FALSE, contact_person, citation)
+  return(leaf_photo)
+
 }
