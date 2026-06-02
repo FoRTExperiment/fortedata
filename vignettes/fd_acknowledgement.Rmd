@@ -23,7 +23,7 @@ library(knitr)
 library(kableExtra)
 ```
 
-The FoRTE Project has been made possible by many contributors over the years. We are incredibly thankful to everyone who contributed to FoRTE research and fortedata through field and lab work, making the dataset contained within fortedata possible. Here is a comprehensive list of all FoRTE collaborators and contributors over the years. 
+The FoRTE Project has been made possible by many contributors over the years. We are incredibly thankful to everyone who contributed to FoRTE research and fortedata through field and lab work, making the data sets contained within fortedata possible. Here is a comprehensive list of all FoRTE collaborators and contributors over the years. We'd also like to thank and acknowledge the several volunteers we've had over the years that have helped us collect and process data.
 
 ```{r, echo = FALSE}
 fd_contributors() %>% 

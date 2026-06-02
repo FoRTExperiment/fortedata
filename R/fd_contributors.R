@@ -16,5 +16,8 @@
 #' fd_contributors()
 #' }
 fd_contributors <- function() {
-  read_csv_file("fd_contributors.csv")
+  # Silence package checks
+  surname <- NULL
+
+  dplyr::select(dplyr::arrange(read_csv_file("fd_contributors.csv") , surname), -surname)
 }
